@@ -5,7 +5,7 @@ import static fluent.ly.azzert.*;
 
 import java.util.function.*;
 
-import org.jetbrains.annotations.*;
+//import org.jetbrains.annotations.*;
 import org.junit.*;
 
 /** An empty <code><b>enum</b></code> with a variety of <code>public
