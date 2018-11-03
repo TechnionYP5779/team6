@@ -29,4 +29,27 @@ public class RangeTest {
     assertTrue(r5.includedIn(r1));
     assertTrue(r6.includedIn(r1));
   }
+  
+  @SuppressWarnings("static-method") @Test public void HashCodeTest() {
+    Range r1 = new Range(1,4);
+    Range r2 = new Range(1,4);
+    Range r3 = new Range(2,4);
+    Range r4 = new Range(1,5);
+    assertTrue(r1.hashCode()==r2.hashCode());
+    assertFalse(r1.hashCode()==r3.hashCode());
+    assertFalse(r1.hashCode()==r4.hashCode());
+    assertFalse(r3.hashCode()==r4.hashCode());
+  }
+  
+  @SuppressWarnings("static-method") @Test public void SizeAndEmptyTest() {
+    Range r1 = new Range(1,4);
+    Range r2 = new Range(4,1);
+    Range r3 = new Range(1,1);
+    assertTrue(r1.size()==3);
+    assertTrue(r2.size()==-3);
+    assertTrue(r3.size()==0);
+    assertFalse(r1.isEmpty());
+    assertTrue(r2.isEmpty());
+    assertTrue(r3.isEmpty());
+  }
 }
