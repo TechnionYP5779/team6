@@ -47,4 +47,30 @@
 			<systemPath>${project.basedir}/lib/cli-1.01.jar</systemPath>
 		</dependency>
 	</dependencies>
+	
+	<plugin>
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>build-helper-maven-plugin</artifactId>
+  <version>1.12</version>
+  <executions>
+    <execution>
+      <id>add-test-resource</id>
+      <phase>generate-test-sources</phase>
+      <goals>
+        <goal>add-test-resource</goal>
+      </goals>
+      <configuration>
+        <resources>
+          <resource>
+            <directory>main/java</directory>
+            <excludes>
+              <exclude></exclude>
+            </excludes>
+          </resource>
+        </resources>
+      </configuration>
+    </execution> 
+  </executions>
+</plugin>
+	
 </project>
