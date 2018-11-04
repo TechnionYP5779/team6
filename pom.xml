@@ -63,7 +63,7 @@
             </goals>
             <configuration>
               <sources>
-                <source>${project.basedir}/main/java</source>
+                <source>${project.basedir}/src/main/java</source>
                 ...
               </sources>
             </configuration>
