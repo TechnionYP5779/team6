@@ -118,4 +118,17 @@ public class RangeTest {
     assertTrue(testList.contains(r3));
     assertTrue(testList.contains(r4));
   }
+  
+  @SuppressWarnings("static-method") @Test public void ToStringTest() {
+    Range r1 = new Range(1,4);
+    Range r2 = new Range(1,1);
+    Range r3 = new Range(-1,-1);
+    Range r4 = new Range(-1,5);
+    Range r5 = new Range(5,-1);
+    assertTrue(r1.toString().equals("[1, 4]"));
+    assertTrue(r2.toString().equals("[1, 1]"));
+    assertTrue(r3.toString().equals("[-1, -1]"));
+    assertTrue(r4.toString().equals("[-1, 5]"));
+    assertTrue(r5.toString().equals("[5, -1]"));
+  }
 }
