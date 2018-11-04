@@ -2,6 +2,8 @@ package il.org.spartan.utils;
 
 import static org.junit.Assert.*;
 
+import java.util.*;
+
 import org.junit.*;
 
 public class RangeTest {
@@ -51,5 +53,82 @@ public class RangeTest {
     assertFalse(r1.isEmpty());
     assertTrue(r2.isEmpty());
     assertTrue(r3.isEmpty());
+  }
+  
+  @SuppressWarnings("static-method") @Test public void FindIncludedInTest() {
+    Range r1 = new Range(1,4);
+    Range r2 = new Range(1,4);
+    Range r3 = new Range(2,4);
+    Range r4 = new Range(1,3);
+    Range r5 = new Range(0,4);
+    Range r6 = new Range(1,5);
+    assertTrue(r1.findIncludedIn(null)==null);
+    ArrayList<Range> notIncluded = new ArrayList<>();
+    ArrayList<Range> included = new ArrayList<>();
+    notIncluded.add(r3);
+    notIncluded.add(r4);
+    assertTrue(r1.findIncludedIn(notIncluded)==null);
+    included.add(r2);
+    included.add(r5);
+    included.add(r6);
+    assertTrue(r2.equals(r1.findIncludedIn(included)));
+    assertTrue(included.remove(r2));
+    assertTrue(r5.equals(r1.findIncludedIn(included)));
+    assertTrue(included.remove(r5));
+    assertTrue(r6.equals(r1.findIncludedIn(included)));
+    assertTrue(included.remove(r6));
+    assertTrue(r1.findIncludedIn(included)==null);
+  }
+  
+  @SuppressWarnings("static-method") @Test public void OverlappingTest() {
+    Range r1 = new Range(1,100);
+    Range r2 = new Range(1,100);
+    Range r3 = new Range(0,101);
+    Range r4 = new Range(0,99);
+    Range r5 = new Range(2,101);
+    Range r6 = new Range(2,99); //no
+    assertTrue(r1.overlapping(r2));
+    assertTrue(r1.overlapping(r3));
+    assertTrue(r1.overlapping(r4));
+    assertTrue(r1.overlapping(r5));
+    assertFalse(r1.overlapping(r6));
+  }
+  
+  @SuppressWarnings("static-method") @Test public void PruneIncludersTest() {
+    Range r1 = new Range(1,4);
+    Range r2 = new Range(1,4);
+    Range r3 = new Range(2,4);
+    Range r4 = new Range(1,3);
+    Range r5 = new Range(0,4);
+    Range r6 = new Range(1,5);
+    ArrayList<Range> testList = new ArrayList<>();
+    testList.add(r2);
+    testList.add(r3);
+    testList.add(r4);
+    testList.add(r5);
+    testList.add(r6);
+    //based on FindIncludedInTest r2,r5,r6 should be removed
+    assertTrue(testList.contains(r2));
+    assertTrue(testList.contains(r5));
+    assertTrue(testList.contains(r6));
+    r1.pruneIncluders(testList);
+    assertFalse(testList.contains(r2));
+    assertFalse(testList.contains(r5));
+    assertFalse(testList.contains(r6));
+    assertTrue(testList.contains(r3));
+    assertTrue(testList.contains(r4));
+  }
+  
+  @SuppressWarnings("static-method") @Test public void ToStringTest() {
+    Range r1 = new Range(1,4);
+    Range r2 = new Range(1,1);
+    Range r3 = new Range(-1,-1);
+    Range r4 = new Range(-1,5);
+    Range r5 = new Range(5,-1);
+    assertTrue(r1.toString().equals("[1, 4]"));
+    assertTrue(r2.toString().equals("[1, 1]"));
+    assertTrue(r3.toString().equals("[-1, -1]"));
+    assertTrue(r4.toString().equals("[-1, 5]"));
+    assertTrue(r5.toString().equals("[5, -1]"));
   }
 }
