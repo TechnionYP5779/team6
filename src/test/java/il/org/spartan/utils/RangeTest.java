@@ -2,6 +2,8 @@ package il.org.spartan.utils;
 
 import static org.junit.Assert.*;
 
+import java.util.*;
+
 import org.junit.*;
 
 public class RangeTest {
@@ -51,5 +53,30 @@ public class RangeTest {
     assertFalse(r1.isEmpty());
     assertTrue(r2.isEmpty());
     assertTrue(r3.isEmpty());
+  }
+  
+  @SuppressWarnings("static-method") @Test public void FindIncludedInTest() {
+    Range r1 = new Range(1,4);
+    Range r2 = new Range(1,4);
+    Range r3 = new Range(2,4);
+    Range r4 = new Range(1,3);
+    Range r5 = new Range(0,4);
+    Range r6 = new Range(1,5);
+    assertTrue(r1.findIncludedIn(null)==null);
+    ArrayList<Range> notIncluded = new ArrayList<>();
+    ArrayList<Range> included = new ArrayList<>();
+    notIncluded.add(r3);
+    notIncluded.add(r4);
+    assertTrue(r1.findIncludedIn(notIncluded)==null);
+    included.add(r2);
+    included.add(r5);
+    included.add(r6);
+    assertTrue(r2.equals(r1.findIncludedIn(included)));
+    assertTrue(included.remove(r2));
+    assertTrue(r5.equals(r1.findIncludedIn(included)));
+    assertTrue(included.remove(r5));
+    assertTrue(r6.equals(r1.findIncludedIn(included)));
+    assertTrue(included.remove(r6));
+    assertTrue(r1.findIncludedIn(included)==null);
   }
 }
