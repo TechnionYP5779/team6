@@ -82,7 +82,6 @@ public class RangeTest {
   
   @SuppressWarnings("static-method") @Test public void OverlappingTest() {
     Range r1 = new Range(1,100);
-
     Range r2 = new Range(1,100);
     Range r3 = new Range(0,101);
     Range r4 = new Range(0,99);
