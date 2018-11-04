@@ -1,5 +1,7 @@
 package il.org.spartan.utils;
 
+import il.org.spartan.Utils; //added to use hash on utils
+
 import org.jetbrains.annotations.*;
 
 public class Pair<First, Second> {
@@ -33,12 +35,12 @@ public class Pair<First, Second> {
   }
 
   @Override public int hashCode() {
-    return hash(second) ^ hash(first) >>> 1;
+    return Utils.hash(second) ^ Utils.hash(first) >>> 1;
   }
 
-  private static int hash(Object ¢) {
+  /*private static int hash(Object ¢) {
     return ¢ == null ? 0 : ¢.hashCode();
-  }
+  }*/
 
   @Override @NotNull public String toString() {
     return "<" + first + "," + second + ">";
