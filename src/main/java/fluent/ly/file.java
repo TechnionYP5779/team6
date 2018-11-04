@@ -44,7 +44,7 @@ public class file {
     return read(Paths.get(fileName));
   }
   
-  @NotNull private static String read(final @NotNull Path ¢) throws IOException {
+  @NotNull private static String read(final Path ¢) throws IOException {
     return new String(Files.readAllBytes(¢), StandardCharsets.UTF_8);
   }
 }
