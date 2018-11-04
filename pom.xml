@@ -64,7 +64,7 @@
             <configuration>
               <sources>
                 <source>src/main/java/fluent/ly</source>
-				<includes>*</includes>
+				<includes>*.java</includes>
               </sources>
             </configuration>
           </execution>
