@@ -73,7 +73,16 @@
             </goals>
             <configuration>
               <sources>
-                <source>src/main/java/*</source>
+                <source>src/main/java/a</source>
+				  <source>src/main/java/an</source>
+				    <source>src/main/java/a</source>
+					<source>src/main/java/fluent/ly</source>
+					<source>src/main/java/il/org/spartan</source>
+					<source>src/main/java/il/org/spartan/iterables</source>
+					<source>src/main/java/il/org/spartan/iteration/closures</source>
+					<source>src/main/java/il/org/spartan/statistics</source>
+					<source>src/main/java/il/org/spartan/tables</source>
+					<source>src/main/java/il/org/spartan/utils</source>
               </sources>
             </configuration>
           </execution>
