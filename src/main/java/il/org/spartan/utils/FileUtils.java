@@ -1,8 +1,6 @@
 package il.org.spartan.utils;
 
 import java.io.*;
-import java.nio.charset.*;
-import java.nio.file.*;
 import java.util.*;
 
 import org.jetbrains.annotations.*;
@@ -36,10 +34,6 @@ import org.jetbrains.annotations.*;
     return $ + "";
   }
 
-  @NotNull public static String read(final @NotNull String fileName) throws IOException {
-    return read(Paths.get(fileName));
-  }
-
   /** @param fileName where to write
    * @param text     what to write
    * @throws FileNotFoundException in case the file could not be found */
@@ -58,9 +52,5 @@ import org.jetbrains.annotations.*;
         if (¢.isFile() && ¢.getName().endsWith(".java"))
           files.add(¢.getAbsolutePath());
       }
-  }
-
-  @NotNull private static String read(final @NotNull Path ¢) throws IOException {
-    return new String(Files.readAllBytes(¢), StandardCharsets.UTF_8);
   }
 }
