@@ -68,6 +68,9 @@
 				<includes>
 				<include>*.java</include>
 				</includes>
+				<excludes>
+				<exclude> accumulate.java </exclude>
+				</excludes>
             </configuration>
           </execution>
         </executions>
