@@ -63,11 +63,10 @@
             </goals>
             <configuration>
               <sources>
-                <source>src/main/java/fluent/ly
+                <source>src/main/java/fluent/ly</source>
 				<includes>
 				 <include>*</include>
 				</includes>
-				</source>
               </sources>
             </configuration>
           </execution>
