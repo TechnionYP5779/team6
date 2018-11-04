@@ -92,6 +92,30 @@ public class RangeTest {
     assertTrue(r1.overlapping(r4));
     assertTrue(r1.overlapping(r5));
     assertFalse(r1.overlapping(r6));
-
+  }
+  
+  @SuppressWarnings("static-method") @Test public void PruneIncludersTest() {
+    Range r1 = new Range(1,4);
+    Range r2 = new Range(1,4);
+    Range r3 = new Range(2,4);
+    Range r4 = new Range(1,3);
+    Range r5 = new Range(0,4);
+    Range r6 = new Range(1,5);
+    ArrayList<Range> testList = new ArrayList<>();
+    testList.add(r2);
+    testList.add(r3);
+    testList.add(r4);
+    testList.add(r5);
+    testList.add(r6);
+    //based on FindIncludedInTest r2,r5,r6 should be removed
+    assertTrue(testList.contains(r2));
+    assertTrue(testList.contains(r5));
+    assertTrue(testList.contains(r6));
+    r1.pruneIncluders(testList);
+    assertFalse(testList.contains(r2));
+    assertFalse(testList.contains(r5));
+    assertFalse(testList.contains(r6));
+    assertTrue(testList.contains(r3));
+    assertTrue(testList.contains(r4));
   }
 }
