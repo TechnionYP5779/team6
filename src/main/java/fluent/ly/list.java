@@ -1,7 +1,11 @@
 package fluent.ly;
 
+import static fluent.ly.idiomatic.*;
+
 import java.util.*;
 import java.util.function.*;
+
+import org.jetbrains.annotations.*;
 
 import il.org.spartan.utils.*;
 
@@ -75,5 +79,13 @@ public interface list {
 
   static <T> ToCallExpected<T> prepend(final T ¢) {
     return new PrependOrAppend<T>().prepend(¢);
+  }
+
+  /** @param <T> JD
+   * @param ¢ a list
+   * @return last item in a list or <code><b>null</b></code> if the parameter is
+   *         <code><b>null</b></code> or empty */
+  static <T> @Nullable T penultimate(final List<T> ¢) {
+    return eval(() -> ¢.get(¢.size() - 2)).unless(¢ == null || ¢.size() < 2);
   }
 }
