@@ -41,6 +41,6 @@ import org.junit.*;
   }
 
   @Test(expected = NumberFormatException.class) public void ignoring_null() {
-    assertNull(new Long(null).longValue());
+    assertNull(Long.valueOf(null));
   }
 }

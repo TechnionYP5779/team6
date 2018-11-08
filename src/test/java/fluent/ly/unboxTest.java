@@ -2,15 +2,16 @@ package fluent.ly;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.*;
 
-public class unboxTest {
+@SuppressWarnings({ "null" , "static-method"})public class unboxTest {
 
 
-    @Test public void unboxTestBoolean(){
-        boolean[] arr = {true, false,true, false};
-        Boolean[] param = {Boolean.TRUE, Boolean.FALSE,Boolean.TRUE, Boolean.FALSE};
-        boolean[] result = unbox.unbox(param);
+     @Test public void unboxTestBoolean(){
+        boolean [] arr = {true, false,true, false};
+         Boolean [] param =  {Boolean.TRUE, Boolean.FALSE,Boolean.TRUE, Boolean.FALSE};
+         boolean [] result =  unbox.unbox(param);
         assertArrayEquals(arr, result);
     }
 
