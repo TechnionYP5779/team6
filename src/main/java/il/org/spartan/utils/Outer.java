@@ -7,7 +7,7 @@ import il.org.spartan.*;
 /** TODO Yossi Gil: document class
  * @author Yossi Gil
  * @since 2017-03-21 */
-public class Outer<Inner> implements Cloneable{
+public class Outer<Inner> implements Cloneable {
   public Inner inner;
 
   public Outer(final Inner inner) {
@@ -34,28 +34,25 @@ public class Outer<Inner> implements Cloneable{
     return true;
   }
 
-  @Override @NotNull @SuppressWarnings("unchecked") 
-  public Outer<Inner> clone() throws CloneNotSupportedException {
+  @Override @NotNull @SuppressWarnings("unchecked") public Outer<Inner> clone() throws CloneNotSupportedException {
     return (Outer<Inner>) Utils.cantBeNull(super.clone());
   }
-  
+
   public Inner get() {
     return inner;
   }
-  
+
   @Override public int hashCode() {
     return 31 + Utils.hash(inner);
   }
-  
-  public void set(final Inner inner) throws IllegalArgumentException{
-    if(inner == null) throw new IllegalArgumentException();
+
+  public void set(final Inner inner) throws IllegalArgumentException {
+    if (inner == null)
+      throw new IllegalArgumentException();
     this.inner = inner;
   }
 
-  @Override
-  public String toString() {
+  @Override public String toString() {
     return Utils.cantBeNull(inner + "");
   }
-  
 }
-

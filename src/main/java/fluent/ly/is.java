@@ -62,6 +62,7 @@ public interface is {
         return true;
     return false;
   }
-  //removed annotation @NotNull from final T... ts, in the original "in" function in is, 
-  //there wasn't this annotation
+  // removed annotation @NotNull from final T... ts, in the original "in" function
+  // in is,
+  // there wasn't this annotation
 }

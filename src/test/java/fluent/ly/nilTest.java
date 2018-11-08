@@ -1,7 +1,9 @@
 package fluent.ly;
 
-import java.util.function.Function;
 import static org.junit.Assert.*;
+
+import java.util.function.*;
+
 import org.junit.*;
 
 @SuppressWarnings({ "static-method", "boxing" }) public class nilTest {
@@ -14,11 +16,11 @@ import org.junit.*;
 
   @Test public void guardingly() {
     // function=String::length
-    Function<String, Integer> stringIntegerFunction = String::length;
+    final Function<String, Integer> stringIntegerFunction = String::length;
     assertNull(nil.guardingly(stringIntegerFunction).on(null));
     assertEquals(5, nil.guardingly(stringIntegerFunction).on("abcde").intValue());
     // function=Integer.toString
-    Function<Integer, String> integerStringFunction = λ -> λ + "";
+    final Function<Integer, String> integerStringFunction = λ -> λ + "";
     assertNull("5", nil.guardingly(integerStringFunction).on(null));
     assertEquals("5", nil.guardingly(integerStringFunction).on(5));
   }
@@ -26,7 +28,7 @@ import org.junit.*;
   @Test public void ignoring_boolean() {
     assertNull(nil.ignoring(true));
     assertNull(nil.ignoring(false));
-    assertNull(nil.ignoring(('z' < 'a') || (109 - 50 >= 400)));
+    assertNull(nil.ignoring('z' < 'a' || 109 - 50 >= 400));
   }
 
   @Test public void ignoring_double() {

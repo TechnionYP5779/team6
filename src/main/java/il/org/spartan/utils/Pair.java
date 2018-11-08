@@ -1,8 +1,9 @@
 package il.org.spartan.utils;
 
-import il.org.spartan.Utils; //added to use hash on utils
-
 import org.jetbrains.annotations.*;
+
+// added to use hash on utils
+import il.org.spartan.*;
 
 public class Pair<First, Second> {
   @SuppressWarnings("unchecked") //
@@ -38,10 +39,7 @@ public class Pair<First, Second> {
     return Utils.hash(second) ^ Utils.hash(first) >>> 1;
   }
 
-  /*private static int hash(Object ¢) {
-    return ¢ == null ? 0 : ¢.hashCode();
-  }*/
-
+  /* private static int hash(Object ¢) { return ¢ == null ? 0 : ¢.hashCode(); } */
   @Override @NotNull public String toString() {
     return "<" + first + "," + second + ">";
   }

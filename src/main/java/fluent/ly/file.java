@@ -4,14 +4,12 @@ import java.io.*;
 import java.nio.charset.*;
 import java.nio.file.*;
 
-
 import org.jetbrains.annotations.*;
 
 /** File utils
  * @author Ori Marcovitch
  * @since Dec 4, 2016 */
 public class file {
-  
   private static void delete(final @NotNull String path) {
     if (file.exists(path))
       new File(path).delete();
@@ -35,13 +33,11 @@ public class file {
   public static void renameToCSV(final @NotNull String old) {
     file.rename(old, old + ".csv");
   }
-  
-  
-  
+
   @NotNull public static String read(final @NotNull String fileName) throws IOException {
     return read(Paths.get(fileName));
   }
-  
+
   @NotNull private static String read(final Path ¢) throws IOException {
     return new String(Files.readAllBytes(¢), StandardCharsets.UTF_8);
   }

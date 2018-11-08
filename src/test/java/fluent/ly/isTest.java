@@ -1,7 +1,9 @@
 package fluent.ly;
 
 import static org.junit.Assert.*;
+
 import java.util.*;
+
 import org.junit.*;
 
 @SuppressWarnings({ "static-method", "boxing" }) public class isTest {
@@ -23,10 +25,10 @@ import org.junit.*;
     assertTrue(is.in("a", "z", "x", "a"));
     assertTrue(is.in("a", "A", "B", null, "B", "a", "A", "B"));
     // T=int[]
-    int[] arr1 = new int[] { 1 };
-    int[] arr23 = new int[] { 2, 3 };
-    int[] arr123 = new int[] { 1, 2, 3 };
-    int[] arr1234 = new int[] { 1, 2, 3, 4 };
+    final int[] arr1 = new int[] { 1 };
+    final int[] arr23 = new int[] { 2, 3 };
+    final int[] arr123 = new int[] { 1, 2, 3 };
+    final int[] arr1234 = new int[] { 1, 2, 3, 4 };
     assertFalse(is.in(arr123, (int[]) null));
     assertFalse(is.in(arr123));
     assertFalse(is.in(arr123, arr1234));
@@ -39,7 +41,7 @@ import org.junit.*;
     try {
       assertFalse(is.intIsIn(0, null));
       fail();
-    } catch (@SuppressWarnings("unused") NullPointerException ignored) {
+    } catch (@SuppressWarnings("unused") final NullPointerException ignored) {
       // do nothing
     }
     assertFalse(is.intIsIn(0));
@@ -68,10 +70,10 @@ import org.junit.*;
     assertFalse(is.not.in("a", "z", "x", "a"));
     assertFalse(is.not.in("a", "A", "B", null, "B", "a", "A", "B"));
     // T=int[]
-    int[] arr1 = new int[] { 1 };
-    int[] arr23 = new int[] { 2, 3 };
-    int[] arr123 = new int[] { 1, 2, 3 };
-    int[] arr1234 = new int[] { 1, 2, 3, 4 };
+    final int[] arr1 = new int[] { 1 };
+    final int[] arr23 = new int[] { 2, 3 };
+    final int[] arr123 = new int[] { 1, 2, 3 };
+    final int[] arr1234 = new int[] { 1, 2, 3, 4 };
     assertTrue(is.not.in(arr123, (int[]) null));
     assertTrue(is.not.in(arr123));
     assertTrue(is.not.in(arr123, arr1234));
@@ -98,10 +100,10 @@ import org.junit.*;
     assertFalse(is.out("a", "z", "x", "a"));
     assertFalse(is.out("a", "A", "B", null, "B", "a", "A", "B"));
     // T=int[]
-    int[] arr1 = new int[] { 1 };
-    int[] arr23 = new int[] { 2, 3 };
-    int[] arr123 = new int[] { 1, 2, 3 };
-    int[] arr1234 = new int[] { 1, 2, 3, 4 };
+    final int[] arr1 = new int[] { 1 };
+    final int[] arr23 = new int[] { 2, 3 };
+    final int[] arr123 = new int[] { 1, 2, 3 };
+    final int[] arr1234 = new int[] { 1, 2, 3, 4 };
     assertTrue(is.out(arr123, (int[]) null));
     assertTrue(is.out(arr123));
     assertTrue(is.out(arr123, arr1234));
@@ -149,7 +151,7 @@ import org.junit.*;
     ((ArrayList<Integer>) integers).remove(0);
     assertTrue(is.empty(integers));
     // T=Character
-    Map<Character, Character> map = new HashMap<>();
+    final Map<Character, Character> map = new HashMap<>();
     assertTrue(is.empty((Iterable<Character>) map.keySet()));
     map.put('a', 'z');
     map.put('b', 'y');
@@ -159,7 +161,7 @@ import org.junit.*;
 
   @Test public void empty_collection() {
     // T=Integer
-    ArrayList<Integer> listInteger = new ArrayList<>();
+    final ArrayList<Integer> listInteger = new ArrayList<>();
     assertTrue(is.empty(listInteger));
     listInteger.add(1);
     assertFalse(is.empty(listInteger));
@@ -167,7 +169,7 @@ import org.junit.*;
     listInteger.add(3);
     assertFalse(is.empty(listInteger));
     // T=String
-    ArrayList<String> listString = new ArrayList<>();
+    final ArrayList<String> listString = new ArrayList<>();
     assertTrue(is.empty(listString));
     listString.add("A");
     listString.add("B");

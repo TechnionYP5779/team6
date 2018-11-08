@@ -8,66 +8,66 @@ import org.junit.*;
 
 public class RangeTest {
   @SuppressWarnings("static-method") @Test public void RangeEqualTest() {
-    Range r1 = new Range(1,4);
-    Range r2 = new Range(1,4);
-    Range r3 = new Range(2,4);
-    Range r4 = new Range(1,5);
+    final Range r1 = new Range(1, 4);
+    final Range r2 = new Range(1, 4);
+    final Range r3 = new Range(2, 4);
+    final Range r4 = new Range(1, 5);
     assertTrue(r1.equals(r2));
     assertFalse(r1.equals(r3));
     assertFalse(r1.equals(r4));
     assertFalse(r3.equals(r4));
   }
-  
+
   @SuppressWarnings("static-method") @Test public void RangeIncludenInTest() {
-    Range r1 = new Range(1,4);
-    Range r2 = new Range(1,4);
-    Range r3 = new Range(0,4);
-    Range r4 = new Range(1,5);
-    Range r5 = new Range(2,4);
-    Range r6 = new Range(1,3);
+    final Range r1 = new Range(1, 4);
+    final Range r2 = new Range(1, 4);
+    final Range r3 = new Range(0, 4);
+    final Range r4 = new Range(1, 5);
+    final Range r5 = new Range(2, 4);
+    final Range r6 = new Range(1, 3);
     assertTrue(r1.includedIn(r2));
     assertFalse(r3.includedIn(r1));
     assertFalse(r4.includedIn(r1));
     assertTrue(r5.includedIn(r1));
     assertTrue(r6.includedIn(r1));
   }
-  
+
   @SuppressWarnings("static-method") @Test public void HashCodeTest() {
-    Range r1 = new Range(1,4);
-    Range r2 = new Range(1,4);
-    Range r3 = new Range(2,4);
-    Range r4 = new Range(1,5);
-    assertTrue(r1.hashCode()==r2.hashCode());
-    assertFalse(r1.hashCode()==r3.hashCode());
-    assertFalse(r1.hashCode()==r4.hashCode());
-    assertFalse(r3.hashCode()==r4.hashCode());
+    final Range r1 = new Range(1, 4);
+    final Range r2 = new Range(1, 4);
+    final Range r3 = new Range(2, 4);
+    final Range r4 = new Range(1, 5);
+    assertTrue(r1.hashCode() == r2.hashCode());
+    assertFalse(r1.hashCode() == r3.hashCode());
+    assertFalse(r1.hashCode() == r4.hashCode());
+    assertFalse(r3.hashCode() == r4.hashCode());
   }
-  
+
   @SuppressWarnings("static-method") @Test public void SizeAndEmptyTest() {
-    Range r1 = new Range(1,4);
-    Range r2 = new Range(4,1);
-    Range r3 = new Range(1,1);
-    assertTrue(r1.size()==3);
-    assertTrue(r2.size()==-3);
-    assertTrue(r3.size()==0);
+    final Range r1 = new Range(1, 4);
+    final Range r2 = new Range(4, 1);
+    final Range r3 = new Range(1, 1);
+    assertTrue(r1.size() == 3);
+    assertTrue(r2.size() == -3);
+    assertTrue(r3.size() == 0);
     assertFalse(r1.isEmpty());
     assertTrue(r2.isEmpty());
     assertTrue(r3.isEmpty());
   }
-  
+
   @SuppressWarnings("static-method") @Test public void FindIncludedInTest() {
-    Range r1 = new Range(1,4);
-    Range r2 = new Range(1,4);
-    Range r3 = new Range(2,4);
-    Range r4 = new Range(1,3);
-    Range r5 = new Range(0,4);
-    Range r6 = new Range(1,5);
-    assertTrue(r1.findIncludedIn(null)==null);
-    ArrayList<Range> notIncluded = new ArrayList<>();
-    ArrayList<Range> included = new ArrayList<>();
+    final Range r1 = new Range(1, 4);
+    final Range r2 = new Range(1, 4);
+    final Range r3 = new Range(2, 4);
+    final Range r4 = new Range(1, 3);
+    final Range r5 = new Range(0, 4);
+    final Range r6 = new Range(1, 5);
+    assertTrue(r1.findIncludedIn(null) == null);
+    final ArrayList<Range> notIncluded = new ArrayList<>();
+    final ArrayList<Range> included = new ArrayList<>();
     notIncluded.add(r3);
     notIncluded.add(r4);
-    assertTrue(r1.findIncludedIn(notIncluded)==null);
+    assertTrue(r1.findIncludedIn(notIncluded) == null);
     included.add(r2);
     included.add(r5);
     included.add(r6);
@@ -77,37 +77,37 @@ public class RangeTest {
     assertTrue(included.remove(r5));
     assertTrue(r6.equals(r1.findIncludedIn(included)));
     assertTrue(included.remove(r6));
-    assertTrue(r1.findIncludedIn(included)==null);
+    assertTrue(r1.findIncludedIn(included) == null);
   }
-  
+
   @SuppressWarnings("static-method") @Test public void OverlappingTest() {
-    Range r1 = new Range(1,100);
-    Range r2 = new Range(1,100);
-    Range r3 = new Range(0,101);
-    Range r4 = new Range(0,99);
-    Range r5 = new Range(2,101);
-    Range r6 = new Range(2,99); //no
+    final Range r1 = new Range(1, 100);
+    final Range r2 = new Range(1, 100);
+    final Range r3 = new Range(0, 101);
+    final Range r4 = new Range(0, 99);
+    final Range r5 = new Range(2, 101);
+    final Range r6 = new Range(2, 99); // no
     assertTrue(r1.overlapping(r2));
     assertTrue(r1.overlapping(r3));
     assertTrue(r1.overlapping(r4));
     assertTrue(r1.overlapping(r5));
     assertFalse(r1.overlapping(r6));
   }
-  
+
   @SuppressWarnings("static-method") @Test public void PruneIncludersTest() {
-    Range r1 = new Range(1,4);
-    Range r2 = new Range(1,4);
-    Range r3 = new Range(2,4);
-    Range r4 = new Range(1,3);
-    Range r5 = new Range(0,4);
-    Range r6 = new Range(1,5);
-    ArrayList<Range> testList = new ArrayList<>();
+    final Range r1 = new Range(1, 4);
+    final Range r2 = new Range(1, 4);
+    final Range r3 = new Range(2, 4);
+    final Range r4 = new Range(1, 3);
+    final Range r5 = new Range(0, 4);
+    final Range r6 = new Range(1, 5);
+    final ArrayList<Range> testList = new ArrayList<>();
     testList.add(r2);
     testList.add(r3);
     testList.add(r4);
     testList.add(r5);
     testList.add(r6);
-    //based on FindIncludedInTest r2,r5,r6 should be removed
+    // based on FindIncludedInTest r2,r5,r6 should be removed
     assertTrue(testList.contains(r2));
     assertTrue(testList.contains(r5));
     assertTrue(testList.contains(r6));
@@ -118,13 +118,13 @@ public class RangeTest {
     assertTrue(testList.contains(r3));
     assertTrue(testList.contains(r4));
   }
-  
+
   @SuppressWarnings("static-method") @Test public void ToStringTest() {
-    Range r1 = new Range(1,4);
-    Range r2 = new Range(1,1);
-    Range r3 = new Range(-1,-1);
-    Range r4 = new Range(-1,5);
-    Range r5 = new Range(5,-1);
+    final Range r1 = new Range(1, 4);
+    final Range r2 = new Range(1, 1);
+    final Range r3 = new Range(-1, -1);
+    final Range r4 = new Range(-1, 5);
+    final Range r5 = new Range(5, -1);
     assertTrue(r1.toString().equals("[1, 4]"));
     assertTrue(r2.toString().equals("[1, 1]"));
     assertTrue(r3.toString().equals("[-1, -1]"));

@@ -10,11 +10,17 @@ public class TruthTest {
   @SuppressWarnings("static-method") @Test public void TruthOfTest() {
     BooleanSupplier t = () -> true;
     BooleanSupplier f = () -> false;
-    BooleanSupplier assertionError = () -> {throw new AssertionError();};
-    BooleanSupplier runtimeException = () -> {throw new RuntimeException();};
+    BooleanSupplier assertionError = () -> {
+      throw new AssertionError();
+    };
+    BooleanSupplier runtimeException = () -> {
+      throw new RuntimeException();
+    };
     // need somthing that implements throwable - Error or Exception - the last spits
     // an error in eclipse about handeling
-    BooleanSupplier exception = () -> {throw new Error();};
+    BooleanSupplier exception = () -> {
+      throw new Error();
+    };
     assertTrue(Truth.truthOf(null) == Truth.N);
     assertTrue(Truth.truthOf(t) == Truth.T);
     assertTrue(Truth.truthOf(f) == Truth.F);
@@ -29,7 +35,7 @@ public class TruthTest {
     assertTrue(Truth.truthOf(t).not() == Truth.F);
     assertTrue(Truth.truthOf(f).not() == Truth.T);
   }
-  
+
   @SuppressWarnings("static-method") @Test public void OrTest() {
     BooleanSupplier t = () -> true;
     BooleanSupplier f = () -> false;
@@ -38,7 +44,7 @@ public class TruthTest {
     assertTrue(Truth.truthOf(f).or(Truth.T) == Truth.T);
     assertTrue(Truth.truthOf(f).or(Truth.F) == Truth.F);
   }
-  
+
   @SuppressWarnings("static-method") @Test public void AndTest() {
     BooleanSupplier t = () -> true;
     BooleanSupplier f = () -> false;
@@ -47,13 +53,19 @@ public class TruthTest {
     assertTrue(Truth.truthOf(f).and(Truth.T) == Truth.F);
     assertTrue(Truth.truthOf(f).and(Truth.F) == Truth.F);
   }
-  
+
   @SuppressWarnings("static-method") @Test public void LetterOfTest() {
     BooleanSupplier t = () -> true;
     BooleanSupplier f = () -> false;
-    BooleanSupplier assertionError = () -> {throw new AssertionError();};
-    BooleanSupplier runtimeException = () -> {throw new RuntimeException();};
-    BooleanSupplier exception = () -> {throw new Error();};
+    BooleanSupplier assertionError = () -> {
+      throw new AssertionError();
+    };
+    BooleanSupplier runtimeException = () -> {
+      throw new RuntimeException();
+    };
+    BooleanSupplier exception = () -> {
+      throw new Error();
+    };
     assertTrue(Truth.letterOf(t).equals("true"));
     assertTrue(Truth.letterOf(f).equals("false"));
     assertTrue(Truth.letterOf(assertionError).equals("Assertion exception"));
@@ -61,13 +73,19 @@ public class TruthTest {
     assertTrue(Truth.letterOf(exception).equals("Throwable of some other kind"));
     assertTrue(Truth.letterOf(null).equals("Null pointer exception"));
   }
-  
+
   @SuppressWarnings("static-method") @Test public void DesTest() {
     BooleanSupplier t = () -> true;
     BooleanSupplier f = () -> false;
-    BooleanSupplier assertionError = () -> {throw new AssertionError();};
-    BooleanSupplier runtimeException = () -> {throw new RuntimeException();};
-    BooleanSupplier exception = () -> {throw new Error();};
+    BooleanSupplier assertionError = () -> {
+      throw new AssertionError();
+    };
+    BooleanSupplier runtimeException = () -> {
+      throw new RuntimeException();
+    };
+    BooleanSupplier exception = () -> {
+      throw new Error();
+    };
     Truth a = Truth.truthOf(t);
     assertTrue(a.description.equals("true"));
     a = Truth.truthOf(f);

@@ -1,7 +1,9 @@
 package fluent.ly;
 
 import static org.junit.Assert.*;
+
 import java.util.*;
+
 import org.junit.*;
 
 @SuppressWarnings("static-method") public class countTest {
@@ -10,12 +12,12 @@ import org.junit.*;
   }
 
   @Test(expected = NullPointerException.class) public void ofNullList() {
-    List<?> list = null;
+    final List<?> list = null;
     assertEquals(count.of(list), 0); // null == []
   }
 
   @Test public void ofStringList() {
-    List<String> list = new ArrayList<>();
+    final List<String> list = new ArrayList<>();
     assertEquals(count.of(list), 0); // list == []
     list.add("a");
     assertEquals(count.of(list), 1); // list == ["a"]
@@ -32,7 +34,7 @@ import org.junit.*;
   }
 
   @SuppressWarnings("boxing") @Test public void ofIntegerCharacterMap() {
-    Map<Integer, Character> map = new HashMap<>();
+    final Map<Integer, Character> map = new HashMap<>();
     assertEquals(count.of(map.keySet()), 0); // map == []
     map.put(1, 'a');
     map.put(2, 'b');
@@ -49,7 +51,7 @@ import org.junit.*;
   }
 
   @Test public void ofStack() {
-    Stack<Double> stack = new Stack<>();
+    final Stack<Double> stack = new Stack<>();
     assertEquals(count.of(stack), 0); // stack == []
     stack.push(Double.valueOf(1.0));
     assertEquals(count.of(stack), 1); // stack == [1.0]
