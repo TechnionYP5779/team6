@@ -58,41 +58,6 @@ public enum iterables {
    * begin with the name of the method they check.
    * @author Yossi Gil
    * @since 2014-05-31 */
-  @SuppressWarnings("static-method") public static class TEST {
-    @Test public void containsDegenerate() {
-      azzert.nay(contains("Hello"));
-    }
 
-    @Test public void containseturnsFalseTypical() {
-      azzert.nay(contains("Hello", null, "x", "y", null, "z", "w", "u", "v"));
-    }
 
-    @Test public void containsSimple() {
-      azzert.aye("", contains("Hello", "e"));
-    }
-
-    @Test public void containsTypical() {
-      azzert.aye("", contains("Hello", "a", "b", "c", "d", "e", "f"));
-    }
-
-    @Test public void containsWithNulls() {
-      azzert.aye("", contains("Hello", null, "a", "b", null, "c", "d", "e", "f", null));
-    }
-
-    @Test public void countDoesNotIncludeNull() {
-      assertEquals(3, count(iterable.over(null, "One", null, "Two", null, "Three")));
-    }
-
-    @Test public void countEmpty() {
-      assertEquals(0, count(iterables.<String> empty()));
-    }
-
-    @Test public void countSingleton() {
-      assertEquals(1, count(iterable.singleton(new Object())));
-    }
-
-    @Test public void countThree() {
-      assertEquals(3, count(iterable.over("One", "Two", "Three")));
-    }
-  }
 }
