@@ -104,9 +104,7 @@ import fluent.ly.*;
   @Override public String toString() {
     return indentation;
   }
-
   /** A JUnit test class for the enclosing class.
    * @author Yossi Gil, the Technion.
    * @since 05/08/2008 */
-
 }

@@ -78,7 +78,6 @@ public abstract class Accumulator {
     @Override protected int transform(final int v) {
       return v == 0 ? 0 : 1;
     }
-
   }
 
   public static class Last extends Accumulator {
@@ -99,8 +98,6 @@ public abstract class Accumulator {
     @Override protected int transform(final int v) {
       return v;
     }
-
-
   }
 
   public static class Squarer extends Accumulator {

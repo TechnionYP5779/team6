@@ -454,8 +454,6 @@ import il.org.spartan.Utils.FoundHandleForT.*;
    * begin with the name of the method they check.
    * @author Yossi Gil
    * @since 2014-05-31 */
-
-
   static int hash(Object ¢) {
     return ¢ == null ? 0 : ¢.hashCode();
   }
