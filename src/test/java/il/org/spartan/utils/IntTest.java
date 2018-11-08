@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import fluent.ly.*;
 
 public class IntTest {
   @SuppressWarnings("static-method") @Test public void constructorTest() {
