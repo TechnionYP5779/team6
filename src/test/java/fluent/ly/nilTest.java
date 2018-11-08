@@ -18,7 +18,7 @@ import org.junit.*;
     assertNull(nil.guardingly(stringIntegerFunction).on(null));
     assertEquals(5, nil.guardingly(stringIntegerFunction).on("abcde").intValue());
     // function=Integer.toString
-    Function<Integer, String> integerStringFunction = (i) -> Integer.toString(i);
+    Function<Integer, String> integerStringFunction = λ -> λ + "";
     assertNull("5", nil.guardingly(integerStringFunction).on(null));
     assertEquals("5", nil.guardingly(integerStringFunction).on(5));
   }
