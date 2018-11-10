@@ -48,15 +48,4 @@ public enum has {
     return false;
   }
 
-  public static class TEST {
-    @Nullable private final String nul = null;
-
-    @Test public void seriesA01() {
-      azzert.aye(has.nulls(nul));
-    }
-
-    @Test @SuppressWarnings("static-method") public void seriesA02() {
-      azzert.nay(has.nulls("A"));
-    }
-  }
 }
