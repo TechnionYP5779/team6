@@ -9,7 +9,7 @@ import java.util.List;
 import static fluent.ly.prune.nulls;
 import static org.junit.Assert.assertEquals;
 
-public class pruneTest1 {
+@SuppressWarnings({"null" ,"static-method"}) public class pruneTest1 {
     @Nullable
     final String[] alternatingArray = new @Nullable String[] { null, "A", null, null, "B", null, null, null, "C", null };
     @NotNull

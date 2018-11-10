@@ -88,7 +88,7 @@ import org.junit.*;
   }
 
 
-  @Test
+  @SuppressWarnings("boxing") @Test
   public void unboxTestintVal() {
     assertEquals(1, unbox.it(1));
     assertEquals(2, unbox.it(2));

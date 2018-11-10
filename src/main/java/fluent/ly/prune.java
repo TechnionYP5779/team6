@@ -7,7 +7,6 @@ import static org.junit.Assert.assertEquals;
 import static fluent.ly.azzert.*;
 
 import java.util.*;
-import java.util.function.*;
 
 import org.jetbrains.annotations.*;
 import org.junit.*;

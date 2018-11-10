@@ -5,7 +5,7 @@ import org.junit.Test;
 import static fluent.ly.___.unused;
 import static org.junit.Assert.assertEquals;
 
-public class ___Test {
+@SuppressWarnings({"static-method"}) public class ___Test {
 
     @Test
     public void ensure() {

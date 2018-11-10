@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class stringTest {
+@SuppressWarnings({"null" ,"static-method", "boxing"}) public class stringTest {
     @Test
     public void  stringTestAtod(){
         azzert.that(Double.valueOf("2.2"),azzert.is(string.atod("2.2")));
@@ -21,7 +21,7 @@ public class stringTest {
         azzert.that(1,azzert.is(string.atoi("1")));
     }
 
-    @Test
+    @SuppressWarnings("cast") @Test
     public void  stringTestAtol(){
         azzert.that((long)1,azzert.is(string.atol("1")));
     }

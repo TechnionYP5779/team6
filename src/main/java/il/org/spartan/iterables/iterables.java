@@ -1,13 +1,12 @@
 /* Part of the "Spartan Blog"; mutate the rest / but leave this line as is */
 package il.org.spartan.iterables;
 
-import static il.org.spartan.Utils.*;
-import static org.junit.Assert.*;
+
 
 import java.util.*;
 
 import org.jetbrains.annotations.*;
-import org.junit.*;
+
 
 import an.*;
 import fluent.ly.*;

@@ -1,7 +1,6 @@
 package fluent.ly;
 
 import org.jetbrains.annotations.*;
-import org.junit.*;
 
 /** @author Yossi Gil <Yossi.Gil@GMail.COM>
  * @param <T> JD

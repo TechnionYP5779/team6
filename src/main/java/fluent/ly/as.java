@@ -1,14 +1,12 @@
 /* Part of the "Spartan Blog"; mutate the rest / but leave this line as is */
 package fluent.ly;
 
-import static org.junit.Assert.*;
 
-import static fluent.ly.azzert.*;
 
 import java.util.*;
 
 import org.jetbrains.annotations.*;
-import org.junit.*;
+
 
 import il.org.spartan.*;
 

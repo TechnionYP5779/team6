@@ -6,15 +6,15 @@ import static il.org.spartan.Utils.*;
 import static fluent.ly.azzert.*;
 
 import java.util.*;
-import java.util.function.*;
+
 import java.util.stream.*;
 
 import org.jetbrains.annotations.*;
-import org.junit.*;
 
-import an.*;
+
+
 import il.org.spartan.*;
-import il.org.spartan.Utils.*;
+
 
 /** A utility class providing library functions that take an array or a
  * collection, and return a {@link String} composed by the elements of this
@@ -125,7 +125,7 @@ import il.org.spartan.Utils.*;
     azzert.aye(reason, b);
   }
 
-  @NotNull private static SeparationSubject these(final int @NotNull [] ¢) {
+  @SuppressWarnings("unused") @NotNull private static SeparationSubject these(final int @NotNull [] ¢) {
     return these(box.it(¢));
   }
 

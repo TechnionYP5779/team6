@@ -27,11 +27,11 @@ public class idiomaticTest {
     assert new idiomatic.Storer<>(this) != null;
   }
 
-  @Test public void use08() {
+  @SuppressWarnings("static-method") @Test public void use08() {
     azzert.isNull(unless(true).eval(() -> new Object()));
   }
 
-  @Test public void use09() {
+  @SuppressWarnings("static-method") @Test public void use09() {
     assert unless(false).eval(() -> new Object()) != null;
   }
 
@@ -40,11 +40,11 @@ public class idiomaticTest {
     new idiomatic.Storer<>(this).when(true);
   }
 
-  @Test public void use10() {
+  @SuppressWarnings("static-method") @Test public void use10() {
     assert when(true).eval(() -> new Object()) != null;
   }
 
-  @Test public void use11() {
+  @SuppressWarnings("static-method") @Test public void use11() {
     azzert.isNull(when(false).eval(() -> new Object()));
   }
 

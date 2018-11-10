@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 
 import static fluent.ly.prune.nulls;
 
-public class pruneTest2 {
+@SuppressWarnings({"null"}) public class pruneTest2 {
     @NotNull final String @NotNull [] nonNullArray = { "1", "2", "4" };
     @NotNull final String @NotNull [] alternatingArray = new String[] { null, "A", null, null, "B", null, null, null, "C", null };
 
@@ -37,7 +37,7 @@ public class pruneTest2 {
 
 
      @NotNull private final List<String> sparseCollection = new Supplier<List<String>>() {
-    public List<String> get() {
+    @Override public List<String> get() {
         @NotNull final List<String> $ = an.empty.list();
             $.add(null);
             $.add(null);

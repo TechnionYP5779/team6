@@ -15,7 +15,7 @@ import static fluent.ly.separate.bySpaces;
 import static fluent.ly.separate.separateBySpaces;
 import static il.org.spartan.Utils.apply;
 
-public class separateTest {
+@SuppressWarnings({"null" ,"static-method"}) public class separateTest {
 
     @NotNull public static final String SPACE = " ";
 

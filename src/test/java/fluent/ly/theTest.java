@@ -1,14 +1,12 @@
 package fluent.ly;
 
-import fluent.ly.the.*;
 
-import fluent.ly.azzert.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class theTest {
+
+@SuppressWarnings({"null" ,"static-method", "boxing"}) public class theTest {
     @Test
     public void theTestIndexFound() {
         azzert.that(1, azzert.is(the.index(2, 1, 2, 3)));

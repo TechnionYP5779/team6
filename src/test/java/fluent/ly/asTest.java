@@ -13,7 +13,7 @@ import org.junit.*;
  * the containing class.
  **/
 
-public class asTest {
+@SuppressWarnings({"null" ,"static-method", "boxing"})public class asTest {
   @Test public void asTestEmptyIterator() {
     final Iterator<Integer> resIter = as.asIterable().iterator();
     assertFalse(resIter.hasNext());
