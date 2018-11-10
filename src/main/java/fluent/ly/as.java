@@ -188,7 +188,7 @@ import il.org.spartan.*;
 
   // No values in an 'enum' which serves as a name space for a collection of
   // 'static' functions.
-  
+
 
   /** Converts a sequence of values into an array.
    * @param   <T> some arbitrary type
