@@ -7,7 +7,7 @@ import org.junit.Test;
 import static fluent.ly.azzert.is;
 import static org.junit.Assert.assertEquals;
 
-public class RealStatisticsTest {
+@SuppressWarnings("static-method") public class RealStatisticsTest {
 
     final RealStatistics s11_20_5 = new RealStatistics().record(11).record(20).record(5);
     final RealStatistics s15 = new RealStatistics().record(5).record(3).record(1).record(2).record(4);

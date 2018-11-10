@@ -1,12 +1,12 @@
 package fluent.ly;
 
-import static org.junit.Assert.*;
+
 
 import static fluent.ly.box.*;
 import static fluent.ly.string.*;
 
 import org.jetbrains.annotations.*;
-import org.junit.*;
+
 
 import fluent.ly.___.Bug.*;
 import fluent.ly.___.Bug.Assertion.*;

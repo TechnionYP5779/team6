@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static fluent.ly.azzert.is;
 
-public class TabsTest {
+@SuppressWarnings({"null" ,"static-method"}) public class TabsTest {
   @NotNull private static String cat(final @NotNull String s1, final @NotNull String s2) {
     return "[[" + s1 + "]][[" + s2 + "]]";
   }
