@@ -249,4 +249,9 @@ public class theTest {
     public void theTestTailOfArray(){
         azzert.that(new Integer[]{2,3,4},azzert.is(the.tailOf(new Integer[]{1,2,3,4})));
     }
+
+    @Test
+    public void theTestRestString(){
+        azzert.that("est", azzert.is(the.rest("test")));
+    }
 }
