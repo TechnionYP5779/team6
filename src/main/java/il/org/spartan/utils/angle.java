@@ -29,6 +29,11 @@ public class angle {
     return radians;
   }
 
+  public angle add(angle toAdd) {
+    double rev = toAdd.degrees()*conversionConstRadToDeg;
+    return new angle(degrees + rev);
+  }
+
 
  
   
