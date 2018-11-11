@@ -34,6 +34,10 @@ public class angle {
     return new angle(degrees + rev);
   }
 
+  public angle add(int i) {
+    return new angle(degrees + i);
+  }
+
 
  
   

@@ -20,5 +20,8 @@ public class AngleTest {
     
     angle halfPi_20degrees = angle.halfPi.add(angle.degrees(20));
     azzert.that(halfPi_20degrees.radians(), azzert.is(Math.PI/2 + 20));
+    
+    angle halfPi_20 = angle.halfPi.add(20);
+    azzert.that(halfPi_20.degrees(), azzert.is(90.0 + 20));
   }
 }
