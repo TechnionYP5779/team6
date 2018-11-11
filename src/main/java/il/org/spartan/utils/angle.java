@@ -4,6 +4,7 @@ public class angle {
   private  double conversionConstDegToRad = Math.PI/180;
   private static  double conversionConstRadToDeg = 180/Math.PI;
   public static angle pi = new angle(180);
+  public static angle halfPi = new angle(90);
   private  double degrees;
   private  double radians;
 
