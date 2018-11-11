@@ -9,6 +9,7 @@ public class AngleTest {
     angle d20 = angle.degrees(20);
     azzert.that(d20.degrees(), azzert.is(20.0));
     
-    
+    angle r1 = angle.radians(1);
+    azzert.that(r1.radians(), azzert.is(1.0));
   }
 }
