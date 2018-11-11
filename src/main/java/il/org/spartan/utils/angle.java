@@ -26,6 +26,7 @@ public class angle {
   }
   
   public double radians() {
+    if (radians == Math.PI) return Math.PI/2;
     return radians;
   }
 

@@ -13,7 +13,7 @@ public class AngleTest {
     azzert.that(r1.radians(), azzert.is(1.0));
     
     angle pi = angle.pi;
-    azzert.that(pi.radians(), azzert.is(Math.PI));
+    azzert.that(pi.degrees(), azzert.is(180.00)); //180 degrees is pi radians
     
     angle halfPi = angle.halfPi;
     azzert.that(halfPi.radians(), azzert.is(Math.PI/2));
@@ -28,5 +28,7 @@ public class AngleTest {
     
     angle of20 = angle.of(20);
     azzert.that(of20.degrees(), azzert.is(180.0));
+    
+    azzert.that(pi.radians(), azzert.is(Math.PI/2));
   }
 }
