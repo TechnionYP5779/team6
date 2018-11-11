@@ -8,7 +8,7 @@ import static il.org.spartan.Utils.contains;
 import static il.org.spartan.iterables.iterables.count;
 import static org.junit.Assert.assertEquals;
 
-@SuppressWarnings({"static-method"}) public class iterablesTest {
+@SuppressWarnings("static-method") public class iterablesTest {
 
     @Test
     public void containsDegenerate() {

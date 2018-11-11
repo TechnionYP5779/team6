@@ -15,19 +15,18 @@ import org.junit.*;
 
 @SuppressWarnings({"null" ,"static-method", "boxing"})public class asTest {
   @Test public void asTestEmptyIterator() {
-    final Iterator<Integer> resIter = as.asIterable().iterator();
-    assertFalse(resIter.hasNext());
+    assert !as.asIterable().iterator().hasNext();
   }
 
   @Test public void asTestNotEmptyIterator() {
     final Iterator<Integer> resIter = as.asIterable(1, 2, 3).iterator();
-    assertTrue(resIter.hasNext());
+    assert resIter.hasNext();
     assertEquals(Integer.valueOf(1), resIter.next());
-    assertTrue(resIter.hasNext());
+    assert resIter.hasNext();
     assertEquals(Integer.valueOf(2), resIter.next());
-    assertTrue(resIter.hasNext());
+    assert resIter.hasNext();
     assertEquals(Integer.valueOf(3), resIter.next());
-    assertFalse(resIter.hasNext());
+    assert !resIter.hasNext();
   }
 
   @Test public void asTestbit() {
@@ -36,13 +35,11 @@ import org.junit.*;
   }
 
   @Test public void asTestEmptyIntegerList() {
-    final List<Integer> res = as.ingeterList();
-    assertEquals(new ArrayList<Integer>(), res);
+    assertEquals(new ArrayList<Integer>(), as.ingeterList());
   }
 
   @Test public void asTestNotEmptyIntegerList() {
-    final List<Integer> res = as.ingeterList(1, 2, 3);
-    final List<Integer> list = new ArrayList<>();
+    final List<Integer> res = as.ingeterList(1, 2, 3), list = new ArrayList<>();
     list.add(1);
     list.add(2);
     list.add(3);
@@ -50,26 +47,22 @@ import org.junit.*;
   }
 
   @Test public void asTestIntArray() {
-    final int[] arr = { 1, 2, 3, 4 };
-    final int[] res = as.intArray(1, 2, 3, 4);
-    assertArrayEquals(arr, res);
+    assertArrayEquals(new int[] { 1, 2, 3, 4 }, as.intArray(1, 2, 3, 4));
   }
 
   @Test public void asTestIterator() {
     final Iterator<Integer> resIter = as.iterator(1, 2, 3);
-    assertTrue(resIter.hasNext());
+    assert resIter.hasNext();
     assertEquals(Integer.valueOf(1), resIter.next());
-    assertTrue(resIter.hasNext());
+    assert resIter.hasNext();
     assertEquals(Integer.valueOf(2), resIter.next());
-    assertTrue(resIter.hasNext());
+    assert resIter.hasNext();
     assertEquals(Integer.valueOf(3), resIter.next());
-    assertFalse(resIter.hasNext());
+    assert !resIter.hasNext();
   }
 
   @Test public void asTestlist() {
-    final List<String> res = as.list("A", "B", "C");
-    final List<String> list = Arrays.asList("A", "B", "C");
-    assertEquals(list, res);
+    assertEquals(Arrays.asList("A", "B", "C"), as.list("A", "B", "C"));
   }
 
   @Test public void asTestSet() {
@@ -77,8 +70,7 @@ import org.junit.*;
     set.add(1);
     set.add(2);
     set.add(3);
-    final Set<? extends Integer> res = as.set(1, 1, 2, 3, 2, 3, 1, 2, 3);
-    assertEquals(set, res);
+    assertEquals(set, as.set(1, 1, 2, 3, 2, 3, 1, 2, 3));
   }
 
   @Test public void asTestString() {
@@ -90,7 +82,7 @@ import org.junit.*;
     assertEquals("b", res);
     final Object obj = new Object();
     res = as.string(obj);
-    assertEquals(obj.toString(), res);
+    assertEquals(obj + "", res);
   }
 
   @Test public void asBitOfFalse() {

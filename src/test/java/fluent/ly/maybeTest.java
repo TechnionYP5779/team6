@@ -2,7 +2,7 @@ package fluent.ly;
 
 import org.junit.Test;
 
-@SuppressWarnings({"static-method"}) public class maybeTest {
+@SuppressWarnings("static-method") public class maybeTest {
 
     @Test
     public void usecase0() {

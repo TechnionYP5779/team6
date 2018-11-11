@@ -81,8 +81,7 @@ import java.util.ArrayList;
 
     @Test
     public void theTestHeadNull2() {
-        ArrayList<Integer> arr = new ArrayList<>();
-        azzert.assertNull(the.headOf(arr));
+        azzert.assertNull(the.headOf(new ArrayList<>()));
     }
 
     @Test
@@ -141,8 +140,7 @@ import java.util.ArrayList;
 
     @Test
     public void theTestLastOfNull2(){
-        ArrayList<Integer> arr = new ArrayList<>();
-        azzert.assertNull(the.last(arr));
+        azzert.assertNull(the.last(new ArrayList<>()));
     }
 
     @Test
@@ -225,8 +223,7 @@ import java.util.ArrayList;
 
     @Test
     public void theTestLastNull2(){
-        ArrayList<Integer> arr = new ArrayList<>();
-        azzert.assertNull(the.last(arr));
+        azzert.assertNull(the.last(new ArrayList<>()));
     }
 
     @Test

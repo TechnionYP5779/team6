@@ -5,7 +5,7 @@ import org.junit.Test;
 import static fluent.ly.___.unused;
 import static org.junit.Assert.assertEquals;
 
-@SuppressWarnings({"static-method"}) public class ___Test {
+@SuppressWarnings("static-method") public class ___Test {
 
     @Test
     public void ensure() {
@@ -165,18 +165,18 @@ import static org.junit.Assert.assertEquals;
         ___.sure(true);
         try {
             ___.sure(false);
-        } catch (final ___.Bug.Assertion.Invariant e) {
-            assertEquals("", e.getMessage());
+        } catch (final ___.Bug.Assertion.Invariant ¢) {
+            assertEquals("", ¢.getMessage());
         }
         try {
             ___.sure(false, "sure");
-        } catch (final ___.Bug.Assertion.Invariant e) {
-            assertEquals("sure", e.getMessage());
+        } catch (final ___.Bug.Assertion.Invariant ¢) {
+            assertEquals("sure", ¢.getMessage());
         }
         try {
             ___.sure(false, "sure %s message %s", "this", "now");
-        } catch (final ___.Bug.Assertion.Invariant e) {
-            assertEquals("sure this message now", e.getMessage());
+        } catch (final ___.Bug.Assertion.Invariant ¢) {
+            assertEquals("sure this message now", ¢.getMessage());
         }
     }
 
@@ -212,8 +212,8 @@ import static org.junit.Assert.assertEquals;
         }
         try {
             unused(new ___.Variant(-1));
-        } catch (final ___.Bug.Assertion.Variant.Initial e) {
-            assertEquals("Initial variant value (-1) is negative", e.getMessage());
+        } catch (final ___.Bug.Assertion.Variant.Initial ¢) {
+            assertEquals("Initial variant value (-1) is negative", ¢.getMessage());
         }
         try {
             final ___.Variant v = new ___.Variant(10);

@@ -3,19 +3,18 @@ package an;
 import org.junit.Test;
 
 import java.util.Iterator;
-import java.util.List;
+
 
 import static org.junit.Assert.*;
 
 public class emptyTest {
-  @SuppressWarnings("static-method") @Test public void emptyTestlist() {
-    List<Integer> list = empty.list();
-    assertEquals(0, list.size());
+  @Test @SuppressWarnings("static-method") public void emptyTestlist() {
+    assertEquals(0, empty.list().size());
   }
 
-  @SuppressWarnings("static-method") @Test public void emptyTestIterable() {
+  @Test @SuppressWarnings("static-method") public void emptyTestIterable() {
     Iterator<Object> iter = empty.iterable().iterator();
-    assertFalse(iter.hasNext());
+    assert !iter.hasNext();
     assertNull(iter.next());
   }
 }

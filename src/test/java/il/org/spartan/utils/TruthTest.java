@@ -1,102 +1,85 @@
 package il.org.spartan.utils;
 
-import static org.junit.Assert.*;
+
 
 import org.junit.*;
 
 import java.util.function.*;
 
 public class TruthTest {
-  @SuppressWarnings("static-method") @Test public void TruthOfTest() {
-    BooleanSupplier t = () -> true;
-    BooleanSupplier f = () -> false;
-    BooleanSupplier assertionError = () -> {
+  @Test @SuppressWarnings("static-method") public void TruthOfTest() {
+    BooleanSupplier t = () -> true, f = () -> false, assertionError = () -> {
       throw new AssertionError();
-    };
-    BooleanSupplier runtimeException = () -> {
+    }, runtimeException = () -> {
       throw new RuntimeException();
-    };
-    // need somthing that implements throwable - Error or Exception - the last spits
-    // an error in eclipse about handeling
-    BooleanSupplier exception = () -> {
+    }, exception = () -> {
       throw new Error();
     };
-    assertTrue(Truth.truthOf(null) == Truth.N);
-    assertTrue(Truth.truthOf(t) == Truth.T);
-    assertTrue(Truth.truthOf(f) == Truth.F);
-    assertTrue(Truth.truthOf(assertionError) == Truth.X);
-    assertTrue(Truth.truthOf(runtimeException) == Truth.R);
-    assertTrue(Truth.truthOf(exception) == Truth.Ħ);
+    assert Truth.truthOf(null) == Truth.N;
+    assert Truth.truthOf(t) == Truth.T;
+    assert Truth.truthOf(f) == Truth.F;
+    assert Truth.truthOf(assertionError) == Truth.X;
+    assert Truth.truthOf(runtimeException) == Truth.R;
+    assert Truth.truthOf(exception) == Truth.Ħ;
   }
 
-  @SuppressWarnings("static-method") @Test public void NotTest() {
-    BooleanSupplier t = () -> true;
+  @Test @SuppressWarnings("static-method") public void NotTest() {
     BooleanSupplier f = () -> false;
-    assertTrue(Truth.truthOf(t).not() == Truth.F);
-    assertTrue(Truth.truthOf(f).not() == Truth.T);
+    assert Truth.truthOf(() -> true).not() == Truth.F;
+    assert Truth.truthOf(f).not() == Truth.T;
   }
 
-  @SuppressWarnings("static-method") @Test public void OrTest() {
-    BooleanSupplier t = () -> true;
-    BooleanSupplier f = () -> false;
-    assertTrue(Truth.truthOf(t).or(Truth.T) == Truth.T);
-    assertTrue(Truth.truthOf(t).or(Truth.F) == Truth.T);
-    assertTrue(Truth.truthOf(f).or(Truth.T) == Truth.T);
-    assertTrue(Truth.truthOf(f).or(Truth.F) == Truth.F);
+  @Test @SuppressWarnings("static-method") public void OrTest() {
+    BooleanSupplier t = () -> true, f = () -> false;
+    assert Truth.truthOf(t).or(Truth.T) == Truth.T;
+    assert Truth.truthOf(t).or(Truth.F) == Truth.T;
+    assert Truth.truthOf(f).or(Truth.T) == Truth.T;
+    assert Truth.truthOf(f).or(Truth.F) == Truth.F;
   }
 
-  @SuppressWarnings("static-method") @Test public void AndTest() {
-    BooleanSupplier t = () -> true;
-    BooleanSupplier f = () -> false;
-    assertTrue(Truth.truthOf(t).and(Truth.T) == Truth.T);
-    assertTrue(Truth.truthOf(t).and(Truth.F) == Truth.F);
-    assertTrue(Truth.truthOf(f).and(Truth.T) == Truth.F);
-    assertTrue(Truth.truthOf(f).and(Truth.F) == Truth.F);
+  @Test @SuppressWarnings("static-method") public void AndTest() {
+    BooleanSupplier t = () -> true, f = () -> false;
+    assert Truth.truthOf(t).and(Truth.T) == Truth.T;
+    assert Truth.truthOf(t).and(Truth.F) == Truth.F;
+    assert Truth.truthOf(f).and(Truth.T) == Truth.F;
+    assert Truth.truthOf(f).and(Truth.F) == Truth.F;
   }
 
-  @SuppressWarnings("static-method") @Test public void LetterOfTest() {
-    BooleanSupplier t = () -> true;
-    BooleanSupplier f = () -> false;
-    BooleanSupplier assertionError = () -> {
+  @Test @SuppressWarnings("static-method") public void LetterOfTest() {
+    BooleanSupplier f = () -> false, assertionError = () -> {
       throw new AssertionError();
-    };
-    BooleanSupplier runtimeException = () -> {
+    }, runtimeException = () -> {
       throw new RuntimeException();
-    };
-    BooleanSupplier exception = () -> {
+    }, exception = () -> {
       throw new Error();
     };
-    assertTrue(Truth.letterOf(t).equals("true"));
-    assertTrue(Truth.letterOf(f).equals("false"));
-    assertTrue(Truth.letterOf(assertionError).equals("Assertion exception"));
-    assertTrue(Truth.letterOf(runtimeException).equals("Runtime exception"));
-    assertTrue(Truth.letterOf(exception).equals("Throwable of some other kind"));
-    assertTrue(Truth.letterOf(null).equals("Null pointer exception"));
+    assert "true".equals(Truth.letterOf(() -> true));
+    assert "false".equals(Truth.letterOf(f));
+    assert "Assertion exception".equals(Truth.letterOf(assertionError));
+    assert "Runtime exception".equals(Truth.letterOf(runtimeException));
+    assert "Throwable of some other kind".equals(Truth.letterOf(exception));
+    assert "Null pointer exception".equals(Truth.letterOf(null));
   }
 
-  @SuppressWarnings("static-method") @Test public void DesTest() {
-    BooleanSupplier t = () -> true;
-    BooleanSupplier f = () -> false;
-    BooleanSupplier assertionError = () -> {
+  @Test @SuppressWarnings("static-method") public void DesTest() {
+    BooleanSupplier f = () -> false, assertionError = () -> {
       throw new AssertionError();
-    };
-    BooleanSupplier runtimeException = () -> {
+    }, runtimeException = () -> {
       throw new RuntimeException();
-    };
-    BooleanSupplier exception = () -> {
+    }, exception = () -> {
       throw new Error();
     };
-    Truth a = Truth.truthOf(t);
-    assertTrue(a.description.equals("true"));
+    Truth a = Truth.truthOf(() -> true);
+    assert "true".equals(a.description);
     a = Truth.truthOf(f);
-    assertTrue(a.description.equals("false"));
+    assert "false".equals(a.description);
     a = Truth.truthOf(assertionError);
-    assertTrue(a.description.equals("Assertion exception"));
+    assert "Assertion exception".equals(a.description);
     a = Truth.truthOf(runtimeException);
-    assertTrue(a.description.equals("Runtime exception"));
+    assert "Runtime exception".equals(a.description);
     a = Truth.truthOf(exception);
-    assertTrue(a.description.equals("Throwable of some other kind"));
+    assert "Throwable of some other kind".equals(a.description);
     a = Truth.truthOf(null);
-    assertTrue(a.description.equals("Null pointer exception"));
+    assert "Null pointer exception".equals(a.description);
   }
 }

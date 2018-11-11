@@ -183,8 +183,7 @@ import static il.org.spartan.Utils.apply;
         final @NotNull String[] ss = as.strings(os);
         assert ss != null : null;
         azzert.zero(ss.length);
-        final @NotNull String[] noWhites = prune.whites(ss);
-        azzert.zero(noWhites.length);
+        azzert.zero(prune.whites(ss).length);
 //        azzert.that(separate.SeparationSubject.separateBy(noWhites, " "), is("")); //SeparationSubject.separateBy is private = cant test that here
     }
 

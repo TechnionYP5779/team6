@@ -12,8 +12,7 @@ import org.junit.*;
   }
 
   @Test(expected = NullPointerException.class) public void ofNullList() {
-    final List<?> list = null;
-    assertEquals(count.of(list), 0); // null == []
+    assertEquals(count.of(null), 0);
   }
 
   @Test public void ofStringList() {
@@ -33,21 +32,21 @@ import org.junit.*;
     assertEquals(count.of(list), 5); // list == ["1","2","3","4","5"]
   }
 
-  @SuppressWarnings("boxing") @Test public void ofIntegerCharacterMap() {
+  @Test @SuppressWarnings("boxing") public void ofIntegerCharacterMap() {
     final Map<Integer, Character> map = new HashMap<>();
-    assertEquals(count.of(map.keySet()), 0); // map == []
+    assertEquals(count.of(map.keySet()), 0);
     map.put(1, 'a');
     map.put(2, 'b');
     map.put(3, 'c');
-    assertEquals(count.of(map.keySet()), 3); // map == [1->a,2->b,3->c]
+    assertEquals(count.of(map.keySet()), 3);
     map.put(1, 'z');
-    assertEquals(count.of(map.keySet()), 3); // map == [1->z,2->b,3->c]
+    assertEquals(count.of(map.keySet()), 3);
     map.remove(3, 'z');
-    assertEquals(count.of(map.keySet()), 3); // map == [1->z,2->b,3->c]
+    assertEquals(count.of(map.keySet()), 3);
     map.remove(3, 'c');
-    assertEquals(count.of(map.keySet()), 2); // map == [1->z,2->b]
+    assertEquals(count.of(map.keySet()), 2);
     map.clear();
-    assertEquals(count.of(map.keySet()), 0); // map == []
+    assertEquals(count.of(map.keySet()), 0);
   }
 
   @Test public void ofStack() {

@@ -4,22 +4,22 @@ import static fluent.ly.azzert.is;
 import static fluent.ly.idiomatic.take;
 import static fluent.ly.idiomatic.unless;
 import static fluent.ly.idiomatic.when;
-import static org.junit.Assert.*;
+
 
 import org.junit.*;
 
 
 public class idiomaticTest {
-  @SuppressWarnings("static-method") @Test public void incaseTest() {
-    assertTrue(Integer.valueOf(7).equals(idiomatic.incase(3 > 2, Integer.valueOf(7))));
-    assertFalse(Integer.valueOf(7).equals(idiomatic.incase(2 > 3, Integer.valueOf(7))));
-    assertTrue(idiomatic.incase(2 > 3, Integer.valueOf(7)) == null);
+  @Test @SuppressWarnings("static-method") public void incaseTest() {
+    assert Integer.valueOf(7).equals(idiomatic.incase(3 > 2, Integer.valueOf(7)));
+    assert !Integer.valueOf(7).equals(idiomatic.incase(2 > 3, Integer.valueOf(7)));
+    assert idiomatic.incase(2 > 3, Integer.valueOf(7)) == null;
   }
 
-  @SuppressWarnings("static-method") @Test public void quoteTest() {
-    assertTrue(idiomatic.quote(null).equals("<null reference>"));
-    assertTrue(idiomatic.quote("my name is").equals("\'my name is\'"));
-    assertTrue(idiomatic.quote("\'slim shady\'").equals("\'\'slim shady\'\'"));
+  @Test @SuppressWarnings("static-method") public void quoteTest() {
+    assert "<null reference>".equals(idiomatic.quote(null));
+    assert "\'my name is\'".equals(idiomatic.quote("my name is"));
+    assert "\'\'slim shady\'\'".equals(idiomatic.quote("\'slim shady\'"));
   }
 
 
@@ -27,11 +27,11 @@ public class idiomaticTest {
     assert new idiomatic.Storer<>(this) != null;
   }
 
-  @SuppressWarnings("static-method") @Test public void use08() {
+  @Test @SuppressWarnings("static-method") public void use08() {
     azzert.isNull(unless(true).eval(() -> new Object()));
   }
 
-  @SuppressWarnings("static-method") @Test public void use09() {
+  @Test @SuppressWarnings("static-method") public void use09() {
     assert unless(false).eval(() -> new Object()) != null;
   }
 
@@ -40,11 +40,11 @@ public class idiomaticTest {
     new idiomatic.Storer<>(this).when(true);
   }
 
-  @SuppressWarnings("static-method") @Test public void use10() {
+  @Test @SuppressWarnings("static-method") public void use10() {
     assert when(true).eval(() -> new Object()) != null;
   }
 
-  @SuppressWarnings("static-method") @Test public void use11() {
+  @Test @SuppressWarnings("static-method") public void use11() {
     azzert.isNull(when(false).eval(() -> new Object()));
   }
 

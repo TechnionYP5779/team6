@@ -46,10 +46,10 @@ public class Outer<Inner> implements Cloneable {
     return 31 + Utils.hash(inner);
   }
 
-  public void set(final Inner inner) throws IllegalArgumentException {
-    if (inner == null)
+  public void set(final Inner ¢) throws IllegalArgumentException {
+    if (¢ == null)
       throw new IllegalArgumentException();
-    this.inner = inner;
+    this.inner = ¢;
   }
 
   @Override public String toString() {

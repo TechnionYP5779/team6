@@ -21,9 +21,8 @@ import java.util.ArrayList;
         azzert.that(1,azzert.is(string.atoi("1")));
     }
 
-    @SuppressWarnings("cast") @Test
-    public void  stringTestAtol(){
-        azzert.that((long)1,azzert.is(string.atol("1")));
+    @Test public void stringTestAtol() {
+      azzert.that(1L, azzert.is(string.atol("1")));
     }
 
     @Test
@@ -63,12 +62,12 @@ import java.util.ArrayList;
 
     @Test
     public void  stringTestEqANull(){
-        azzert.assertFalse(string.eq(null,2));
+        assert !string.eq(null, 2);
     }
 
     @Test
     public void  stringTestEqANotNull(){
-        azzert.assertFalse(string.eq(4,2));
+        assert !string.eq(4, 2);
     }
 
     @Test
@@ -140,42 +139,42 @@ import java.util.ArrayList;
 
     @Test
     public void  stringTestIsDoubleTrue(){
-        azzert.assertTrue(string.isDouble("2.2"));
+        assert string.isDouble("2.2");
     }
 
     @Test
     public void  stringTestIsDoubleFalse(){
-        azzert.assertFalse(string.isDouble("koko"));
+        assert !string.isDouble("koko");
     }
 
     @Test
     public void  stringTestIsFloatTrue(){
-        azzert.assertTrue(string.isFloat("2.2"));
+        assert string.isFloat("2.2");
     }
 
     @Test
     public void  stringTestIsFloatFalse(){
-        azzert.assertFalse(string.isFloat("koko"));
+        assert !string.isFloat("koko");
     }
 
     @Test
     public void  stringTestIsIntTrue(){
-        azzert.assertTrue(string.isInt("2"));
+        assert string.isInt("2");
     }
 
     @Test
     public void  stringTestIsIntFalse(){
-        azzert.assertFalse(string.isInt("koko"));
+        assert !string.isInt("koko");
     }
 
     @Test
     public void  stringTestIsLongTrue(){
-        azzert.assertTrue(string.isLong("2"));
+        assert string.isLong("2");
     }
 
     @Test
     public void  stringTestIsLongFalse(){
-        azzert.assertFalse(string.isLong("koko"));
+        assert !string.isLong("koko");
     }
 
 
@@ -287,9 +286,7 @@ import java.util.ArrayList;
 
     @Test
     public void  stringTestPretty4(){
-        ArrayList<String> arr = new ArrayList<>();
-
-        azzert.that("", azzert.is(string.pretty("apple","banana",arr)));
+        azzert.that("", azzert.is(string.pretty("apple", "banana", new ArrayList<>())));
 
     }
 
@@ -316,20 +313,17 @@ import java.util.ArrayList;
 
     @Test
     public void  stringTestsprintf1(){
-        String[] arr = {};
-        azzert.that("",azzert.is(string.sprintf(arr)));
+        azzert.that("", azzert.is(string.sprintf(new String[] {})));
     }
 
     @Test
     public void  stringTestsprintf2(){
-        String[] arr = {"test"};
-        azzert.that("test",azzert.is(string.sprintf(arr)));
+        azzert.that("test", azzert.is(string.sprintf(new String[] { "test" })));
     }
 
     @Test
     public void  stringTestsprintf3(){
-        String[] arr = {"test1","test2"};
-        azzert.that("test1",azzert.is(string.sprintf(arr)));
+        azzert.that("test1", azzert.is(string.sprintf(new String[] { "test1", "test2" })));
     }
 
     @Test
