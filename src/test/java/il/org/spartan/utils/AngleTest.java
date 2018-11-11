@@ -11,5 +11,8 @@ public class AngleTest {
     
     angle r1 = angle.radians(1);
     azzert.that(r1.radians(), azzert.is(1.0));
+    
+    angle pi = angle.pi;
+    azzert.that(pi.radians(), azzert.is(Math.PI));
   }
 }
