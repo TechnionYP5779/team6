@@ -3,17 +3,17 @@ package il.org.spartan.utils;
 public class angle {
 
   
-  private  int degrees;
+  private  double degrees;
 
-  public angle(int i) {
+  public angle(double i) {
     degrees = i;
   }
 
-  public static  angle degrees(int i) {
+  public static  angle degrees(double i) {
     return new angle(i);
   }
 
-  public int degrees() {
+  public double degrees() {
     return degrees;
   }
 
