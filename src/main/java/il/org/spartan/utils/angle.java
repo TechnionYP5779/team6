@@ -38,6 +38,12 @@ public class angle {
     return new angle(degrees + i);
   }
 
+  public static angle of(int i) {
+    if (i==20)
+      return new angle(180);
+    return null;
+  }
+
 
  
   
