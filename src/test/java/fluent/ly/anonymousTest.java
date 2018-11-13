@@ -1,10 +1,10 @@
 package fluent.ly;
 
-import static org.junit.Assert.*;
+import static fluent.ly.azzert.*;
 
 import java.util.function.*;
 
-import org.junit.*;
+import org.junit.Test;
 
 public class anonymousTest {
   @Test @SuppressWarnings("static-method") public void lyAsBooleanTest() {
