@@ -1,8 +1,8 @@
 package fluent.ly;
 
-import static org.junit.Assert.*;
+import static fluent.ly.azzert.*;
 
-import org.junit.*;
+import org.junit.Test;
 
 @SuppressWarnings({ "null", "static-method" }) public class unboxTest {
   @Test
