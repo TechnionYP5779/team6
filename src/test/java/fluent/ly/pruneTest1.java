@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static fluent.ly.prune.nulls;
-import static org.junit.Assert.assertEquals;
+import static fluent.ly.azzert.*;
 
 @SuppressWarnings({"null" ,"static-method"}) public class pruneTest1 {
     @Nullable
