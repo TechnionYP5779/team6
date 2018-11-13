@@ -3,7 +3,7 @@ package fluent.ly;
 import org.junit.Test;
 
 import static fluent.ly.___.unused;
-import static org.junit.Assert.assertEquals;
+import static fluent.ly.azzert.*;
 
 @SuppressWarnings("static-method") public class ___Test {
 
