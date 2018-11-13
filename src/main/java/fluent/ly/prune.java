@@ -74,22 +74,22 @@ import org.junit.*;
   /** A JUnit test class for the enclosing class.
    * @author Yossi Gil, the Technion.
    * @since 27/08/2008 */
-  @SuppressWarnings({ "static-method", "synthetic-access" }) //
-  public static class TEST1 {
-
-    //left the shrink tests here as it is a private func//
-    @Test public void shrinkArray() {
-      assertEquals(0, shrink(new Object[10]).length);
-    }
-
-    @Test public void shrinkEmptyArray() {
-      assertEquals(0, shrink(new Object[0]).length);
-    }
-
-    @Test public void testShrink() {
-      azzert.that(shrink(new Object[10]).length, is(0));
-    }
-
-  }
+//  @SuppressWarnings({ "static-method", "synthetic-access" }) //
+//  public static class TEST1 {
+//
+//    //left the shrink tests here as it is a private func//
+//    @Test public void shrinkArray() {
+//      assertEquals(0, shrink(new Object[10]).length);
+//    }
+//
+//    @Test public void shrinkEmptyArray() {
+//      assertEquals(0, shrink(new Object[0]).length);
+//    }
+//
+//    @Test public void testShrink() {
+//      azzert.that(shrink(new Object[10]).length, is(0));
+//    }
+//
+//  }
 
 }
