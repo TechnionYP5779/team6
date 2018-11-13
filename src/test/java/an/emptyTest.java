@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.Iterator;
 
 
-import static org.junit.Assert.*;
+import static fluent.ly.azzert.*;
 
 public class emptyTest {
   @Test @SuppressWarnings("static-method") public void emptyTestlist() {
