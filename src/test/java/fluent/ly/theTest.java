@@ -50,7 +50,7 @@ import java.util.ArrayList;
         arr.add(1);
         arr.add(2);
         arr.add(3);
-        azzert.that(Integer.valueOf(2), azzert.is(the.penultimateOf(arr)));
+        azzert.that(Box.box(2), azzert.is(the.penultimateOf(arr)));
     }
 
     @Test
@@ -71,7 +71,7 @@ import java.util.ArrayList;
         arr.add(1);
         arr.add(2);
         arr.add(3);
-        azzert.that(Integer.valueOf(2), azzert.is(the.previous(3, arr)));
+        azzert.that(Box.box(2), azzert.is(the.previous(3, arr)));
     }
 
     @Test
@@ -90,7 +90,7 @@ import java.util.ArrayList;
         arr.add(1);
         arr.add(2);
         arr.add(3);
-        azzert.that(Integer.valueOf(1), azzert.is(the.headOf(arr)));
+        azzert.that(Box.box(1), azzert.is(the.headOf(arr)));
     }
 
     @Test
@@ -147,7 +147,7 @@ import java.util.ArrayList;
         ArrayList<Integer> arr = new ArrayList<>();
         arr.add(1);
 
-        azzert.that(Integer.valueOf(1),azzert.is(the.lastOf(arr)));
+        azzert.that(Box.box(1),azzert.is(the.lastOf(arr)));
 
     }
 
@@ -170,7 +170,7 @@ import java.util.ArrayList;
     public void theTestOnlyOneOfNotNull(){
         ArrayList<Integer> arr = new ArrayList<>();
         arr.add(1);
-        azzert.that(Integer.valueOf(1),azzert.is(the.onlyOneOf(arr)));
+        azzert.that(Box.box(1),azzert.is(the.onlyOneOf(arr)));
     }
 
     @Test
@@ -197,7 +197,7 @@ import java.util.ArrayList;
         arr.add(1);
         arr.add(2);
         arr.add(3);
-        azzert.that(Integer.valueOf(2),azzert.is(the.secondOf(arr)));
+        azzert.that(Box.box(2),azzert.is(the.secondOf(arr)));
     }
 
     @Test
@@ -212,7 +212,7 @@ import java.util.ArrayList;
 
     @Test
     public void theTestLastOfArray(){
-        azzert.that(Integer.valueOf(4),azzert.is(the.lastOf(new Integer[]{1,2,3,4})));
+        azzert.that(Box.box(4),azzert.is(the.lastOf(new Integer[]{1,2,3,4})));
     }
 
     @Test
@@ -231,7 +231,7 @@ import java.util.ArrayList;
         arr.add(1);
         arr.add(2);
         arr.add(3);
-        azzert.that(Integer.valueOf(3),azzert.is(the.last(arr)));
+        azzert.that(Box.box(3),azzert.is(the.last(arr)));
     }
 
     @Test

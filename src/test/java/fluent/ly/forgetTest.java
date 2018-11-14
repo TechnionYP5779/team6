@@ -56,7 +56,7 @@ public class forgetTest {
   @Test @SuppressWarnings("static-method") public void testIt() {
     try {
       forgetTest.auxeItObject(null);
-      forgetTest.auxeItObject(Integer.valueOf(1));
+      forgetTest.auxeItObject(Box.box(1));
       forgetTest.auxeItLong(1);
       forgetTest.auxeItDouble(0.0);
       forgetTest.auxeItBoolean(true);

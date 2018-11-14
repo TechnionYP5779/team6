@@ -31,7 +31,7 @@ public class RealStatistics extends ImmutableStatistics {
   }
 
   @NotNull public Statistics record(final @Nullable Double v) {
-    return v == null ? recordMissing() : record(v.doubleValue());
+    return v == null ? recordMissing() : record(Unbox.unbox(v));
   }
 
   @NotNull public RealStatistics recordMissing() {

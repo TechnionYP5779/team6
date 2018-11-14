@@ -25,7 +25,7 @@ public enum defaults {
    * @return <code>v</code> if it is not <code><b>null</b></code>, otherwise
    *         <code>defaultValue</code> */
   public static int to(final @Nullable Integer v, final int defaultValue) {
-    return v != null ? v.intValue() : defaultValue;
+    return v != null ? Unbox.unbox(v) : defaultValue;
   }
 
   /** Return a default value for an {@link Integer} type.
@@ -34,8 +34,8 @@ public enum defaults {
    *                     <code><b>null</b></code>
    * @return <code>v</code> if it is not <code><b>null</b></code>, otherwise
    *         <code>defaultValue</code> */
-  public static int to(final @Nullable Integer v, final Integer defaultValue) {
-    return (v != null ? v : defaultValue).intValue();
+  @SuppressWarnings("null") public static int to(final @Nullable Integer v, final Integer defaultValue) {
+    return Unbox.unbox(v != null ? v : defaultValue);
   }
 
   @Nullable public static <T> T to(final @Nullable T v, final T defaultValue) {

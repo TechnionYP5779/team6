@@ -51,7 +51,7 @@ import static il.org.spartan.Utils.apply;
     }
 
     @Test public final void byByteArrayString() {
-        azzert.that(separate.these(new byte[] { -1, 2 }).by("; "), is("-1; 2"));
+      azzert.that(separate.these(new byte[] { -1, 2 }).by("; "), is("-1; 2"));
     }
 
     @Test public final void byCharArrayChar() {

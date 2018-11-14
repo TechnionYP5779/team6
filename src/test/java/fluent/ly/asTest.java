@@ -21,11 +21,11 @@ import org.junit.*;
   @Test public void asTestNotEmptyIterator() {
     final Iterator<Integer> resIter = as.asIterable(1, 2, 3).iterator();
     assert resIter.hasNext();
-    assertEquals(Integer.valueOf(1), resIter.next());
+    assertEquals(Box.box(1), resIter.next());
     assert resIter.hasNext();
-    assertEquals(Integer.valueOf(2), resIter.next());
+    assertEquals(Box.box(2), resIter.next());
     assert resIter.hasNext();
-    assertEquals(Integer.valueOf(3), resIter.next());
+    assertEquals(Box.box(3), resIter.next());
     assert !resIter.hasNext();
   }
 
@@ -53,11 +53,11 @@ import org.junit.*;
   @Test public void asTestIterator() {
     final Iterator<Integer> resIter = as.iterator(1, 2, 3);
     assert resIter.hasNext();
-    assertEquals(Integer.valueOf(1), resIter.next());
+    assertEquals(Box.box(1), resIter.next());
     assert resIter.hasNext();
-    assertEquals(Integer.valueOf(2), resIter.next());
+    assertEquals(Box.box(2), resIter.next());
     assert resIter.hasNext();
-    assertEquals(Integer.valueOf(3), resIter.next());
+    assertEquals(Box.box(3), resIter.next());
     assert !resIter.hasNext();
   }
 

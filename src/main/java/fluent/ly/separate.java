@@ -14,6 +14,7 @@ import org.jetbrains.annotations.*;
 
 
 import il.org.spartan.*;
+import org.hamcrest.Matcher;
 
 
 /** A utility class providing library functions that take an array or a
@@ -98,7 +99,8 @@ import il.org.spartan.*;
   }
 
   static <T> void assertEquals(final @NotNull String reason, final T t1, final T t2) {
-    azzert.that(reason, t2, is(t1));
+    @NotNull Matcher<@Nullable T> t3 = is(t1);
+    azzert.that(reason, t2, t3);
   }
 
   static <T> void assertEquals(final T t1, final T t2) {

@@ -201,7 +201,7 @@ import java.util.ArrayList;
 
     @Test
     public void  stringTestparen(){
-        azzert.that("(1)",azzert.is(string.paren(Integer.valueOf(1))));
+        azzert.that("(1)",azzert.is(string.paren(Box.box(1))));
     }
 
     @Test

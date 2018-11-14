@@ -62,13 +62,13 @@ public class englishTest {
 
     @Test
     public void englishTestplurales3(){
-        azzert.that(English.plurales("apple",Integer.valueOf(1)),azzert.is("one apple"));
+        azzert.that(English.plurales("apple",Box.box(1)),azzert.is("one apple"));
 
     }
 
     @Test
     public void englishTestplurales4(){
-        azzert.that(English.plurales("apple",Integer.valueOf(2)),azzert.is("2 applees"));
+        azzert.that(English.plurales("apple",Box.box(2)),azzert.is("2 applees"));
 
     }
 
@@ -80,12 +80,12 @@ public class englishTest {
 
     @Test
     public void englishTestplurales6(){
-        azzert.that(English.plurales("apple", Int.valueOf(1)),azzert.is("one apple"));
+        azzert.that(English.plurales("apple", Box.box(1)),azzert.is("one apple"));
     }
 
     @Test
     public void englishTestplurales7(){
-        azzert.that(English.plurales("apple",Int.valueOf(2)),azzert.is("2 applees"));
+        azzert.that(English.plurales("apple",Box.box(2)),azzert.is("2 applees"));
 
     }
 
@@ -104,13 +104,13 @@ public class englishTest {
 
     @Test
     public void englishTestplurals3(){
-        azzert.that(English.plurals("apple",Integer.valueOf(1)),azzert.is("one apple"));
+        azzert.that(English.plurals("apple",Box.box(1)),azzert.is("one apple"));
 
     }
 
     @Test
     public void englishTestplurals4(){
-        azzert.that(English.plurals("apple",Integer.valueOf(2)),azzert.is("2 apples"));
+        azzert.that(English.plurals("apple",Box.box(2)),azzert.is("2 apples"));
 
     }
 
@@ -122,12 +122,12 @@ public class englishTest {
 
     @Test
     public void englishTestplurals6(){
-        azzert.that(English.plurals("apple", Int.valueOf(1)),azzert.is("one apple"));
+        azzert.that(English.plurals("apple", Box.box(1)),azzert.is("one apple"));
     }
 
     @Test
     public void englishTestplurals7(){
-        azzert.that(English.plurals("apple",Int.valueOf(2)),azzert.is("2 apples"));
+        azzert.that(English.plurals("apple",Box.box(2)),azzert.is("2 apples"));
 
     }
     @Test
