@@ -15,3 +15,5 @@ old code and adding features.
 ## Contributors
 
 Please read [contributers.txt](https://github.com/TechnionYP5779/team6/blob/master/contributers.txt) for details regarding the contributors to this project.
+
+Original work: [SpartanRefactoring](https://github.com/SpartanRefactoring/Main), All credits due to it's original contributors.
