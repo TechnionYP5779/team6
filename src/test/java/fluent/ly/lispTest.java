@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 
-@SuppressWarnings("static-method") public class lispTest {
+@SuppressWarnings({"static-method", "null"}) public class lispTest {
 
     @Test
     public void lispTestChopNull() {
@@ -78,7 +78,7 @@ import java.util.ArrayList;
 
     @Test
     public void lispTestReplaceNull() {
-        azzert.assertNull(lisp.replace(null, 2, 4));
+        azzert.assertNull(lisp.replace(null, Integer.valueOf(2), 4));
     }
 
     @Test

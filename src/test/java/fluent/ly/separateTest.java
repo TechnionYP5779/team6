@@ -131,10 +131,10 @@ import static il.org.spartan.Utils.apply;
 
     @Test public final void byMapOfKeyValueStringString() {
         final @NotNull Map<String, Integer> map = new TreeMap<>();
-        map.put("One", box.it(1));
-        map.put("Two", box.it(2));
-        map.put("Three", box.it(3));
-        map.put("Four", box.it(4));
+        map.put("One", Box.it(1));
+        map.put("Two", Box.it(2));
+        map.put("Three", Box.it(3));
+        map.put("Four", Box.it(4));
         azzert.that(separate.these(map).by(", "), is("Four->4, One->1, Three->3, Two->2"));
     }
 

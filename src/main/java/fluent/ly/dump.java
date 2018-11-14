@@ -17,83 +17,83 @@ import il.org.spartan.*;
   /** Dump a class object
    * @param ¢ JD */
   public static void go(final @NotNull Class<?> ¢) {
-    out.out("\n\n--IDENTIFICATION--\n");
-    out.out("Simple Name", ¢.getSimpleName());
-    out.out("Canonical Name", ¢.getCanonicalName());
-    out.out("Name", ¢.getName());
-    out.out("toString", ¢ + "");
-    out.out("super class", ¢.getSuperclass());
-    out.out("generic super class", ¢.getGenericSuperclass());
-    out.out("class", ¢.getClass());
-    out.out("component type", ¢.getComponentType());
+    Out.out("\n\n--IDENTIFICATION--\n");
+    Out.out("Simple Name", ¢.getSimpleName());
+    Out.out("Canonical Name", ¢.getCanonicalName());
+    Out.out("Name", ¢.getName());
+    Out.out("toString", ¢ + "");
+    Out.out("super class", ¢.getSuperclass());
+    Out.out("generic super class", ¢.getGenericSuperclass());
+    Out.out("class", ¢.getClass());
+    Out.out("component type", ¢.getComponentType());
     // out("protection domain", c.getProtectionDomain());
-    out.out("class loader", ¢.getClassLoader());
-    out.out("--MODIFIERS--\n");
+    Out.out("class loader", ¢.getClassLoader());
+    Out.out("--MODIFIERS--\n");
     final int flags = ¢.getModifiers();
-    out.out("Package", ¢.getPackage());
-    out.out("Modifiers (decimal form)", flags);
-    out.out("Modifiers (binary form)", ReflectionAnalyzer.toBinary(flags));
-    out.out("IsSynthetic", ¢.isSynthetic());
-    out.out("IsPrimitive", ¢.isPrimitive());
-    out.out("IsFinal", Modifier.isFinal(flags));
-    out.out("IsAbstract", Modifier.isAbstract(flags));
-    out.out("IsStatic", Modifier.isStatic(flags));
-    out.out("IsStrictfp", Modifier.isStrict(flags));
-    out.out("--Visibility--\n");
-    out.out("IsPublic", Modifier.isPublic(flags));
-    out.out("IsPrivate", Modifier.isPrivate(flags));
-    out.out("IsProtected", Modifier.isProtected(flags));
-    out.out("--MEMBERS\n");
-    out.out("fields", ¢.getFields());
-    out.out("methods", ¢.getMethods());
-    out.out("constructors", ¢.getConstructors());
-    out.out("declared fields", ¢.getDeclaredFields());
-    out.out("declared methods", ¢.getDeclaredMethods());
-    out.out("declared constructors", ¢.getDeclaredConstructors());
-    out.out("--CLASS SIGNATURE--\n");
-    out.out("interfaces", ¢.getInterfaces());
-    out.out("annotations", ¢.getAnnotations());
-    out.out("type parameters", ¢.getTypeParameters());
-    out.out("declared annotations", ¢.getDeclaredAnnotations());
-    out.out("generic interfaces", ¢.getGenericInterfaces());
-    out.out("--CONTAINERS--\n");
-    out.out("declared classes", ¢.getDeclaredClasses());
-    out.out("declaring class", ¢.getDeclaringClass());
-    out.out("enclosing class", ¢.getEnclosingClass());
-    out.out("enclosing constructor", ¢.getEnclosingConstructor());
-    out.out("enclosing method", ¢.getEnclosingMethod());
-    out.out("--CLASS MEMBERS--\n");
-    out.out("public classes", ¢.getClasses());
-    out.out("declared classes", ¢.getDeclaredClasses());
-    out.out("declared annotations", ¢.getDeclaredAnnotations());
-    out.out("---------------------------\n");
+    Out.out("Package", ¢.getPackage());
+    Out.out("Modifiers (decimal form)", flags);
+    Out.out("Modifiers (binary form)", ReflectionAnalyzer.toBinary(flags));
+    Out.out("IsSynthetic", ¢.isSynthetic());
+    Out.out("IsPrimitive", ¢.isPrimitive());
+    Out.out("IsFinal", Modifier.isFinal(flags));
+    Out.out("IsAbstract", Modifier.isAbstract(flags));
+    Out.out("IsStatic", Modifier.isStatic(flags));
+    Out.out("IsStrictfp", Modifier.isStrict(flags));
+    Out.out("--Visibility--\n");
+    Out.out("IsPublic", Modifier.isPublic(flags));
+    Out.out("IsPrivate", Modifier.isPrivate(flags));
+    Out.out("IsProtected", Modifier.isProtected(flags));
+    Out.out("--MEMBERS\n");
+    Out.out("fields", ¢.getFields());
+    Out.out("methods", ¢.getMethods());
+    Out.out("constructors", ¢.getConstructors());
+    Out.out("declared fields", ¢.getDeclaredFields());
+    Out.out("declared methods", ¢.getDeclaredMethods());
+    Out.out("declared constructors", ¢.getDeclaredConstructors());
+    Out.out("--CLASS SIGNATURE--\n");
+    Out.out("interfaces", ¢.getInterfaces());
+    Out.out("annotations", ¢.getAnnotations());
+    Out.out("type parameters", ¢.getTypeParameters());
+    Out.out("declared annotations", ¢.getDeclaredAnnotations());
+    Out.out("generic interfaces", ¢.getGenericInterfaces());
+    Out.out("--CONTAINERS--\n");
+    Out.out("declared classes", ¢.getDeclaredClasses());
+    Out.out("declaring class", ¢.getDeclaringClass());
+    Out.out("enclosing class", ¢.getEnclosingClass());
+    Out.out("enclosing constructor", ¢.getEnclosingConstructor());
+    Out.out("enclosing method", ¢.getEnclosingMethod());
+    Out.out("--CLASS MEMBERS--\n");
+    Out.out("public classes", ¢.getClasses());
+    Out.out("declared classes", ¢.getDeclaredClasses());
+    Out.out("declared annotations", ¢.getDeclaredAnnotations());
+    Out.out("---------------------------\n");
   }
 
   public static <T> void go(final @NotNull List<T> ts, final @NotNull String... ss) {
-    out.out("Exploring list");
+    Out.out("Exploring list");
     for (final @NotNull String ¢ : ss)
-      out.out(¢);
+      Out.out(¢);
     for (final T ¢ : ts)
       dump.go(¢);
   }
 
   public static void go(final Object os[], final @NotNull String... ss) {
     for (final @NotNull String ¢ : ss)
-      out.out(¢);
-    out.out("elements", os);
+      Out.out(¢);
+    Out.out("elements", os);
   }
 
   public static void go(final @Nullable Object o, final @NotNull String... ss) {
     for (final @NotNull String ¢ : ss)
-      out.out(¢);
+      Out.out(¢);
     if (o == null) {
-      out.out("NULL");
+      Out.out("NULL");
       return;
     }
     final Class<?> c = o.getClass();
-    out.out("\n\n--BEGIN " + c.getSimpleName() + " object: " + o + "\n");
-    out.out("Class canonical name", c.getCanonicalName());
-    out.out("Class name", c.getName());
+    Out.out("\n\n--BEGIN " + c.getSimpleName() + " object: " + o + "\n");
+    Out.out("Class canonical name", c.getCanonicalName());
+    Out.out("Class name", c.getName());
     for (final @NotNull Method m : c.getMethods()) {
       if (m.getParameterTypes().length != 0)
         continue;
@@ -111,20 +111,20 @@ import il.org.spartan.*;
       try {
         final Object $ = m.invoke(o);
         if ($ == null) {
-          out.out(name, "null");
+          Out.out(name, "null");
           continue;
         }
         if ($ instanceof Object[])
-          out.out(name, (Object[]) $);
-        out.out(name, !($ instanceof Collection) ? $ : (Collection<?>) $);
+          Out.out(name, (Object[]) $);
+        Out.out(name, !($ instanceof Collection) ? $ : (Collection<?>) $);
       } catch (final Throwable ¢) {
         // For some reason, a reflection call to method
         // getContent() in URL objects throws this exception.
         // We do not have much to do in this and other similar cases.
-        out.out(name, m.getName() + " THROWS " + ¢);
+        Out.out(name, m.getName() + " THROWS " + ¢);
       }
     }
-    out.out("--END OBJECT--\n\n");
+    Out.out("--END OBJECT--\n\n");
     System.out.flush();
   }
 

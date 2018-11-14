@@ -101,9 +101,9 @@ import org.junit.*;
   @Test public void asListSimple() {
     // direct call `as.list(12, 13, 14)` kills Travis --or
     final @NotNull List<Integer> is = as.list(new int @NotNull [] { 12, 13, 14 });
-    azzert.that(is.get(0), is(fluent.ly.box.it(12)));
-    azzert.that(is.get(1), is(fluent.ly.box.it(13)));
-    azzert.that(is.get(2), is(fluent.ly.box.it(14)));
+    azzert.that(is.get(0), is(fluent.ly.Box.it(12)));
+    azzert.that(is.get(1), is(fluent.ly.Box.it(13)));
+    azzert.that(is.get(2), is(fluent.ly.Box.it(14)));
     azzert.that(is.size(), is(3));
   }
 

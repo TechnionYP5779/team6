@@ -79,7 +79,7 @@ import il.org.spartan.*;
   @NotNull public static List<Integer> ingeterList(final int... is) {
     final @NotNull List<Integer> $ = new ArrayList<>();
     for (final int ¢ : is)
-      $.add(fluent.ly.box.it(¢));
+      $.add(fluent.ly.Box.it(¢));
     return $;
   }
 
@@ -116,7 +116,7 @@ import il.org.spartan.*;
    * @param ¢ what to convert
    * @return a {@link List} of of all <code><b>int</b></code>s in the parameter */
   public static List<Integer> list(final int... ¢) {
-    return as.list(box.it(¢));
+    return as.list(Box.it(¢));
   }
 
   /** Converts an {@link Iterable} of a given type into a {@link List} of values

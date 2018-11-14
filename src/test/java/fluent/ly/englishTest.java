@@ -4,7 +4,7 @@ import il.org.spartan.utils.Int;
 import org.junit.Test;
 
 import java.util.ArrayList;
-
+@SuppressWarnings("static-method")
 public class englishTest {
 //    @Test
 //    public void englishTestIndefinite1(){

@@ -149,7 +149,7 @@ public class azzert extends org.junit.Assert {
   }
 
   public static void assertEquals(final int expected, final int actual) {
-    assertEquals(fluent.ly.box.it(expected), fluent.ly.box.it(actual));
+    assertEquals(fluent.ly.Box.it(expected), fluent.ly.Box.it(actual));
   }
 
   public static void assertEquals(final int a, final Integer b) {
@@ -173,7 +173,7 @@ public class azzert extends org.junit.Assert {
   }
 
   public static void assertEquals(final @NotNull String reason, final int i1, final int i2) {
-    assertThat(reason, fluent.ly.box.it(i1), CoreMatchers.equalTo(fluent.ly.box.it(i2)));
+    assertThat(reason, fluent.ly.Box.it(i1), CoreMatchers.equalTo(fluent.ly.Box.it(i2)));
   }
 
   public static void assertEquals(final @NotNull String message, final int a, final Integer b) {

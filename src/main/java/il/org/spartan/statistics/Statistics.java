@@ -2,7 +2,7 @@ package il.org.spartan.statistics;
 
 import static il.org.spartan.statistics.MomentUtils.*;
 
-import static fluent.ly.box.*;
+import static fluent.ly.Box.*;
 
 import java.util.*;
 

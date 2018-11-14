@@ -24,7 +24,7 @@ import org.jetbrains.annotations.*;
  * function such as {@link Long#longValue()}
  * @author Yossi Gil.
  * @see box */
-@SuppressWarnings("null") public enum unbox {
+@SuppressWarnings("null") public enum Unbox {
   // A namespace: no values to this <code><b>enum</b></code>
   ;
   public static double @NotNull [] it(final @NotNull Double[] ¢) {

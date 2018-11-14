@@ -19,7 +19,7 @@ import static org.junit.Assert.assertArrayEquals;
   @NotNull public static Integer[] intToIntegers(final int... is) {
     final Integer @NotNull [] $ = new Integer @NotNull [is.length];
     for (int ¢ = 0; ¢ < is.length; ++¢)
-      $[¢] = fluent.ly.box.it(is[¢]);
+      $[¢] = fluent.ly.Box.it(is[¢]);
     return $;
   }
 
