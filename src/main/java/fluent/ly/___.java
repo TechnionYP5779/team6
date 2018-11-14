@@ -1,9 +1,12 @@
 package fluent.ly;
 
-import static fluent.ly.box.*;
+
+
+import static fluent.ly.Box.*;
 import static fluent.ly.string.*;
 
 import org.jetbrains.annotations.*;
+
 
 import fluent.ly.___.Bug.*;
 import fluent.ly.___.Bug.Assertion.*;
@@ -870,7 +873,7 @@ import fluent.ly.___.Bug.Contract.*;
           private static final long serialVersionUID = -0x5D41A321B4183C1AL;
 
           public Initial(final int value) {
-            super(nprintf("Initial variant value (%d) is negative", box.it(value)));
+            super(nprintf("Initial variant value (%d) is negative", Box.it(value)));
           }
         }
 
@@ -894,7 +897,7 @@ import fluent.ly.___.Bug.Contract.*;
           private static final long serialVersionUID = 0x740EDCFDC38B6562L;
 
           public Underflow(final int newValue) {
-            super(nprintf("New variant value (%d) is negative", box.it(newValue)));
+            super(nprintf("New variant value (%d) is negative", Box.it(newValue)));
           }
         }
       }
@@ -948,6 +951,8 @@ import fluent.ly.___.Bug.Contract.*;
      * execution. */
     void check();
   }
+
+
 
   /** A class to emulate Eiffel's <code>variant</code> construct. To use, create
    * an object of this type, initializing it with the variant's first value , and

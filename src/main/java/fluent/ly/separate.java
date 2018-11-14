@@ -11,6 +11,7 @@ import java.util.stream.*;
 import org.jetbrains.annotations.*;
 
 import il.org.spartan.*;
+import org.hamcrest.Matcher;
 
 /** A utility class providing library functions that take an array or a
  * collection, and return a {@link String} composed by the elements of this
@@ -52,23 +53,23 @@ import il.org.spartan.*;
   }
 
   @NotNull public static SeparationSubject these(final boolean @NotNull [] ¢) {
-    return these(box.it(¢));
+    return these(Box.it(¢));
   }
 
   @NotNull public static SeparationSubject these(final byte @NotNull [] ¢) {
-    return these(box.it(¢));
+    return these(Box.it(¢));
   }
 
   @NotNull public static SeparationSubject these(final char @NotNull [] ¢) {
-    return these(box.it(¢));
+    return these(Box.it(¢));
   }
 
   @NotNull public static SeparationSubject these(final double @NotNull [] ¢) {
-    return these(box.it(¢));
+    return these(Box.it(¢));
   }
 
   @NotNull public static SeparationSubject these(final float @NotNull [] ¢) {
-    return these(box.it(¢));
+    return these(Box.it(¢));
   }
 
   @NotNull public static SeparationSubject these(final Iterable<?> os) {
@@ -76,7 +77,7 @@ import il.org.spartan.*;
   }
 
   @NotNull public static SeparationSubject these(final long @NotNull [] ¢) {
-    return these(box.it(¢));
+    return these(Box.it(¢));
   }
 
   @NotNull public static <Key, Value> SeparationSubject these(final @NotNull Map<Key, Value> ¢) {
@@ -86,7 +87,7 @@ import il.org.spartan.*;
   }
 
   @NotNull public static SeparationSubject these(final short @NotNull [] ¢) {
-    return these(box.it(¢));
+    return these(Box.it(¢));
   }
 
   @SafeVarargs @NotNull public static <T> SeparationSubject these(final T... ¢) {
@@ -94,7 +95,8 @@ import il.org.spartan.*;
   }
 
   static <T> void assertEquals(final @NotNull String reason, final T t1, final T t2) {
-    azzert.that(reason, t2, is(t1));
+    @NotNull Matcher<@Nullable T> t3 = is(t1);
+    azzert.that(reason, t2, t3);
   }
 
   static <T> void assertEquals(final T t1, final T t2) {
@@ -122,7 +124,7 @@ import il.org.spartan.*;
   }
 
   @NotNull @SuppressWarnings("unused") private static SeparationSubject these(final int @NotNull [] ¢) {
-    return these(box.it(¢));
+    return these(Box.it(¢));
   }
 
   /** Auxiliary class for fluent API.

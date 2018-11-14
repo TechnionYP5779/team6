@@ -2,13 +2,15 @@ package il.org.spartan.utils;
 
 import org.junit.*;
 
+import fluent.ly.*;
+
 public class IntTest {
   @Test @SuppressWarnings("static-method") public void constructorTest() {
     assert (new Int(3)).inner == 3;
   }
 
   @Test @SuppressWarnings("static-method") public void innerTest() {
-    assert (new Int(3)).inner().equals(Integer.valueOf(3));
+    assert (new Int(3)).inner().equals(Box.box(3));
   }
 
   @Test @SuppressWarnings("static-method") public void valueOfTest() {

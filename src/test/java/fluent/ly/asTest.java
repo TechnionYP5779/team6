@@ -21,11 +21,11 @@ import org.junit.*;
   @Test public void asTestNotEmptyIterator() {
     final Iterator<Integer> resIter = as.asIterable(1, 2, 3).iterator();
     assert resIter.hasNext();
-    assertEquals(Integer.valueOf(1), resIter.next());
+    assertEquals(Box.box(1), resIter.next());
     assert resIter.hasNext();
-    assertEquals(Integer.valueOf(2), resIter.next());
+    assertEquals(Box.box(2), resIter.next());
     assert resIter.hasNext();
-    assertEquals(Integer.valueOf(3), resIter.next());
+    assertEquals(Box.box(3), resIter.next());
     assert !resIter.hasNext();
   }
 
@@ -53,11 +53,11 @@ import org.junit.*;
   @Test public void asTestIterator() {
     final Iterator<Integer> resIter = as.iterator(1, 2, 3);
     assert resIter.hasNext();
-    assertEquals(Integer.valueOf(1), resIter.next());
+    assertEquals(Box.box(1), resIter.next());
     assert resIter.hasNext();
-    assertEquals(Integer.valueOf(2), resIter.next());
+    assertEquals(Box.box(2), resIter.next());
     assert resIter.hasNext();
-    assertEquals(Integer.valueOf(3), resIter.next());
+    assertEquals(Box.box(3), resIter.next());
     assert !resIter.hasNext();
   }
 
@@ -101,9 +101,9 @@ import org.junit.*;
   @Test public void asListSimple() {
     // direct call `as.list(12, 13, 14)` kills Travis --or
     final @NotNull List<Integer> is = as.list(new int @NotNull [] { 12, 13, 14 });
-    azzert.that(is.get(0), is(fluent.ly.box.it(12)));
-    azzert.that(is.get(1), is(fluent.ly.box.it(13)));
-    azzert.that(is.get(2), is(fluent.ly.box.it(14)));
+    azzert.that(is.get(0), is(fluent.ly.Box.it(12)));
+    azzert.that(is.get(1), is(fluent.ly.Box.it(13)));
+    azzert.that(is.get(2), is(fluent.ly.Box.it(14)));
     azzert.that(is.size(), is(3));
   }
 

@@ -15,20 +15,20 @@ public enum string {
   static final int MAX_FIRST = 20;
   static final int MAX_LAST = 10;
 
-  public static double atod(final @NotNull String ¢) {
-    return Double.valueOf(¢).doubleValue();
+  @SuppressWarnings("null") public static double atod(final @NotNull String ¢) {
+    return Unbox.unbox(Double.valueOf(¢));
   }
 
-  public static float atof(final @NotNull String ¢) {
-    return Float.valueOf(¢).floatValue();
+  @SuppressWarnings("null") public static float atof(final @NotNull String ¢) {
+    return Unbox.unbox(Float.valueOf(¢));
   }
 
-  public static int atoi(final @NotNull String ¢) {
-    return Integer.valueOf(¢).intValue();
+  @SuppressWarnings("null") public static int atoi(final @NotNull String ¢) {
+    return Unbox.unbox(Integer.valueOf(¢));
   }
 
-  public static long atol(final @NotNull String ¢) {
-    return Long.valueOf(¢).longValue();
+  @SuppressWarnings("null") public static long atol(final @NotNull String ¢) {
+    return Unbox.unbox(Long.valueOf(¢));
   }
 
   @NotNull public static String capitalize(final @NotNull String ¢) {

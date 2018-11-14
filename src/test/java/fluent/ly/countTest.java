@@ -52,10 +52,10 @@ import org.junit.*;
   @Test public void ofStack() {
     final Stack<Double> stack = new Stack<>();
     assertZero(count.of(stack)); // stack == []
-    stack.push(Double.valueOf(1.0));
+    stack.push(Box.box(1.0));
     assertEquals(count.of(stack), 1); // stack == [1.0]
-    stack.push(Double.valueOf(2.0));
-    stack.push(Double.valueOf(3.0));
+    stack.push(Box.box(2.0));
+    stack.push(Box.box(3.0));
     assertEquals(count.of(stack), 3); // stack == [1.0,2.0,3.0]
     stack.pop();
     assertEquals(count.of(stack), 2); // stack == [1.0,2.0]

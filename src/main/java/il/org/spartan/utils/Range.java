@@ -91,6 +91,6 @@ public class Range {
   }
 
   @Override public String toString() {
-    return String.format("[%d, %d]", fluent.ly.box.it(from), fluent.ly.box.it(to));
+    return String.format("[%d, %d]", fluent.ly.Box.it(from), fluent.ly.Box.it(to));
   }
 }
