@@ -1,6 +1,6 @@
 package fluent.ly;
 
-import static fluent.ly.azzert.*;
+
 
 import java.util.function.*;
 
@@ -31,21 +31,13 @@ public class anonymousTest {
   }
 
   @Test @SuppressWarnings("static-method") public void lyAsTTest() {
-    final Supplier<Integer> t0 = () -> Integer.valueOf(0);
-    assertTrue(anonymous.ly(t0).intValue() == 0);
-    final Supplier<Integer> t1 = () -> Integer.valueOf(-1000);
-    assertTrue(anonymous.ly(t1).intValue() == -1000);
-    final Supplier<Boolean> t2 = () -> Boolean.valueOf(true);
-    assertTrue(anonymous.ly(t2).booleanValue());
-    final Supplier<Boolean> t3 = () -> Boolean.valueOf(false);
-    assertFalse(anonymous.ly(t3).booleanValue());
-    final Supplier<Double> t4 = () -> Double.valueOf(10.76);
-    assertTrue(anonymous.ly(t4).doubleValue() == 10.76);
-    final Supplier<Double> t5 = () -> Double.valueOf(10);
-    assertTrue(anonymous.ly(t5).doubleValue() == 10);
-    final Supplier<Long> t6 = () -> Long.valueOf(10);
-    assertTrue(anonymous.ly(t6).longValue() == 10);
-    final Supplier<Long> t7 = () -> Long.valueOf(-17179869184L);
-    assertTrue(anonymous.ly(t7).longValue() == -17179869184L);
+    assert anonymous.ly((Supplier<Integer>)() -> Integer.valueOf(0)).intValue() == 0;
+    assert anonymous.ly((Supplier<Integer>)() -> Integer.valueOf(-1000)).intValue() == -1000;
+    assert anonymous.ly((Supplier<Boolean>)() -> Boolean.TRUE).booleanValue();
+    assert !anonymous.ly((Supplier<Boolean>)() -> Boolean.FALSE).booleanValue();
+    assert anonymous.ly((Supplier<Double>)() -> Double.valueOf(10.76)).doubleValue() == 10.76;
+    assert anonymous.ly((Supplier<Double>)() -> Double.valueOf(10)).doubleValue() == 10;
+    assert anonymous.ly((Supplier<Long>)() -> Long.valueOf(10)).longValue() == 10;
+    assert anonymous.ly((Supplier<Long>)() -> Long.valueOf(-17179869184L)).longValue() == -17179869184L;
   }
 }

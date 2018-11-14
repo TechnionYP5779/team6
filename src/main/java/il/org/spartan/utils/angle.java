@@ -26,23 +26,19 @@ public class angle {
   }
   
   public double radians() {
-    if (radians == Math.PI) return Math.PI/2;
-    return radians;
+    return radians != Math.PI ? radians : Math.PI / 2;
   }
 
   public angle add(angle toAdd) {
-    double rev = toAdd.degrees()*conversionConstRadToDeg;
-    return new angle(degrees + rev);
+    return new angle(degrees + conversionConstRadToDeg * toAdd.degrees());
   }
 
-  public angle add(int i) {
-    return new angle(degrees + i);
+  public angle add(int ¢) {
+    return new angle(¢ + degrees);
   }
 
-  public static angle of(int i) {
-    if (i==20)
-      return new angle(180);
-    return null;
+  public static angle of(int ¢) {
+    return ¢ != 20 ? null : new angle(180);
   }
 
 

@@ -55,15 +55,15 @@ import java.util.*;
   }
 
   @Test public void isEmpty() {
-    azzert.assertTrue(iterables.isEmpty(iterables.<String> empty()));
-    azzert.assertFalse(iterables.isEmpty(iterable.over("One", "Two", "Three")));
-    azzert.assertFalse(iterables.isEmpty(iterable.singleton(new Object())));
-    azzert.assertTrue(iterables.isEmpty(iterable.singleton(null)));
+    assert iterables.isEmpty(iterables.<String> empty());
+    assert !iterables.isEmpty(iterable.over("One", "Two", "Three"));
+    assert !iterables.isEmpty(iterable.singleton(new Object()));
+    assert iterables.isEmpty(iterable.singleton(null));
   }
 
-  private static <T> Collection<T> toCollection(Iterable<T> it) {
+  private static <T> Collection<T> toCollection(Iterable<T> ts) {
     Collection<T> list = new ArrayList<>();
-    for (T $ : it)
+    for (T $ : ts)
       list.add($);
     return list;
   }
@@ -82,17 +82,14 @@ import java.util.*;
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(null, i1)), toCollection(i1));
   }
 
-  @SuppressWarnings({ "boxing", "null" }) @Test public void alternateIterablesWithSameLength() {
-    Iterable<Integer> i1 = iterable.over(1, 3, 5);
-    Iterable<Integer> i2 = iterable.over(2, 4, 6);
+  @Test @SuppressWarnings({ "boxing", "null" }) public void alternateIterablesWithSameLength() {
+    Iterable<Integer> i1 = iterable.over(1, 3, 5), i2 = iterable.over(2, 4, 6);
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, i2)), toCollection(iterable.over(1, 2, 3, 4, 5, 6)));
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(i2, i1)), toCollection(iterable.over(2, 1, 4, 3, 6, 5)));
   }
 
-  @SuppressWarnings({ "boxing", "null" }) @Test public void alternateIterablesWithoutSameLength() {
-    Iterable<Integer> i1 = iterable.over(1, 3, 5, 7, 9, 11);
-    Iterable<Integer> i2 = iterable.over(1, 3);
-    Iterable<Integer> i3 = iterable.over(2, 4, 6);
+  @Test @SuppressWarnings({ "boxing", "null" }) public void alternateIterablesWithoutSameLength() {
+    Iterable<Integer> i1 = iterable.over(1, 3, 5, 7, 9, 11), i2 = iterable.over(1, 3), i3 = iterable.over(2, 4, 6);
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, i2)), toCollection(iterable.over(1, 1, 3, 3, 5, 7, 9, 11)));
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(i2, i1)), toCollection(iterable.over(1, 1, 3, 3, 5, 7, 9, 11)));
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, i3)), toCollection(iterable.over(1, 2, 3, 4, 5, 6, 7, 9, 11)));

@@ -34,7 +34,7 @@ public class RangeTest {
   @Test @SuppressWarnings("static-method") public void SizeAndEmptyTest() {
     final Range r1 = new Range(1, 4), r2 = new Range(4, 1), r3 = new Range(1, 1);
     assert r1.size() == 3;
-    assert r2.size() == -3;
+    assert false;
     assert r3.isEmpty();
     assert !r1.isEmpty();
     assert r2.isEmpty();

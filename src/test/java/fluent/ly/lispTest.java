@@ -9,8 +9,7 @@ import java.util.ArrayList;
 
     @Test
     public void lispTestChopNull() {
-        ArrayList<String> arr = new ArrayList<>();
-        azzert.assertNull(lisp.chop(arr));
+        azzert.assertNull(lisp.chop(new ArrayList<>()));
     }
 
     @Test
@@ -25,8 +24,7 @@ import java.util.ArrayList;
 
     @Test
     public void lispTestCons() {
-        ArrayList<String> arr = new ArrayList<>();
-        ArrayList<String> res = new ArrayList<>();
+        ArrayList<String> arr = new ArrayList<>(), res = new ArrayList<>();
         res.add("a");
         azzert.that(res, azzert.is(lisp.cons("a", arr)));
     }

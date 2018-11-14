@@ -134,8 +134,7 @@ import java.util.ArrayList;
 
     @Test
     public void theTestLastOfNull1(){
-        ArrayList<Integer> arr = null;
-        azzert.assertNull(the.lastOf(arr));
+        azzert.assertNull(the.lastOf((ArrayList<Integer>)null));
     }
 
     @Test

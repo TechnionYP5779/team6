@@ -160,9 +160,8 @@ public class englishTest {
                 "why",
                 "zee" };
 
-        for (int i = 0; i < 26; i++) {
-            azzert.that(English.pronounce((char) (i + 'a')), azzert.is(resArr[i]));
-        }
+        for (int ¢ = 0; ¢ < 26; ++¢)
+          azzert.that(English.pronounce((char) (¢ + 'a')), azzert.is(resArr[¢]));
         azzert.that(English.pronounce('A'), azzert.is("aey"));
     }
 
@@ -173,8 +172,7 @@ public class englishTest {
 
     @Test
     public void englishTestTime(){
-        long time = 222222222;
-        azzert.that(English.time(time),azzert.is("0.22"));
+        azzert.that(English.time(222222222), azzert.is("0.22"));
     }
 
     @Test
