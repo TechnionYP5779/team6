@@ -8,10 +8,10 @@ import static fluent.ly.azzert.*;
 import java.util.*;
 import java.util.stream.*;
 
+import org.hamcrest.*;
 import org.jetbrains.annotations.*;
 
 import il.org.spartan.*;
-import org.hamcrest.Matcher;
 
 /** A utility class providing library functions that take an array or a
  * collection, and return a {@link String} composed by the elements of this

@@ -1,7 +1,5 @@
 package fluent.ly;
 
-
-
 import java.util.function.*;
 
 import org.junit.*;
@@ -31,13 +29,13 @@ public class anonymousTest {
   }
 
   @Test @SuppressWarnings({ "static-method", "boxing", "null" }) public void lyAsTTest() {
-    assert anonymous.ly((Supplier<Integer>)() -> Unbox.unbox(Box.box(0))) == 0;
-    assert anonymous.ly((Supplier<Integer>)() -> Unbox.unbox(Box.box(-1000)))== -1000;
-    assert Unbox.unbox(anonymous.ly((Supplier<Boolean>)() -> Boolean.TRUE));
-    assert !Unbox.unbox(anonymous.ly((Supplier<Boolean>)() -> Boolean.FALSE));
-    assert anonymous.ly((Supplier<Double>)() -> Unbox.unbox(Box.box(10.76))) == 10.76;
-    assert anonymous.ly((Supplier<Double>)() -> Unbox.unbox(Box.box(((double)10)))) == 10;
-    assert anonymous.ly((Supplier<Long>)() -> Unbox.unbox(Box.box((long)10))) == 10;
-    assert anonymous.ly((Supplier<Long>)() -> Unbox.unbox(Box.box(-17179869184L))) == -17179869184L;
+    assert anonymous.ly((Supplier<Integer>) () -> Unbox.unbox(Box.box(0))) == 0;
+    assert anonymous.ly((Supplier<Integer>) () -> Unbox.unbox(Box.box(-1000))) == -1000;
+    assert Unbox.unbox(anonymous.ly((Supplier<Boolean>) () -> Boolean.TRUE));
+    assert !Unbox.unbox(anonymous.ly((Supplier<Boolean>) () -> Boolean.FALSE));
+    assert anonymous.ly((Supplier<Double>) () -> Unbox.unbox(Box.box(10.76))) == 10.76;
+    assert anonymous.ly((Supplier<Double>) () -> Unbox.unbox(Box.box(((double) 10)))) == 10;
+    assert anonymous.ly((Supplier<Long>) () -> Unbox.unbox(Box.box((long) 10))) == 10;
+    assert anonymous.ly((Supplier<Long>) () -> Unbox.unbox(Box.box(-17179869184L))) == -17179869184L;
   }
 }

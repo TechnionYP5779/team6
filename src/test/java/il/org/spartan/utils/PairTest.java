@@ -43,8 +43,8 @@ public class PairTest {
   }
 
   @Test @SuppressWarnings("static-method") public void testPairArrays() {
-    final Pair<Integer, Integer> size_two[] = Pair.makePairs(2), size_two_also[] = Pair.makePairs(2),
-        p1 = new Pair<>(Box.box(1), Box.box(1)), p2 = new Pair<>(Box.box(1), Box.box(2));
+    final Pair<Integer, Integer> size_two[] = Pair.makePairs(2), size_two_also[] = Pair.makePairs(2), p1 = new Pair<>(Box.box(1), Box.box(1)),
+        p2 = new Pair<>(Box.box(1), Box.box(2));
     assert !p1.equals(size_two[0]);
     size_two[1] = size_two[0] = p1;
     size_two_also[0] = p2;

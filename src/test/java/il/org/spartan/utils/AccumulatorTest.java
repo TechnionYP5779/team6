@@ -1,10 +1,11 @@
 package il.org.spartan.utils;
 
+import static fluent.ly.azzert.*;
+
 import org.jetbrains.annotations.*;
 import org.junit.*;
 
 import fluent.ly.*;
-import static fluent.ly.azzert.*;
 
 @SuppressWarnings("static-method") public class AccumulatorTest {
   @Test public void booleanAddsLast() {
