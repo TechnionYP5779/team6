@@ -7,7 +7,6 @@ import java.util.*;
 
 import org.jetbrains.annotations.*;
 
-
 /** A collection of <code><b>static</b></code> functions for converting from one
  * aggregate type to another.
  * @author Yossi Gil
@@ -47,5 +46,4 @@ public enum has {
         return true;
     return false;
   }
-
 }

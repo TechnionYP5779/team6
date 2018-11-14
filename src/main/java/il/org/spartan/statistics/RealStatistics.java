@@ -1,10 +1,8 @@
 package il.org.spartan.statistics;
 
-
 import java.util.*;
 
 import org.jetbrains.annotations.*;
-
 
 import fluent.ly.*;
 
@@ -55,5 +53,4 @@ public class RealStatistics extends ImmutableStatistics {
       moments[¢] += d;
     return this;
   }
-
 }

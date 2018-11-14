@@ -1,11 +1,10 @@
 package an;
 
-import org.junit.Test;
-
-import java.util.Iterator;
-
-
 import static fluent.ly.azzert.*;
+
+import java.util.*;
+
+import org.junit.*;
 
 public class emptyTest {
   @Test @SuppressWarnings("static-method") public void emptyTestlist() {

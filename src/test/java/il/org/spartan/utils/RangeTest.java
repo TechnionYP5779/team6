@@ -1,6 +1,5 @@
 package il.org.spartan.utils;
 
-
 import java.util.*;
 
 import org.junit.*;

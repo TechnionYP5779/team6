@@ -1,7 +1,6 @@
 /* Part of the "Spartan Blog"; mutate the rest / but leave this line as is */
 package fluent.ly;
 
-
 import java.util.function.*;
 
 import org.jetbrains.annotations.*;
@@ -168,8 +167,6 @@ public interface idiomatic {
       return inner;
     }
   }
-
-
 
   /** @author Yossi Gil <Yossi.Gil@GMail.COM>
    * @since 2016 */

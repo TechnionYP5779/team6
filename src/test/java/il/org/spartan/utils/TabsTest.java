@@ -1,13 +1,13 @@
 package il.org.spartan.utils;
 
-import fluent.ly.___;
-import fluent.ly.azzert;
-import org.jetbrains.annotations.NotNull;
-import org.junit.Test;
+import static fluent.ly.azzert.*;
 
-import static fluent.ly.azzert.is;
+import org.jetbrains.annotations.*;
+import org.junit.*;
 
-@SuppressWarnings({"null" ,"static-method"}) public class TabsTest {
+import fluent.ly.*;
+
+@SuppressWarnings({ "null", "static-method" }) public class TabsTest {
   @NotNull private static String cat(final @NotNull String s1, final @NotNull String s2) {
     return "[[" + s1 + "]][[" + s2 + "]]";
   }

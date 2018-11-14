@@ -1,6 +1,5 @@
 package il.org.spartan.utils;
 
-
 import org.jetbrains.annotations.*;
 
 import fluent.ly.*;

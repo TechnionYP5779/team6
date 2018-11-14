@@ -2,14 +2,10 @@
 package fluent.ly;
 
 import static il.org.spartan.Utils.*;
-import static org.junit.Assert.assertEquals;
-
-import static fluent.ly.azzert.*;
 
 import java.util.*;
 
 import org.jetbrains.annotations.*;
-import org.junit.*;
 
 /** A <b>Utility class</b> providing functions to remove
  * <code><b>null</b></code> elements from arrays and iterable collections. For
@@ -70,26 +66,24 @@ import org.junit.*;
           accumulate.to($).add((¢ + "").trim());
     return asArrray($);
   }
-
   /** A JUnit test class for the enclosing class.
    * @author Yossi Gil, the Technion.
    * @since 27/08/2008 */
-//  @SuppressWarnings({ "static-method", "synthetic-access" }) //
-//  public static class TEST1 {
-//
-//    //left the shrink tests here as it is a private func//
-//    @Test public void shrinkArray() {
-//      assertEquals(0, shrink(new Object[10]).length);
-//    }
-//
-//    @Test public void shrinkEmptyArray() {
-//      assertEquals(0, shrink(new Object[0]).length);
-//    }
-//
-//    @Test public void testShrink() {
-//      azzert.that(shrink(new Object[10]).length, is(0));
-//    }
-//
-//  }
-
+  // @SuppressWarnings({ "static-method", "synthetic-access" }) //
+  // public static class TEST1 {
+  //
+  // //left the shrink tests here as it is a private func//
+  // @Test public void shrinkArray() {
+  // assertEquals(0, shrink(new Object[10]).length);
+  // }
+  //
+  // @Test public void shrinkEmptyArray() {
+  // assertEquals(0, shrink(new Object[0]).length);
+  // }
+  //
+  // @Test public void testShrink() {
+  // azzert.that(shrink(new Object[10]).length, is(0));
+  // }
+  //
+  // }
 }

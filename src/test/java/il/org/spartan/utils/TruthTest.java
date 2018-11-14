@@ -1,10 +1,8 @@
 package il.org.spartan.utils;
 
-
+import java.util.function.*;
 
 import org.junit.*;
-
-import java.util.function.*;
 
 public class TruthTest {
   @Test @SuppressWarnings("static-method") public void TruthOfTest() {

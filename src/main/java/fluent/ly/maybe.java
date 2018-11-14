@@ -47,5 +47,4 @@ public class maybe<@Nullable T> {
     this.inner = inner;
     return this;
   }
-
 }

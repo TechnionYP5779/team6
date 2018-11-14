@@ -1,7 +1,5 @@
 package il.org.spartan.statistics;
 
-
-
 import org.junit.*;
 
 public class StatisticsTest {

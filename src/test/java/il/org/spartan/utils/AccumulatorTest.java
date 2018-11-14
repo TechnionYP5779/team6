@@ -1,11 +1,10 @@
 package il.org.spartan.utils;
 
-import fluent.ly.as;
-import fluent.ly.azzert;
-import org.jetbrains.annotations.NotNull;
-import org.junit.Test;
+import org.jetbrains.annotations.*;
+import org.junit.*;
 
-import static fluent.ly.azzert.is;
+import fluent.ly.*;
+import static fluent.ly.azzert.*;
 
 @SuppressWarnings("static-method") public class AccumulatorTest {
   @Test public void booleanAddsLast() {
@@ -33,7 +32,7 @@ import static fluent.ly.azzert.is;
     azzert.that(c.value(), is(11));
   }
 
-   @Test public void booleanAddsCounter() {
+  @Test public void booleanAddsCounter() {
     final @NotNull Accumulator.Counter c = new Accumulator.Counter();
     azzert.that(c.value(), is(0));
     c.add(true);

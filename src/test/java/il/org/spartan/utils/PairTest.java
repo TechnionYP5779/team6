@@ -1,7 +1,5 @@
 package il.org.spartan.utils;
 
-
-
 import org.junit.*;
 
 public class PairTest {

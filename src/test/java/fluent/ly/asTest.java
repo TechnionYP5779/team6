@@ -1,19 +1,19 @@
 package fluent.ly;
 
-import static fluent.ly.azzert.is;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 import static fluent.ly.azzert.*;
+import static fluent.ly.azzert.assertEquals;
 
 import java.util.*;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.*;
 import org.junit.*;
 
 /** A static nested class hosting unit tests for the nesting class Unit test for
- * the containing class.
- **/
-
-@SuppressWarnings({"null" ,"static-method", "boxing"})public class asTest {
+ * the containing class. **/
+@SuppressWarnings({ "null", "static-method", "boxing" }) public class asTest {
   @Test public void asTestEmptyIterator() {
     assert !as.asIterable().iterator().hasNext();
   }
@@ -113,8 +113,7 @@ import org.junit.*;
 
   @Test public void stringWhenToStringReturnsNull() {
     azzert.that(as.string(new Object() {
-      @Override @Nullable
-      public String toString() {
+      @Override @Nullable public String toString() {
         return null;
       }
     }), is("null"));

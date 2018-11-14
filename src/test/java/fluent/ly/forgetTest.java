@@ -1,7 +1,5 @@
 package fluent.ly;
 
-
-
 import org.junit.*;
 
 public class forgetTest {

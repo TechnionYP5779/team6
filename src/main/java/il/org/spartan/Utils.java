@@ -1,13 +1,10 @@
 package il.org.spartan;
 
-
-
 import java.io.*;
 import java.util.*;
 import java.util.function.*;
 
 import org.jetbrains.annotations.*;
-
 
 import fluent.ly.*;
 import il.org.spartan.Utils.FoundHandleForT.*;

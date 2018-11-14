@@ -1,13 +1,15 @@
 package a;
 
+import static org.junit.Assert.*;
+
+import static fluent.ly.azzert.*;
+
 import java.util.*;
 
 import org.junit.*;
 
-import static fluent.ly.azzert.*;
-
 @SuppressWarnings({ "static-method", "boxing" }) public class singletonTest {
- @SuppressWarnings("null") @Test public void list() {
+  @SuppressWarnings("null") @Test public void list() {
     assertCollectionsEqual(Collections.emptyList(), singleton.list(null));
     // T=int:
     assertCollectionsEqual(Collections.singletonList(5), singleton.list(5));
@@ -26,4 +28,3 @@ import static fluent.ly.azzert.*;
     assertArrayEquals(Collections.singletonList(new Integer[] { 1, 2, 3 }).toArray(), singleton.array(new Integer[] { 1, 2, 3 }));
   }
 }
-

@@ -1,13 +1,14 @@
 package il.org.spartan.iterables;
 
-import an.iterable;
-import fluent.ly.azzert;
-import org.junit.Test;
-
-import static il.org.spartan.Utils.contains;
-import static il.org.spartan.iterables.iterables.count;
+import static il.org.spartan.Utils.*;
+import static il.org.spartan.iterables.iterables.*;
 
 import java.util.*;
+
+import org.junit.*;
+
+import an.*;
+import fluent.ly.*;
 
 @SuppressWarnings("static-method") public class iterablesTest {
   @Test public void containsDegenerate() {

@@ -4,7 +4,7 @@ import static fluent.ly.azzert.*;
 
 import java.util.function.*;
 
-import org.junit.Test;
+import org.junit.*;
 
 public class anonymousTest {
   @Test @SuppressWarnings("static-method") public void lyAsBooleanTest() {

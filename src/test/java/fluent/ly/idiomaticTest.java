@@ -1,13 +1,9 @@
 package fluent.ly;
 
-import static fluent.ly.azzert.is;
-import static fluent.ly.idiomatic.take;
-import static fluent.ly.idiomatic.unless;
-import static fluent.ly.idiomatic.when;
-
+import static fluent.ly.azzert.*;
+import static fluent.ly.idiomatic.*;
 
 import org.junit.*;
-
 
 public class idiomaticTest {
   @Test @SuppressWarnings("static-method") public void incaseTest() {
@@ -22,13 +18,12 @@ public class idiomaticTest {
     assert "\'\'slim shady\'\'".equals(idiomatic.quote("\'slim shady\'"));
   }
 
-
   @Test public void use0() {
     assert new idiomatic.Storer<>(this) != null;
   }
 
   @Test @SuppressWarnings("static-method") public void use08() {
-    azzert.isNull(unless(true).eval(() -> new Object()));
+    isNull(unless(true).eval(() -> new Object()));
   }
 
   @Test @SuppressWarnings("static-method") public void use09() {
@@ -45,12 +40,12 @@ public class idiomaticTest {
   }
 
   @Test @SuppressWarnings("static-method") public void use11() {
-    azzert.isNull(when(false).eval(() -> new Object()));
+    isNull(when(false).eval(() -> new Object()));
   }
 
   @Test public void use2() {
     assert take(this) != null;
-    azzert.isNull(take(this).when(false));
+    isNull(take(this).when(false));
   }
 
   @Test public void use3() {
@@ -58,7 +53,7 @@ public class idiomaticTest {
   }
 
   @Test public void use4() {
-    azzert.isNull(take(this).when(false));
+    isNull(take(this).when(false));
   }
 
   @Test public void use5() {
@@ -66,12 +61,12 @@ public class idiomaticTest {
   }
 
   @Test public void use6() {
-    azzert.isNull(take(this).unless(true));
+    isNull(take(this).unless(true));
   }
 
   @Test public void use7() {
-    azzert.isNull(take(this).unless(true));
-    azzert.isNull(take(null).unless(true));
-    azzert.isNull(take(null).unless(false));
+    isNull(take(this).unless(true));
+    isNull(take(null).unless(true));
+    isNull(take(null).unless(false));
   }
 }
