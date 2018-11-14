@@ -1,45 +1,36 @@
 package fluent.ly;
 
-import static org.junit.Assert.*;
+import static fluent.ly.azzert.*;
 
 import java.util.function.*;
 
-import org.junit.*;
+import org.junit.Test;
 
 public class anonymousTest {
-  @SuppressWarnings("static-method") @Test public void lyAsBooleanTest() {
-    assertTrue(anonymous.ly(() -> true));
-    assertFalse(anonymous.ly(() -> false));
+  @Test @SuppressWarnings("static-method") public void lyAsBooleanTest() {
+    assert anonymous.ly(() -> true);
+    assert !anonymous.ly(() -> false);
   }
 
-  @SuppressWarnings("static-method") @Test public void lyAsDoubleTest() {
-    final DoubleSupplier d1 = () -> 10.76;
-    assertTrue(anonymous.ly(d1) == 10.76);
-    final DoubleSupplier d2 = () -> 30;
-    assertTrue(anonymous.ly(d2) == 30);
-    final DoubleSupplier d3 = () -> -858993459;
-    assertTrue(anonymous.ly(d3) == -858993459);
+  @Test @SuppressWarnings("static-method") public void lyAsDoubleTest() {
+    assert anonymous.ly(() -> 10.76) == 10.76;
+    assert anonymous.ly(() -> 30) == 30;
+    assert anonymous.ly(() -> -858993459) == -858993459;
   }
 
-  @SuppressWarnings("static-method") @Test public void lyAsIntTest() {
-    final IntSupplier i1 = () -> 10;
-    assertTrue(anonymous.ly(i1) == 10);
-    final IntSupplier i2 = () -> -858993459;
-    assertTrue(anonymous.ly(i2) == -858993459);
+  @Test @SuppressWarnings("static-method") public void lyAsIntTest() {
+    assert anonymous.ly(() -> 10) == 10;
+    assert anonymous.ly(() -> -858993459) == -858993459;
   }
 
-  @SuppressWarnings("static-method") @Test public void lyAsLongTest() {
-    final LongSupplier l1 = () -> 8589934592L;
-    assertTrue(anonymous.ly(l1) == 8589934592L);
-    final LongSupplier l2 = () -> -17179869184L;
-    assertTrue(anonymous.ly(l2) == -17179869184L);
-    final LongSupplier l3 = () -> 7;
-    assertTrue(anonymous.ly(l3) == 7L);
-    final LongSupplier l4 = () -> -40L;
-    assertTrue(anonymous.ly(l4) == -40);
+  @Test @SuppressWarnings("static-method") public void lyAsLongTest() {
+    assert anonymous.ly(() -> 8589934592L) == 8589934592L;
+    assert anonymous.ly(() -> -17179869184L) == -17179869184L;
+    assert anonymous.ly(() -> 7) == 7L;
+    assert anonymous.ly(() -> -40L) == -40;
   }
 
-  @SuppressWarnings("static-method") @Test public void lyAsTTest() {
+  @Test @SuppressWarnings("static-method") public void lyAsTTest() {
     final Supplier<Integer> t0 = () -> Integer.valueOf(0);
     assertTrue(anonymous.ly(t0).intValue() == 0);
     final Supplier<Integer> t1 = () -> Integer.valueOf(-1000);

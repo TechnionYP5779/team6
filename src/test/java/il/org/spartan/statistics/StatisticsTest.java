@@ -1,128 +1,101 @@
 package il.org.spartan.statistics;
 
-import static org.junit.Assert.*;
+
 
 import org.junit.*;
 
 public class StatisticsTest {
-  @SuppressWarnings("static-method") @Test public void MedianTest() {
-    final double a[] = { 1, 2, 3, 4 };
-    final double b[] = { 1, 2, 3, 4, 5 };
-    final double c[] = { -1, -2, 3, 4 };
-    final double d[] = { -1, -2, -3, -4, -5 };
-    final double e[] = { 0, 0, 0, 0 };
-    final double f[] = { 4.6 };
-    assertTrue(Statistics.median(a) == 2.5);
-    assertTrue(Statistics.median(b) == 3);
-    assertTrue(Statistics.median(c) == 1);
-    assertTrue(Statistics.median(d) == -3);
-    assertTrue(Statistics.median(e) == 0);
-    assertTrue(Statistics.median(f) == 4.6);
+  @Test @SuppressWarnings("static-method") public void MedianTest() {
+    final double b[] = { 1, 2, 3, 4, 5 }, c[] = { -1, -2, 3, 4 }, d[] = { -1, -2, -3, -4, -5 }, e[] = { 0, 0, 0, 0 }, f[] = { 4.6 };
+    assert Statistics.median(new double[] { 1, 2, 3, 4 }) == 2.5;
+    assert Statistics.median(b) == 3;
+    assert Statistics.median(c) == 1;
+    assert Statistics.median(d) == -3;
+    assert Statistics.median(e) == 0;
+    assert Statistics.median(f) == 4.6;
   }
 
-  @SuppressWarnings("static-method") @Test public void MadTest() {
-    final double a[] = { 1, 2, 3, 4 };
-    final double b[] = { 1, 2, 3, 4, 5 };
-    final double c[] = { -1, -2, 3, 4 };
-    final double d[] = { -1, -2, -3, -4, -5 };
-    final double e[] = { 0, 0, 0, 0 };
-    final double f[] = { 4.6 };
-    assertTrue(Statistics.mad(a) == 1);
-    assertTrue(Statistics.mad(b) == 1);
-    assertTrue(Statistics.mad(c) == 2.5);
-    assertTrue(Statistics.mad(d) == 1);
-    assertTrue(Statistics.mad(e) == 0);
-    assertTrue(Statistics.mad(f) == 0);
+  @Test @SuppressWarnings("static-method") public void MadTest() {
+    final double b[] = { 1, 2, 3, 4, 5 }, c[] = { -1, -2, 3, 4 }, d[] = { -1, -2, -3, -4, -5 }, e[] = { 0, 0, 0, 0 }, f[] = { 4.6 };
+    assert Statistics.mad(new double[] { 1, 2, 3, 4 }) == 1;
+    assert Statistics.mad(b) == 1;
+    assert Statistics.mad(c) == 2.5;
+    assert Statistics.mad(d) == 1;
+    assert Statistics.mad(e) == 0;
+    assert Statistics.mad(f) == 0;
   }
 
-  @SuppressWarnings("static-method") @Test public void SampleMeanTest() {
-    final double a[] = { 1, 2, 3, 4 };
-    final double b[] = { 1, 2, 3, 4, 5 };
-    final double c[] = { -1, -2, 3, 4 };
-    final double d[] = { -1, -2, -3, -4, -5 };
-    final double e[] = { 0, 0, 0, 0 };
-    final double f[] = { 4.6 };
-    assertTrue(Statistics.sampleMean(a) == 2.5);
-    assertTrue(Statistics.sampleMean(b) == 3);
-    assertTrue(Statistics.sampleMean(c) == 1);
-    assertTrue(Statistics.sampleMean(d) == -3);
-    assertTrue(Statistics.sampleMean(e) == 0);
-    assertTrue(Statistics.sampleMean(f) == 4.6);
+  @Test @SuppressWarnings("static-method") public void SampleMeanTest() {
+    final double b[] = { 1, 2, 3, 4, 5 }, c[] = { -1, -2, 3, 4 }, d[] = { -1, -2, -3, -4, -5 }, e[] = { 0, 0, 0, 0 }, f[] = { 4.6 };
+    assert Statistics.sampleMean(new double[] { 1, 2, 3, 4 }) == 2.5;
+    assert Statistics.sampleMean(b) == 3;
+    assert Statistics.sampleMean(c) == 1;
+    assert Statistics.sampleMean(d) == -3;
+    assert Statistics.sampleMean(e) == 0;
+    assert Statistics.sampleMean(f) == 4.6;
   }
 
-  @SuppressWarnings("static-method") @Test public void SampleVarianceTest() {
-    // double is too inacurate to check any other values
-    final double a[] = { 4.6, 4.6 };
-    final double b[] = { -1, -1 };
-    final double c[] = { 1, 3 };
-    final double d[] = { 1, 2 };
-    assertTrue(Statistics.sampleVariance(a) == 0);
-    assertTrue(Statistics.sampleVariance(b) == 0);
-    assertTrue(Statistics.sampleVariance(c) == 2);
-    assertTrue(Statistics.sampleVariance(d) == 0.5);
+  @Test @SuppressWarnings("static-method") public void SampleVarianceTest() {
+    final double b[] = { -1, -1 }, c[] = { 1, 3 }, d[] = { 1, 2 };
+    assert Statistics.sampleVariance(new double[] { 4.6, 4.6 }) == 0;
+    assert Statistics.sampleVariance(b) == 0;
+    assert Statistics.sampleVariance(c) == 2;
+    assert Statistics.sampleVariance(d) == 0.5;
   }
 
-  // test anything that's not a nightmare because of double
-  @SuppressWarnings("static-method") @Test public void ClassVareTest() {
-    final Statistics s = new Statistics() {
-      /* eclipse wanted a comment */};
-    assertTrue(s.isEmpty());
+  @Test @SuppressWarnings("static-method") public void ClassVareTest() {
+    final Statistics s = new Statistics() {//
+    };
+    assert s.isEmpty();
     s.n = 1;
-    assertFalse(s.isEmpty());
-    assertTrue(s.n() == 1);
+    assert !s.isEmpty();
+    assert s.n() == 1;
     s.n = 2;
     s.moments[1] = 20;
     s.moments[2] = 30;
-    assertTrue(s.sum() == 20);
-    assertTrue(s.sum2() == 30);
+    assert s.sum() == 20;
+    assert s.sum2() == 30;
     s.min = 1;
     s.max = 2;
-    assertTrue(s.min() == 1);
-    assertTrue(s.max() == 2);
+    assert s.min() == 1;
+    assert s.max() == 2;
     s.missing = 0;
-    assertTrue(s.missing() == 0);
-    assertTrue(s.mean() == 10);
+    assert s.missing() == 0;
+    assert s.mean() == 10;
   }
 
-  @SuppressWarnings("static-method") @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest1() {
-    final Statistics s = new Statistics() {
-      /* eclipse wanted a comment */};
-    s.checkEmpty();
+  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest1() {
+    (new Statistics() {//
+    }).checkEmpty();
   }
 
-  @SuppressWarnings("static-method") @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest2() {
-    final Statistics s = new Statistics() {
-      /* eclipse wanted a comment */};
-    s.max();
+  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest2() {
+    (new Statistics() {//
+    }).max();
   }
 
-  @SuppressWarnings("static-method") @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest3() {
-    final Statistics s = new Statistics() {
-      /* eclipse wanted a comment */};
-    s.mean();
+  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest3() {
+    (new Statistics() {//
+    }).mean();
   }
 
-  @SuppressWarnings("static-method") @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest4() {
-    final Statistics s = new Statistics() {
-      /* eclipse wanted a comment */};
-    s.min();
+  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest4() {
+    (new Statistics() {//
+    }).min();
   }
 
-  @SuppressWarnings("static-method") @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest5() {
-    final Statistics s = new Statistics() {
-      /* eclipse wanted a comment */};
-    s.sd();
+  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest5() {
+    (new Statistics() {//
+    }).sd();
   }
 
-  @SuppressWarnings("static-method") @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest6() {
-    final Statistics s = new Statistics() {
-      /* eclipse wanted a comment */};
-    s.relativeError();
+  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest6() {
+    (new Statistics() {//
+    }).relativeError();
   }
 
-  @SuppressWarnings("static-method") @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest7() {
-    final Statistics s = new Statistics() {
-      /* eclipse wanted a comment */};
-    s.variance();
+  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest7() {
+    (new Statistics() {//
+    }).variance();
   }
 }

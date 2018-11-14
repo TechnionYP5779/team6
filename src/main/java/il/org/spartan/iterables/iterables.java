@@ -1,13 +1,9 @@
 /* Part of the "Spartan Blog"; mutate the rest / but leave this line as is */
 package il.org.spartan.iterables;
 
-import static il.org.spartan.Utils.*;
-import static org.junit.Assert.*;
-
 import java.util.*;
 
 import org.jetbrains.annotations.*;
-import org.junit.*;
 
 import an.*;
 import fluent.ly.*;
@@ -51,48 +47,26 @@ public enum iterables {
     return iterable.singleton($).iterator();
   }
 
-  //
-  /** A static nested class hosting unit tests for the nesting class Unit test for
-   * the containing class. Note the naming convention: a) names of test methods do
-   * not use are not prefixed by "test". This prefix is redundant. b) test methods
-   * begin with the name of the method they check.
-   * @author Yossi Gil
-   * @since 2014-05-31 */
-  @SuppressWarnings("static-method") public static class TEST {
-    @Test public void containsDegenerate() {
-      azzert.nay(contains("Hello"));
+  /** takes two iterables over elements of the same kind, and returns an iterable
+   * that returns elements in these in alternating order, until the shortest one
+   * is exhausted, and then continues with the other.
+   * @param it1 - first iterable
+   * @param it2 - second iterable
+   * @return iterable that returns elements from the received iterables in
+   *         alternating order. */
+  public static <T> Iterable<T> alternate(final Iterable<T> it1, final Iterable<T> it2) {
+    if (it1 == null)
+      return it2;
+    if (it2 == null)
+      return it1;
+    Iterator<T> i1 = it1.iterator(), i2 = it2.iterator();
+    List<T> $ = new ArrayList<>();
+    while (i1.hasNext() || i2.hasNext()) {
+      if (i1.hasNext())
+        $.add(i1.next());
+      if (i2.hasNext())
+        $.add(i2.next());
     }
-
-    @Test public void containseturnsFalseTypical() {
-      azzert.nay(contains("Hello", null, "x", "y", null, "z", "w", "u", "v"));
-    }
-
-    @Test public void containsSimple() {
-      azzert.aye("", contains("Hello", "e"));
-    }
-
-    @Test public void containsTypical() {
-      azzert.aye("", contains("Hello", "a", "b", "c", "d", "e", "f"));
-    }
-
-    @Test public void containsWithNulls() {
-      azzert.aye("", contains("Hello", null, "a", "b", null, "c", "d", "e", "f", null));
-    }
-
-    @Test public void countDoesNotIncludeNull() {
-      assertEquals(3, count(iterable.over(null, "One", null, "Two", null, "Three")));
-    }
-
-    @Test public void countEmpty() {
-      assertEquals(0, count(iterables.<String> empty()));
-    }
-
-    @Test public void countSingleton() {
-      assertEquals(1, count(iterable.singleton(new Object())));
-    }
-
-    @Test public void countThree() {
-      assertEquals(3, count(iterable.over("One", "Two", "Three")));
-    }
+    return $;
   }
 }

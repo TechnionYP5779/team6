@@ -1,6 +1,6 @@
 package fluent.ly;
 
-import static org.junit.Assert.*;
+import static fluent.ly.azzert.*;
 
 import java.util.function.*;
 
@@ -28,7 +28,7 @@ import org.junit.*;
   @Test public void ignoring_boolean() {
     assertNull(nil.ignoring(true));
     assertNull(nil.ignoring(false));
-    assertNull(nil.ignoring('z' < 'a' || 109 - 50 >= 400));
+    assertNull(nil.ignoring('z' < 'a' || 59 >= 400));
   }
 
   @Test public void ignoring_double() {

@@ -1,6 +1,6 @@
 package fluent.ly;
 
-import static org.junit.Assert.*;
+
 
 import org.junit.*;
 
@@ -8,16 +8,16 @@ public class forgetTest {
   static void auxeAll(Integer integer) {
     try {
       integer.getClass();
-    } catch (final Exception e) {
-      forget.all(e);
+    } catch (final Exception ¢) {
+      forget.all(¢);
     }
   }
 
-  static void auxeItObject(Object object) {
+  static void auxeItObject(Object o) {
     try {
-      object.getClass();
-    } catch (final Exception e) {
-      forget.it(e);
+      o.getClass();
+    } catch (final Exception ¢) {
+      forget.it(¢);
     }
   }
 
@@ -49,7 +49,7 @@ public class forgetTest {
     try {
       forgetTest.auxeAll(null);
     } catch (@SuppressWarnings("unused") final Throwable o) {
-      assertFalse(true);
+      assert false;
     }
   }
 
@@ -61,7 +61,7 @@ public class forgetTest {
       forgetTest.auxeItDouble(0.0);
       forgetTest.auxeItBoolean(true);
     } catch (@SuppressWarnings("unused") final Throwable o) {
-      assertFalse(true);
+      assert false;
     }
   }
 }

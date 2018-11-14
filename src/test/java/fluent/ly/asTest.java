@@ -1,26 +1,32 @@
 package fluent.ly;
 
-import static org.junit.Assert.*;
+import static fluent.ly.azzert.is;
+import static fluent.ly.azzert.*;
 
 import java.util.*;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.junit.*;
 
-public class asTest {
+/** A static nested class hosting unit tests for the nesting class Unit test for
+ * the containing class.
+ **/
+
+@SuppressWarnings({"null" ,"static-method", "boxing"})public class asTest {
   @Test public void asTestEmptyIterator() {
-    final Iterator<Integer> resIter = as.asIterable().iterator();
-    assertFalse(resIter.hasNext());
+    assert !as.asIterable().iterator().hasNext();
   }
 
   @Test public void asTestNotEmptyIterator() {
     final Iterator<Integer> resIter = as.asIterable(1, 2, 3).iterator();
-    assertTrue(resIter.hasNext());
+    assert resIter.hasNext();
     assertEquals(Integer.valueOf(1), resIter.next());
-    assertTrue(resIter.hasNext());
+    assert resIter.hasNext();
     assertEquals(Integer.valueOf(2), resIter.next());
-    assertTrue(resIter.hasNext());
+    assert resIter.hasNext();
     assertEquals(Integer.valueOf(3), resIter.next());
-    assertFalse(resIter.hasNext());
+    assert !resIter.hasNext();
   }
 
   @Test public void asTestbit() {
@@ -29,13 +35,11 @@ public class asTest {
   }
 
   @Test public void asTestEmptyIntegerList() {
-    final List<Integer> res = as.ingeterList();
-    assertEquals(new ArrayList<Integer>(), res);
+    assertEquals(new ArrayList<Integer>(), as.ingeterList());
   }
 
   @Test public void asTestNotEmptyIntegerList() {
-    final List<Integer> res = as.ingeterList(1, 2, 3);
-    final List<Integer> list = new ArrayList<>();
+    final List<Integer> res = as.ingeterList(1, 2, 3), list = new ArrayList<>();
     list.add(1);
     list.add(2);
     list.add(3);
@@ -43,26 +47,22 @@ public class asTest {
   }
 
   @Test public void asTestIntArray() {
-    final int[] arr = { 1, 2, 3, 4 };
-    final int[] res = as.intArray(1, 2, 3, 4);
-    assertArrayEquals(arr, res);
+    assertArrayEquals(new int[] { 1, 2, 3, 4 }, as.intArray(1, 2, 3, 4));
   }
 
   @Test public void asTestIterator() {
     final Iterator<Integer> resIter = as.iterator(1, 2, 3);
-    assertTrue(resIter.hasNext());
+    assert resIter.hasNext();
     assertEquals(Integer.valueOf(1), resIter.next());
-    assertTrue(resIter.hasNext());
+    assert resIter.hasNext();
     assertEquals(Integer.valueOf(2), resIter.next());
-    assertTrue(resIter.hasNext());
+    assert resIter.hasNext();
     assertEquals(Integer.valueOf(3), resIter.next());
-    assertFalse(resIter.hasNext());
+    assert !resIter.hasNext();
   }
 
   @Test public void asTestlist() {
-    final List<String> res = as.list("A", "B", "C");
-    final List<String> list = Arrays.asList("A", "B", "C");
-    assertEquals(list, res);
+    assertEquals(Arrays.asList("A", "B", "C"), as.list("A", "B", "C"));
   }
 
   @Test public void asTestSet() {
@@ -70,8 +70,7 @@ public class asTest {
     set.add(1);
     set.add(2);
     set.add(3);
-    final Set<? extends Integer> res = as.set(1, 1, 2, 3, 2, 3, 1, 2, 3);
-    assertEquals(set, res);
+    assertEquals(set, as.set(1, 1, 2, 3, 2, 3, 1, 2, 3));
   }
 
   @Test public void asTestString() {
@@ -83,6 +82,41 @@ public class asTest {
     assertEquals("b", res);
     final Object obj = new Object();
     res = as.string(obj);
-    assertEquals(obj.toString(), res);
+    assertEquals(obj + "", res);
+  }
+
+  @Test public void asBitOfFalse() {
+    azzert.that(as.bit(false), is(0));
+  }
+
+  @Test public void asBitOfTrue() {
+    azzert.that(as.bit(true), is(1));
+  }
+
+  @Test public void asIntArraySimple() {
+    final int @NotNull [] is = as.intArray(100, 200, 200, 12, 13, 0);
+    assertArrayEquals(is, as.intArray(as.ingeterList(is)));
+  }
+
+  @Test public void asListSimple() {
+    // direct call `as.list(12, 13, 14)` kills Travis --or
+    final @NotNull List<Integer> is = as.list(new int @NotNull [] { 12, 13, 14 });
+    azzert.that(is.get(0), is(fluent.ly.box.it(12)));
+    azzert.that(is.get(1), is(fluent.ly.box.it(13)));
+    azzert.that(is.get(2), is(fluent.ly.box.it(14)));
+    azzert.that(is.size(), is(3));
+  }
+
+  @Test public void stringOfNull() {
+    azzert.that(as.string(null), is("null"));
+  }
+
+  @Test public void stringWhenToStringReturnsNull() {
+    azzert.that(as.string(new Object() {
+      @Override @Nullable
+      public String toString() {
+        return null;
+      }
+    }), is("null"));
   }
 }

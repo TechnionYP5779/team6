@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.*;
+
 
 import static fluent.ly.azzert.is;
 import static fluent.ly.azzert.isNull;
@@ -15,7 +15,7 @@ import static il.org.spartan.Utils.mustBeNull;
 import static il.org.spartan.utils.Permutation.swap;
 import static org.junit.Assert.assertArrayEquals;
 
-public class UtilsTest {
+@SuppressWarnings({"null" ,"static-method"}) public class UtilsTest {
   @NotNull public static Integer[] intToIntegers(final int... is) {
     final Integer @NotNull [] $ = new Integer @NotNull [is.length];
     for (int ¢ = 0; ¢ < is.length; ++¢)

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static fluent.ly.azzert.is;
 
-public class AccumulatorTest {
+@SuppressWarnings("static-method") public class AccumulatorTest {
   @Test public void booleanAddsLast() {
     final @NotNull Accumulator.Last c = new Accumulator.Last();
     azzert.that(as.bit(false), is(0));
@@ -33,7 +33,7 @@ public class AccumulatorTest {
     azzert.that(c.value(), is(11));
   }
 
-  @Test public void booleanAddsCounter() {
+   @Test public void booleanAddsCounter() {
     final @NotNull Accumulator.Counter c = new Accumulator.Counter();
     azzert.that(c.value(), is(0));
     c.add(true);
