@@ -17,12 +17,10 @@ import org.junit.*;
     assertNull(nil.forgetting(new int[] { 1, 2, 3 }, null, 7));
   }
 
-  @SuppressWarnings("null") @Test public void guardingly() {
-    // function=String::length
+  @Test @SuppressWarnings("null") public void guardingly() {
     final Function<String, Integer> stringIntegerFunction = String::length;
     assertNull(nil.guardingly(stringIntegerFunction).on(null));
     assertEquals(5, Unbox.unbox(nil.guardingly(stringIntegerFunction).on("abcde")));
-    // function=Integer.toString
     final Function<Integer, String> integerStringFunction = λ -> λ + "";
     assertNull("5", nil.guardingly(integerStringFunction).on(null));
     assertEquals("5", nil.guardingly(integerStringFunction).on(5));

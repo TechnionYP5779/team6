@@ -8,7 +8,7 @@ import static fluent.ly.azzert.*;
 import java.util.*;
 import java.util.stream.*;
 
-import org.hamcrest.*;
+
 import org.jetbrains.annotations.*;
 
 import il.org.spartan.*;
@@ -95,8 +95,7 @@ import il.org.spartan.*;
   }
 
   static <T> void assertEquals(final @NotNull String reason, final T t1, final T t2) {
-    @NotNull Matcher<@Nullable T> t3 = is(t1);
-    azzert.that(reason, t2, t3);
+    azzert.that(reason, t2, is(t1));
   }
 
   static <T> void assertEquals(final T t1, final T t2) {

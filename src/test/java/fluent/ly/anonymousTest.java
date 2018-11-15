@@ -34,8 +34,8 @@ public class anonymousTest {
     assert Unbox.unbox(anonymous.ly((Supplier<Boolean>) () -> Boolean.TRUE));
     assert !Unbox.unbox(anonymous.ly((Supplier<Boolean>) () -> Boolean.FALSE));
     assert anonymous.ly((Supplier<Double>) () -> Unbox.unbox(Box.box(10.76))) == 10.76;
-    assert anonymous.ly((Supplier<Double>) () -> Unbox.unbox(Box.box(((double) 10)))) == 10;
-    assert anonymous.ly((Supplier<Long>) () -> Unbox.unbox(Box.box((long) 10))) == 10;
+    assert anonymous.ly((Supplier<Double>) () -> Unbox.unbox(Box.box(10.0))) == 10;
+    assert anonymous.ly((Supplier<Long>) () -> Unbox.unbox(Box.box(10L))) == 10;
     assert anonymous.ly((Supplier<Long>) () -> Unbox.unbox(Box.box(-17179869184L))) == -17179869184L;
   }
 }
