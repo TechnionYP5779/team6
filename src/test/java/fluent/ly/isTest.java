@@ -1,6 +1,5 @@
 package fluent.ly;
 
-import static org.junit.Assert.*;
 
 import java.util.*;
 
@@ -34,7 +33,7 @@ import org.junit.*;
   @Test public void intIsIn() {
     try {
       assert !is.intIsIn(0, null);
-      fail();
+      azzert.fail();
     } catch (@SuppressWarnings("unused") final NullPointerException ignored) {
       // do nothing
     }

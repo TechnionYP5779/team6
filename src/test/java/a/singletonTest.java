@@ -1,6 +1,6 @@
 package a;
 
-//import static org.junit.Assert.*;
+
 
 import static fluent.ly.azzert.*;
 
