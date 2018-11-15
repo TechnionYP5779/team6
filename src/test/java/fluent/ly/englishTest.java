@@ -5,26 +5,7 @@ import java.util.*;
 import org.junit.*;
 import static fluent.ly.azzert.*;
 @SuppressWarnings("static-method") public class englishTest {
-  // @Test
-  // public void englishTestIndefinite1(){
-  // String s = "str";
-  // azzert.that(English.indefinite(s), is("a str"));
-  //
-  //
-  // azzert.that(English.indefinite(1.1), is("an Double"));
-  // azzert.that(English.indefinite("StrinG"), is("a StrinG"));
-  // }
-  //
-  // @Test
-  // public void englishTestIndefinite2(){
-  // Integer i = 1;
-  // azzert.that(English.indefinite(i), is("a Integer"));
-  // }
-  //
-  // @Test
-  // public void englishTestIndefinite3(){
-  // azzert.that(English.indefinite(1.1), is("an Double"));
-  // }
+ 
   @Test public void englishTestList1() {
     ArrayList<String> arr = new ArrayList<>();
     arr.add("hi");
