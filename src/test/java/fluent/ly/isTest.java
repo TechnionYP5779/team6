@@ -1,6 +1,5 @@
 package fluent.ly;
 
-
 import java.util.*;
 
 import org.junit.*;

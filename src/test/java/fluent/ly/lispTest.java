@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.junit.*;
 import static fluent.ly.azzert.*;
+
 @SuppressWarnings({ "static-method", "null" }) public class lispTest {
   @Test public void lispTestChopNull() {
     azzert.assertNull(lisp.chop(new ArrayList<>()));

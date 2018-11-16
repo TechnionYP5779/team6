@@ -4,8 +4,8 @@ import java.util.*;
 
 import org.junit.*;
 import static fluent.ly.azzert.*;
+
 @SuppressWarnings("static-method") public class englishTest {
- 
   @Test public void englishTestList1() {
     ArrayList<String> arr = new ArrayList<>();
     arr.add("hi");

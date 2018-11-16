@@ -4,6 +4,7 @@ import org.junit.*;
 
 import fluent.ly.*;
 import static fluent.ly.azzert.*;
+
 public class AngleTest {
   @Test @SuppressWarnings("static-method") public void AngleTDDTest() {
     azzert.that(angle.degrees(20).degrees(), is(20.0));

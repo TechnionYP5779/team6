@@ -8,7 +8,6 @@ import static fluent.ly.azzert.*;
 import java.util.*;
 import java.util.stream.*;
 
-
 import org.jetbrains.annotations.*;
 
 import il.org.spartan.*;

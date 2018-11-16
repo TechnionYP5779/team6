@@ -3,7 +3,6 @@ package fluent.ly;
 import static fluent.ly.azzert.*;
 import static fluent.ly.azzert.assertEquals;
 
-
 import org.junit.*;
 
 @SuppressWarnings({ "null", "static-method" }) public class unboxTest {
