@@ -63,37 +63,37 @@ public class StatisticsTest {
   }
 
   @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest1() {
-    (new Statistics() {//
-    }).checkEmpty();
+    new Statistics() {//
+    }.checkEmpty();
   }
 
   @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest2() {
-    (new Statistics() {//
-    }).max();
+    new Statistics() {//
+    }.max();
   }
 
   @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest3() {
-    (new Statistics() {//
-    }).mean();
+    new Statistics() {//
+    }.mean();
   }
 
   @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest4() {
-    (new Statistics() {//
-    }).min();
+    new Statistics() {//
+    }.min();
   }
 
   @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest5() {
-    (new Statistics() {//
-    }).sd();
+    new Statistics() {//
+    }.sd();
   }
 
   @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest6() {
-    (new Statistics() {//
-    }).relativeError();
+    new Statistics() {//
+    }.relativeError();
   }
 
   @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest7() {
-    (new Statistics() {//
-    }).variance();
+    new Statistics() {//
+    }.variance();
   }
 }

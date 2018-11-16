@@ -6,7 +6,7 @@ import org.junit.*;
 
 public class TruthTest {
   @Test @SuppressWarnings("static-method") public void TruthOfTest() {
-    BooleanSupplier t = () -> true, f = () -> false, assertionError = () -> {
+    final BooleanSupplier t = () -> true, f = () -> false, assertionError = () -> {
       throw new AssertionError();
     }, runtimeException = () -> {
       throw new RuntimeException();
@@ -22,13 +22,13 @@ public class TruthTest {
   }
 
   @Test @SuppressWarnings("static-method") public void NotTest() {
-    BooleanSupplier f = () -> false;
+    final BooleanSupplier f = () -> false;
     assert Truth.truthOf(() -> true).not() == Truth.F;
     assert Truth.truthOf(f).not() == Truth.T;
   }
 
   @Test @SuppressWarnings("static-method") public void OrTest() {
-    BooleanSupplier t = () -> true, f = () -> false;
+    final BooleanSupplier t = () -> true, f = () -> false;
     assert Truth.truthOf(t).or(Truth.T) == Truth.T;
     assert Truth.truthOf(t).or(Truth.F) == Truth.T;
     assert Truth.truthOf(f).or(Truth.T) == Truth.T;
@@ -36,7 +36,7 @@ public class TruthTest {
   }
 
   @Test @SuppressWarnings("static-method") public void AndTest() {
-    BooleanSupplier t = () -> true, f = () -> false;
+    final BooleanSupplier t = () -> true, f = () -> false;
     assert Truth.truthOf(t).and(Truth.T) == Truth.T;
     assert Truth.truthOf(t).and(Truth.F) == Truth.F;
     assert Truth.truthOf(f).and(Truth.T) == Truth.F;
@@ -44,7 +44,7 @@ public class TruthTest {
   }
 
   @Test @SuppressWarnings("static-method") public void LetterOfTest() {
-    BooleanSupplier f = () -> false, assertionError = () -> {
+    final BooleanSupplier f = () -> false, assertionError = () -> {
       throw new AssertionError();
     }, runtimeException = () -> {
       throw new RuntimeException();
@@ -60,7 +60,7 @@ public class TruthTest {
   }
 
   @Test @SuppressWarnings("static-method") public void DesTest() {
-    BooleanSupplier f = () -> false, assertionError = () -> {
+    final BooleanSupplier f = () -> false, assertionError = () -> {
       throw new AssertionError();
     }, runtimeException = () -> {
       throw new RuntimeException();

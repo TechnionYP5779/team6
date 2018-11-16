@@ -121,10 +121,6 @@ import il.org.spartan.*;
     azzert.aye(reason, b);
   }
 
-  @NotNull @SuppressWarnings("unused") private static SeparationSubject these(final int @NotNull [] ¢) {
-    return these(Box.it(¢));
-  }
-
   /** Auxiliary class for fluent API.
    * @author Yossi Gil <tt>yossi.gil@gmail.com</tt>
    * @since 2016-09-10 */

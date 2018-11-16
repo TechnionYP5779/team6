@@ -62,9 +62,9 @@ import fluent.ly.*;
     assert iterables.isEmpty(iterable.singleton(null));
   }
 
-  private static <T> Collection<T> toCollection(Iterable<T> ts) {
-    Collection<T> list = new ArrayList<>();
-    for (T $ : ts)
+  private static <T> Collection<T> toCollection(final Iterable<T> ts) {
+    final Collection<T> list = new ArrayList<>();
+    for (final T $ : ts)
       list.add($);
     return list;
   }
@@ -75,7 +75,7 @@ import fluent.ly.*;
   }
 
   @Test @SuppressWarnings({ "boxing", "null" }) public void alternateNull() {
-    Iterable<Integer> i1 = iterable.over(1, 3, 5);
+    final Iterable<Integer> i1 = iterable.over(1, 3, 5);
     azzert.assertNull(iterables.alternate(null, null));
     azzert.notNull(iterables.alternate(i1, null));
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, null)), toCollection(i1));
@@ -84,13 +84,13 @@ import fluent.ly.*;
   }
 
   @Test @SuppressWarnings({ "boxing", "null" }) public void alternateIterablesWithSameLength() {
-    Iterable<Integer> i1 = iterable.over(1, 3, 5), i2 = iterable.over(2, 4, 6);
+    final Iterable<Integer> i1 = iterable.over(1, 3, 5), i2 = iterable.over(2, 4, 6);
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, i2)), toCollection(iterable.over(1, 2, 3, 4, 5, 6)));
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(i2, i1)), toCollection(iterable.over(2, 1, 4, 3, 6, 5)));
   }
 
   @Test @SuppressWarnings({ "boxing", "null" }) public void alternateIterablesWithoutSameLength() {
-    Iterable<Integer> i1 = iterable.over(1, 3, 5, 7, 9, 11), i2 = iterable.over(1, 3), i3 = iterable.over(2, 4, 6);
+    final Iterable<Integer> i1 = iterable.over(1, 3, 5, 7, 9, 11), i2 = iterable.over(1, 3), i3 = iterable.over(2, 4, 6);
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, i2)), toCollection(iterable.over(1, 1, 3, 3, 5, 7, 9, 11)));
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(i2, i1)), toCollection(iterable.over(1, 1, 3, 3, 5, 7, 9, 11)));
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, i3)), toCollection(iterable.over(1, 2, 3, 4, 5, 6, 7, 9, 11)));

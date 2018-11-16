@@ -165,7 +165,7 @@ public interface the {
     return ¢.substring(1);
   }
 
-  static <T> T[] tailOf(T[] ¢) {
+  static <T> T[] tailOf(final T[] ¢) {
     return Arrays.copyOfRange(¢, 1, ¢.length);
   }
 }

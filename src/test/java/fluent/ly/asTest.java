@@ -1,5 +1,8 @@
 package fluent.ly;
 
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 import static fluent.ly.azzert.*;
 import static fluent.ly.azzert.assertEquals;
 

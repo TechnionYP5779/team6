@@ -59,8 +59,8 @@ public enum iterables {
       return it2;
     if (it2 == null)
       return it1;
-    Iterator<T> i1 = it1.iterator(), i2 = it2.iterator();
-    List<T> $ = new ArrayList<>();
+    final Iterator<T> i1 = it1.iterator(), i2 = it2.iterator();
+    final List<T> $ = new ArrayList<>();
     while (i1.hasNext() || i2.hasNext()) {
       if (i1.hasNext())
         $.add(i1.next());

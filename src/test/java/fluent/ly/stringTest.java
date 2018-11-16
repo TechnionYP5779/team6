@@ -1,9 +1,10 @@
 package fluent.ly;
 
+import static fluent.ly.azzert.*;
+
 import java.util.*;
 
 import org.junit.*;
-import static fluent.ly.azzert.*;
 
 @SuppressWarnings({ "null", "static-method", "boxing" }) public class stringTest {
   @Test public void stringTestAtod() {
@@ -211,21 +212,21 @@ import static fluent.ly.azzert.*;
   }
 
   @Test public void stringTestPretty1() {
-    ArrayList<String> arr = new ArrayList<>();
+    final ArrayList<String> arr = new ArrayList<>();
     arr.add("hi");
     arr.add("bye");
     azzert.that("2 apples:\n\t1) hi\n\t2) bye\n", is(string.pretty("apple", arr)));
   }
 
   @Test public void stringTestPretty2() {
-    ArrayList<String> arr = new ArrayList<>();
+    final ArrayList<String> arr = new ArrayList<>();
     arr.add("hi");
     arr.add("bye");
     azzert.that("2 banana:\n\t1) hi\n\t2) bye\n", is(string.pretty("apple", "banana", arr)));
   }
 
   @Test public void stringTestPretty3() {
-    ArrayList<String> arr = new ArrayList<>();
+    final ArrayList<String> arr = new ArrayList<>();
     arr.add("hi");
     azzert.that("1 apple: hi\n", is(string.pretty("apple", "banana", arr)));
   }

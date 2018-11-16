@@ -1,10 +1,10 @@
 package fluent.ly;
 
-import org.junit.Test;
-
-import java.util.ArrayList;
-
 import static fluent.ly.azzert.*;
+
+import java.util.*;
+
+import org.junit.*;
 
 @SuppressWarnings({ "null", "static-method", "boxing" }) public class theTest {
   @Test public void theTestIndexFound() {
@@ -32,13 +32,13 @@ import static fluent.ly.azzert.*;
   }
 
   @Test public void theTestpenultimateOf2() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     azzert.assertNull(the.penultimateOf(arr));
   }
 
   @Test public void theTestpenultimateOf3() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     arr.add(2);
     arr.add(3);
@@ -50,13 +50,13 @@ import static fluent.ly.azzert.*;
   }
 
   @Test public void theTestPreviousNull2() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     azzert.assertNull(the.previous(1, arr));
   }
 
   @Test public void theTestPreviousNotNull() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     arr.add(2);
     arr.add(3);
@@ -72,7 +72,7 @@ import static fluent.ly.azzert.*;
   }
 
   @Test public void theTestHeadNotNull() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     arr.add(2);
     arr.add(3);
@@ -80,11 +80,11 @@ import static fluent.ly.azzert.*;
   }
 
   @Test public void theTestTailOf() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     arr.add(2);
     arr.add(3);
-    ArrayList<Integer> res = new ArrayList<>();
+    final ArrayList<Integer> res = new ArrayList<>();
     res.add(2);
     res.add(3);
     azzert.that(res, azzert.is(the.tailOf(arr)));
@@ -95,11 +95,11 @@ import static fluent.ly.azzert.*;
   }
 
   @Test public void theTestRest() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     arr.add(2);
     arr.add(3);
-    ArrayList<Integer> res = new ArrayList<>();
+    final ArrayList<Integer> res = new ArrayList<>();
     res.add(2);
     res.add(3);
     azzert.that(res, azzert.is(the.rest(1, arr)));
@@ -122,7 +122,7 @@ import static fluent.ly.azzert.*;
   }
 
   @Test public void theTestLastOfNotNull() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     azzert.that(Box.box(1), is(the.lastOf(arr)));
   }
@@ -140,13 +140,13 @@ import static fluent.ly.azzert.*;
   }
 
   @Test public void theTestOnlyOneOfNotNull() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     azzert.that(Box.box(1), is(the.onlyOneOf(arr)));
   }
 
   @Test public void theTestOnlyOneOfNull2() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     arr.add(2);
     azzert.assertNull(the.onlyOneOf(arr));
@@ -157,13 +157,13 @@ import static fluent.ly.azzert.*;
   }
 
   @Test public void theTestsecondOfNull2() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     azzert.assertNull(the.secondOf(arr));
   }
 
   @Test public void theTestsecondOfNotNull() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     arr.add(2);
     arr.add(3);
@@ -191,7 +191,7 @@ import static fluent.ly.azzert.*;
   }
 
   @Test public void theTestLastNotNull() {
-    ArrayList<Integer> arr = new ArrayList<>();
+    final ArrayList<Integer> arr = new ArrayList<>();
     arr.add(1);
     arr.add(2);
     arr.add(3);

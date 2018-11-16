@@ -3,7 +3,7 @@ package fluent.ly;
 import org.junit.*;
 
 public class forgetTest {
-  static void auxeAll(Integer integer) {
+  static void auxeAll(final Integer integer) {
     try {
       integer.getClass();
     } catch (final Exception ¢) {
@@ -11,7 +11,7 @@ public class forgetTest {
     }
   }
 
-  static void auxeItObject(Object o) {
+  static void auxeItObject(final Object o) {
     try {
       o.getClass();
     } catch (final Exception ¢) {
@@ -19,7 +19,7 @@ public class forgetTest {
     }
   }
 
-  static void auxeItBoolean(boolean param) {
+  static void auxeItBoolean(final boolean param) {
     try {
       throw new Exception();
     } catch (@SuppressWarnings("unused") final Exception e) {
@@ -27,7 +27,7 @@ public class forgetTest {
     }
   }
 
-  static void auxeItDouble(double param) {
+  static void auxeItDouble(final double param) {
     try {
       throw new Exception();
     } catch (@SuppressWarnings("unused") final Exception e) {
@@ -35,7 +35,7 @@ public class forgetTest {
     }
   }
 
-  static void auxeItLong(long param) {
+  static void auxeItLong(final long param) {
     try {
       throw new Exception();
     } catch (@SuppressWarnings("unused") final Exception e) {

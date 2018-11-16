@@ -12,7 +12,7 @@ public class emptyTest {
   }
 
   @Test @SuppressWarnings("static-method") public void emptyTestIterable() {
-    Iterator<Object> iter = empty.iterable().iterator();
+    final Iterator<Object> iter = empty.iterable().iterator();
     assert !iter.hasNext();
     assertNull(iter.next());
   }

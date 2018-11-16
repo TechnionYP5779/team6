@@ -1,19 +1,20 @@
 package fluent.ly;
 
+import static fluent.ly.azzert.*;
+
 import java.util.*;
 
 import org.junit.*;
-import static fluent.ly.azzert.*;
 
 @SuppressWarnings("static-method") public class englishTest {
   @Test public void englishTestList1() {
-    ArrayList<String> arr = new ArrayList<>();
+    final ArrayList<String> arr = new ArrayList<>();
     arr.add("hi");
     azzert.that(English.list(arr), is("hi"));
   }
 
   @Test public void englishTestList2() {
-    ArrayList<String> arr = new ArrayList<>();
+    final ArrayList<String> arr = new ArrayList<>();
     arr.add("hi");
     arr.add("bye");
     azzert.that(English.list(arr), is("hi and bye"));
@@ -82,8 +83,8 @@ import static fluent.ly.azzert.*;
   }
 
   @Test public void englishTestPronounce() {
-    String[] resArr = { "aey", "bee", "see", "dee", "eae", "eff", "gee", "eitch", "eye", "jay", "kay", "ell", "em", "en", "oh", "pee", "queue", "ar",
-        "ess", "tee", "you", "vee", "some character", "exx", "why", "zee" };
+    final String[] resArr = { "aey", "bee", "see", "dee", "eae", "eff", "gee", "eitch", "eye", "jay", "kay", "ell", "em", "en", "oh", "pee", "queue",
+        "ar", "ess", "tee", "you", "vee", "some character", "exx", "why", "zee" };
     for (int ¢ = 0; ¢ < 26; ++¢)
       azzert.that(English.pronounce((char) (¢ + 'a')), is(resArr[¢]));
     azzert.that(English.pronounce('A'), is("aey"));
