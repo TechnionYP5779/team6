@@ -61,11 +61,11 @@ import org.junit.*;
         (float) 0.0001);
   }
 
-  @Test @SuppressWarnings("boxing") public void unboxTestintVal() {
-    assertEquals(1, Unbox.it(1));
-    assertEquals(2, Unbox.it(2));
-    assertEquals(3, Unbox.it(3));
-    assertEquals(4, Unbox.it(4));
+  @Test public void unboxTestintVal() {
+    assertEquals(1, Unbox.it(Box.it(1)));
+    assertEquals(2, Unbox.it(Box.it(2)));
+    assertEquals(3, Unbox.it(Box.it(3)));
+    assertEquals(4, Unbox.it(Box.it(4)));
   }
 
   @Test public void unboxTestDoubleVal() {

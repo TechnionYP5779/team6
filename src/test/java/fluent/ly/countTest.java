@@ -32,18 +32,18 @@ import org.junit.*;
     assertEquals(count.of(list), 5); // list == ["1","2","3","4","5"]
   }
 
-  @Test @SuppressWarnings("boxing") public void ofIntegerCharacterMap() {
+  @Test public void ofIntegerCharacterMap() {
     final Map<Integer, Character> map = new HashMap<>();
     assertZero(count.of(map.keySet()));
-    map.put(1, 'a');
-    map.put(2, 'b');
-    map.put(3, 'c');
+    map.put(Box.box(1), Box.box('a'));
+    map.put(Box.box(2), Box.box('b'));
+    map.put(Box.box(3), Box.box('c'));
     assertEquals(count.of(map.keySet()), 3);
-    map.put(1, 'z');
+    map.put(Box.box(1), Box.box('z'));
     assertEquals(count.of(map.keySet()), 3);
-    map.remove(3, 'z');
+    map.remove(Box.box(3), Box.box('z'));
     assertEquals(count.of(map.keySet()), 3);
-    map.remove(3, 'c');
+    map.remove(Box.box(3), Box.box('c'));
     assertEquals(count.of(map.keySet()), 2);
     map.clear();
     assertZero(count.of(map.keySet()));

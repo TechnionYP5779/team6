@@ -1,14 +1,16 @@
 package il.org.spartan.utils;
 
+import fluent.ly.*;
+
 /** Boolean or reducer
  * @author oran1248
  * @since 2017-04-20 */
 public class BooleanOrReducer extends Reduce<Boolean> {
-  @Override @SuppressWarnings("boxing") public Boolean reduce() {
-    return false;
+  @Override public Boolean reduce() {
+    return Box.box(false);
   }
 
-  @Override @SuppressWarnings("boxing") public Boolean reduce(final Boolean r1, final Boolean r2) {
-    return Boolean.TRUE.equals(r1) || Boolean.TRUE.equals(r2);
+  @Override public Boolean reduce(final Boolean r1, final Boolean r2) {
+    return Box.box(Boolean.TRUE.equals(r1) || Boolean.TRUE.equals(r2));
   }
 }
