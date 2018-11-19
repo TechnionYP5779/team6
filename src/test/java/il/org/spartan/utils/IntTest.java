@@ -4,33 +4,33 @@ import org.junit.*;
 
 import fluent.ly.*;
 
-public class IntTest {
-  @Test @SuppressWarnings("static-method") public void constructorTest() {
+@SuppressWarnings("static-method") public class IntTest {
+  @Test public void constructorTest() {
     assert new Int(3).inner == 3;
   }
 
-  @Test @SuppressWarnings("static-method") public void innerTest() {
+  @Test public void innerTest() {
     assert new Int(3).inner().equals(Box.box(3));
   }
 
-  @Test @SuppressWarnings("static-method") public void valueOfTest() {
+  @Test public void valueOfTest() {
     assert new Int(3).inner == Int.valueOf(3).inner;
   }
 
-  @Test @SuppressWarnings("static-method") public void stepTest() {
+  @Test public void stepTest() {
     final int a = 3;
     final Int boxa = new Int(a);
     boxa.step();
     assert boxa.inner == a + 1;
   }
 
-  @Test @SuppressWarnings("static-method") public void getTest() {
+  @Test public void getTest() {
     final Int boxa = new Int(3);
     assert boxa.get() == boxa.inner;
     assert boxa.get() == 3;
   }
 
-  @Test @SuppressWarnings("static-method") public void addTest() {
+  @Test public void addTest() {
     final int a = 3;
     Int boxa = new Int(a);
     final int b = 5;
@@ -41,25 +41,25 @@ public class IntTest {
     assert boxa.inner == a + b;
   }
 
-  @Test @SuppressWarnings("static-method") public void setTest() {
+  @Test public void setTest() {
     final int a = 3;
     final Int boxa = new Int(a);
     boxa.set(7);
     assert boxa.inner == 7;
   }
 
-  @Test @SuppressWarnings("static-method") public void toStringTest() {
+  @Test public void toStringTest() {
     assert (new Int(3) + "").equals(3 + "");
   }
 
-  @Test @SuppressWarnings("static-method") public void nextTest() {
+  @Test public void nextTest() {
     final int a = 3;
     final Int boxa = new Int(a);
     assert boxa.next() == a + 1;
     assert boxa.inner == a + 1;
   }
 
-  @Test @SuppressWarnings("static-method") public void clearTest() {
+  @Test public void clearTest() {
     final int a = 3;
     final Int boxa = new Int(a);
     boxa.clear();

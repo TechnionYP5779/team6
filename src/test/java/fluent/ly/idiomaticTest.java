@@ -5,14 +5,14 @@ import static fluent.ly.idiomatic.*;
 
 import org.junit.*;
 
-public class idiomaticTest {
-  @Test @SuppressWarnings("static-method") public void incaseTest() {
+@SuppressWarnings("static-method") public class idiomaticTest {
+  @Test public void incaseTest() {
     assert Box.box(7).equals(idiomatic.incase(3 > 2, Box.box(7)));
     assert !Box.box(7).equals(idiomatic.incase(2 > 3, Box.box(7)));
     assert idiomatic.incase(2 > 3, Box.box(7)) == null;
   }
 
-  @Test @SuppressWarnings("static-method") public void quoteTest() {
+  @Test public void quoteTest() {
     assert "<null reference>".equals(idiomatic.quote(null));
     assert "\'my name is\'".equals(idiomatic.quote("my name is"));
     assert "\'\'slim shady\'\'".equals(idiomatic.quote("\'slim shady\'"));
@@ -22,11 +22,11 @@ public class idiomaticTest {
     assert new idiomatic.Storer<>(this) != null;
   }
 
-  @Test @SuppressWarnings("static-method") public void use08() {
+  @Test public void use08() {
     isNull(unless(true).eval(() -> new Object()));
   }
 
-  @Test @SuppressWarnings("static-method") public void use09() {
+  @Test public void use09() {
     assert unless(false).eval(() -> new Object()) != null;
   }
 
@@ -35,11 +35,11 @@ public class idiomaticTest {
     new idiomatic.Storer<>(this).when(true);
   }
 
-  @Test @SuppressWarnings("static-method") public void use10() {
+  @Test public void use10() {
     assert when(true).eval(() -> new Object()) != null;
   }
 
-  @Test @SuppressWarnings("static-method") public void use11() {
+  @Test public void use11() {
     isNull(when(false).eval(() -> new Object()));
   }
 

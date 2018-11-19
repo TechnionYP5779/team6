@@ -2,7 +2,7 @@ package fluent.ly;
 
 import org.junit.*;
 
-public class forgetTest {
+@SuppressWarnings("static-method") public class forgetTest {
   static void auxeAll(final Integer integer) {
     try {
       integer.getClass();
@@ -43,7 +43,7 @@ public class forgetTest {
     }
   }
 
-  @Test @SuppressWarnings("static-method") public void testAll() {
+  @Test public void testAll() {
     try {
       forgetTest.auxeAll(null);
     } catch (@SuppressWarnings("unused") final Throwable o) {
@@ -51,7 +51,7 @@ public class forgetTest {
     }
   }
 
-  @Test @SuppressWarnings("static-method") public void testIt() {
+  @Test public void testIt() {
     try {
       forgetTest.auxeItObject(null);
       forgetTest.auxeItObject(Box.box(1));

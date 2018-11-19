@@ -4,8 +4,8 @@ import org.junit.*;
 
 import fluent.ly.*;
 
-public class PairTest {
-  @Test @SuppressWarnings("static-method") public void testEqualPairs() {
+@SuppressWarnings("static-method") public class PairTest {
+  @Test public void testEqualPairs() {
     final Pair<Integer, Integer> p1 = new Pair<>(Box.box(1), Box.box(1)), p3 = new Pair<>(Box.box(1), Box.box(2)),
         p4 = new Pair<>(Box.box(2), Box.box(1));
     assert p1.equals(new Pair<>(Box.box(1), Box.box(1)));
@@ -14,7 +14,7 @@ public class PairTest {
     assert !p3.equals(p4);
   }
 
-  @Test @SuppressWarnings("static-method") public void testHashCode() {
+  @Test public void testHashCode() {
     final Pair<String, String> ps1 = new Pair<>("abcd", "abcd"), ps2 = new Pair<>("abcd", "abcd"), ps3 = new Pair<>("defg", "abcd"),
         ps4 = new Pair<>("abcd", "defg");
     assert ps1.equals(ps2);
@@ -33,7 +33,7 @@ public class PairTest {
     assert p3.hashCode() != p4.hashCode();
   }
 
-  @Test @SuppressWarnings("static-method") public void testToString() {
+  @Test public void testToString() {
     final Pair<Integer, Integer> p1 = new Pair<>(Box.box(1), Box.box(1)), p3 = new Pair<>(Box.box(1), Box.box(2)),
         p4 = new Pair<>(Box.box(2), Box.box(1));
     assert (p1 + "").equals(new Pair<>(Box.box(1), Box.box(1)) + "");
@@ -42,7 +42,7 @@ public class PairTest {
     assert !(p3 + "").equals(p4 + "");
   }
 
-  @Test @SuppressWarnings("static-method") public void testPairArrays() {
+  @Test public void testPairArrays() {
     final Pair<Integer, Integer> size_two[] = Pair.makePairs(2), size_two_also[] = Pair.makePairs(2), p1 = new Pair<>(Box.box(1), Box.box(1)),
         p2 = new Pair<>(Box.box(1), Box.box(2));
     assert !p1.equals(size_two[0]);

@@ -6,8 +6,8 @@ import org.junit.*;
 
 import fluent.ly.*;
 
-public class RectangleTest {
-  @Test @SuppressWarnings("static-method") public void RectangleTDDTest() {
+@SuppressWarnings("static-method") public class RectangleTest {
+  @Test public void RectangleTDDTest() {
     azzert.that(new Rectangle(new Point(6.0, 7.0), new Point(12.0, 3.0)).bottomLeft.x, is(new Rectangle(new Point(6.0, 7.0), new Point(12.0, 3.0)).topLeft.x));
     azzert.that(new Rectangle(new Point(6.0, 7.0), new Point(12.0, 3.0)).bottomLeft.y, is(new Rectangle(new Point(6.0, 7.0), new Point(12.0, 3.0)).bottomRight.y));
     azzert.that(new Rectangle(new Point(6.0, 7.0), new Point(12.0, 3.0)).topRight.x, is(new Rectangle(new Point(6.0, 7.0), new Point(12.0, 3.0)).bottomRight.x));

@@ -2,8 +2,8 @@ package il.org.spartan.statistics;
 
 import org.junit.*;
 
-public class StatisticsTest {
-  @Test @SuppressWarnings("static-method") public void MedianTest() {
+@SuppressWarnings("static-method") public class StatisticsTest {
+  @Test public void MedianTest() {
     final double b[] = { 1, 2, 3, 4, 5 }, c[] = { -1, -2, 3, 4 }, d[] = { -1, -2, -3, -4, -5 }, e[] = { 0, 0, 0, 0 }, f[] = { 4.6 };
     assert Statistics.median(new double[] { 1, 2, 3, 4 }) == 2.5;
     assert Statistics.median(b) == 3;
@@ -13,7 +13,7 @@ public class StatisticsTest {
     assert Statistics.median(f) == 4.6;
   }
 
-  @Test @SuppressWarnings("static-method") public void MadTest() {
+  @Test public void MadTest() {
     final double b[] = { 1, 2, 3, 4, 5 }, c[] = { -1, -2, 3, 4 }, d[] = { -1, -2, -3, -4, -5 }, e[] = { 0, 0, 0, 0 }, f[] = { 4.6 };
     assert Statistics.mad(new double[] { 1, 2, 3, 4 }) == 1;
     assert Statistics.mad(b) == 1;
@@ -23,7 +23,7 @@ public class StatisticsTest {
     assert Statistics.mad(f) == 0;
   }
 
-  @Test @SuppressWarnings("static-method") public void SampleMeanTest() {
+  @Test public void SampleMeanTest() {
     final double b[] = { 1, 2, 3, 4, 5 }, c[] = { -1, -2, 3, 4 }, d[] = { -1, -2, -3, -4, -5 }, e[] = { 0, 0, 0, 0 }, f[] = { 4.6 };
     assert Statistics.sampleMean(new double[] { 1, 2, 3, 4 }) == 2.5;
     assert Statistics.sampleMean(b) == 3;
@@ -33,7 +33,7 @@ public class StatisticsTest {
     assert Statistics.sampleMean(f) == 4.6;
   }
 
-  @Test @SuppressWarnings("static-method") public void SampleVarianceTest() {
+  @Test public void SampleVarianceTest() {
     final double b[] = { -1, -1 }, c[] = { 1, 3 }, d[] = { 1, 2 };
     assert Statistics.sampleVariance(new double[] { 4.6, 4.6 }) == 0;
     assert Statistics.sampleVariance(b) == 0;
@@ -41,7 +41,7 @@ public class StatisticsTest {
     assert Statistics.sampleVariance(d) == 0.5;
   }
 
-  @Test @SuppressWarnings("static-method") public void ClassVareTest() {
+  @Test public void ClassVareTest() {
     final Statistics s = new Statistics() {//
     };
     assert s.isEmpty();
@@ -62,37 +62,37 @@ public class StatisticsTest {
     assert s.mean() == 10;
   }
 
-  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest1() {
+  @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest1() {
     new Statistics() {//
     }.checkEmpty();
   }
 
-  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest2() {
+  @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest2() {
     new Statistics() {//
     }.max();
   }
 
-  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest3() {
+  @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest3() {
     new Statistics() {//
     }.mean();
   }
 
-  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest4() {
+  @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest4() {
     new Statistics() {//
     }.min();
   }
 
-  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest5() {
+  @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest5() {
     new Statistics() {//
     }.sd();
   }
 
-  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest6() {
+  @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest6() {
     new Statistics() {//
     }.relativeError();
   }
 
-  @Test(expected = ArithmeticException.class) @SuppressWarnings("static-method") public void ClassVareEmptyTest7() {
+  @Test(expected = ArithmeticException.class) public void ClassVareEmptyTest7() {
     new Statistics() {//
     }.variance();
   }

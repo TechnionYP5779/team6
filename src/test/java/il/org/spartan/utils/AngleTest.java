@@ -6,8 +6,8 @@ import org.junit.*;
 
 import fluent.ly.*;
 
-public class AngleTest {
-  @Test @SuppressWarnings("static-method") public void AngleTDDTest() {
+@SuppressWarnings("static-method") public class AngleTest {
+  @Test public void AngleTDDTest() {
     azzert.that(angle.degrees(20).degrees(), is(20.0));
     azzert.that(angle.radians(1).radians(), is(1.0));
     final angle pi = angle.pi;
