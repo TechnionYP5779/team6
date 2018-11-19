@@ -6,14 +6,14 @@ import org.junit.*;
 
 import fluent.ly.*;
 public class RectangleTest {
-  @Test @SuppressWarnings({ "static-method", "null" }) public void RectangleTDDTest() {
-    azzert.that(new Rectangle(new Point(6,7),new Point(12,3)).bottomLeft.x, is((new Rectangle(new Point(6,7),new Point(12,3)).topLeft.x)));
+  @Test @SuppressWarnings( "static-method" ) public void RectangleTDDTest() {
+    azzert.that(new Rectangle(new Point(6,7),new Point(12,3)).bottomLeft.x, is(new Rectangle(new Point(6, 7), new Point(12, 3)).topLeft.x));
     azzert.that(new Rectangle(new Point(6,7),new Point(12,3)).bottomLeft.y, is(new Rectangle(new Point(6,7),new Point(12,3)).bottomRight.y));
     azzert.that(new Rectangle(new Point(6,7),new Point(12,3)).topRight.x, is(new Rectangle(new Point(6,7),new Point(12,3)).bottomRight.x));
     azzert.that(new Rectangle(new Point(6,7),new Point(12,3)).topRight.y, is(new Rectangle(new Point(6,7),new Point(12,3)).topLeft.y));
     azzert.that(new Rectangle(new Point(6,7),new Point(12,3)).getArea(), is(24));
     azzert.that(new Rectangle(new Point(6,7),new Point(12,3)).getPerimeter(), is(20));
-    azzert.that(new Rectangle(new Point(12,3),new Point(6,7)).bottomLeft.x, is((new Rectangle(new Point(6,7),new Point(12,3)).topLeft.x)));
+    azzert.that(new Rectangle(new Point(12,3),new Point(6,7)).bottomLeft.x, is(new Rectangle(new Point(6, 7), new Point(12, 3)).topLeft.x));
     azzert.that(new Rectangle(new Point(12,3),new Point(6,7)).bottomLeft.y, is(new Rectangle(new Point(6,7),new Point(12,3)).bottomRight.y));
     azzert.that(new Rectangle(new Point(12,3),new Point(6,7)).topRight.x, is(new Rectangle(new Point(6,7),new Point(12,3)).bottomRight.x));
     azzert.that(new Rectangle(new Point(12,3),new Point(6,7)).topRight.y, is(new Rectangle(new Point(6,7),new Point(12,3)).topLeft.y));
@@ -48,7 +48,7 @@ public class RectangleTest {
     
     Rectangle a= new Rectangle(new Point(12,3),new Point(6,7));
     azzert.that(a.bottomLeft,is(a.bottomLeft));
-    azzert.assertNotEquals(a.bottomLeft,5);
+    azzert.assertNotEquals(a.bottomLeft,Box.box(5));
     azzert.assertNotEquals(a.bottomLeft,new Point(6,6));
     azzert.assertNotEquals(a.bottomLeft,new Point(5,6));
     azzert.assertNotEquals(a.bottomLeft,new Point(5,7));

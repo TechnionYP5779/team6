@@ -1,17 +1,18 @@
 package il.org.spartan.utils;
 
+import java.util.*;
+
+import fluent.ly.*;
+
 public class Point {
   int x;
   int y;
   public Point(int x, int y) {
-    super();
     this.x = x;
     this.y = y;
   }
   public Point() {
-    super();
-    this.x = 0;
-    this.y = 0;
+    this.y = this.x = 0;
   }
   public Point(Point a) {
     // TODO Auto-generated constructor stub
@@ -20,10 +21,10 @@ public class Point {
   }
   
   @Override public boolean equals(Object a) {
-    if (this == a) return true;
-    if (!(a instanceof Point)) return false;
-    Point na = (Point)a;
-    return (this.x==na.x && this.y == na.y);
+    return a == this || (a instanceof Point && this.x == ((Point) a).x && this.y == ((Point) a).y);
   }
-  
+  @Override
+  public int hashCode() {
+      return Objects.hash(Box.box(x), Box.box(y));
+  }
 }
