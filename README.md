@@ -1,4 +1,5 @@
 # fluent.ly [![Build Status](https://travis-ci.org/TechnionYP5779/team6.svg?branch=master)](https://travis-ci.org/TechnionYP5779/team6)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/TechnionYP5779/team6.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/TechnionYP5779/team6/alerts/)
 
 # Team6 Spartan Project refactoring
 
