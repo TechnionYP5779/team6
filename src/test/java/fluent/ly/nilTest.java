@@ -17,7 +17,7 @@ import org.junit.*;
   @Test @SuppressWarnings("null") public void guardingly() {
     final Function<String, Integer> stringIntegerFunction = String::length;
     assertNull(nil.guardingly(stringIntegerFunction).on(null));
-    azzert.that(5, is(Unbox.unbox(nil.guardingly(stringIntegerFunction).on("abcde"))));
+    azzert.that(5, is(Unbox.it(nil.guardingly(stringIntegerFunction).on("abcde"))));
     final Function<Integer, String> integerStringFunction = λ -> λ + "";
     assertNull("5", nil.guardingly(integerStringFunction).on(null));
     azzert.that("5", is(nil.guardingly(integerStringFunction).on(Box.it(5))));

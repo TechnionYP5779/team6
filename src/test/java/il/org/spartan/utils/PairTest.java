@@ -6,9 +6,9 @@ import fluent.ly.*;
 
 @SuppressWarnings("static-method") public class PairTest {
   @Test public void testEqualPairs() {
-    final Pair<Integer, Integer> p1 = new Pair<>(Box.box(1), Box.box(1)), p3 = new Pair<>(Box.box(1), Box.box(2)),
-        p4 = new Pair<>(Box.box(2), Box.box(1));
-    assert p1.equals(new Pair<>(Box.box(1), Box.box(1)));
+    final Pair<Integer, Integer> p1 = new Pair<>(Box.it(1), Box.it(1)), p3 = new Pair<>(Box.it(1), Box.it(2)),
+        p4 = new Pair<>(Box.it(2), Box.it(1));
+    assert p1.equals(new Pair<>(Box.it(1), Box.it(1)));
     assert !p1.equals(p3);
     assert !p1.equals(p4);
     assert !p3.equals(p4);
@@ -25,26 +25,26 @@ import fluent.ly.*;
     assert ps1.hashCode() != ps3.hashCode();
     assert ps1.hashCode() != ps4.hashCode();
     assert ps3.hashCode() != ps4.hashCode();
-    final Pair<Integer, Integer> p1 = new Pair<>(Box.box(1), Box.box(1)), p3 = new Pair<>(Box.box(1), Box.box(2)),
-        p4 = new Pair<>(Box.box(2), Box.box(1));
-    assert p1.hashCode() == new Pair<>(Box.box(1), Box.box(1)).hashCode();
+    final Pair<Integer, Integer> p1 = new Pair<>(Box.it(1), Box.it(1)), p3 = new Pair<>(Box.it(1), Box.it(2)),
+        p4 = new Pair<>(Box.it(2), Box.it(1));
+    assert p1.hashCode() == new Pair<>(Box.it(1), Box.it(1)).hashCode();
     assert p1.hashCode() != p3.hashCode();
     assert p1.hashCode() != p4.hashCode();
     assert p3.hashCode() != p4.hashCode();
   }
 
   @Test public void testToString() {
-    final Pair<Integer, Integer> p1 = new Pair<>(Box.box(1), Box.box(1)), p3 = new Pair<>(Box.box(1), Box.box(2)),
-        p4 = new Pair<>(Box.box(2), Box.box(1));
-    assert (p1 + "").equals(new Pair<>(Box.box(1), Box.box(1)) + "");
+    final Pair<Integer, Integer> p1 = new Pair<>(Box.it(1), Box.it(1)), p3 = new Pair<>(Box.it(1), Box.it(2)),
+        p4 = new Pair<>(Box.it(2), Box.it(1));
+    assert (p1 + "").equals(new Pair<>(Box.it(1), Box.it(1)) + "");
     assert !(p1 + "").equals(p3 + "");
     assert !(p1 + "").equals(p4 + "");
     assert !(p3 + "").equals(p4 + "");
   }
 
   @Test public void testPairArrays() {
-    final Pair<Integer, Integer> size_two[] = Pair.makePairs(2), size_two_also[] = Pair.makePairs(2), p1 = new Pair<>(Box.box(1), Box.box(1)),
-        p2 = new Pair<>(Box.box(1), Box.box(2));
+    final Pair<Integer, Integer> size_two[] = Pair.makePairs(2), size_two_also[] = Pair.makePairs(2), p1 = new Pair<>(Box.it(1), Box.it(1)),
+        p2 = new Pair<>(Box.it(1), Box.it(2));
     assert !p1.equals(size_two[0]);
     size_two[1] = size_two[0] = p1;
     size_two_also[0] = p2;

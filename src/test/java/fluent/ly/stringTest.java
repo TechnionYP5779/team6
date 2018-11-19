@@ -160,7 +160,7 @@ import org.junit.*;
   }
 
   @Test public void stringTestparen() {
-    azzert.that("(1)", is(string.paren(Box.box(1))));
+    azzert.that("(1)", is(string.paren(Box.it(1))));
   }
 
   @Test public void stringTestpluralize() {

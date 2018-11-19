@@ -10,7 +10,7 @@ import fluent.ly.*;
   }
 
   @Test public void innerTest() {
-    assert new Int(3).inner().equals(Box.box(3));
+    assert new Int(3).inner().equals(Box.it(3));
   }
 
   @Test public void valueOfTest() {

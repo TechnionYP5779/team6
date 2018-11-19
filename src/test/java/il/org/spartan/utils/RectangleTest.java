@@ -50,7 +50,7 @@ import fluent.ly.*;
     azzert.that(new Rectangle(new Point(11.0, 7.0), new Point(12.0, 3.0)).getWidth(), is(1.0));
     final Rectangle a = new Rectangle(new Point(12.0, 3.0), new Point(6.0, 7.0));
     azzert.that(a.bottomLeft, is(a.bottomLeft));
-    azzert.assertNotEquals(a.bottomLeft, Box.box(5.0));
+    azzert.assertNotEquals(a.bottomLeft, Box.it(5.0));
     azzert.assertNotEquals(a.bottomLeft, new Point(6.0, 6.0));
     azzert.assertNotEquals(a.bottomLeft, new Point(5.0, 6.0));
     azzert.assertNotEquals(a.bottomLeft, new Point(5.0, 7.0));

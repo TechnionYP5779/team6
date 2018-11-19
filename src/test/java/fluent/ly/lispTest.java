@@ -66,7 +66,7 @@ import org.junit.*;
   }
 
   @Test public void lispTestReplaceNull() {
-    azzert.assertNull(lisp.replace(null, Box.box(2), 4));
+    azzert.assertNull(lisp.replace(null, Box.it(2), 4));
   }
 
   @Test public void lispTestReplaceNegIndex() {
