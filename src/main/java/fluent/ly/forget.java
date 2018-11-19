@@ -3,22 +3,22 @@ package fluent.ly;
 /** TODO Yossi Gil: document class
  * @author Yossi Gil
  * @since 2017-04-16 */
-public interface forget {
+@SuppressWarnings("unused") public interface forget {
   /* Ignore an exception means allow the program to continue to run as it never
    * thrown */
-  @SuppressWarnings("unused") static void all(final Object _1, final Object... _2) {
+  static void all(final Object _1, final Object... _2) {
     /* this method takes number of exception and ignore all of them */ }
 
-  @SuppressWarnings("unused") static void it(final boolean __) {
+  static void it(final boolean __) {
     /* this method takes an boolean and ignore the exception */ }
 
-  @SuppressWarnings("unused") static void it(final double __) {
+  static void it(final double __) {
     /* this method takes an double and ignore the exception */ }
 
-  @SuppressWarnings("unused") static void it(final long __) {
+  static void it(final long __) {
     /* this method takes an long and ignore the exception */ }
 
-  @SuppressWarnings("unused") static void it(final Object __) {
+  static void it(final Object __) {
     /* this method takes an exception an ignore it */ }
 
   /** A do nothing method to document the fact that a <code><b>long</b></code>
@@ -45,20 +45,11 @@ public interface forget {
    * function, and to suppress the warning.
    * @param __   the unused parameter
    * @param ____ more unused parameters */
-  @SuppressWarnings("unused") static void unused(final double __, final double... ____) {
+  static void unused(final double __, final double... ____) {
     // empty
   }
 
-  @SuppressWarnings("unused") static void unused(final double __, final Object... ____) {
-    // empty
-  }
-
-  /** A do nothing method to document the fact that a <code><b>long</b></code>
-   * parameter, along with a optional list of {@link Object}s are not used by a
-   * function, and to suppress the warning.
-   * @param __   the unused parameter
-   * @param ____ more unused parameters */
-  @SuppressWarnings("unused") static void unused(final int __, final int... ____) {
+  static void unused(final double __, final Object... ____) {
     // empty
   }
 
@@ -67,7 +58,16 @@ public interface forget {
    * function, and to suppress the warning.
    * @param __   the unused parameter
    * @param ____ more unused parameters */
-  @SuppressWarnings("unused") static void unused(final long __, final long... ____) {
+  static void unused(final int __, final int... ____) {
+    // empty
+  }
+
+  /** A do nothing method to document the fact that a <code><b>long</b></code>
+   * parameter, along with a optional list of {@link Object}s are not used by a
+   * function, and to suppress the warning.
+   * @param __   the unused parameter
+   * @param ____ more unused parameters */
+  static void unused(final long __, final long... ____) {
     // empty
   }
 
@@ -80,7 +80,7 @@ public interface forget {
     it(____);
   }
 
-  @SuppressWarnings("unused") static void unused(final long __, final Object... ____) {
+  static void unused(final long __, final Object... ____) {
     // empty
   }
 }

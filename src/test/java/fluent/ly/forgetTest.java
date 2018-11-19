@@ -2,7 +2,7 @@ package fluent.ly;
 
 import org.junit.*;
 
-@SuppressWarnings("static-method") public class forgetTest {
+@SuppressWarnings({"static-method", "unused"}) public class forgetTest {
   static void auxeAll(final Integer integer) {
     try {
       integer.getClass();
@@ -22,7 +22,7 @@ import org.junit.*;
   static void auxeItBoolean(final boolean param) {
     try {
       throw new Exception();
-    } catch (@SuppressWarnings("unused") final Exception e) {
+    } catch (final Exception e) {
       forget.it(param);
     }
   }
@@ -30,7 +30,7 @@ import org.junit.*;
   static void auxeItDouble(final double param) {
     try {
       throw new Exception();
-    } catch (@SuppressWarnings("unused") final Exception e) {
+    } catch (final Exception e) {
       forget.it(param);
     }
   }
@@ -38,7 +38,7 @@ import org.junit.*;
   static void auxeItLong(final long param) {
     try {
       throw new Exception();
-    } catch (@SuppressWarnings("unused") final Exception e) {
+    } catch (final Exception e) {
       forget.it(param);
     }
   }
@@ -46,7 +46,7 @@ import org.junit.*;
   @Test public void testAll() {
     try {
       forgetTest.auxeAll(null);
-    } catch (@SuppressWarnings("unused") final Throwable o) {
+    } catch (final Throwable o) {
       assert false;
     }
   }
@@ -58,7 +58,7 @@ import org.junit.*;
       forgetTest.auxeItLong(1);
       forgetTest.auxeItDouble(0.0);
       forgetTest.auxeItBoolean(true);
-    } catch (@SuppressWarnings("unused") final Throwable o) {
+    } catch (final Throwable o) {
       assert false;
     }
   }
