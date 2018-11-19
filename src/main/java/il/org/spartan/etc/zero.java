@@ -1,4 +1,4 @@
-package fluent.ly;
+package il.org.spartan.etc;
 
 /** Fluent API, see usage
  * @author Yossi Gil

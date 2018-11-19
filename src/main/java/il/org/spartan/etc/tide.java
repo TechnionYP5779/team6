@@ -1,4 +1,4 @@
-package il.org.spartan;
+package il.org.spartan.etc;
 
 import org.jetbrains.annotations.*;
 

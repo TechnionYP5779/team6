@@ -1,4 +1,4 @@
-package il.org.spartan.utils;
+package il.org.spartan.etc;
 
 /** Notational convenience
  * @author Yossi Gil

@@ -12,6 +12,7 @@ import java.util.stream.*;
 
 import org.jetbrains.annotations.*;
 
+import il.org.spartan.etc.*;
 import il.org.spartan.utils.*;
 
 /** Our way of dealing with logs, exceptions, NPE, Eclipse bugs, and other
