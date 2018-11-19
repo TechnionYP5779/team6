@@ -54,7 +54,7 @@ import il.org.spartan.*;
   @NotNull public static SeparationSubject these(final int @NotNull [] ¢) {
     return these(Box.it(¢));
   }
-  
+
   @NotNull public static SeparationSubject these(final boolean @NotNull [] ¢) {
     return these(Box.it(¢));
   }

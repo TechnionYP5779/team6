@@ -10,7 +10,7 @@ import fluent.ly.*;
 
 public class emptyTest {
   @Test @SuppressWarnings("static-method") public void emptyTestlist() {
-    azzert.that(0, is (empty.list().size()));
+    azzert.that(0, is(empty.list().size()));
   }
 
   @Test @SuppressWarnings("static-method") public void emptyTestIterable() {

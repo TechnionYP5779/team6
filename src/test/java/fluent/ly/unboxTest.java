@@ -66,9 +66,9 @@ import org.junit.*;
   }
 
   @Test public void unboxTestDoubleVal() {
-    azzert.that(1.1, is (Unbox.unbox(Double.valueOf(1.1))) );
-    azzert.that(2.1, is (Unbox.unbox(Double.valueOf(2.1))) );
-    azzert.that(3.1, is (Unbox.unbox(Double.valueOf(3.1))) );
+    azzert.that(1.1, is(Unbox.unbox(Double.valueOf(1.1))));
+    azzert.that(2.1, is(Unbox.unbox(Double.valueOf(2.1))));
+    azzert.that(3.1, is(Unbox.unbox(Double.valueOf(3.1))));
   }
 
   @Test public void unboxTestIntArr() {
@@ -82,14 +82,14 @@ import org.junit.*;
   }
 
   @Test public void unboxTestByteVal() {
-    azzert.that((byte) 1, is ( Unbox.unbox(Byte.valueOf("1"))));
-    azzert.that((byte) 2, is( Unbox.unbox(Byte.valueOf("2"))));
-    azzert.that((byte) 3, is( Unbox.unbox(Byte.valueOf("3"))));
+    azzert.that((byte) 1, is(Unbox.unbox(Byte.valueOf("1"))));
+    azzert.that((byte) 2, is(Unbox.unbox(Byte.valueOf("2"))));
+    azzert.that((byte) 3, is(Unbox.unbox(Byte.valueOf("3"))));
   }
 
   @Test public void unboxTestCharVal() {
-    azzert.that('E', is (Unbox.unbox(Character.valueOf('E'))));
-    azzert.that('y', is ( Unbox.unbox(Character.valueOf('y'))));
-    azzert.that('a', is ( Unbox.unbox(Character.valueOf('a'))));
+    azzert.that('E', is(Unbox.unbox(Character.valueOf('E'))));
+    azzert.that('y', is(Unbox.unbox(Character.valueOf('y'))));
+    azzert.that('a', is(Unbox.unbox(Character.valueOf('a'))));
   }
 }
