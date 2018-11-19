@@ -5,7 +5,7 @@ import java.util.function.*;
 import org.junit.*;
 
 @SuppressWarnings("static-method") public class anonymousTest {
-  @Test  public void lyAsBooleanTest() {
+  @Test public void lyAsBooleanTest() {
     assert anonymous.ly(() -> true);
     assert !anonymous.ly(() -> false);
   }
@@ -16,7 +16,7 @@ import org.junit.*;
     assert anonymous.ly(() -> -858993459) == -858993459;
   }
 
-  @Test  public void lyAsIntTest() {
+  @Test public void lyAsIntTest() {
     assert anonymous.ly(() -> 10) == 10;
     assert anonymous.ly(() -> -858993459) == -858993459;
   }

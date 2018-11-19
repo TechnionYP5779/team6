@@ -9,7 +9,7 @@ import org.junit.*;
 import fluent.ly.*;
 
 @SuppressWarnings("static-method") public class emptyTest {
-  @Test  public void emptyTestlist() {
+  @Test public void emptyTestlist() {
     azzert.that(0, is(empty.list().size()));
   }
 

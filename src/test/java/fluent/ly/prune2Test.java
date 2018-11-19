@@ -9,7 +9,7 @@ import java.util.function.*;
 import org.jetbrains.annotations.*;
 import org.junit.*;
 
-@SuppressWarnings({"null", "static-method"}) public class prune2Test {
+@SuppressWarnings({ "null", "static-method" }) public class prune2Test {
   @NotNull final String @NotNull [] nonNullArray = { "1", "2", "4" };
   @NotNull final String @NotNull [] alternatingArray = new String[] { null, "A", null, null, "B", null, null, null, "C", null };
   @NotNull final Supplier<List<String>> x = () -> {

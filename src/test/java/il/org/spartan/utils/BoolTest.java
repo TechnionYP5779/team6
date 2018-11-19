@@ -7,25 +7,25 @@ import fluent.ly.*;
 @SuppressWarnings("static-method") public class BoolTest {
   @Test @SuppressWarnings("null") public void consTest() {
     final Bool vot = Bool.valueOf(true), cd = new Bool(), vof = Bool.valueOf(false), cf = new Bool(false);
-    azzert.that( vot.inner ,azzert.is( new Bool(true).inner));
-    azzert.that( vot.inner ,azzert.not( cd.inner));
-    azzert.that( vof.inner ,azzert.is( cf.inner));
-    azzert.that( vof.inner ,azzert.not( vot.inner));
+    azzert.that(vot.inner, azzert.is(new Bool(true).inner));
+    azzert.that(vot.inner, azzert.not(cd.inner));
+    azzert.that(vof.inner, azzert.is(cf.inner));
+    azzert.that(vof.inner, azzert.not(vot.inner));
   }
 
   @Test @SuppressWarnings("null") public void clearTest() {
     final Bool ct = new Bool(true), cf = new Bool(false);
     cf.clear();
-    azzert.that( ct.inner ,azzert.not( cf.inner));
+    azzert.that(ct.inner, azzert.not(cf.inner));
     ct.clear();
-    azzert.that( ct.inner ,azzert.is( cf.inner));
+    azzert.that(ct.inner, azzert.is(cf.inner));
   }
 
   @Test @SuppressWarnings("null") public void getTest() {
     final Bool ct1 = new Bool(true), ct2 = new Bool(true), cf1 = new Bool(false), cf2 = new Bool(false);
-    azzert.that( ct1.get(),azzert.not( cf1.get()));
-    azzert.that( ct1.get() ,azzert.is( ct2.get()));
-    azzert.that( cf1.get() ,azzert.is( cf2.get()));
+    azzert.that(ct1.get(), azzert.not(cf1.get()));
+    azzert.that(ct1.get(), azzert.is(ct2.get()));
+    azzert.that(cf1.get(), azzert.is(cf2.get()));
   }
 
   @Test public void innerTest() {
@@ -38,12 +38,12 @@ import fluent.ly.*;
   @Test @SuppressWarnings("null") public void setTest() {
     final Bool ct = new Bool(true), cf = new Bool(false);
     ct.set();
-    azzert.that( ct.inner ,azzert.not( cf.inner));
+    azzert.that(ct.inner, azzert.not(cf.inner));
     cf.set();
-    azzert.that( ct.inner ,azzert.is( cf.inner));
+    azzert.that(ct.inner, azzert.is(cf.inner));
     cf.set(true);
-    azzert.that( ct.inner ,azzert.is( cf.inner));
+    azzert.that(ct.inner, azzert.is(cf.inner));
     cf.set(false);
-    azzert.that( ct.inner ,azzert.not( cf.inner));
+    azzert.that(ct.inner, azzert.not(cf.inner));
   }
 }

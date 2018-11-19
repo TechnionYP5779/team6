@@ -205,7 +205,7 @@ public interface Rule<T, R> extends Function<T, R>, Recursive<Rule<T, R>> {
 
     @Override public Void before(final @NotNull String key, final Object... arguments) {
       count.putIfAbsent(key, Box.box(0));
-      Integer $ = count.get(key);
+      final Integer $ = count.get(key);
       if ($ == null)
         return null;
       count.put(key, Box.it(Unbox.it($) + 1));
