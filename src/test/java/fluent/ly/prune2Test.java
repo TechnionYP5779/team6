@@ -91,7 +91,7 @@ import org.junit.*;
     assert nulls(sparseCollection) != null;
   }
   
-  @Test public static void testShrink() {
+  @Test public void testShrink() {
     azzert.that(shrink(new Object[10]).length, is(0));
   }
   
