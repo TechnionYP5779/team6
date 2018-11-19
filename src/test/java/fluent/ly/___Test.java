@@ -212,7 +212,7 @@ import org.junit.*;
       assertEquals(0, v.value());
     }
     try {
-      unused(new ___.Variant(-1));
+      forget.unused(new ___.Variant(-1));
     } catch (final ___.Bug.Assertion.Variant.Initial ¢) {
       assertEquals("Initial variant value (-1) is negative", ¢.getMessage());
     }
