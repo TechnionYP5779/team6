@@ -17,11 +17,11 @@ import org.junit.*;
   @Test public void asTestNotEmptyIterator() {
     final Iterator<Integer> resIter = as.asIterable(Box.it(1), Box.it(2), Box.it(3)).iterator();
     assert resIter.hasNext();
-    azzert.that(Box.box(1), is(resIter.next()));
+    azzert.that(Box.it(1), is(resIter.next()));
     assert resIter.hasNext();
-    azzert.that(Box.box(2), is(resIter.next()));
+    azzert.that(Box.it(2), is(resIter.next()));
     assert resIter.hasNext();
-    azzert.that(Box.box(3), is(resIter.next()));
+    azzert.that(Box.it(3), is(resIter.next()));
     assert !resIter.hasNext();
   }
 
@@ -49,11 +49,11 @@ import org.junit.*;
   @Test public void asTestIterator() {
     final Iterator<Integer> resIter = as.iterator(Box.it(1), Box.it(2), Box.it(3));
     assert resIter.hasNext();
-    azzert.that(Box.box(1), is(resIter.next()));
+    azzert.that(Box.it(1), is(resIter.next()));
     assert resIter.hasNext();
-    azzert.that(Box.box(2), is(resIter.next()));
+    azzert.that(Box.it(2), is(resIter.next()));
     assert resIter.hasNext();
-    azzert.that(Box.box(3), is(resIter.next()));
+    azzert.that(Box.it(3), is(resIter.next()));
     assert !resIter.hasNext();
   }
 

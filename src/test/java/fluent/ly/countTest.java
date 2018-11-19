@@ -35,15 +35,15 @@ import org.junit.*;
   @Test public void ofIntegerCharacterMap() {
     final Map<Integer, Character> map = new HashMap<>();
     assertZero(count.of(map.keySet()));
-    map.put(Box.box(1), Box.box('a'));
-    map.put(Box.box(2), Box.box('b'));
-    map.put(Box.box(3), Box.box('c'));
+    map.put(Box.it(1), Box.it('a'));
+    map.put(Box.it(2), Box.it('b'));
+    map.put(Box.it(3), Box.it('c'));
     azzert.that(count.of(map.keySet()), is(3));
-    map.put(Box.box(1), Box.box('z'));
+    map.put(Box.it(1), Box.it('z'));
     azzert.that(count.of(map.keySet()), is(3));
-    map.remove(Box.box(3), Box.box('z'));
+    map.remove(Box.it(3), Box.it('z'));
     azzert.that(count.of(map.keySet()), is(3));
-    map.remove(Box.box(3), Box.box('c'));
+    map.remove(Box.it(3), Box.it('c'));
     azzert.that(count.of(map.keySet()), is(2));
     map.clear();
     assertZero(count.of(map.keySet()));
@@ -52,10 +52,10 @@ import org.junit.*;
   @Test public void ofStack() {
     final Stack<Double> stack = new Stack<>();
     assertZero(count.of(stack)); // stack == []
-    stack.push(Box.box(1.0));
+    stack.push(Box.it(1.0));
     azzert.that(count.of(stack), is(1)); // stack == [1.0]
-    stack.push(Box.box(2.0));
-    stack.push(Box.box(3.0));
+    stack.push(Box.it(2.0));
+    stack.push(Box.it(3.0));
     azzert.that(count.of(stack), is(3)); // stack == [1.0,2.0,3.0]
     stack.pop();
     azzert.that(count.of(stack), is(2)); // stack == [1.0,2.0]

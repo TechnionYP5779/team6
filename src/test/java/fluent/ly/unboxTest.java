@@ -27,19 +27,19 @@ import org.junit.*;
 
   @Test public void unboxTestDouble() {
     assertArrayEquals(new double[] { 1.1, 2.1, 3.1, 4.1, 5.1 },
-        Unbox.unbox(new Double[] { Double.valueOf(1.1), Double.valueOf(2.1), Double.valueOf(3.1), Double.valueOf(4.1), Double.valueOf(5.1) }),
+        Unbox.it(new Double[] { Double.valueOf(1.1), Double.valueOf(2.1), Double.valueOf(3.1), Double.valueOf(4.1), Double.valueOf(5.1) }),
         0.0001);
   }
 
   @Test public void unboxTestFloat() {
-    assertArrayEquals(new float[] { (float) 1.1, (float) 2.1, (float) 3.1, (float) 4.1, (float) 5.1 }, Unbox.unbox(new Float[] {
+    assertArrayEquals(new float[] { (float) 1.1, (float) 2.1, (float) 3.1, (float) 4.1, (float) 5.1 }, Unbox.it(new Float[] {
         Float.valueOf((float) 1.1), Float.valueOf((float) 2.1), Float.valueOf((float) 3.1), Float.valueOf((float) 4.1), Float.valueOf((float) 5.1) }),
         (float) 0.0001);
   }
 
   @Test public void unboxTestInt() {
     assertArrayEquals(new int[] { 1, 2, 3, 4, 5 },
-        Unbox.unbox(new Integer[] { Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3), Integer.valueOf(4), Integer.valueOf(5) }));
+        Unbox.it(new Integer[] { Integer.valueOf(1), Integer.valueOf(2), Integer.valueOf(3), Integer.valueOf(4), Integer.valueOf(5) }));
   }
 
   @Test public void unboxTestLong() {

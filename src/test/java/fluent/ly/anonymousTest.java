@@ -29,13 +29,13 @@ import org.junit.*;
   }
 
   @Test @SuppressWarnings("null") public void lyAsTTest() {
-    assert anonymous.ly(() -> Unbox.unbox(Box.box(0))) == 0;
-    assert anonymous.ly(() -> Unbox.unbox(Box.box(-1000))) == -1000;
+    assert anonymous.ly(() -> Unbox.it(Box.it(0))) == 0;
+    assert anonymous.ly(() -> Unbox.it(Box.it(-1000))) == -1000;
     assert Unbox.unbox(anonymous.ly((Supplier<Boolean>) () -> Boolean.TRUE));
     assert !Unbox.unbox(anonymous.ly((Supplier<Boolean>) () -> Boolean.FALSE));
-    assert anonymous.ly(() -> Unbox.unbox(Box.box(10.76))) == 10.76;
-    assert anonymous.ly(() -> Unbox.unbox(Box.box(10.0))) == 10;
-    assert anonymous.ly(() -> Unbox.unbox(Box.box(10L))) == 10;
-    assert anonymous.ly(() -> Unbox.unbox(Box.box(-17179869184L))) == -17179869184L;
+    assert anonymous.ly(() -> Unbox.unbox(Box.it(10.76))) == 10.76;
+    assert anonymous.ly(() -> Unbox.unbox(Box.it(10.0))) == 10;
+    assert anonymous.ly(() -> Unbox.unbox(Box.it(10L))) == 10;
+    assert anonymous.ly(() -> Unbox.unbox(Box.it(-17179869184L))) == -17179869184L;
   }
 }

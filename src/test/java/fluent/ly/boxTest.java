@@ -5,91 +5,91 @@ import org.junit.*;
 @SuppressWarnings("static-method") public class boxTest {
   @Test public void boxBoolTest() {
     final boolean a = true;
-    azzert.that(Box.box(a).booleanValue(),azzert.is(a));
-    assert !Box.box(false).booleanValue();
+    azzert.that(Box.it(a).booleanValue(),azzert.is(a));
+    assert !Box.it(false).booleanValue();
   }
 
   @Test public void boxBoolArrayTest() {
     final boolean[] a = { true, false };
-    final Boolean[] boxa = Box.box(a);
+    final Boolean[] boxa = Box.it(a);
     for (int ¢ = 0; ¢ < 2; ++¢)
       azzert.that(boxa[¢].booleanValue() ,azzert.is(a[¢]));
   }
 
   @Test public void boxByteTest() {
     final byte a = Byte.parseByte("123", 8);
-    azzert.that( Box.box(a).byteValue() ,azzert.is(a));
+    azzert.that( Box.it(a).byteValue() ,azzert.is(a));
   }
 
   @Test public void boxByteArrayTest() {
     final byte[] a = { Byte.parseByte("123", 8), Byte.parseByte("124", 8) };
-    final Byte[] boxa = Box.box(a);
+    final Byte[] boxa = Box.it(a);
     for (int ¢ = 0; ¢ < 2; ++¢)
       azzert.that( boxa[¢].byteValue(),azzert.is(a[¢]));
   }
 
   @Test public void boxCharacterTest() {
-    azzert.that(Box.box('a').charValue(),azzert.is('a'));
+    azzert.that(Box.it('a').charValue(),azzert.is('a'));
   }
 
   @Test public void boxCharacterArrayTest() {
     final char[] a = { 'a', 'b' };
-    final Character[] boxa = Box.box(a);
+    final Character[] boxa = Box.it(a);
     for (int ¢ = 0; ¢ < 2; ++¢)
       azzert.that( boxa[¢].charValue(),azzert.is(a[¢]));
   }
 
   @Test public void boxDoubleTest() {
-    azzert.that( Box.box(5.7).doubleValue() ,azzert.is( 5.7));
+    azzert.that( Box.it(5.7).doubleValue() ,azzert.is( 5.7));
   }
 
   @Test public void boxDoubleArrayTest() {
     final double[] a = { 5.7, 3.33 };
-    final Double[] boxa = Box.box(a);
+    final Double[] boxa = Box.it(a);
     for (int ¢ = 0; ¢ < 2; ++¢)
       azzert.that( boxa[¢].doubleValue() ,azzert.is( a[¢]));
   }
 
   @Test public void boxFloatTest() {
-    azzert.that( Box.box((float)5).floatValue() ,azzert.is( (float)5));
+    azzert.that( Box.it((float)5).floatValue() ,azzert.is( (float)5));
   }
 
   @Test public void boxFloatArrayTest() {
     final float[] a = { 5, 9 };
-    final Float[] boxa = Box.box(a);
+    final Float[] boxa = Box.it(a);
     for (int ¢ = 0; ¢ < 2; ++¢)
       azzert.that( boxa[¢].floatValue() ,azzert.is( a[¢]));
   }
 
   @Test public void boxIntegerTest() {
-    azzert.that( Box.box(3).intValue() ,azzert.is( 3));
+    azzert.that( Box.it(3).intValue() ,azzert.is( 3));
   }
 
   @Test public void boxIntegerArrayTest() {
     final int[] a = { 3, 1 };
-    final Integer[] boxa = Box.box(a);
+    final Integer[] boxa = Box.it(a);
     for (int ¢ = 0; ¢ < 2; ++¢)
       azzert.that( boxa[¢].intValue() ,azzert.is( a[¢]));
   }
 
   @Test public void boxLongTest() {
-    azzert.that( Box.box(1232144L).longValue() ,azzert.is(1232144L));
+    azzert.that( Box.it(1232144L).longValue() ,azzert.is(1232144L));
   }
 
   @Test public void boxLongArrayTest() {
     final long[] a = { 1232144, 12312 };
-    final Long[] boxa = Box.box(a);
+    final Long[] boxa = Box.it(a);
     for (int ¢ = 0; ¢ < 2; ++¢)
       azzert.that( boxa[¢].longValue() ,azzert.is( a[¢]));
   }
 
   @Test public void boxShortTest() {
-    azzert.that( Box.box(96).shortValue() ,azzert.is( 96));
+    azzert.that( Box.it(96).shortValue() ,azzert.is( 96));
   }
 
   @Test public void boxShortArrayTest() {
     final short[] a = { 96, 12 };
-    final Short[] boxa = Box.box(a);
+    final Short[] boxa = Box.it(a);
     for (int ¢ = 0; ¢ < 2; ++¢)
       azzert.that( boxa[¢].shortValue() ,azzert.is( a[¢]));
   }
