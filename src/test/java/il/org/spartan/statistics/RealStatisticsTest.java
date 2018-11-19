@@ -1,7 +1,5 @@
 package il.org.spartan.statistics;
 
-import static org.junit.Assert.assertEquals;
-
 import static fluent.ly.azzert.*;
 
 import org.jetbrains.annotations.*;
@@ -22,9 +20,9 @@ import fluent.ly.*;
     s11_20_5.mad();
     final double @NotNull [] vs = s11_20_5.all();
     azzert.that(vs.length, is(3));
-    assertEquals(11, vs[0], 1E-20);
-    assertEquals(20, vs[1], 1E-20);
-    assertEquals(5, vs[2], 1E-20);
+    azzert.that(11, is(vs[0]));
+    azzert.that(20, is(vs[1]));
+    azzert.that(5, is(vs[2]));
   }
 
   @Test public void all0() {
@@ -40,45 +38,45 @@ import fluent.ly.*;
   }
 
   @Test public void max() {
-    assertEquals(20, s11_20_5.max(), 1E-6);
-    assertEquals(5, s15.max(), 1E-6);
-    assertEquals(7, s07.max(), 1E-6);
-    assertEquals(1, s_4x0_5x1.max(), 1E-6);
+    azzert.that(20, is(s11_20_5.max()));
+    azzert.that(5, is(s15.max()));
+    azzert.that(7, is(s07.max()));
+    azzert.that(1, is(s_4x0_5x1.max()));
   }
 
   @Test public void mean() {
-    assertEquals(12, s11_20_5.mean(), 1E-6);
-    assertEquals(3, s15.mean(), 1E-6);
-    assertEquals(3.5, s07.mean(), 1E-6);
-    assertEquals(5 / 9.0, s_4x0_5x1.mean(), 1E-6);
+    azzert.that(12, is(s11_20_5.mean()));
+    azzert.that(3, is(s15.mean()));
+    azzert.that(3.5, is(s07.mean()));
+    azzert.that(5 / 9.0, is(s_4x0_5x1.mean()));
   }
 
   @Test(expected = ArithmeticException.class) public void meanEmpty() {
     final @NotNull RealStatistics x = new RealStatistics();
-    assertEquals(0, x.mean(), 1E-20);
+    azzert.that(0, is(x.mean()));
     x.relativeError();
   }
 
   @Test public void meanZero() {
     final @NotNull RealStatistics x = new RealStatistics().record(1).record(-1);
-    assertEquals(0, x.mean(), 1E-20);
+    azzert.that(0, is(x.mean()));
     x.relativeError();
   }
 
   @Test public void median() {
-    assertEquals(11, s11_20_5.median(), 1E-6);
-    assertEquals(3, s15.median(), 1E-6);
-    assertEquals(3.5, s07.median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(1).median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(5).median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(5).record(6).median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(0).median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(0).median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(0).median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(0).median(), 1E-6);
-    assertEquals(0.5, s_4x0_5x1.record(0).median(), 1E-6);
-    assertEquals(0, s_4x0_5x1.record(0).median(), 1E-6);
+    azzert.that(11, is(s11_20_5.median()));
+    azzert.that(3, is(s15.median()));
+    azzert.that(3.5, is(s07.median()));
+    azzert.that(1, is(s_4x0_5x1.median()));
+    azzert.that(1, is(s_4x0_5x1.record(1).median()));
+    azzert.that(1, is(s_4x0_5x1.record(5).median()));
+    azzert.that(1, is(s_4x0_5x1.record(5).record(6).median()));
+    azzert.that(1, is(s_4x0_5x1.record(0).median()));
+    azzert.that(1, is(s_4x0_5x1.record(0).median()));
+    azzert.that(1, is(s_4x0_5x1.record(0).median()));
+    azzert.that(1, is(s_4x0_5x1.record(0).median()));
+    azzert.that(0.5, is(s_4x0_5x1.record(0).median()));
+    azzert.that(0, is(s_4x0_5x1.record(0).median()));
   }
 
   @Test(expected = ArithmeticException.class) public void medianEmpty() {
@@ -86,26 +84,26 @@ import fluent.ly.*;
   }
 
   @Test public void medianMiddle() {
-    assertEquals(0.5, s_4x0_5x1.record(0).median(), 1E-6);
+    azzert.that(0.5, is(s_4x0_5x1.record(0).median()));
   }
 
   @Test public void medianMovingDown() {
-    assertEquals(0, s_4x0_5x1.record(0).record(0).median(), 1E-6);
+    azzert.that(0, is(s_4x0_5x1.record(0).record(0).median()));
   }
 
   @Test public void mediannMovingDown() {
-    assertEquals(0, s_4x0_5x1.record(0).record(0).median(), 1E-6);
+    azzert.that(0, is(s_4x0_5x1.record(0).record(0).median()));
   }
 
   @Test public void medianNotMovingUp() {
-    assertEquals(1, s_4x0_5x1.record(5).record(6).median(), 1E-6);
+    azzert.that(1, is(s_4x0_5x1.record(5).record(6).median()));
   }
 
   @Test public void min() {
-    assertEquals(5, s11_20_5.min(), 1E-6);
-    assertEquals(1, s15.min(), 1E-6);
-    assertEquals(0, s07.min(), 1E-6);
-    assertEquals(0, s_4x0_5x1.min(), 1E-6);
+    azzert.that(5, is(s11_20_5.min()));
+    azzert.that(1, is(s15.min()));
+    azzert.that(0, is(s07.min()));
+    azzert.that(0, is(s_4x0_5x1.min()));
   }
 
   @Test public void n() {
@@ -123,40 +121,40 @@ import fluent.ly.*;
   }
 
   @Test public void sum() {
-    assertEquals(36, s11_20_5.sum(), 1E-6);
-    assertEquals(15, s15.sum(), 1E-6);
-    assertEquals(28, s07.sum(), 1E-6);
-    assertEquals(5.0, s_4x0_5x1.sum(), 1E-6);
+    azzert.that(36, is(s11_20_5.sum()));
+    azzert.that(15, is(s15.sum()));
+    azzert.that(28, is(s07.sum()));
+    azzert.that(5.0, is(s_4x0_5x1.sum()));
   }
 
   @Test public void testMax() {
-    assertEquals(20, s.max(), 1E-6);
-    assertEquals(5, s15.max(), 1E-6);
-    assertEquals(7, s07.max(), 1E-6);
-    assertEquals(1, s_4x0_5x1.max(), 1E-6);
+    azzert.that(20, is(s.max()));
+    azzert.that(5, is(s15.max()));
+    azzert.that(7, is(s07.max()));
+    azzert.that(1, is(s_4x0_5x1.max()));
   }
 
   @Test public void testMean() {
-    assertEquals(12, s.mean(), 1E-6);
-    assertEquals(3, s15.mean(), 1E-6);
-    assertEquals(3.5, s07.mean(), 1E-6);
-    assertEquals(5 / 9.0, s_4x0_5x1.mean(), 1E-6);
+    azzert.that(12, is(s.mean()));
+    azzert.that(3, is(s15.mean()));
+    azzert.that(3.5, is(s07.mean()));
+    azzert.that(5 / 9.0, is(s_4x0_5x1.mean()));
   }
 
   @Test public void testMedian() {
-    assertEquals(11, s.median(), 1E-6);
-    assertEquals(3, s15.median(), 1E-6);
-    assertEquals(3.5, s07.median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(1).median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(5).median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(5).record(6).median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(0).median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(0).median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(0).median(), 1E-6);
-    assertEquals(1, s_4x0_5x1.record(0).median(), 1E-6);
-    assertEquals(0.5, s_4x0_5x1.record(0).median(), 1E-6);
-    assertEquals(0, s_4x0_5x1.record(0).median(), 1E-6);
+    azzert.that(11, is(s.median()));
+    azzert.that(3, is(s15.median()));
+    azzert.that(3.5, is(s07.median()));
+    azzert.that(1, is(s_4x0_5x1.median()));
+    azzert.that(1, is(s_4x0_5x1.record(1).median()));
+    azzert.that(1, is(s_4x0_5x1.record(5).median()));
+    azzert.that(1, is(s_4x0_5x1.record(5).record(6).median()));
+    azzert.that(1, is(s_4x0_5x1.record(0).median()));
+    azzert.that(1, is(s_4x0_5x1.record(0).median()));
+    azzert.that(1, is(s_4x0_5x1.record(0).median()));
+    azzert.that(1, is(s_4x0_5x1.record(0).median()));
+    azzert.that(0.5, is(s_4x0_5x1.record(0).median()));
+    azzert.that(0, is(s_4x0_5x1.record(0).median()));
   }
 
   @Test(expected = ArithmeticException.class) public void testMedianEmpty() {
@@ -164,24 +162,24 @@ import fluent.ly.*;
   }
 
   @Test public void testMedianMiddle() {
-    assertEquals(0.5, s_4x0_5x1.record(0).median(), 1E-6);
+    azzert.that(0.5, is(s_4x0_5x1.record(0).median()));
   }
 
   @Test public void testMedianNotMovingUp() {
-    assertEquals(1, s_4x0_5x1.record(5).record(6).median(), 1E-6);
+    azzert.that(1, is(s_4x0_5x1.record(5).record(6).median()));
   }
 
   @Test public void testMin() {
-    assertEquals(5, s.min(), 1E-6);
-    assertEquals(1, s15.min(), 1E-6);
-    assertEquals(0, s07.min(), 1E-6);
-    assertEquals(0, s_4x0_5x1.min(), 1E-6);
+    azzert.that(5, is(s.min()));
+    azzert.that(1, is(s15.min()));
+    azzert.that(0, is(s07.min()));
+    azzert.that(0, is(s_4x0_5x1.min()));
   }
 
   @Test public void testSum() {
-    assertEquals(36, s.sum(), 1E-6);
-    assertEquals(15, s15.sum(), 1E-6);
-    assertEquals(28, s07.sum(), 1E-6);
-    assertEquals(5.0, s_4x0_5x1.sum(), 1E-6);
+    azzert.that(36, is(s.sum()));
+    azzert.that(15, is(s15.sum()));
+    azzert.that(28, is(s07.sum()));
+    azzert.that(5.0, is(s_4x0_5x1.sum()));
   }
 }

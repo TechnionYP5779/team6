@@ -1,9 +1,6 @@
 package fluent.ly;
 
-import static org.junit.Assert.assertEquals;
-
-import static fluent.ly.azzert.assertEquals;
-import static fluent.ly.azzert.assertNull;
+import static fluent.ly.azzert.*;
 
 import java.util.function.*;
 
@@ -20,10 +17,10 @@ import org.junit.*;
   @Test @SuppressWarnings("null") public void guardingly() {
     final Function<String, Integer> stringIntegerFunction = String::length;
     assertNull(nil.guardingly(stringIntegerFunction).on(null));
-    assertEquals(5, Unbox.unbox(nil.guardingly(stringIntegerFunction).on("abcde")));
+    azzert.that(5, is(Unbox.unbox(nil.guardingly(stringIntegerFunction).on("abcde"))));
     final Function<Integer, String> integerStringFunction = λ -> λ + "";
     assertNull("5", nil.guardingly(integerStringFunction).on(null));
-    assertEquals("5", nil.guardingly(integerStringFunction).on(Box.it(5)));
+    azzert.that("5", is( nil.guardingly(integerStringFunction).on(Box.it(5))));
   }
 
   @Test public void ignoring_boolean() {

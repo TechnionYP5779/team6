@@ -1,9 +1,6 @@
 package fluent.ly;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
-
-import static fluent.ly.azzert.assertEquals;
+import static fluent.ly.azzert.*;
 
 import org.junit.*;
 
@@ -62,16 +59,16 @@ import org.junit.*;
   }
 
   @Test public void unboxTestintVal() {
-    assertEquals(1, Unbox.it(Box.it(1)));
-    assertEquals(2, Unbox.it(Box.it(2)));
-    assertEquals(3, Unbox.it(Box.it(3)));
-    assertEquals(4, Unbox.it(Box.it(4)));
+    azzert.that(1, is(Unbox.it(Box.it(1))));
+    azzert.that(2, is(Unbox.it(Box.it(2))));
+    azzert.that(3, is(Unbox.it(Box.it(3))));
+    azzert.that(4, is(Unbox.it(Box.it(4))));
   }
 
   @Test public void unboxTestDoubleVal() {
-    assertEquals(1.1, Unbox.unbox(Double.valueOf(1.1)), 0.0001);
-    assertEquals(2.1, Unbox.unbox(Double.valueOf(2.1)), 0.0001);
-    assertEquals(3.1, Unbox.unbox(Double.valueOf(3.1)), 0.0001);
+    azzert.that(1.1, is (Unbox.unbox(Double.valueOf(1.1))) );
+    azzert.that(2.1, is (Unbox.unbox(Double.valueOf(2.1))) );
+    azzert.that(3.1, is (Unbox.unbox(Double.valueOf(3.1))) );
   }
 
   @Test public void unboxTestIntArr() {
@@ -85,14 +82,14 @@ import org.junit.*;
   }
 
   @Test public void unboxTestByteVal() {
-    assertEquals((byte) 1, Unbox.unbox(Byte.valueOf("1")));
-    assertEquals((byte) 2, Unbox.unbox(Byte.valueOf("2")));
-    assertEquals((byte) 3, Unbox.unbox(Byte.valueOf("3")));
+    azzert.that((byte) 1, is ( Unbox.unbox(Byte.valueOf("1"))));
+    azzert.that((byte) 2, is( Unbox.unbox(Byte.valueOf("2"))));
+    azzert.that((byte) 3, is( Unbox.unbox(Byte.valueOf("3"))));
   }
 
   @Test public void unboxTestCharVal() {
-    assertEquals('E', Unbox.unbox(Character.valueOf('E')));
-    assertEquals('y', Unbox.unbox(Character.valueOf('y')));
-    assertEquals('a', Unbox.unbox(Character.valueOf('a')));
+    azzert.that('E', is (Unbox.unbox(Character.valueOf('E'))));
+    azzert.that('y', is ( Unbox.unbox(Character.valueOf('y'))));
+    azzert.that('a', is ( Unbox.unbox(Character.valueOf('a'))));
   }
 }

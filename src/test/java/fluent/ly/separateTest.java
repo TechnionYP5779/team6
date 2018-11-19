@@ -18,10 +18,6 @@ import il.org.spartan.*;
   @NotNull public static final String SPACE = " ";
   private static final Function<String, String> quote = λ -> "'" + λ + "'";
 
-  static <T> void assertEquals(final @NotNull String reason, final T t1, final T t2) {
-    azzert.that(reason, t2, is(t1));
-  }
-
   @Test public final void asArrayBetweenChar() {
     azzert.that(separate.these(as.array("Hello", "World")).by(','), is("Hello,World"));
   }

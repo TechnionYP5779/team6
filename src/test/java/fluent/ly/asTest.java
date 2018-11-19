@@ -1,10 +1,6 @@
 package fluent.ly;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
-
 import static fluent.ly.azzert.*;
-import static fluent.ly.azzert.assertEquals;
 
 import java.util.*;
 
@@ -13,7 +9,7 @@ import org.junit.*;
 
 /** A static nested class hosting unit tests for the nesting class Unit test for
  * the containing class. **/
-@SuppressWarnings({ "null", "static-method"}) public class asTest {
+@SuppressWarnings({ "null", "static-method" }) public class asTest {
   @Test public void asTestEmptyIterator() {
     assert !as.asIterable().iterator().hasNext();
   }
@@ -21,21 +17,21 @@ import org.junit.*;
   @Test public void asTestNotEmptyIterator() {
     final Iterator<Integer> resIter = as.asIterable(Box.it(1), Box.it(2), Box.it(3)).iterator();
     assert resIter.hasNext();
-    assertEquals(Box.box(1), resIter.next());
+    azzert.that(Box.box(1), is(resIter.next()));
     assert resIter.hasNext();
-    assertEquals(Box.box(2), resIter.next());
+    azzert.that(Box.box(2), is(resIter.next()));
     assert resIter.hasNext();
-    assertEquals(Box.box(3), resIter.next());
+    azzert.that(Box.box(3), is(resIter.next()));
     assert !resIter.hasNext();
   }
 
   @Test public void asTestbit() {
-    assertEquals(1, as.bit(true));
-    assertEquals(0, as.bit(false));
+    azzert.that(1, is(as.bit(true)));
+    azzert.that(0, is(as.bit(false)));
   }
 
   @Test public void asTestEmptyIntegerList() {
-    assertEquals(new ArrayList<Integer>(), as.ingeterList());
+    azzert.that(new ArrayList<Integer>(), is(as.ingeterList()));
   }
 
   @Test public void asTestNotEmptyIntegerList() {
@@ -43,7 +39,7 @@ import org.junit.*;
     list.add(Box.it(1));
     list.add(Box.it(2));
     list.add(Box.it(3));
-    assertEquals(list, res);
+    azzert.that(list, is(res));
   }
 
   @Test public void asTestIntArray() {
@@ -53,16 +49,16 @@ import org.junit.*;
   @Test public void asTestIterator() {
     final Iterator<Integer> resIter = as.iterator(Box.it(1), Box.it(2), Box.it(3));
     assert resIter.hasNext();
-    assertEquals(Box.box(1), resIter.next());
+    azzert.that(Box.box(1), is(resIter.next()));
     assert resIter.hasNext();
-    assertEquals(Box.box(2), resIter.next());
+    azzert.that(Box.box(2), is(resIter.next()));
     assert resIter.hasNext();
-    assertEquals(Box.box(3), resIter.next());
+    azzert.that(Box.box(3), is(resIter.next()));
     assert !resIter.hasNext();
   }
 
   @Test public void asTestlist() {
-    assertEquals(Arrays.asList("A", "B", "C"), as.list("A", "B", "C"));
+    azzert.that(Arrays.asList("A", "B", "C"), is(as.list("A", "B", "C")));
   }
 
   @Test public void asTestSet() {
@@ -70,19 +66,19 @@ import org.junit.*;
     set.add(Box.it(1));
     set.add(Box.it(2));
     set.add(Box.it(3));
-    assertEquals(set, as.set(Box.it(1), Box.it(1), Box.it(2), Box.it(3), Box.it(2), Box.it(3), Box.it(1), Box.it(2), Box.it(3)));
+    azzert.that(set, is(as.set(Box.it(1), Box.it(1), Box.it(2), Box.it(3), Box.it(2), Box.it(3), Box.it(1), Box.it(2), Box.it(3))));
   }
 
   @Test public void asTestString() {
     String res = as.string(null);
-    assertEquals("null", res);
+    azzert.that("null", is(res));
     res = as.string("test");
-    assertEquals("test", res);
+    azzert.that("test", is(res));
     res = as.string('b');
-    assertEquals("b", res);
+    azzert.that("b", is(res));
     final Object obj = new Object();
     res = as.string(obj);
-    assertEquals(obj + "", res);
+    azzert.that(obj + "", is(res));
   }
 
   @Test public void asBitOfFalse() {

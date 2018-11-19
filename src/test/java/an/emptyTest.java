@@ -6,9 +6,11 @@ import java.util.*;
 
 import org.junit.*;
 
+import fluent.ly.*;
+
 public class emptyTest {
   @Test @SuppressWarnings("static-method") public void emptyTestlist() {
-    assertEquals(0, empty.list().size());
+    azzert.that(0, is (empty.list().size()));
   }
 
   @Test @SuppressWarnings("static-method") public void emptyTestIterable() {
