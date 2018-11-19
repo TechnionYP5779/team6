@@ -506,10 +506,6 @@ import fluent.ly.___.Bug.Contract.*;
     throw new Reachability(nprintf(format, args));
   }
 
-  @SuppressWarnings("unused") public static void unuse(final long __, final Object... ____) {
-    // empty
-  }
-
   /** The base of all exception classes thrown as a result of violations of
    * contracts, assertions, and the such. This class derives from
    * {@link RuntimeException} since errors of this sort are programming-, not

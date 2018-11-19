@@ -79,4 +79,8 @@ public interface forget {
   static void unused(final Object... ____) {
     it(____);
   }
+
+  @SuppressWarnings("unused") static void unused(final long __, final Object... ____) {
+    // empty
+  }
 }
