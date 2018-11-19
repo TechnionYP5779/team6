@@ -4,15 +4,15 @@ import java.util.*;
 
 import org.junit.*;
 
-@SuppressWarnings({ "static-method", "boxing" }) public class isTest {
+@SuppressWarnings("static-method") public class isTest {
   @Test public void in() {
-    assert !is.in(0, (Integer) null);
-    assert !is.in(0);
-    assert !is.in(0, 1);
-    assert !is.in(0, 1, 2, 3, 4);
-    assert is.in(0, 0);
-    assert is.in(0, 0, 1, 2);
-    assert is.in(0, 7, 8, 9, 0, 6, 5, 4);
+    assert !is.in(Box.it(0), (Integer) null);
+    assert !is.in(Box.it(0));
+    assert !is.in(Box.it(0), Box.it(1));
+    assert !is.in(Box.it(0), Box.it(1), Box.it(2),Box.it(3), Box.it(4));
+    assert is.in(Box.it(0), Box.it(0));
+    assert is.in(Box.it(0), Box.it(0), Box.it(1),  Box.it(2));
+    assert !is.out(Box.it(0), Box.it(7), Box.it(8), Box.it(9), Box.it(0), Box.it(6), Box.it(5), Box.it(4));
     assert !is.in("a", (String) null);
     assert !is.in("a");
     assert !is.in("a", "A");
@@ -45,13 +45,13 @@ import org.junit.*;
   }
 
   @Test public void not_in() {
-    assert is.not.in(0, (Integer) null);
-    assert is.not.in(0);
-    assert is.not.in(0, 1);
-    assert is.not.in(0, 1, 2, 3, 4);
-    assert !is.not.in(0, 0);
-    assert !is.not.in(0, 0, 1, 2);
-    assert !is.not.in(0, 7, 8, 9, 0, 6, 5, 4);
+    assert is.not.in(Box.it(0), (Integer) null);
+    assert is.not.in(Box.it(0));
+    assert is.not.in(Box.it(0), Box.it(1));
+    assert is.not.in(Box.it(0), Box.it(1), Box.it(2),Box.it(3), Box.it(4));
+    assert !is.not.in(Box.it(0), Box.it(0));
+    assert !is.not.in(Box.it(0), Box.it(0), Box.it(1), Box.it(2));
+    assert !is.out(Box.it(0), Box.it(7), Box.it(8), Box.it(9), Box.it(0), Box.it(6), Box.it(5), Box.it(4));
     assert is.not.in("a", (String) null);
     assert is.not.in("a");
     assert is.not.in("a", "A");
@@ -69,13 +69,13 @@ import org.junit.*;
   }
 
   @Test public void out() {
-    assert is.out(0, (Integer) null);
-    assert is.out(0);
-    assert is.out(0, 1);
-    assert is.out(0, 1, 2, 3, 4);
-    assert !is.out(0, 0);
-    assert !is.out(0, 0, 1, 2);
-    assert !is.out(0, 7, 8, 9, 0, 6, 5, 4);
+    assert is.out(Box.it(0), (Integer) null);
+    assert is.out(Box.it(0));
+    assert is.out(Box.it(0), Box.it(1));
+    assert is.out(Box.it(0), Box.it(1), Box.it(2),Box.it(3), Box.it(4));
+    assert !is.out(Box.it(0), Box.it(0));
+    assert !is.out(Box.it(0), Box.it(0), Box.it(1), Box.it(2));
+    assert !is.out(Box.it(0), Box.it(7), Box.it(8), Box.it(9), Box.it(0), Box.it(6), Box.it(5), Box.it(4));
     assert is.out("a", (String) null);
     assert is.out("a");
     assert is.out("a", "A");
@@ -104,7 +104,7 @@ import org.junit.*;
     assert is.empty(booleans);
     booleans = new Boolean[2];
     assert !is.empty(booleans);
-    booleans[1] = booleans[0] = true;
+    booleans[1] = booleans[0] = Box.it(true);
     assert !is.empty(booleans);
     // T=Integer
     Integer[] integers = null;
@@ -121,9 +121,9 @@ import org.junit.*;
     assert is.empty(integers);
     integers = new ArrayList<>();
     assert is.empty(integers);
-    ((ArrayList<Integer>) integers).add(0);
+    ((ArrayList<Integer>) integers).add(Box.it(0));
     assert !is.empty(integers);
-    ((ArrayList<Integer>) integers).add(1);
+    ((ArrayList<Integer>) integers).add(Box.it(1));
     assert !is.empty(integers);
     ((ArrayList<Integer>) integers).remove(0);
     assert !is.empty(integers);
@@ -132,9 +132,9 @@ import org.junit.*;
     // T=Character
     final Map<Character, Character> map = new HashMap<>();
     assert is.empty((Iterable<Character>) map.keySet());
-    map.put('a', 'z');
-    map.put('b', 'y');
-    map.put('c', 'x');
+    map.put(Box.it('a'), Box.it('z'));
+    map.put(Box.it('b'), Box.it('y'));
+    map.put(Box.it('c'), Box.it('x'));
     assert !is.empty((Iterable<Character>) map.keySet());
   }
 
@@ -142,10 +142,10 @@ import org.junit.*;
     // T=Integer
     final ArrayList<Integer> listInteger = new ArrayList<>();
     assert is.empty(listInteger);
-    listInteger.add(1);
+    listInteger.add(Box.it(1));
     assert !is.empty(listInteger);
-    listInteger.add(2);
-    listInteger.add(3);
+    listInteger.add(Box.it(2));
+    listInteger.add(Box.it(3));
     assert !is.empty(listInteger);
     // T=String
     final ArrayList<String> listString = new ArrayList<>();

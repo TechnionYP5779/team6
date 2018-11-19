@@ -13,13 +13,13 @@ import org.junit.*;
 
 /** A static nested class hosting unit tests for the nesting class Unit test for
  * the containing class. **/
-@SuppressWarnings({ "null", "static-method", "boxing" }) public class asTest {
+@SuppressWarnings({ "null", "static-method"}) public class asTest {
   @Test public void asTestEmptyIterator() {
     assert !as.asIterable().iterator().hasNext();
   }
 
   @Test public void asTestNotEmptyIterator() {
-    final Iterator<Integer> resIter = as.asIterable(1, 2, 3).iterator();
+    final Iterator<Integer> resIter = as.asIterable(Box.it(1), Box.it(2), Box.it(3)).iterator();
     assert resIter.hasNext();
     assertEquals(Box.box(1), resIter.next());
     assert resIter.hasNext();
@@ -40,9 +40,9 @@ import org.junit.*;
 
   @Test public void asTestNotEmptyIntegerList() {
     final List<Integer> res = as.ingeterList(1, 2, 3), list = new ArrayList<>();
-    list.add(1);
-    list.add(2);
-    list.add(3);
+    list.add(Box.it(1));
+    list.add(Box.it(2));
+    list.add(Box.it(3));
     assertEquals(list, res);
   }
 
@@ -51,7 +51,7 @@ import org.junit.*;
   }
 
   @Test public void asTestIterator() {
-    final Iterator<Integer> resIter = as.iterator(1, 2, 3);
+    final Iterator<Integer> resIter = as.iterator(Box.it(1), Box.it(2), Box.it(3));
     assert resIter.hasNext();
     assertEquals(Box.box(1), resIter.next());
     assert resIter.hasNext();
@@ -67,10 +67,10 @@ import org.junit.*;
 
   @Test public void asTestSet() {
     final Set<Integer> set = new HashSet<>();
-    set.add(1);
-    set.add(2);
-    set.add(3);
-    assertEquals(set, as.set(1, 1, 2, 3, 2, 3, 1, 2, 3));
+    set.add(Box.it(1));
+    set.add(Box.it(2));
+    set.add(Box.it(3));
+    assertEquals(set, as.set(Box.it(1), Box.it(1), Box.it(2), Box.it(3), Box.it(2), Box.it(3), Box.it(1), Box.it(2), Box.it(3)));
   }
 
   @Test public void asTestString() {

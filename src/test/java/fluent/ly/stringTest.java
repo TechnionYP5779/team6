@@ -6,7 +6,7 @@ import java.util.*;
 
 import org.junit.*;
 
-@SuppressWarnings({ "null", "static-method", "boxing" }) public class stringTest {
+@SuppressWarnings({ "null", "static-method" }) public class stringTest {
   @Test public void stringTestAtod() {
     azzert.that(Double.valueOf("2.2"), is(string.atod("2.2")));
   }
@@ -52,11 +52,11 @@ import org.junit.*;
   }
 
   @Test public void stringTestEqANull() {
-    assert !string.eq(null, 2);
+    assert !string.eq(null, Box.it(2));
   }
 
   @Test public void stringTestEqANotNull() {
-    assert !string.eq(4, 2);
+    assert !string.eq(Box.it(4), Box.it(2));
   }
 
   @Test public void stringTestesc() {

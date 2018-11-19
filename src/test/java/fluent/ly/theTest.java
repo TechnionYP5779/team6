@@ -6,7 +6,7 @@ import java.util.*;
 
 import org.junit.*;
 
-@SuppressWarnings({ "null", "static-method", "boxing" }) public class theTest {
+@SuppressWarnings({ "null", "static-method" }) public class theTest {
   @Test public void theTestIndexFound() {
     azzert.that(1, azzert.is(the.index(2, 1, 2, 3)));
   }
@@ -33,34 +33,34 @@ import org.junit.*;
 
   @Test public void theTestpenultimateOf2() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
+    arr.add(Box.it(1));
     azzert.assertNull(the.penultimateOf(arr));
   }
 
   @Test public void theTestpenultimateOf3() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
-    arr.add(2);
-    arr.add(3);
+    arr.add(Box.it(1));
+    arr.add(Box.it(2));
+    arr.add(Box.it(3));
     azzert.that(Box.box(2), azzert.is(the.penultimateOf(arr)));
   }
 
   @Test public void theTestPreviousNull() {
-    azzert.assertNull(the.previous(1, null));
+    azzert.assertNull(the.previous(Box.it(1), null));
   }
 
   @Test public void theTestPreviousNull2() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
-    azzert.assertNull(the.previous(1, arr));
+    arr.add(Box.it(1));
+    azzert.assertNull(the.previous(Box.it(1), arr));
   }
 
   @Test public void theTestPreviousNotNull() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
-    arr.add(2);
-    arr.add(3);
-    azzert.that(Box.box(2), azzert.is(the.previous(3, arr)));
+    arr.add(Box.it(1));
+    arr.add(Box.it(2));
+    arr.add(Box.it(3));
+    azzert.that(Box.box(2), azzert.is(the.previous(Box.it(3), arr)));
   }
 
   @Test public void theTestHeadNull() {
@@ -73,20 +73,20 @@ import org.junit.*;
 
   @Test public void theTestHeadNotNull() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
-    arr.add(2);
-    arr.add(3);
+    arr.add(Box.it(1));
+    arr.add(Box.it(2));
+    arr.add(Box.it(3));
     azzert.that(Box.box(1), azzert.is(the.headOf(arr)));
   }
 
   @Test public void theTestTailOf() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
-    arr.add(2);
-    arr.add(3);
+    arr.add(Box.it(1));
+    arr.add(Box.it(2));
+    arr.add(Box.it(3));
     final ArrayList<Integer> res = new ArrayList<>();
-    res.add(2);
-    res.add(3);
+    res.add(Box.it(2));
+    res.add(Box.it(3));
     azzert.that(res, azzert.is(the.tailOf(arr)));
   }
 
@@ -96,13 +96,13 @@ import org.junit.*;
 
   @Test public void theTestRest() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
-    arr.add(2);
-    arr.add(3);
+    arr.add(Box.it(1));
+    arr.add(Box.it(2));
+    arr.add(Box.it(3));
     final ArrayList<Integer> res = new ArrayList<>();
-    res.add(2);
-    res.add(3);
-    azzert.that(res, azzert.is(the.rest(1, arr)));
+    res.add(Box.it(2));
+    res.add(Box.it(3));
+    azzert.that(res, azzert.is(the.rest(Box.it(1), arr)));
   }
 
   @Test public void theTestcharacterOf() {
@@ -123,7 +123,7 @@ import org.junit.*;
 
   @Test public void theTestLastOfNotNull() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
+    arr.add(Box.it(1));
     azzert.that(Box.box(1), is(the.lastOf(arr)));
   }
 
@@ -141,14 +141,14 @@ import org.junit.*;
 
   @Test public void theTestOnlyOneOfNotNull() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
+    arr.add(Box.it(1));
     azzert.that(Box.box(1), is(the.onlyOneOf(arr)));
   }
 
   @Test public void theTestOnlyOneOfNull2() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
-    arr.add(2);
+    arr.add(Box.it(1));
+    arr.add(Box.it(2));
     azzert.assertNull(the.onlyOneOf(arr));
   }
 
@@ -158,15 +158,15 @@ import org.junit.*;
 
   @Test public void theTestsecondOfNull2() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
+    arr.add(Box.it(1));
     azzert.assertNull(the.secondOf(arr));
   }
 
   @Test public void theTestsecondOfNotNull() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
-    arr.add(2);
-    arr.add(3);
+    arr.add(Box.it(1));
+    arr.add(Box.it(2));
+    arr.add(Box.it(3));
     azzert.that(Box.box(2), is(the.secondOf(arr)));
   }
 
@@ -179,7 +179,7 @@ import org.junit.*;
   }
 
   @Test public void theTestLastOfArray() {
-    azzert.that(Box.box(4), is(the.lastOf(new Integer[] { 1, 2, 3, 4 })));
+    azzert.that(Box.box(4), is(the.lastOf(new Integer[] { Box.it(1), Box.it(2), Box.it(3), Box.it(4) })));
   }
 
   @Test public void theTestLastNull1() {
@@ -192,9 +192,9 @@ import org.junit.*;
 
   @Test public void theTestLastNotNull() {
     final ArrayList<Integer> arr = new ArrayList<>();
-    arr.add(1);
-    arr.add(2);
-    arr.add(3);
+    arr.add(Box.it(1));
+    arr.add(Box.it(2));
+    arr.add(Box.it(3));
     azzert.that(Box.box(3), is(the.last(arr)));
   }
 
@@ -203,7 +203,7 @@ import org.junit.*;
   }
 
   @Test public void theTestTailOfArray() {
-    azzert.that(new Integer[] { 2, 3, 4 }, is(the.tailOf(new Integer[] { 1, 2, 3, 4 })));
+    azzert.that(new Integer[] { Box.it(2), Box.it(3), Box.it(4) }, is(the.tailOf(new Integer[] { Box.it(1), Box.it(2), Box.it(3), Box.it(4) })));
   }
 
   @Test public void theTestRestString() {

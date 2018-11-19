@@ -18,7 +18,7 @@ import fluent.ly.___.Bug.Contract.*;
  * <code><b>static import</b></code>.
  * @author Yossi Gil (
  * @since 11/01/2006) */
-@SuppressWarnings("null") public abstract class ___ {
+public abstract class ___ {
   /** A do nothing method to document the fact that a <code><b>long</b></code>
    * parameter, along with a optional list of {@link Object}s are not used by a
    * function, and to suppress the warning.
@@ -354,7 +354,7 @@ import fluent.ly.___.Bug.Contract.*;
     return sprintf(format, box(d), o);
   }
 
-  public static String nprintf(final @NotNull String format, final int n1, final int n2) {
+  @NotNull public static String nprintf(final @NotNull String format, final int n1, final int n2) {
     return sprintf(format, box(n1), box(n2));
   }
 
@@ -362,7 +362,7 @@ import fluent.ly.___.Bug.Contract.*;
     return sprintf(format, box(i), o);
   }
 
-  public static String nprintf(final String format, final Object... args) {
+  @NotNull public static String nprintf(final String format, final Object... args) {
     return format == null ? "" : args == null ? format : sprintf(format, args);
   }
 

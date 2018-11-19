@@ -69,13 +69,13 @@ import fluent.ly.*;
     return list;
   }
 
-  @Test @SuppressWarnings({ "boxing", "null" }) public void singletonIterator() {
-    azzert.assertCollectionsEqual(toCollection(iterable.over(1)), toCollection(() -> iterables.singletonIterator(1)));
+  @Test @SuppressWarnings("null") public void singletonIterator() {
+    azzert.assertCollectionsEqual(toCollection(iterable.over(Box.it(1))), toCollection(() -> iterables.singletonIterator(Box.it(1))));
     azzert.assertCollectionsEqual(toCollection(iterable.over("one")), toCollection(() -> iterables.singletonIterator("one")));
   }
 
-  @Test @SuppressWarnings({ "boxing", "null" }) public void alternateNull() {
-    final Iterable<Integer> i1 = iterable.over(1, 3, 5);
+  @Test @SuppressWarnings("null") public void alternateNull() {
+    final Iterable<Integer> i1 = iterable.over(Box.it(1), Box.it(3), Box.it(5));
     azzert.assertNull(iterables.alternate(null, null));
     azzert.notNull(iterables.alternate(i1, null));
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, null)), toCollection(i1));
@@ -83,19 +83,19 @@ import fluent.ly.*;
     azzert.assertCollectionsEqual(toCollection(iterables.alternate(null, i1)), toCollection(i1));
   }
 
-  @Test @SuppressWarnings({ "boxing", "null" }) public void alternateIterablesWithSameLength() {
-    final Iterable<Integer> i1 = iterable.over(1, 3, 5), i2 = iterable.over(2, 4, 6);
-    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, i2)), toCollection(iterable.over(1, 2, 3, 4, 5, 6)));
-    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i2, i1)), toCollection(iterable.over(2, 1, 4, 3, 6, 5)));
+  @Test @SuppressWarnings( "null" ) public void alternateIterablesWithSameLength() {
+    final Iterable<Integer> i1 = iterable.over(Box.it(1), Box.it(3), Box.it(5)), i2 = iterable.over(Box.it(2), Box.it(4), Box.it(6));
+    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, i2)), toCollection(iterable.over(Box.it(1), Box.it(2), Box.it(3), Box.it(4), Box.it(5), Box.it(6))));
+    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i2, i1)), toCollection(iterable.over(Box.it(2), Box.it(1), Box.it(4), Box.it(3), Box.it(6), Box.it(5))));
   }
 
-  @Test @SuppressWarnings({ "boxing", "null" }) public void alternateIterablesWithoutSameLength() {
-    final Iterable<Integer> i1 = iterable.over(1, 3, 5, 7, 9, 11), i2 = iterable.over(1, 3), i3 = iterable.over(2, 4, 6);
-    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, i2)), toCollection(iterable.over(1, 1, 3, 3, 5, 7, 9, 11)));
-    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i2, i1)), toCollection(iterable.over(1, 1, 3, 3, 5, 7, 9, 11)));
-    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, i3)), toCollection(iterable.over(1, 2, 3, 4, 5, 6, 7, 9, 11)));
-    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i3, i1)), toCollection(iterable.over(2, 1, 4, 3, 6, 5, 7, 9, 11)));
-    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i2, i3)), toCollection(iterable.over(1, 2, 3, 4, 6)));
-    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i3, i2)), toCollection(iterable.over(2, 1, 4, 3, 6)));
+  @Test @SuppressWarnings( "null" ) public void alternateIterablesWithoutSameLength() {
+    final Iterable<Integer> i1 = iterable.over(Box.it(1), Box.it(3), Box.it(5), Box.it(7), Box.it(9), Box.it(11)), i2 = iterable.over(Box.it(1), Box.it(3)), i3 = iterable.over(Box.it(2), Box.it(4), Box.it(6));
+    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, i2)), toCollection(iterable.over(Box.it(1), Box.it(1), Box.it(3), Box.it(3), Box.it(5), Box.it(7), Box.it(9), Box.it(11))));
+    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i2, i1)), toCollection(iterable.over(Box.it(1), Box.it(1), Box.it(3), Box.it(3), Box.it(5), Box.it(7), Box.it(9), Box.it(11))));
+    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i1, i3)), toCollection(iterable.over(Box.it(1), Box.it(2), Box.it(3),  Box.it(4), Box.it(5), Box.it(6), Box.it(7), Box.it(9), Box.it(11))));
+    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i3, i1)), toCollection(iterable.over(Box.it(2), Box.it(1), Box.it(4), Box.it(3), Box.it(6),  Box.it(5), Box.it(7), Box.it(9), Box.it(11))));
+    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i2, i3)), toCollection(iterable.over(Box.it(1), Box.it(2), Box.it(3),  Box.it(4), Box.it(6))));
+    azzert.assertCollectionsEqual(toCollection(iterables.alternate(i3, i2)), toCollection(iterable.over(Box.it(2), Box.it(1),  Box.it(4), Box.it(3), Box.it(6))));
   }
 }

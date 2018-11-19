@@ -9,12 +9,12 @@ import java.util.function.*;
 
 import org.junit.*;
 
-@SuppressWarnings({ "static-method", "boxing" }) public class nilTest {
+@SuppressWarnings("static-method") public class nilTest {
   @Test public void forgetting() {
     assertNull(nil.forgetting(null));
-    assertNull(nil.forgetting(1));
-    assertNull(nil.forgetting(1, "a", true));
-    assertNull(nil.forgetting(new int[] { 1, 2, 3 }, null, 7));
+    assertNull(nil.forgetting(Box.it(1)));
+    assertNull(nil.forgetting(Box.it(1), "a", Box.it(true)));
+    assertNull(nil.forgetting(new int[] { 1, 2, 3 }, null, Box.it(7)));
   }
 
   @Test @SuppressWarnings("null") public void guardingly() {
@@ -23,7 +23,7 @@ import org.junit.*;
     assertEquals(5, Unbox.unbox(nil.guardingly(stringIntegerFunction).on("abcde")));
     final Function<Integer, String> integerStringFunction = λ -> λ + "";
     assertNull("5", nil.guardingly(integerStringFunction).on(null));
-    assertEquals("5", nil.guardingly(integerStringFunction).on(5));
+    assertEquals("5", nil.guardingly(integerStringFunction).on(Box.it(5)));
   }
 
   @Test public void ignoring_boolean() {
