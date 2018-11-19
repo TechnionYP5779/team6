@@ -100,17 +100,17 @@ public interface system {
           continue;
         case ')':
           c = $.pop();
-          if (c!=null && ($.isEmpty() || Unbox.unbox(c) != '('))
+          if (c != null && ($.isEmpty() || Unbox.unbox(c) != '('))
             return false;
           continue;
         case ']':
           c = $.pop();
-          if (c!=null && ($.isEmpty() || Unbox.unbox(c) != '['))
+          if (c != null && ($.isEmpty() || Unbox.unbox(c) != '['))
             return false;
           continue;
         case '}':
           c = $.pop();
-          if (c!=null && ($.isEmpty() || Unbox.unbox(c) != '{'))
+          if (c != null && ($.isEmpty() || Unbox.unbox(c) != '{'))
             return false;
           continue;
       }

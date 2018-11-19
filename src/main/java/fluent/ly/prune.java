@@ -66,5 +66,4 @@ import org.jetbrains.annotations.*;
           accumulate.to($).add((¢ + "").trim());
     return asArrray($);
   }
-
 }

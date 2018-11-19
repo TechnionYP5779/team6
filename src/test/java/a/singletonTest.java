@@ -25,6 +25,7 @@ import fluent.ly.*;
     assertArrayEquals(Collections.singletonList(Box.it(5)).toArray(), singleton.array(Box.it(5)));
     // T=string:
     assertArrayEquals(Collections.singletonList("555").toArray(), singleton.array("555"));
-    assertArrayEquals(Collections.singletonList(new Integer[] { Box.it(1), Box.it(2), Box.it(3) }).toArray(), singleton.array(new Integer[] { Box.it(1), Box.it(2), Box.it(3) }));
+    assertArrayEquals(Collections.singletonList(new Integer[] { Box.it(1), Box.it(2), Box.it(3) }).toArray(),
+        singleton.array(new Integer[] { Box.it(1), Box.it(2), Box.it(3) }));
   }
 }

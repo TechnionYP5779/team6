@@ -20,7 +20,7 @@ import org.junit.*;
     azzert.that(5, is(Unbox.unbox(nil.guardingly(stringIntegerFunction).on("abcde"))));
     final Function<Integer, String> integerStringFunction = λ -> λ + "";
     assertNull("5", nil.guardingly(integerStringFunction).on(null));
-    azzert.that("5", is( nil.guardingly(integerStringFunction).on(Box.it(5))));
+    azzert.that("5", is(nil.guardingly(integerStringFunction).on(Box.it(5))));
   }
 
   @Test public void ignoring_boolean() {

@@ -15,7 +15,6 @@ public interface the {
     for (final Integer $ : range.from(0).to(is.length))
       if ($ != null && is[Unbox.unbox($)] == i)
         return Unbox.unbox($);
-    
     return -1;
   }
 
