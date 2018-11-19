@@ -54,7 +54,7 @@ import org.jetbrains.annotations.*;
    * @param   <T> type of elements in the input array.
    * @param ¢ an array of values.
    * @return an array of size 0 of elements of type <code>T</code>. */
-  private static <T> T[] shrink(final T @NotNull [] ¢) {
+  static <T> T[] shrink(final T @NotNull [] ¢) {
     return Arrays.copyOf(¢, 0);
   }
 
@@ -66,24 +66,5 @@ import org.jetbrains.annotations.*;
           accumulate.to($).add((¢ + "").trim());
     return asArrray($);
   }
-  /** A JUnit test class for the enclosing class.
-   * @author Yossi Gil, the Technion.
-   * @since 27/08/2008 */
-  // @SuppressWarnings({ "static-method", "synthetic-access" }) //
-  // public static class TEST1 {
-  //
-  // //left the shrink tests here as it is a private func//
-  // @Test public void shrinkArray() {
-  // assertEquals(0, shrink(new Object[10]).length);
-  // }
-  //
-  // @Test public void shrinkEmptyArray() {
-  // assertEquals(0, shrink(new Object[0]).length);
-  // }
-  //
-  // @Test public void testShrink() {
-  // azzert.that(shrink(new Object[10]).length, is(0));
-  // }
-  //
-  // }
+
 }
