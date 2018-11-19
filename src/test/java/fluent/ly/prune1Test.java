@@ -52,13 +52,14 @@ import org.junit.*;
     assert nulls(sparseCollection) != null;
   }
 
-  // @Test public void shrinkArray() {
-  // assertEquals(0, shrink(new Object[10]).length);
-  // }
-  //
-  // @Test public void shrinkEmptyArray() {
-  // assertEquals(0, shrink(new Object[0]).length);
-  // }
+  @Test public void shrinkArray() {
+    assertEquals(0, shrink(new Object[10]).length);
+  }
+
+  @Test public void shrinkEmptyArray() {
+    assertEquals(0, shrink(new Object[0]).length);
+  }
+
   @Test public void whitesEmptyArray() {
     assertEquals(0, prune.whites().length);
   }

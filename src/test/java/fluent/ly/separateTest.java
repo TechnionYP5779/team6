@@ -100,15 +100,14 @@ import il.org.spartan.*;
     azzert.that(separate.these(apply(quote).to("Hello", "World")).by(", "), is("'Hello', 'World'"));
   }
 
-  // TODO: fix test
-  // @Test public final void byIntArrayChar() {
-  // azzert.that(separate.these(new int[] { 3, 4 }).by(':'), is("3:4"));
-  // }
-  // TODO: fix test
-  // @Test public final void byIntArrayString() {
-  // azzert.that(separate.these(new int @NotNull [] { -1, 2 }).by("; "), is("-1;
-  // 2"));
-  // }
+   @Test public final void byIntArrayChar() {
+   azzert.that(separate.these(new int[] { 3, 4 }).by(':'), is("3:4"));
+   }
+   
+   @Test public final void byIntArrayString() {
+   azzert.that(separate.these(new int @NotNull [] { -1, 2 }).by("; "), is("-1; 2"));
+   }
+   
   @Test public final void byIterableOfChar() {
     azzert.that(separate.these(as.array("Hello", "World")).by(','), is("Hello,World"));
   }

@@ -90,7 +90,9 @@ import org.junit.*;
   @Test public void testPrunNotNull() {
     assert nulls(sparseCollection) != null;
   }
-  // @Test public void testShrink() {
-  // azzert.that(shrink(new Object[10]).length, is(0));
-  // }
+  
+  @Test @SuppressWarnings("static-method") public void testShrink() {
+    azzert.that(shrink(new Object[10]).length, is(0));
+  }
+  
 }

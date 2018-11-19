@@ -2,8 +2,6 @@ package fluent.ly;
 
 import static org.junit.Assert.assertEquals;
 
-// import static org.junit.Assert.assertEquals;
-import static fluent.ly.___.*;
 import static fluent.ly.azzert.assertEquals;
 
 import org.junit.*;
@@ -212,7 +210,7 @@ import org.junit.*;
       assertEquals(0, v.value());
     }
     try {
-      unused(new ___.Variant(-1));
+      forget.unused(new ___.Variant(-1));
     } catch (final ___.Bug.Assertion.Variant.Initial ¢) {
       assertEquals("Initial variant value (-1) is negative", ¢.getMessage());
     }
