@@ -132,7 +132,7 @@ import il.org.spartan.*;
   String NL = System.getProperty("line.separator");
 
   default String cellReal(final Double ¢) {
-    return ¢.longValue() != Unbox.unbox(¢) ? ¢ + "" : cellInt(Box.box(¢.longValue()));
+    return ¢.longValue() != unbox.unboxDouble(¢) ? ¢ + "" : cellInt(Box.box(¢.longValue()));
   }
 
   static String empty() {
