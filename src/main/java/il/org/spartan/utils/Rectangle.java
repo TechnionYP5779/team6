@@ -5,8 +5,8 @@ public class Rectangle {
   public final Point bottomRight;
   public final Point bottomLeft;
   public final Point topRight;
-  public final int length;
-  public final int width;
+  public final double length;
+  public final double width;
 
   public Rectangle(Point a, Point b) {
     if (a.x > b.x) {
@@ -26,22 +26,22 @@ public class Rectangle {
     width = (topRight.y - bottomRight.y) == length ? (topRight.x - topLeft.x) : (topRight.y - bottomRight.y);
   }
 
-  public int getArea() {
+  public double getArea() {
     // TODO Auto-generated method stub
     return ((topRight.y - bottomRight.y) * (bottomRight.x - bottomLeft.x));
   }
 
-  public int getPerimeter() {
+  public double getPerimeter() {
     // TODO Auto-generated method stub
     return (2 * (topRight.y + bottomRight.x - bottomLeft.x - bottomRight.y));
   }
 
-  public int getLength() {
+  public double getLength() {
     // TODO Auto-generated method stub
     return length;
   }
 
-  public int getWidth() {
+  public double getWidth() {
     // TODO Auto-generated method stub
     return width;
   }
