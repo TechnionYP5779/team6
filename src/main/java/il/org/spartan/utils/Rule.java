@@ -150,7 +150,7 @@ public interface Rule<T, R> extends Function<T, R>, Recursive<Rule<T, R>> {
   @Check boolean check(T n);
 
   default String description() {
-    return format("%s/[%s]%s=", //
+    return format("%s/[%s]%s=", // lgtm [java/unused-format-argument]
         English.name(Rule.class), //
         English.name(this), //
         technicalName() == English.name(this) ? "" : technicalName(), //

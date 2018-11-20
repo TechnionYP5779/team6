@@ -15,7 +15,7 @@ public interface iterable {
   }
 
   /** Creates an iterable for an array of objects
-   * @param    < T > an arbitrary type
+   * @param    <T> an arbitrary type
    * @param ts what to iterate on
    * @return an {@link Iterable} over the parameter */
   @SafeVarargs @NotNull static <T> Iterable<T> over(final T... ts) {
