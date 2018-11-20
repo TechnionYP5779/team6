@@ -185,7 +185,7 @@ public class azzert extends org.junit.Assert {
   }
 
   public static void assertFalse(final boolean ¢) {
-    that("", Box.box(¢), is(Boolean.FALSE));
+    assert ! ¢;
   }
 
   public static void assertFalse(final @NotNull String s, final boolean b) {
@@ -237,7 +237,7 @@ public class azzert extends org.junit.Assert {
   }
 
   public static void assertTrue(final boolean ¢) {
-    that("", Box.box(¢), is(Boolean.TRUE));
+    assert ¢;
   }
 
   public static void assertTrue(final @NotNull String s, final boolean b) {
@@ -761,7 +761,7 @@ public class azzert extends org.junit.Assert {
     }
 
     @NotNull public Asserter andAye(final @NotNull String reason, final boolean claim) {
-      azzert.that(reason, claim, is(true));
+      assert claim : reason;
       return this;
     }
 
@@ -770,7 +770,7 @@ public class azzert extends org.junit.Assert {
     }
 
     @NotNull public Asserter andNay(final @NotNull String reason, final boolean claim) {
-      azzert.that(reason, claim, is(false));
+      assert !claim : reason;
       return this;
     }
   }

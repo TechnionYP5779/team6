@@ -208,7 +208,7 @@ public interface Rule<T, R> extends Function<T, R>, Recursive<Rule<T, R>> {
       final Integer $ = count.get(key);
       if ($ == null)
         return null;
-      count.put(key, Box.it(Unbox.it($) + 1));
+      count.put(key, Box.it(unbox.it($) + 1));
       return super.before(key, arguments);
     }
   }

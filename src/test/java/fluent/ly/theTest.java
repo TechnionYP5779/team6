@@ -8,11 +8,11 @@ import org.junit.*;
 
 @SuppressWarnings({ "null", "static-method" }) public class theTest {
   @Test public void theTestIndexFound() {
-    azzert.that(1, azzert.is(the.index(2, 1, 2, 3)));
+    azzert.that(1, is(the.index(2, 1, 2, 3)));
   }
 
   @Test public void theTestIndexNotFound() {
-    azzert.that(-1, azzert.is(the.index(5, 1, 2, 3)));
+    azzert.that(-1, is(the.index(5, 1, 2, 3)));
   }
 
   @Test public void theTestNil() {
@@ -20,11 +20,11 @@ import org.junit.*;
   }
 
   @Test public void theTestnth1() {
-    azzert.that(" #1/3", azzert.is(the.nth(1, 3)));
+    azzert.that(" #1/3", is(the.nth(1, 3)));
   }
 
   @Test public void theTestnth2() {
-    azzert.that(" #1/3", azzert.is(the.nth("1", "3")));
+    azzert.that(" #1/3", is(the.nth("1", "3")));
   }
 
   @Test public void theTestpenultimateOf1() {
@@ -42,7 +42,7 @@ import org.junit.*;
     arr.add(Box.it(1));
     arr.add(Box.it(2));
     arr.add(Box.it(3));
-    azzert.that(Box.it(2), azzert.is(the.penultimateOf(arr)));
+    azzert.that(Box.it(2), is(the.penultimateOf(arr)));
   }
 
   @Test public void theTestPreviousNull() {
@@ -60,7 +60,7 @@ import org.junit.*;
     arr.add(Box.it(1));
     arr.add(Box.it(2));
     arr.add(Box.it(3));
-    azzert.that(Box.it(2), azzert.is(the.previous(Box.it(3), arr)));
+    azzert.that(Box.it(2), is(the.previous(Box.it(3), arr)));
   }
 
   @Test public void theTestHeadNull() {
@@ -76,7 +76,7 @@ import org.junit.*;
     arr.add(Box.it(1));
     arr.add(Box.it(2));
     arr.add(Box.it(3));
-    azzert.that(Box.it(1), azzert.is(the.headOf(arr)));
+    azzert.that(Box.it(1), is(the.headOf(arr)));
   }
 
   @Test public void theTestTailOf() {
@@ -87,7 +87,7 @@ import org.junit.*;
     final ArrayList<Integer> res = new ArrayList<>();
     res.add(Box.it(2));
     res.add(Box.it(3));
-    azzert.that(res, azzert.is(the.tailOf(arr)));
+    azzert.that(res, is(the.tailOf(arr)));
   }
 
   @Test public void theTestTailOfString() {
@@ -102,7 +102,7 @@ import org.junit.*;
     final ArrayList<Integer> res = new ArrayList<>();
     res.add(Box.it(2));
     res.add(Box.it(3));
-    azzert.that(res, azzert.is(the.rest(Box.it(1), arr)));
+    azzert.that(res, is(the.rest(Box.it(1), arr)));
   }
 
   @Test public void theTestcharacterOf() {
@@ -207,6 +207,6 @@ import org.junit.*;
   }
 
   @Test public void theTestRestString() {
-    azzert.that("est", azzert.is(the.rest("test")));
+    azzert.that("est", is(the.rest("test")));
   }
 }

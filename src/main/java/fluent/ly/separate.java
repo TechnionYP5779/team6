@@ -106,7 +106,7 @@ import il.org.spartan.*;
   }
 
   static void assertFalse(final boolean ¢) {
-    azzert.nay(¢);
+    assert !¢;
   }
 
   static void assertFalse(final @NotNull String reason, final boolean b) {
@@ -118,7 +118,7 @@ import il.org.spartan.*;
   }
 
   static void assertTrue(final boolean ¢) {
-    azzert.aye(¢);
+    assert ¢;
   }
 
   static void assertTrue(final @NotNull String reason, final boolean b) {
