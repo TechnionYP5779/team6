@@ -27,8 +27,8 @@ package fluent.ly;
    * @param __   the unused parameter
    * @param ____ more unused parameters */
   static void ______unused(final long l, final Object... os) {
-    it(l);
-    all(os);
+    forget.it(l);
+    forget.all(os);
   }
 
   /** A do nothing method to document the fact that some <code>Object</code>(s)
@@ -77,7 +77,7 @@ package fluent.ly;
    * warnings on the argument(s).
    * @param ____ the unused parameters */
   static void unused(final Object... ____) {
-    it(____);
+    forget.it(____);
   }
 
   static void unused(final long __, final Object... ____) {
