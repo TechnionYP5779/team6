@@ -60,7 +60,7 @@ import il.org.spartan.utils.Separate.*;
   }
 
   /** Adds all {@link External} properties in a given object.
-   * @param ¢ an arbitrary object, usually with some of its fields and methods
+   * @param $ an arbitrary object, usually with some of its fields and methods
    *          marked {@link External}
    * @return the parameter */
   public <T> T extract(final T $) {
