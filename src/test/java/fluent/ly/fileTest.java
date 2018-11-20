@@ -3,15 +3,13 @@ package fluent.ly;
 import static fluent.ly.azzert.*;
 
 import java.io.*;
-import java.util.*;
 
 import org.junit.*;
 
-public class fileTest {
+@SuppressWarnings({"static-method", "unused"}) public class fileTest {
     @Test public void renameToCSVTest() {
       String path1 = "tmpFile123";
-      File file1 = new File(path1);
-      File file2 = new File(path1 + ".csv");
+      File file1 = new File(path1), file2 = new File(path1 + ".csv");
       if(file1.exists() || file1.isDirectory() || file2.exists() || file2.isDirectory())
         return;
       try {
