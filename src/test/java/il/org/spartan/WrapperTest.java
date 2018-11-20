@@ -1,10 +1,10 @@
 package il.org.spartan;
 
 import org.junit.*;
-
 import static fluent.ly.azzert.*;
 
 import fluent.ly.*;
+import il.org.spartan.utils.Outer.*;
 
 @SuppressWarnings("null") public class WrapperTest {
   private Wrapper<Integer> nullWrap = new Wrapper<>();

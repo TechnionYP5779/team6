@@ -57,4 +57,48 @@ public class Outer<Inner> implements Cloneable {
   @Override public String toString() {
     return cantBeNull(inner + "");
   }
+  
+  public static class Wrapper<@Nullable T> {
+    @Nullable protected T inner;
+
+    public Wrapper() {
+      this(null);
+    }
+
+    public Wrapper(final @Nullable T inner) {
+      this.inner = inner;
+    }
+
+    @Override @NotNull @SuppressWarnings("unchecked") public Wrapper<T> clone() throws CloneNotSupportedException {
+      return (Wrapper<T>) cantBeNull(super.clone());
+    }
+
+    @Override @SuppressWarnings("unchecked") public final boolean equals(final @Nullable Object ¢) {
+      return super.equals(¢) || ¢ != null && getClass() == ¢.getClass() && equals((Wrapper<T>) ¢);
+    }
+
+    public boolean equals(final Wrapper<T> ¢) {
+      return inner == null ? ¢.inner == null : equalsAux(¢.inner);
+    }
+
+    private boolean equalsAux(final T ¢) {
+      return inner != null && inner.equals(¢);
+    }
+
+    public T get() {
+      return inner;
+    }
+
+    @Override @SuppressWarnings("null") public int hashCode() {
+      return inner == null ? 0 : inner.hashCode();
+    }
+
+    public void set(final T inner) {
+      this.inner = inner;
+    }
+
+    @Override @NotNull public String toString() {
+      return inner == null ? "null" : cantBeNull(inner + "");
+    }
+  }
 }

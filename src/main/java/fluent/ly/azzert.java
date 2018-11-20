@@ -10,7 +10,7 @@ import org.hamcrest.number.*;
 import org.jetbrains.annotations.*;
 import org.junit.*;
 
-import il.org.spartan.*;
+import il.org.spartan.utils.Outer.*;
 
 /** Extends {@link org.junit.Assert} with more assertion for equality
  * comparisons. If the comparison yields a "not-equal" result, a JUnit assertion
