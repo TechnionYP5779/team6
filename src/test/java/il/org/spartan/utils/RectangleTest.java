@@ -7,7 +7,7 @@ import org.junit.*;
 import fluent.ly.*;
 
 @SuppressWarnings("static-method") public class RectangleTest {
-  @Test public void RectangleTDDTest() {
+  @Test @SuppressWarnings("null") public void RectangleTDDTest() {
     azzert.that(new Rectangle(new Point(6.0, 7.0), new Point(12.0, 3.0)).bottomLeft.x,
         is(new Rectangle(new Point(6.0, 7.0), new Point(12.0, 3.0)).topLeft.x));
     azzert.that(new Rectangle(new Point(6.0, 7.0), new Point(12.0, 3.0)).bottomLeft.y,
@@ -50,9 +50,9 @@ import fluent.ly.*;
     azzert.that(new Rectangle(new Point(11.0, 7.0), new Point(12.0, 3.0)).getWidth(), is(1.0));
     final Rectangle a = new Rectangle(new Point(12.0, 3.0), new Point(6.0, 7.0));
     azzert.that(a.bottomLeft, is(a.bottomLeft));
-    azzert.assertNotEquals(a.bottomLeft, box.it(5.0));
-    azzert.assertNotEquals(a.bottomLeft, new Point(6.0, 6.0));
-    azzert.assertNotEquals(a.bottomLeft, new Point(5.0, 6.0));
-    azzert.assertNotEquals(a.bottomLeft, new Point(5.0, 7.0));
+    azzert.that(a.bottomLeft, not(box.it(5.0)));
+    azzert.that(a.bottomLeft, not(new Point(6.0, 6.0)));
+    azzert.that(a.bottomLeft, not(new Point(5.0, 6.0)));
+    azzert.that(a.bottomLeft, not(new Point(5.0, 7.0)));
   }
 }

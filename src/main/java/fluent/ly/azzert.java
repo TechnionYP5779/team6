@@ -185,7 +185,7 @@ public class azzert extends org.junit.Assert {
   }
 
   public static void assertFalse(final boolean ¢) {
-    assert ! ¢;
+    assert !¢;
   }
 
   public static void assertFalse(final @NotNull String s, final boolean b) {
@@ -742,13 +742,13 @@ public class azzert extends org.junit.Assert {
   /** Assert that an integer is zero
    * @param ¢ JD */
   public static void zero(final int ¢) {
-    assertEquals(0, ¢);
+    azzert.that(0, is(¢));
   }
 
   /** Assert that long is zero
    * @param ¢ JD */
   public static void zero(final long ¢) {
-    assertEquals(0L, ¢);
+    azzert.that(0L, is(¢));
   }
 
   public static class ____META {
