@@ -14,11 +14,11 @@ import fluent.ly.*;
 
 @SuppressWarnings("static-method") public class iterablesTest {
   @Test public void containsDegenerate() {
-    azzert.nay(contains("Hello"));
+    assert !(contains("Hello"));
   }
 
   @Test public void containseturnsFalseTypical() {
-    azzert.nay(contains("Hello", null, "x", "y", null, "z", "w", "u", "v"));
+    assert !(contains("Hello", null, "x", "y", null, "z", "w", "u", "v"));
   }
 
   @Test public void containsSimple() {

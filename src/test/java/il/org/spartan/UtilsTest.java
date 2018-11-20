@@ -24,8 +24,8 @@ import fluent.ly.*;
   @Test @SuppressWarnings("unchecked") public void addAllTypical() {
     final Set<String> ss = new HashSet<>();
     accumulate.to(ss).addAll(as.set("A", "B"), null, as.set("B", "C", "D"));
-    azzert.nay(ss.contains("E"));
-    azzert.nay(ss.contains(null));
+    assert !(ss.contains("E"));
+    assert !(ss.contains(null));
     azzert.that(ss.size(), is(4));
     for (final @NotNull String ¢ : ss)
       azzert.aye("", ss.contains(¢));
@@ -34,12 +34,12 @@ import fluent.ly.*;
   @Test public void addTypical() {
     final Set<String> ss = new HashSet<>();
     accumulate.to(ss).add(null, "A", null, "B", "B", null, "C", "D", null);
-    azzert.nay(ss.contains("E"));
-    azzert.nay(ss.contains(null));
+    assert !(ss.contains("E"));
+    assert !(ss.contains(null));
     azzert.that(ss.size(), is(4));
     for (final @NotNull String ¢ : ss)
       azzert.aye("", ss.contains(¢));
-    azzert.aye(ss.contains("A"));
+    assert (ss.contains("A"));
   }
 
   @Test public void cantBeNullOfNull() {

@@ -142,11 +142,11 @@ import il.org.spartan.*;
   }
 
   @Test public final void bySpacesLengthLessThan2() {
-    azzert.aye(separate.these().bySpaces().length() < 2);
+    assert (separate.these().bySpaces().length() < 2);
   }
 
   @Test public final void bySpacesLengthLessThan3() {
-    azzert.aye(separate.these().bySpaces().length() < 3);
+    assert (separate.these().bySpaces().length() < 3);
   }
 
   @Test public final void bySpacesTypical() {
@@ -170,7 +170,7 @@ import il.org.spartan.*;
     assert these != null : null;
     final Iterable<?> os = these.os;
     assert os != null : null;
-    azzert.aye(is.empty(os));
+    assert (is.empty(os));
     final @NotNull String[] ss = as.strings(os);
     assert ss != null : null;
     azzert.zero(ss.length);
@@ -252,7 +252,7 @@ import il.org.spartan.*;
   }
 
   @Test public final void theseOfNoItemsl() {
-    azzert.aye(is.empty(separate.these(new String[] {}).os));
+    assert (is.empty(separate.these(new String[] {}).os));
   }
 
   @Test public final void theseOfNoItemslSpaceSeparated() {
