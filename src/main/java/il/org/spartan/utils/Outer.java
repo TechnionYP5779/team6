@@ -4,6 +4,8 @@ import org.jetbrains.annotations.*;
 
 import il.org.spartan.*;
 
+import static il.org.spartan.Utils.*;
+
 /** TODO Yossi Gil: document class
  * @author Yossi Gil
  * @since 2017-03-21 */
@@ -35,7 +37,7 @@ public class Outer<Inner> implements Cloneable {
   }
 
   @Override @NotNull @SuppressWarnings("unchecked") public Outer<Inner> clone() throws CloneNotSupportedException {
-    return (Outer<Inner>) Utils.cantBeNull(super.clone());
+    return (Outer<Inner>) cantBeNull(super.clone());
   }
 
   public Inner get() {
@@ -53,6 +55,6 @@ public class Outer<Inner> implements Cloneable {
   }
 
   @Override public String toString() {
-    return Utils.cantBeNull(inner + "");
+    return cantBeNull(inner + "");
   }
 }

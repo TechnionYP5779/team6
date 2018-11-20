@@ -1,6 +1,7 @@
 package il.org.spartan;
 
 import org.jetbrains.annotations.*;
+import static il.org.spartan.Utils.*;
 
 /** A generic wrapper classes which can store and retrieve values of any type.
  * @author Yossi Gil
@@ -21,7 +22,7 @@ public class Wrapper<@Nullable T> {
   }
 
   @Override @NotNull @SuppressWarnings("unchecked") public Wrapper<T> clone() throws CloneNotSupportedException {
-    return (Wrapper<T>) Utils.cantBeNull(super.clone());
+    return (Wrapper<T>) cantBeNull(super.clone());
   }
 
   @Override @SuppressWarnings("unchecked") public final boolean equals(final @Nullable Object ¢) {
@@ -54,6 +55,6 @@ public class Wrapper<@Nullable T> {
   }
 
   @Override @NotNull public String toString() {
-    return inner == null ? "null" : Utils.cantBeNull(inner + "");
+    return inner == null ? "null" : cantBeNull(inner + "");
   }
 }

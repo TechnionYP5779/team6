@@ -2,6 +2,8 @@ package il.org.spartan;
 
 import static fluent.ly.___.*;
 
+import static il.org.spartan.Utils.*;
+
 import java.io.*;
 import java.lang.reflect.*;
 import java.util.*;
@@ -30,7 +32,7 @@ import fluent.ly.*;
   public static String combine(final Class<?>[] cs) {
     final String @NotNull [] $ = new String[cs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)
-      $[¢] = cs[¢] == null ? null : Utils.cantBeNull(cs[¢].getName());
+      $[¢] = cs[¢] == null ? null : cantBeNull(cs[¢].getName());
     return combine($);
   }
 
