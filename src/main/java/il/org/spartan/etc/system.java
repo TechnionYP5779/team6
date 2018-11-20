@@ -96,21 +96,21 @@ public interface system {
         case '(':
         case '[':
         case '{':
-          $.push(Box.it(¢));
+          $.push(box.it(¢));
           continue;
         case ')':
           c = $.pop();
-          if (c != null && ($.isEmpty() || unbox.unboxChar(c) != '('))
+          if (c != null && ($.isEmpty() || unbox.unboxThis(c) != '('))
             return false;
           continue;
         case ']':
           c = $.pop();
-          if (c != null && ($.isEmpty() || unbox.unboxChar(c) != '['))
+          if (c != null && ($.isEmpty() || unbox.unboxThis(c) != '['))
             return false;
           continue;
         case '}':
           c = $.pop();
-          if (c != null && ($.isEmpty() || unbox.unboxChar(c) != '{'))
+          if (c != null && ($.isEmpty() || unbox.unboxThis(c) != '{'))
             return false;
           continue;
       }

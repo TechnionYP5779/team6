@@ -1,6 +1,6 @@
 package fluent.ly;
 
-import static fluent.ly.Box.*;
+import static fluent.ly.box.*;
 import static fluent.ly.string.*;
 
 import org.jetbrains.annotations.*;
@@ -332,15 +332,15 @@ import fluent.ly.___.Bug.Contract.*;
   }
 
   public static String nprintf(final @NotNull String format, final double d, final Object o) {
-    return sprintf(format, box(d), o);
+    return sprintf(format, boxThis(d), o);
   }
 
   public static String nprintf(final @NotNull String format, final int n1, final int n2) {
-    return sprintf(format, box(n1), box(n2));
+    return sprintf(format, boxThis(n1), boxThis(n2));
   }
 
   public static String nprintf(final @NotNull String format, final int i, final Object o) {
-    return sprintf(format, box(i), o);
+    return sprintf(format, boxThis(i), o);
   }
 
   public static String nprintf(final String format, final Object... args) {
@@ -807,7 +807,7 @@ import fluent.ly.___.Bug.Contract.*;
           private static final long serialVersionUID = -0x5D41A321B4183C1AL;
 
           public Initial(final int value) {
-            super(nprintf("Initial variant value (%d) is negative", Box.it(value)));
+            super(nprintf("Initial variant value (%d) is negative", box.it(value)));
           }
         }
 
@@ -831,7 +831,7 @@ import fluent.ly.___.Bug.Contract.*;
           private static final long serialVersionUID = 0x740EDCFDC38B6562L;
 
           public Underflow(final int newValue) {
-            super(nprintf("New variant value (%d) is negative", Box.it(newValue)));
+            super(nprintf("New variant value (%d) is negative", box.it(newValue)));
           }
         }
       }

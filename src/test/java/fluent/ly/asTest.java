@@ -17,13 +17,13 @@ import org.junit.*;
   }
 
   @Test public void asTestNotEmptyIterator() {
-    final Iterator<Integer> resIter = as.asIterable(Box.it(1), Box.it(2), Box.it(3)).iterator();
+    final Iterator<Integer> resIter = as.asIterable(box.it(1), box.it(2), box.it(3)).iterator();
     assert resIter.hasNext();
-    azzert.that(Box.it(1), is(resIter.next()));
+    azzert.that(box.it(1), is(resIter.next()));
     assert resIter.hasNext();
-    azzert.that(Box.it(2), is(resIter.next()));
+    azzert.that(box.it(2), is(resIter.next()));
     assert resIter.hasNext();
-    azzert.that(Box.it(3), is(resIter.next()));
+    azzert.that(box.it(3), is(resIter.next()));
     assert !resIter.hasNext();
   }
 
@@ -38,9 +38,9 @@ import org.junit.*;
 
   @Test public void asTestNotEmptyIntegerList() {
     final List<Integer> res = as.ingeterList(1, 2, 3), list = new ArrayList<>();
-    list.add(Box.it(1));
-    list.add(Box.it(2));
-    list.add(Box.it(3));
+    list.add(box.it(1));
+    list.add(box.it(2));
+    list.add(box.it(3));
     azzert.that(list, is(res));
   }
 
@@ -49,13 +49,13 @@ import org.junit.*;
   }
 
   @Test public void asTestIterator() {
-    final Iterator<Integer> resIter = as.iterator(Box.it(1), Box.it(2), Box.it(3));
+    final Iterator<Integer> resIter = as.iterator(box.it(1), box.it(2), box.it(3));
     assert resIter.hasNext();
-    azzert.that(Box.it(1), is(resIter.next()));
+    azzert.that(box.it(1), is(resIter.next()));
     assert resIter.hasNext();
-    azzert.that(Box.it(2), is(resIter.next()));
+    azzert.that(box.it(2), is(resIter.next()));
     assert resIter.hasNext();
-    azzert.that(Box.it(3), is(resIter.next()));
+    azzert.that(box.it(3), is(resIter.next()));
     assert !resIter.hasNext();
   }
 
@@ -65,10 +65,10 @@ import org.junit.*;
 
   @Test public void asTestSet() {
     final Set<Integer> set = new HashSet<>();
-    set.add(Box.it(1));
-    set.add(Box.it(2));
-    set.add(Box.it(3));
-    azzert.that(set, is(as.set(Box.it(1), Box.it(1), Box.it(2), Box.it(3), Box.it(2), Box.it(3), Box.it(1), Box.it(2), Box.it(3))));
+    set.add(box.it(1));
+    set.add(box.it(2));
+    set.add(box.it(3));
+    azzert.that(set, is(as.set(box.it(1), box.it(1), box.it(2), box.it(3), box.it(2), box.it(3), box.it(1), box.it(2), box.it(3))));
   }
 
   @Test public void asTestString() {
@@ -99,9 +99,9 @@ import org.junit.*;
   @Test public void asListSimple() {
     // direct call `as.list(12, 13, 14)` kills Travis --or
     final @NotNull List<Integer> is = as.list(new int @NotNull [] { 12, 13, 14 });
-    azzert.that(is.get(0), is(fluent.ly.Box.it(12)));
-    azzert.that(is.get(1), is(fluent.ly.Box.it(13)));
-    azzert.that(is.get(2), is(fluent.ly.Box.it(14)));
+    azzert.that(is.get(0), is(fluent.ly.box.it(12)));
+    azzert.that(is.get(1), is(fluent.ly.box.it(13)));
+    azzert.that(is.get(2), is(fluent.ly.box.it(14)));
     azzert.that(is.size(), is(3));
   }
 

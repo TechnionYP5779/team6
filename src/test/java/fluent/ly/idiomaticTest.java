@@ -7,9 +7,9 @@ import org.junit.*;
 
 @SuppressWarnings("static-method") public class idiomaticTest {
   @Test public void incaseTest() {
-    assert Box.it(7).equals(idiomatic.incase(3 > 2, Box.it(7)));
-    assert !Box.it(7).equals(idiomatic.incase(2 > 3, Box.it(7)));
-    assert idiomatic.incase(2 > 3, Box.it(7)) == null;
+    assert box.it(7).equals(idiomatic.incase(3 > 2, box.it(7)));
+    assert !box.it(7).equals(idiomatic.incase(2 > 3, box.it(7)));
+    assert idiomatic.incase(2 > 3, box.it(7)) == null;
   }
 
   @Test public void quoteTest() {

@@ -7,10 +7,10 @@ import fluent.ly.*;
  * @since 2017-04-20 */
 public class BooleanOrReducer extends Reduce<Boolean> {
   @Override public Boolean reduce() {
-    return Box.box(false);
+    return box.boxThis(false);
   }
 
   @Override public Boolean reduce(final Boolean r1, final Boolean r2) {
-    return Box.box(Boolean.TRUE.equals(r1) || Boolean.TRUE.equals(r2));
+    return box.boxThis(Boolean.TRUE.equals(r1) || Boolean.TRUE.equals(r2));
   }
 }

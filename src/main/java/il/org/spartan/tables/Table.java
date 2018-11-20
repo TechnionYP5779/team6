@@ -84,7 +84,7 @@ import il.org.spartan.utils.*;
       for (final Statistic s : statisics) {
         for (final @NotNull String key : keySet()) {
           final RealStatistics r = getRealStatistics(key);
-          put(key, r == null || r.n() == 0 ? "" : Box.it(s.of(r)));
+          put(key, r == null || r.n() == 0 ? "" : box.it(s.of(r)));
         }
         final @NotNull String key = lastEmptyColumn();
         for (final RecordWriter ¢ : writers) {

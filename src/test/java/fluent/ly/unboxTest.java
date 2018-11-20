@@ -9,22 +9,22 @@ import org.junit.*;
 @SuppressWarnings({ "null", "static-method" }) public class unboxTest {
   @Test public void unboxTestBoolean() {
     assertArrayEquals(new boolean[] { true, false, true, false },
-        unbox.unboxBoolean(new Boolean[] { Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE }));
+        unbox.unboxThis(new Boolean[] { Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, Boolean.FALSE }));
   }
 
   @Test public void unboxTestByte() {
     assertArrayEquals(new byte[] { 1, 2, 3, 4, 5 },
-        unbox.unboxByte(new Byte[] { Byte.valueOf("1"), Byte.valueOf("2"), Byte.valueOf("3"), Byte.valueOf("4"), Byte.valueOf("5") }));
+        unbox.unboxThis(new Byte[] { Byte.valueOf("1"), Byte.valueOf("2"), Byte.valueOf("3"), Byte.valueOf("4"), Byte.valueOf("5") }));
   }
 
   @Test public void unboxTestChar() {
     assertArrayEquals(new char[] { 'E', 'y', 'a', 'l' },
-        unbox.unboxChar(new Character[] { Character.valueOf('E'), Character.valueOf('y'), Character.valueOf('a'), Character.valueOf('l') }));
+        unbox.unboxThis(new Character[] { Character.valueOf('E'), Character.valueOf('y'), Character.valueOf('a'), Character.valueOf('l') }));
   }
 
   @Test public void unboxTestShort1() {
     assertArrayEquals(new short[] { 1, 2, 3, 4, 5 },
-        unbox.unboxShort(new Short[] { Short.valueOf("1"), Short.valueOf("2"), Short.valueOf("3"), Short.valueOf("4"), Short.valueOf("5") }));
+        unbox.unboxThis(new Short[] { Short.valueOf("1"), Short.valueOf("2"), Short.valueOf("3"), Short.valueOf("4"), Short.valueOf("5") }));
   }
 
   @Test public void unboxTestDouble() {
@@ -46,7 +46,7 @@ import org.junit.*;
 
   @Test public void unboxTestLong() {
     assertArrayEquals(new long[] { 1, 2, 3, 4, 5 },
-        unbox.unboxLong(new Long[] { Long.valueOf(1), Long.valueOf(2), Long.valueOf(3), Long.valueOf(4), Long.valueOf(5) }));
+        unbox.unboxThis(new Long[] { Long.valueOf(1), Long.valueOf(2), Long.valueOf(3), Long.valueOf(4), Long.valueOf(5) }));
   }
 
   @Test public void unboxTestDoubleArr() {
@@ -61,16 +61,16 @@ import org.junit.*;
   }
 
   @Test public void unboxTestintVal() {
-    azzert.that(1, is(unbox.it(Box.it(1))));
-    azzert.that(2, is(unbox.it(Box.it(2))));
-    azzert.that(3, is(unbox.it(Box.it(3))));
-    azzert.that(4, is(unbox.it(Box.it(4))));
+    azzert.that(1, is(unbox.it(box.it(1))));
+    azzert.that(2, is(unbox.it(box.it(2))));
+    azzert.that(3, is(unbox.it(box.it(3))));
+    azzert.that(4, is(unbox.it(box.it(4))));
   }
 
   @Test public void unboxTestDoubleVal() {
-    azzert.that(1.1, is(unbox.unboxDouble(Double.valueOf(1.1))));
-    azzert.that(2.1, is(unbox.unboxDouble(Double.valueOf(2.1))));
-    azzert.that(3.1, is(unbox.unboxDouble(Double.valueOf(3.1))));
+    azzert.that(1.1, is(unbox.unboxThis(Double.valueOf(1.1))));
+    azzert.that(2.1, is(unbox.unboxThis(Double.valueOf(2.1))));
+    azzert.that(3.1, is(unbox.unboxThis(Double.valueOf(3.1))));
   }
 
   @Test public void unboxTestIntArr() {
@@ -79,19 +79,19 @@ import org.junit.*;
   }
 
   @Test public void unboxTestBoolVal() {
-    assert unbox.unboxBoolean(Boolean.TRUE);
-    assert !unbox.unboxBoolean(Boolean.FALSE);
+    assert unbox.unboxThis(Boolean.TRUE);
+    assert !unbox.unboxThis(Boolean.FALSE);
   }
 
   @Test public void unboxTestByteVal() {
-    azzert.that((byte) 1, is(unbox.unboxByte(Byte.valueOf("1"))));
-    azzert.that((byte) 2, is(unbox.unboxByte(Byte.valueOf("2"))));
-    azzert.that((byte) 3, is(unbox.unboxByte(Byte.valueOf("3"))));
+    azzert.that((byte) 1, is(unbox.unboxThis(Byte.valueOf("1"))));
+    azzert.that((byte) 2, is(unbox.unboxThis(Byte.valueOf("2"))));
+    azzert.that((byte) 3, is(unbox.unboxThis(Byte.valueOf("3"))));
   }
 
   @Test public void unboxTestCharVal() {
-    azzert.that('E', is(unbox.unboxChar(Character.valueOf('E'))));
-    azzert.that('y', is(unbox.unboxChar(Character.valueOf('y'))));
-    azzert.that('a', is(unbox.unboxChar(Character.valueOf('a'))));
+    azzert.that('E', is(unbox.unboxThis(Character.valueOf('E'))));
+    azzert.that('y', is(unbox.unboxThis(Character.valueOf('y'))));
+    azzert.that('a', is(unbox.unboxThis(Character.valueOf('a'))));
   }
 }

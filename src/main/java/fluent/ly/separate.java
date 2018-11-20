@@ -52,27 +52,27 @@ import il.org.spartan.*;
   }
 
   @NotNull public static SeparationSubject these(final int @NotNull [] ¢) {
-    return these(Box.it(¢));
+    return these(box.it(¢));
   }
 
   @NotNull public static SeparationSubject these(final boolean @NotNull [] ¢) {
-    return these(Box.it(¢));
+    return these(box.it(¢));
   }
 
   @NotNull public static SeparationSubject these(final byte @NotNull [] ¢) {
-    return these(Box.it(¢));
+    return these(box.it(¢));
   }
 
   @NotNull public static SeparationSubject these(final char @NotNull [] ¢) {
-    return these(Box.it(¢));
+    return these(box.it(¢));
   }
 
   @NotNull public static SeparationSubject these(final double @NotNull [] ¢) {
-    return these(Box.it(¢));
+    return these(box.it(¢));
   }
 
   @NotNull public static SeparationSubject these(final float @NotNull [] ¢) {
-    return these(Box.it(¢));
+    return these(box.it(¢));
   }
 
   @NotNull public static SeparationSubject these(final Iterable<?> os) {
@@ -80,7 +80,7 @@ import il.org.spartan.*;
   }
 
   @NotNull public static SeparationSubject these(final long @NotNull [] ¢) {
-    return these(Box.it(¢));
+    return these(box.it(¢));
   }
 
   @NotNull public static <Key, Value> SeparationSubject these(final @NotNull Map<Key, Value> ¢) {
@@ -90,7 +90,7 @@ import il.org.spartan.*;
   }
 
   @NotNull public static SeparationSubject these(final short @NotNull [] ¢) {
-    return these(Box.it(¢));
+    return these(box.it(¢));
   }
 
   @SafeVarargs @NotNull public static <T> SeparationSubject these(final T... ¢) {

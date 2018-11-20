@@ -19,7 +19,7 @@ public final class Int {
 
   /** Function form, good substitute for auto-boxing */
   public Integer inner() {
-    return Box.box(inner);
+    return box.boxThis(inner);
   }
 
   /** @param ¢ JD

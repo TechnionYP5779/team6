@@ -16,19 +16,19 @@ public enum string {
   static final int MAX_LAST = 10;
 
   @SuppressWarnings("null") public static double atod(final @NotNull String ¢) {
-    return unbox.unboxDouble(Double.valueOf(¢));
+    return unbox.unboxThis(Double.valueOf(¢));
   }
 
   @SuppressWarnings("null") public static float atof(final @NotNull String ¢) {
-    return unbox.unboxFloat(Float.valueOf(¢));
+    return unbox.unboxThis(Float.valueOf(¢));
   }
 
   @SuppressWarnings("null") public static int atoi(final @NotNull String ¢) {
-    return unbox.unboxInteger(Integer.valueOf(¢));
+    return unbox.unboxThis(Integer.valueOf(¢));
   }
 
   @SuppressWarnings("null") public static long atol(final @NotNull String ¢) {
-    return unbox.unboxLong(Long.valueOf(¢));
+    return unbox.unboxThis(Long.valueOf(¢));
   }
 
   @NotNull public static String capitalize(final @NotNull String ¢) {

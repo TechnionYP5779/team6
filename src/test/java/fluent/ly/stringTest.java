@@ -52,11 +52,11 @@ import org.junit.*;
   }
 
   @Test public void stringTestEqANull() {
-    assert !string.eq(null, Box.it(2));
+    assert !string.eq(null, box.it(2));
   }
 
   @Test public void stringTestEqANotNull() {
-    assert !string.eq(Box.it(4), Box.it(2));
+    assert !string.eq(box.it(4), box.it(2));
   }
 
   @Test public void stringTestesc() {
@@ -160,7 +160,7 @@ import org.junit.*;
   }
 
   @Test public void stringTestparen() {
-    azzert.that("(1)", is(string.paren(Box.it(1))));
+    azzert.that("(1)", is(string.paren(box.it(1))));
   }
 
   @Test public void stringTestpluralize() {

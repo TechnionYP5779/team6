@@ -34,11 +34,11 @@ import org.junit.*;
   }
 
   @Test public void englishTestplurales3() {
-    azzert.that(English.plurales("apple", Box.it(1)), is("one apple"));
+    azzert.that(English.plurales("apple", box.it(1)), is("one apple"));
   }
 
   @Test public void englishTestplurales4() {
-    azzert.that(English.plurales("apple", Box.it(2)), is("2 applees"));
+    azzert.that(English.plurales("apple", box.it(2)), is("2 applees"));
   }
 
   @Test public void englishTestplurales5() {
@@ -46,11 +46,11 @@ import org.junit.*;
   }
 
   @Test public void englishTestplurales6() {
-    azzert.that(English.plurales("apple", Box.it(1)), is("one apple"));
+    azzert.that(English.plurales("apple", box.it(1)), is("one apple"));
   }
 
   @Test public void englishTestplurales7() {
-    azzert.that(English.plurales("apple", Box.it(2)), is("2 applees"));
+    azzert.that(English.plurales("apple", box.it(2)), is("2 applees"));
   }
 
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -63,11 +63,11 @@ import org.junit.*;
   }
 
   @Test public void englishTestplurals3() {
-    azzert.that(English.plurals("apple", Box.it(1)), is("one apple"));
+    azzert.that(English.plurals("apple", box.it(1)), is("one apple"));
   }
 
   @Test public void englishTestplurals4() {
-    azzert.that(English.plurals("apple", Box.it(2)), is("2 apples"));
+    azzert.that(English.plurals("apple", box.it(2)), is("2 apples"));
   }
 
   @Test public void englishTestplurals5() {
@@ -75,11 +75,11 @@ import org.junit.*;
   }
 
   @Test public void englishTestplurals6() {
-    azzert.that(English.plurals("apple", Box.it(1)), is("one apple"));
+    azzert.that(English.plurals("apple", box.it(1)), is("one apple"));
   }
 
   @Test public void englishTestplurals7() {
-    azzert.that(English.plurals("apple", Box.it(2)), is("2 apples"));
+    azzert.that(English.plurals("apple", box.it(2)), is("2 apples"));
   }
 
   @Test public void englishTestPronounce() {

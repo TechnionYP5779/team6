@@ -13,7 +13,7 @@ import fluent.ly.*;
 @SuppressWarnings("static-method") public class singletonTest {
   @Test @SuppressWarnings("null") public void list() {
     assertCollectionsEqual(Collections.emptyList(), singleton.list(null));
-    assertCollectionsEqual(Collections.singletonList(Box.it(5)), singleton.list(Box.it(5)));
+    assertCollectionsEqual(Collections.singletonList(box.it(5)), singleton.list(box.it(5)));
     assertCollectionsEqual(Collections.singletonList("555"), singleton.list("555"));
     // assertCollectionsEqual(Collections.singletonList(new Integer[] { 1, 2, 3 }),
     // singleton.list(new Integer[] { 1, 2, 3 }));
@@ -22,10 +22,10 @@ import fluent.ly.*;
   @Test public void array() {
     assertArrayEquals(new Integer[] { null }, singleton.array(null));
     // T=int:
-    assertArrayEquals(Collections.singletonList(Box.it(5)).toArray(), singleton.array(Box.it(5)));
+    assertArrayEquals(Collections.singletonList(box.it(5)).toArray(), singleton.array(box.it(5)));
     // T=string:
     assertArrayEquals(Collections.singletonList("555").toArray(), singleton.array("555"));
-    assertArrayEquals(Collections.singletonList(new Integer[] { Box.it(1), Box.it(2), Box.it(3) }).toArray(),
-        singleton.array(new Integer[] { Box.it(1), Box.it(2), Box.it(3) }));
+    assertArrayEquals(Collections.singletonList(new Integer[] { box.it(1), box.it(2), box.it(3) }).toArray(),
+        singleton.array(new Integer[] { box.it(1), box.it(2), box.it(3) }));
   }
 }

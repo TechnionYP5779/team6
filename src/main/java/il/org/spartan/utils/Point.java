@@ -28,6 +28,6 @@ public class Point {
   }
 
   @Override public int hashCode() {
-    return Objects.hash(Box.box(x), Box.box(y));
+    return Objects.hash(box.boxThis(x), box.boxThis(y));
   }
 }

@@ -66,7 +66,7 @@ import org.junit.*;
   }
 
   @Test public void lispTestReplaceNull() {
-    azzert.assertNull(lisp.replace(null, Box.it(2), 4));
+    azzert.assertNull(lisp.replace(null, box.it(2), 4));
   }
 
   @Test public void lispTestReplaceNegIndex() {
@@ -125,26 +125,26 @@ import org.junit.*;
       azzert.that(¢, is(arr.get(c+2)));
       ++c;
     }
-    azzert.that(Box.it(2), is(c));
+    azzert.that(box.it(2), is(c));
   }
   
   @Test public void areEqualTest() {
     assert !lisp.areEqual(null, null, null);
     assert !lisp.areEqual(null);
     
-    assert !lisp.areEqual(null, Box.it(1), Box.it(1));
+    assert !lisp.areEqual(null, box.it(1), box.it(1));
     
-    assert !lisp.areEqual(Box.it(1), Box.it(1), Box.it(2));
+    assert !lisp.areEqual(box.it(1), box.it(1), box.it(2));
     
-    assert !lisp.areEqual(Box.it(2), Box.it(1), Box.it(1));
+    assert !lisp.areEqual(box.it(2), box.it(1), box.it(1));
     
-    assert !lisp.areEqual(Box.it(1), Box.it(1), Box.it(1), Box.it(2));
+    assert !lisp.areEqual(box.it(1), box.it(1), box.it(1), box.it(2));
     
-    assert lisp.areEqual(Box.it(1), Box.it(1),  Box.it(1));
+    assert lisp.areEqual(box.it(1), box.it(1),  box.it(1));
     
-    assert !lisp.areEqual(Box.it(true), Box.it(true), Box.it(false));
+    assert !lisp.areEqual(box.it(true), box.it(true), box.it(false));
     
-    assert lisp.areEqual(Box.it(true), Box.it(true), Box.it(true));
+    assert lisp.areEqual(box.it(true), box.it(true), box.it(true));
 
   }
   @Test public void chopLastListTest() {
@@ -159,9 +159,9 @@ import org.junit.*;
     
     azzert.that("c", is(lisp.chopLast(lisp.chopLast(arr)).get(arr.size()-3)));
     
-    azzert.that(Box.it(4), is(lisp.chopLast(arr).size()));
+    azzert.that(box.it(4), is(lisp.chopLast(arr).size()));
     
-    azzert.that(Box.it(3), is(lisp.chop(lisp.chopLast(arr)).size()));
+    azzert.that(box.it(3), is(lisp.chop(lisp.chopLast(arr)).size()));
   }
   
   @Test public void chopLastStringTest() {
@@ -171,8 +171,7 @@ import org.junit.*;
   }
   
   @Test public void removeFromListTest() {
-    final ArrayList<String> arr1 = new ArrayList<>();
-    final ArrayList<String> arr2 = new ArrayList<>();
+    final ArrayList<String> arr1 = new ArrayList<>(), arr2 = new ArrayList<>();
     arr1.add("a");
     arr1.add("b");
     arr1.add("c");
@@ -180,7 +179,7 @@ import org.junit.*;
     arr2.add("b");
     arr2.add("c");
     lisp.removeFromList(arr2, arr1);
-    azzert.that(Box.it(2), is(arr1.size()));
+    azzert.that(box.it(2), is(arr1.size()));
     azzert.that("a", is(arr1.get(0)));
     azzert.that("d", is(arr1.get(1)));    
   }
@@ -192,7 +191,7 @@ import org.junit.*;
     arr.add("c");
     arr.add("d");
     lisp.removeLast(arr);
-    azzert.that(Box.it(3), is(arr.size()));
+    azzert.that(box.it(3), is(arr.size()));
     azzert.that("c", is(arr.get(arr.size()-1)));
   }
   

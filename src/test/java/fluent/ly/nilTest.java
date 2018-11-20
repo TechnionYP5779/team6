@@ -9,9 +9,9 @@ import org.junit.*;
 @SuppressWarnings("static-method") public class nilTest {
   @Test public void forgetting() {
     assertNull(nil.forgetting(null));
-    assertNull(nil.forgetting(Box.it(1)));
-    assertNull(nil.forgetting(Box.it(1), "a", Box.it(true)));
-    assertNull(nil.forgetting(new int[] { 1, 2, 3 }, null, Box.it(7)));
+    assertNull(nil.forgetting(box.it(1)));
+    assertNull(nil.forgetting(box.it(1), "a", box.it(true)));
+    assertNull(nil.forgetting(new int[] { 1, 2, 3 }, null, box.it(7)));
   }
 
   @Test @SuppressWarnings("null") public void guardingly() {
@@ -20,7 +20,7 @@ import org.junit.*;
     azzert.that(5, is(unbox.it(nil.guardingly(stringIntegerFunction).on("abcde"))));
     final Function<Integer, String> integerStringFunction = λ -> λ + "";
     assertNull("5", nil.guardingly(integerStringFunction).on(null));
-    azzert.that("5", is(nil.guardingly(integerStringFunction).on(Box.it(5))));
+    azzert.that("5", is(nil.guardingly(integerStringFunction).on(box.it(5))));
   }
 
   @Test public void ignoring_boolean() {

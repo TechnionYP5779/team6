@@ -2,7 +2,7 @@ package il.org.spartan.statistics;
 
 import static il.org.spartan.statistics.MomentUtils.*;
 
-import static fluent.ly.Box.*;
+import static fluent.ly.box.*;
 
 import java.util.*;
 
@@ -34,7 +34,7 @@ public abstract class Statistics {
     final double median = median(ds), mad = mad(ds);
     for (final double ¢ : ds)
       if (median - 2 * mad <= ¢ && ¢ <= median + 2 * mad)
-        $.add(box(¢));
+        $.add(boxThis(¢));
     return Iterables.toArray($);
   }
 

@@ -1,7 +1,7 @@
 // <a href=http://ssdl-linux.cs.technion.ac.il/wiki/index.php>SSDLPedia</a>
 package il.org.spartan;
 
-import static fluent.ly.Box.*;
+import static fluent.ly.box.*;
 
 import java.util.*;
 import java.util.Map.*;
@@ -153,7 +153,7 @@ import il.org.spartan.utils.Separate.*;
   public CSVLine put(final @NotNull String key, final double value, final @NotNull String format, @NotNull final FormatSpecifier... ss) {
     aggregator.record(key, value, ss);
     ___.sure(ss.length == 0 || aggregating());
-    return put(key, String.format(format, box(value)));
+    return put(key, String.format(format, boxThis(value)));
   }
 
   /** Add a key and a general <code><b>float</b><code> value to this instance
@@ -184,7 +184,7 @@ import il.org.spartan.utils.Separate.*;
   public CSVLine put(final @NotNull String key, final int value, final @NotNull String format, @NotNull final FormatSpecifier... ss) {
     aggregator.record(key, value, ss);
     ___.sure(ss.length == 0 || aggregating());
-    return put(key, String.format(format, box(value)));
+    return put(key, String.format(format, boxThis(value)));
   }
 
   /** Add a key and a general {@link Object} value to this instance

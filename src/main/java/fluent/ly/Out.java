@@ -13,7 +13,7 @@ public class Out {
   }
 
   public static void out(final @NotNull String name, final boolean b) {
-    System.out.printf("%s = %b\n", name, Box.box(b));
+    System.out.printf("%s = %b\n", name, box.boxThis(b));
   }
 
   public static void out(final @NotNull String name, final @Nullable Collection<Object> os) {
@@ -26,19 +26,19 @@ public class Out {
       System.out.printf("Only 1 %s: %s\n", name, os.iterator().next());
       return;
     }
-    System.out.printf("Total of %d %s:\n", Box.box(os.size()), name);
+    System.out.printf("Total of %d %s:\n", box.boxThis(os.size()), name);
     int n = 0;
     for (final Object ¢ : os) {
       if (++n > MAX_FIRST && n <= os.size() - MAX_LAST) {
         System.out.print("\t...\n");
         return;
       }
-      System.out.printf("\t%2d) %s\n", Box.box(n), ¢);
+      System.out.printf("\t%2d) %s\n", box.boxThis(n), ¢);
     }
   }
 
   public static void out(final @NotNull String name, final int i) {
-    System.out.printf("%s = %d\n", name, Box.box(i));
+    System.out.printf("%s = %d\n", name, box.boxThis(i));
   }
 
   public static void out(final @NotNull String name, final @Nullable Object a) {
@@ -52,6 +52,6 @@ public class Out {
     else if (os.length == 1)
       System.out.printf("Only one %s: %s\n", name, os[0]);
     else
-      System.out.printf("Total of %d %s:\n\t%s\n", Box.box(os.length), name, separate.these(os).by("\n\t"));
+      System.out.printf("Total of %d %s:\n\t%s\n", box.boxThis(os.length), name, separate.these(os).by("\n\t"));
   }
 }
