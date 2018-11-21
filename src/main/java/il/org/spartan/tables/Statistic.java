@@ -1,7 +1,6 @@
 package il.org.spartan.tables;
 
 import java.util.*;
-
 import il.org.spartan.statistics.*;
 
 /** TODO Yossi Gil Document Class
