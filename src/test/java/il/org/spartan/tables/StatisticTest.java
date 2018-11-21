@@ -56,7 +56,6 @@ public class StatisticTest {
     azzert.that(Statistic.valueOf("range").of(r), is(6.0));
   }
 
-  
   @Test public void testQ1() {
     azzert.that(Statistic.valueOf("Q1").of(r), is(4.0));
   }
