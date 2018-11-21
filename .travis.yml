@@ -10,10 +10,8 @@ jdk:
   
 addons:
 sonarcloud:
-organization: "team6project" # the key of the org you chose at step #3
+organization: "team6project" 
 token:
-secure: 6dae3bef6e68bc98d11dc9ae00f85d19ce4cc29d # encrypted value of your token
+secure: 6dae3bef6e68bc98d11dc9ae00f85d19ce4cc29d 
 script:
-# the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-- "mvn cobertura:cobertura"
 - "mvn sonar:sonar -Dsonar.projectKey=team6project -Dsonar.organization=team6 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=6dae3bef6e68bc98d11dc9ae00f85d19ce4cc29d"
