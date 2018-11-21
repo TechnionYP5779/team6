@@ -1,12 +1,8 @@
 language: java
 sudo: false
-install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true test -B -V
 
-
-  
 jdk:
-  - oraclejdk8
-  
+  - oraclejdk8  
   
 addons:
 sonarcloud:
@@ -15,3 +11,4 @@ token:
 secure: 6dae3bef6e68bc98d11dc9ae00f85d19ce4cc29d 
 script:
 - "mvn sonar:sonar -Dsonar.projectKey=team6project -Dsonar.organization=team6 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=6dae3bef6e68bc98d11dc9ae00f85d19ce4cc29d"
+install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true test -B -V
