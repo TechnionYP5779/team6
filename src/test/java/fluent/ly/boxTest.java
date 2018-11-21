@@ -190,8 +190,7 @@ import static fluent.ly.azzert.*;
     final boolean[] uboxArr = { true, false, false };
     final Boolean[] boxArr = new Boolean[3];
     boxArr[0] = Boolean.TRUE;
-    boxArr[1] = Boolean.FALSE;
-    boxArr[2] = Boolean.FALSE;
+    boxArr[2] = boxArr[1] = Boolean.FALSE;
     for (int ¢ = 0; ¢ < 3; ++¢)
       azzert.that(boxArr[¢], is(box.boxThis(uboxArr)[¢]));
   }

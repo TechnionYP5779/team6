@@ -48,17 +48,12 @@ public class AnyRange {
     }
     
     @Override public boolean equals(final Object ¢) {
-      if (¢ instanceof BoundedAboveRange) 
-       return this.asAnyRange().equals( ((BoundedAboveRange)¢).asAnyRange() );
-      
-      return true;
+      return !(¢ instanceof BoundedAboveRange) || this.asAnyRange().equals(((BoundedAboveRange) ¢).asAnyRange());
     }
     
     @NotNull public BoundedAboveRange merge(final @NotNull BoundedAboveRange ¢) {
-      AnyRange range = ¢.asAnyRange();
-      int to_ = to > range.to ? to : range.to;
-      int step_ = step < range.step ? step : range.step;
-      return new AnyRange(-1,to_,step_,RangeType.BOUNDEDABOVERANGE).new BoundedAboveRange();
+      AnyRange $ = ¢.asAnyRange();
+      return new AnyRange(-1, (to > $.to ? to : $.to), (step < $.step ? step : $.step), RangeType.BOUNDEDABOVERANGE).new BoundedAboveRange();
     }
     
     public boolean includedIn(final @NotNull BoundedAboveRange ¢) {
@@ -89,7 +84,7 @@ public class AnyRange {
     }
     
     @Override public int hashCode() {
-      return (step + to) < 0 ? -(step + to) :  (step + to);
+      return to + step >= 0 ? to + step : -(to + step);
     }
     
     AnyRange asAnyRange () {
@@ -97,17 +92,12 @@ public class AnyRange {
     }
     
     @Override public boolean equals(final Object ¢) {
-      if (¢ instanceof BoundedBelowRange) 
-       return this.asAnyRange().equals( ((BoundedBelowRange)¢).asAnyRange() );
-      
-      return true;
+      return !(¢ instanceof BoundedBelowRange) || this.asAnyRange().equals(((BoundedBelowRange) ¢).asAnyRange());
     }
     
     @NotNull public BoundedBelowRange merge(final @NotNull BoundedBelowRange ¢) {
-      AnyRange range = ¢.asAnyRange();
-      int from_ = from < range.from ? from : range.from;
-      int step_ = step < range.step ? step : range.step;
-      return new AnyRange(from_,-1,step_,RangeType.BOUNDEDBELOWRANGE).new BoundedBelowRange();
+      AnyRange $ = ¢.asAnyRange();
+      return new AnyRange((from < $.from ? from : $.from), -1, (step < $.step ? step : $.step), RangeType.BOUNDEDBELOWRANGE).new BoundedBelowRange();
     }
     
     public boolean includedIn(final @NotNull BoundedBelowRange ¢) {
@@ -126,10 +116,7 @@ public class AnyRange {
     }
     
     @Override public boolean equals(final Object ¢) {
-      if (¢ instanceof FiniteRange) 
-       return this.asAnyRange().equals( ((FiniteRange)¢).asAnyRange() );
-      
-      return true;
+      return !(¢ instanceof FiniteRange) || this.asAnyRange().equals(((FiniteRange) ¢).asAnyRange());
     }
 
     @Override public int hashCode() {
@@ -143,11 +130,8 @@ public class AnyRange {
     }
 
     @NotNull public FiniteRange merge(final @NotNull FiniteRange ¢) {
-      AnyRange range = ¢.asAnyRange();
-      int from_ = from < range.from ? from : range.from;
-      int to_ = to > range.to ? to : range.to;
-      int step_ = step < range.step ? step : range.step;
-      return new AnyRange(from_,to_,step_,RangeType.FINITE).new FiniteRange();
+      AnyRange $ = ¢.asAnyRange();
+      return new AnyRange((from < $.from ? from : $.from), (to > $.to ? to : $.to), (step < $.step ? step : $.step), RangeType.FINITE).new FiniteRange();
     }
 
     public boolean overlapping(final @NotNull FiniteRange ¢) {
@@ -184,8 +168,7 @@ public class AnyRange {
   }
   
   public BoundedBelowRange naturals () {
-    from = 1;
-    step = 1;
+    step = from = 1;
     return new BoundedBelowRange();
   }
   
