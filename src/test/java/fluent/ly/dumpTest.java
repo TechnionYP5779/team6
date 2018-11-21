@@ -12,108 +12,100 @@ import org.junit.*;
 @SuppressWarnings({ "unused", "null" }) public class dumpTest {
   private ByteArrayOutputStream newOutPut;
 
+  public class SomeMethods {
+    public void getA() {// can be empty
+    }
+
+    public void isA() {// can be empty
+    }
+
+    public void size() {// can be empty
+    }
+
+    public void toA() {// can be empty
+    }
+  }
+  
   @Before public void redirectOutput() {
     newOutPut = new ByteArrayOutputStream();
     System.setOut(new PrintStream(newOutPut));
   }
 
   @Test public void goClassTest() {
-    dump.go(Integer.class);
+    dump.go(SomeMethods.class);
+    
     azzert.that(
-        "\n\n--IDENTIFICATION--\nSimple Name = Integer\nCanonical Name = java.lang.Integer\nName = java.lang.Integer\n"
-            + "toString = class java.lang.Integer\nsuper class = class java.lang.Number\ngeneric super class = class java.lang.Number\n"
-            + "class = class java.lang.Class\nNo component type\nNo class loader\n--MODIFIERS--\n"
-            + "Package = package java.lang, Java Platform API Specification, version 1.8\nModifiers (decimal form) = 17\n"
-            + "Modifiers (binary form) = +1+16\nIsSynthetic = false\nIsPrimitive = false\nIsFinal = true\nIsAbstract = false\n"
-            + "IsStatic = false\nIsStrictfp = false\n--Visibility--\nIsPublic = true\nIsPrivate = false\nIsProtected = false\n"
-            + "--MEMBERS\nTotal of 5 fields:\n\tpublic static final int java.lang.Integer.MIN_VALUE\n"
-            + "\tpublic static final int java.lang.Integer.MAX_VALUE\n\tpublic static final java.lang.Class java.lang.Integer.TYPE\n"
-            + "\tpublic static final int java.lang.Integer.SIZE\n\tpublic static final int java.lang.Integer.BYTES\nTotal of 54 methods:\n"
-            + "\tpublic static int java.lang.Integer.numberOfLeadingZeros(int)\n\tpublic static int java.lang.Integer.numberOfTrailingZeros(int)\n"
-            + "\tpublic static int java.lang.Integer.bitCount(int)\n\tpublic boolean java.lang.Integer.equals(java.lang.Object)\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toString(int,int)\n\tpublic java.lang.String java.lang.Integer.toString()\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toString(int)\n\tpublic static int java.lang.Integer.hashCode(int)\n"
-            + "\tpublic int java.lang.Integer.hashCode()\n\tpublic static int java.lang.Integer.min(int,int)\n"
-            + "\tpublic static int java.lang.Integer.max(int,int)\n\tpublic static int java.lang.Integer.reverseBytes(int)\n"
-            + "\tpublic int java.lang.Integer.compareTo(java.lang.Integer)\n\tpublic int java.lang.Integer.compareTo(java.lang.Object)\n"
-            + "\tpublic byte java.lang.Integer.byteValue()\n\tpublic short java.lang.Integer.shortValue()\n"
-            + "\tpublic int java.lang.Integer.intValue()\n\tpublic long java.lang.Integer.longValue()\n"
-            + "\tpublic float java.lang.Integer.floatValue()\n\tpublic double java.lang.Integer.doubleValue()\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.valueOf(java.lang.String,int) throws java.lang.NumberFormatException\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.valueOf(int)\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.valueOf(java.lang.String) throws java.lang.NumberFormatException\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toHexString(int)\n\tpublic static int java.lang.Integer.compare(int,int)\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.decode(java.lang.String) throws java.lang.NumberFormatException\n"
-            + "\tpublic static int java.lang.Integer.reverse(int)\n\tpublic static int java.lang.Integer.sum(int,int)\n"
-            + "\tpublic static int java.lang.Integer.parseInt(java.lang.String) throws java.lang.NumberFormatException\n"
-            + "\tpublic static int java.lang.Integer.parseInt(java.lang.String,int) throws java.lang.NumberFormatException\n"
-            + "\tpublic static long java.lang.Integer.toUnsignedLong(int)\n\tpublic static int java.lang.Integer.compareUnsigned(int,int)\n"
-            + "\tpublic static int java.lang.Integer.divideUnsigned(int,int)\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.getInteger(java.lang.String,java.lang.Integer)\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.getInteger(java.lang.String,int)\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.getInteger(java.lang.String)\n"
-            + "\tpublic static int java.lang.Integer.highestOneBit(int)\n\tpublic static int java.lang.Integer.lowestOneBit(int)\n"
-            + "\tpublic static int java.lang.Integer.parseUnsignedInt(java.lang.String) throws java.lang.NumberFormatException\n"
-            + "\tpublic static int java.lang.Integer.parseUnsignedInt(java.lang.String,int) throws java.lang.NumberFormatException\n"
-            + "\tpublic static int java.lang.Integer.remainderUnsigned(int,int)\n\tpublic static int java.lang.Integer.rotateLeft(int,int)\n"
-            + "\tpublic static int java.lang.Integer.rotateRight(int,int)\n\tpublic static int java.lang.Integer.signum(int)\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toBinaryString(int)\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toOctalString(int)\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toUnsignedString(int)\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toUnsignedString(int,int)\n"
-            + "\tpublic final void java.lang.Object.wait() throws java.lang.InterruptedException\n"
-            + "\tpublic final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException\n"
-            + "\tpublic final native void java.lang.Object.wait(long) throws java.lang.InterruptedException\n"
-            + "\tpublic final native java.lang.Class java.lang.Object.getClass()\n\tpublic final native void java.lang.Object.notify()\n"
-            + "\tpublic final native void java.lang.Object.notifyAll()\nTotal of 2 constructors:\n\tpublic java.lang.Integer(int)\n"
-            + "\tpublic java.lang.Integer(java.lang.String) throws java.lang.NumberFormatException\nTotal of 11 declared fields:\n"
-            + "\tpublic static final int java.lang.Integer.MIN_VALUE\n\tpublic static final int java.lang.Integer.MAX_VALUE\n"
-            + "\tpublic static final java.lang.Class java.lang.Integer.TYPE\n\tstatic final char[] java.lang.Integer.digits\n"
-            + "\tstatic final char[] java.lang.Integer.DigitTens\n\tstatic final char[] java.lang.Integer.DigitOnes\n"
-            + "\tstatic final int[] java.lang.Integer.sizeTable\n\tprivate final int java.lang.Integer.value\n"
-            + "\tpublic static final int java.lang.Integer.SIZE\n\tpublic static final int java.lang.Integer.BYTES\n"
-            + "\tprivate static final long java.lang.Integer.serialVersionUID\nTotal of 52 declared methods:\n"
-            + "\tpublic static int java.lang.Integer.numberOfLeadingZeros(int)\n\tpublic static int java.lang.Integer.numberOfTrailingZeros(int)\n"
-            + "\tpublic static int java.lang.Integer.bitCount(int)\n\tpublic boolean java.lang.Integer.equals(java.lang.Object)\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toString(int,int)\n\tpublic java.lang.String java.lang.Integer.toString()\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toString(int)\n\tpublic static int java.lang.Integer.hashCode(int)\n"
-            + "\tpublic int java.lang.Integer.hashCode()\n\tpublic static int java.lang.Integer.min(int,int)\n"
-            + "\tpublic static int java.lang.Integer.max(int,int)\n\tpublic static int java.lang.Integer.reverseBytes(int)\n"
-            + "\tpublic int java.lang.Integer.compareTo(java.lang.Integer)\n\tpublic int java.lang.Integer.compareTo(java.lang.Object)\n"
-            + "\tpublic byte java.lang.Integer.byteValue()\n\tpublic short java.lang.Integer.shortValue()\n"
-            + "\tpublic int java.lang.Integer.intValue()\n\tpublic long java.lang.Integer.longValue()\n"
-            + "\tpublic float java.lang.Integer.floatValue()\n\tpublic double java.lang.Integer.doubleValue()\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.valueOf(java.lang.String,int) throws java.lang.NumberFormatException\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.valueOf(int)\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.valueOf(java.lang.String) throws java.lang.NumberFormatException\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toHexString(int)\n\tpublic static int java.lang.Integer.compare(int,int)\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.decode(java.lang.String) throws java.lang.NumberFormatException\n"
-            + "\tstatic void java.lang.Integer.getChars(int,int,char[])\n\tpublic static int java.lang.Integer.reverse(int)\n"
-            + "\tstatic int java.lang.Integer.stringSize(int)\n\tpublic static int java.lang.Integer.sum(int,int)\n"
-            + "\tpublic static int java.lang.Integer.parseInt(java.lang.String) throws java.lang.NumberFormatException\n"
-            + "\tpublic static int java.lang.Integer.parseInt(java.lang.String,int) throws java.lang.NumberFormatException\n"
-            + "\tpublic static long java.lang.Integer.toUnsignedLong(int)\n\tpublic static int java.lang.Integer.compareUnsigned(int,int)\n"
-            + "\tpublic static int java.lang.Integer.divideUnsigned(int,int)\n"
-            + "\tstatic int java.lang.Integer.formatUnsignedInt(int,int,char[],int,int)\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.getInteger(java.lang.String,java.lang.Integer)\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.getInteger(java.lang.String,int)\n"
-            + "\tpublic static java.lang.Integer java.lang.Integer.getInteger(java.lang.String)\n"
-            + "\tpublic static int java.lang.Integer.highestOneBit(int)\n\tpublic static int java.lang.Integer.lowestOneBit(int)\n"
-            + "\tpublic static int java.lang.Integer.parseUnsignedInt(java.lang.String) throws java.lang.NumberFormatException\n"
-            + "\tpublic static int java.lang.Integer.parseUnsignedInt(java.lang.String,int) throws java.lang.NumberFormatException\n"
-            + "\tpublic static int java.lang.Integer.remainderUnsigned(int,int)\n\tpublic static int java.lang.Integer.rotateLeft(int,int)\n"
-            + "\tpublic static int java.lang.Integer.rotateRight(int,int)\n\tpublic static int java.lang.Integer.signum(int)\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toBinaryString(int)\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toOctalString(int)\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toUnsignedString(int)\n"
-            + "\tpublic static java.lang.String java.lang.Integer.toUnsignedString(int,int)\n"
-            + "\tprivate static java.lang.String java.lang.Integer.toUnsignedString0(int,int)\nTotal of 2 declared constructors:\n"
-            + "\tpublic java.lang.Integer(int)\n\tpublic java.lang.Integer(java.lang.String) throws java.lang.NumberFormatException\n"
-            + "--CLASS SIGNATURE--\nOnly one interfaces: interface java.lang.Comparable\nNo annotations\nNo type parameters\n"
-            + "No declared annotations\nOnly one generic interfaces: java.lang.Comparable<java.lang.Integer>\n--CONTAINERS--\n"
-            + "Only one declared classes: class java.lang.Integer$IntegerCache\nNo declaring class\nNo enclosing class\n"
-            + "No enclosing constructor\nNo enclosing method\n--CLASS MEMBERS--\nNo public classes\n"
-            + "Only one declared classes: class java.lang.Integer$IntegerCache\nNo declared annotations\n---------------------------\n",
+       "\n" + 
+       "\n" + 
+       "--IDENTIFICATION--\n" + 
+       "Simple Name = SomeMethods\n" + 
+       "Canonical Name = fluent.ly.dumpTest.SomeMethods\n" + 
+       "Name = fluent.ly.dumpTest$SomeMethods\n" + 
+       "toString = class fluent.ly.dumpTest$SomeMethods\n" + 
+       "super class = class java.lang.Object\n" + 
+       "generic super class = class java.lang.Object\n" + 
+       "class = class java.lang.Class\n" + 
+       "No component type\n" + 
+       "class loader = " + SomeMethods.class.getClassLoader() + "\n" + 
+       "--MODIFIERS--\n" + 
+       "Package = package fluent.ly\n" + 
+       "Modifiers (decimal form) = 1\n" + 
+       "Modifiers (binary form) = +1\n" + 
+       "IsSynthetic = false\n" + 
+       "IsPrimitive = false\n" + 
+       "IsFinal = false\n" + 
+       "IsAbstract = false\n" + 
+       "IsStatic = false\n" + 
+       "IsStrictfp = false\n" + 
+       "--Visibility--\n" + 
+       "IsPublic = true\n" + 
+       "IsPrivate = false\n" + 
+       "IsProtected = false\n" + 
+       "--MEMBERS\n" + 
+       "No fields\n" + 
+       "Total of 13 methods:\n" + 
+       "\tpublic void fluent.ly.dumpTest$SomeMethods.size()\n" + 
+       "\tpublic void fluent.ly.dumpTest$SomeMethods.getA()\n" + 
+       "\tpublic void fluent.ly.dumpTest$SomeMethods.isA()\n" + 
+       "\tpublic void fluent.ly.dumpTest$SomeMethods.toA()\n" + 
+       "\tpublic final void java.lang.Object.wait() throws java.lang.InterruptedException\n" + 
+       "\tpublic final void java.lang.Object.wait(long,int) throws java.lang.InterruptedException\n" + 
+       "\tpublic final native void java.lang.Object.wait(long) throws java.lang.InterruptedException\n" + 
+       "\tpublic boolean java.lang.Object.equals(java.lang.Object)\n" + 
+       "\tpublic java.lang.String java.lang.Object.toString()\n" + 
+       "\tpublic native int java.lang.Object.hashCode()\n" + 
+       "\tpublic final native java.lang.Class java.lang.Object.getClass()\n" + 
+       "\tpublic final native void java.lang.Object.notify()\n" + 
+       "\tpublic final native void java.lang.Object.notifyAll()\n" + 
+       "Only one constructors: public fluent.ly.dumpTest$SomeMethods(fluent.ly.dumpTest)\n" + 
+       "Total of 2 declared fields:\n" + 
+       "\tfinal fluent.ly.dumpTest fluent.ly.dumpTest$SomeMethods.this$0\n" + 
+       "\tprivate static transient boolean[] fluent.ly.dumpTest$SomeMethods.$jacocoData\n" + 
+       "Total of 5 declared methods:\n" + 
+       "\tpublic void fluent.ly.dumpTest$SomeMethods.size()\n" + 
+       "\tprivate static boolean[] fluent.ly.dumpTest$SomeMethods.$jacocoInit()\n" + 
+       "\tpublic void fluent.ly.dumpTest$SomeMethods.getA()\n" + 
+       "\tpublic void fluent.ly.dumpTest$SomeMethods.isA()\n" + 
+       "\tpublic void fluent.ly.dumpTest$SomeMethods.toA()\n" + 
+       "Only one declared constructors: public fluent.ly.dumpTest$SomeMethods(fluent.ly.dumpTest)\n" + 
+       "--CLASS SIGNATURE--\n" + 
+       "No interfaces\n" + 
+       "No annotations\n" + 
+       "No type parameters\n" + 
+       "No declared annotations\n" + 
+       "No generic interfaces\n" + 
+       "--CONTAINERS--\n" + 
+       "No declared classes\n" + 
+       "declaring class = class fluent.ly.dumpTest\n" + 
+       "enclosing class = class fluent.ly.dumpTest\n" + 
+       "No enclosing constructor\n" + 
+       "No enclosing method\n" + 
+       "--CLASS MEMBERS--\n" + 
+       "No public classes\n" + 
+       "No declared classes\n" + 
+       "No declared annotations\n" + 
+       "---------------------------\n" + 
+       "",
         is(newOutPut + ""));
   }
 
@@ -131,20 +123,6 @@ import org.junit.*;
             + "--BEGIN Integer object: 3\nClass canonical name = java.lang.Integer\nClass name = java.lang.Integer\n--END OBJECT--\n"
             + "\n\n\n--BEGIN Integer object: 3\nClass canonical name = java.lang.Integer\nClass name = java.lang.Integer\n--END OBJECT--\n\n",
         is(newOutPut + ""));
-  }
-
-  public class SomeMethods {
-    public void getA() {// can be empty
-    }
-
-    public void isA() {// can be empty
-    }
-
-    public void size() {// can be empty
-    }
-
-    public void toA() {// can be empty
-    }
   }
 
   @Test public void goObjectTest() {
