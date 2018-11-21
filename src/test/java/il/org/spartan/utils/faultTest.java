@@ -9,9 +9,10 @@ import fluent.ly.*;
 @SuppressWarnings({ "static-method", "null" }) public class faultTest {
   @Test public void doneTest() {
     String expectedOutput = fault.trace(new AssertionError()) + "\n   END stack trace: .................]]]\n-----this is all I know.";
-    int indexExpectedOutput = expectedOutput.indexOf("at sun");
+    int indexExpectedOutput = expectedOutput.indexOf("at java.base");
     String finalOutput = fault.done() + "";
-    azzert.that(expectedOutput.substring(indexExpectedOutput), is(finalOutput.substring(finalOutput.indexOf("at sun"))));
+    azzert.that(expectedOutput.substring(indexExpectedOutput), is(finalOutput.substring(finalOutput.indexOf("at java.base"))));
+
   }
 
   @Test public void dumpTest() {
