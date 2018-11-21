@@ -1,6 +1,8 @@
-# fluent.ly [![Build Status](https://travis-ci.org/TechnionYP5779/team6.svg?branch=master)](https://travis-ci.org/TechnionYP5779/team6)
+# fluent.ly 
+[![Build Status](https://travis-ci.org/TechnionYP5779/team6.svg?branch=master)](https://travis-ci.org/TechnionYP5779/team6)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/TechnionYP5779/team6.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/TechnionYP5779/team6/alerts/)
 [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/TechnionYP5779/team6.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/TechnionYP5779/team6/context:java)
+[![SonarCubeQuality](https://sonarcloud.io/api/project_badges/measure?project=team6project&metric=alert_status)](https://sonarcloud.io/dashboard?id=team6project)
 
 # Team6 Spartan Project refactoring
 
