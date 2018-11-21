@@ -40,7 +40,7 @@ public class AnyRange {
     }
     
     @Override public int hashCode() {
-      return (to + step) > 0 ? -(to + step) :  (to + step);
+      return to + step <= 0 ? to + step : -(to + step);
     }
     
     AnyRange asAnyRange () {
