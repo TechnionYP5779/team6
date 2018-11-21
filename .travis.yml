@@ -1,5 +1,6 @@
 language: java
 sudo: false
+script:
 install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true test -B -V 
 
 jdk:
