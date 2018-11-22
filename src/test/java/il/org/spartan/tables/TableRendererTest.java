@@ -88,7 +88,7 @@ import fluent.ly.*;
   }
 
   @Test public void MARKDOWN_afterHeader() {
-    azzert.that(TableRenderer.builtin.MARKDOWN.afterHeader(), is("| " + NL));
+    azzert.that(TableRenderer.builtin.MARKDOWN.afterHeader(), is("| --- |" + NL));
     TableRenderer.builtin.MARKDOWN.setHeaderCount(3);
     azzert.that(TableRenderer.builtin.MARKDOWN.afterHeader(), is("| --- |--- |--- |" + NL));
     TableRenderer.builtin.MARKDOWN.setHeaderCount(0);
