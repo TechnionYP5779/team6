@@ -6,7 +6,6 @@ import static org.junit.Assert.*;
 
 import static fluent.ly.azzert.*;
 
-import java.io.*;
 import java.util.*;
 
 import org.jetbrains.annotations.*;
