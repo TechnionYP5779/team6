@@ -20,8 +20,7 @@ import fluent.ly.azzert;
    }
    
    @Test public void setTest() {
-     Str empty = new Str();
-     Str abc = new Str("abc");
+     Str empty = new Str(), abc = new Str("abc");
      empty.set("notnull");
      abc.set("cba");
      assert "cba".equals(abc.inner());

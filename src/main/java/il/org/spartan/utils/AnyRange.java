@@ -44,22 +44,17 @@ public class AnyRange {
     }
     
     @Override public int hashCode() {
-      return (step + to) > 0 ? -(step + to) :  (step + to);
+      return to + step <= 0 ? to + step : -(to + step);
     }
     
     
     @Override public boolean equals(final Object ¢) {
-      if(!(¢ instanceof BoundedAboveRange)) return false;
-      if (to !=((BoundedAboveRange)¢).to || step !=((BoundedAboveRange)¢).step )
-       return false;
-      return true;
+      return ¢ instanceof BoundedAboveRange && to == ((BoundedAboveRange) ¢).to && step == ((BoundedAboveRange) ¢).step;
     }
     
     //in fact it doesn't throws
     @NotNull public BoundedAboveRange merge(final @NotNull BoundedAboveRange ¢) throws AnyRangeException {
-      int to_ = to > ¢.to ? to : ¢.to;
-      int step_ = step < ¢.step ? step : ¢.step;
-      return new BoundedAboveRange(to_,step_);
+      return new BoundedAboveRange((to > ¢.to ? to : ¢.to), (step < ¢.step ? step : ¢.step));
     }
   
     public boolean includedIn(final @NotNull BoundedAboveRange ¢) {
@@ -107,21 +102,16 @@ public class AnyRange {
     }
     
     @Override public int hashCode() {
-      return (step + from) < 0 ? -(step + from) :  (step + from);
+      return from + step >= 0 ? from + step : -(from + step);
     }
     
     @Override public boolean equals(final Object ¢) {
-      if (!(¢ instanceof BoundedBelowRange)) return false;
-      if (from !=((BoundedBelowRange)¢).from || step !=((BoundedBelowRange)¢).step )
-        return false;
-       return true;
+      return ¢ instanceof BoundedBelowRange && from == ((BoundedBelowRange) ¢).from && step == ((BoundedBelowRange) ¢).step;
     }
     
     //in fact it doesn't throws
     @NotNull public BoundedBelowRange merge(final @NotNull BoundedBelowRange ¢) throws AnyRangeException {
-      int from_ = from < ¢.from ? from : ¢.from;
-      int step_ = step < ¢.step ? step : ¢.step;
-      return new BoundedBelowRange(from_,step_);
+      return new BoundedBelowRange((from < ¢.from ? from : ¢.from), (step < ¢.step ? step : ¢.step));
     }
     
     public boolean includedIn(final @NotNull BoundedBelowRange ¢) {
@@ -163,10 +153,7 @@ public class AnyRange {
     public int getTo () {return to;} 
     
     @Override public boolean equals(final Object ¢) {
-      if (!(¢ instanceof FiniteRange)) return false;
-      if (from !=((FiniteRange)¢).from || to !=((FiniteRange)¢).to || step !=((FiniteRange)¢).step)
-        return false;
-       return true;
+      return ¢ instanceof FiniteRange && from == ((FiniteRange) ¢).from && to == ((FiniteRange) ¢).to && step == ((FiniteRange) ¢).step;
     }
 
     @Override public int hashCode() {
@@ -180,10 +167,7 @@ public class AnyRange {
     
     //in fact it doesn't throws
     @NotNull public FiniteRange merge(final @NotNull FiniteRange ¢) throws AnyRangeException{
-      int from_ = from < ¢.from ? from : ¢.from;
-      int to_ = to > ¢.to ? to : ¢.to;
-      int step_ = step < ¢.step ? step : ¢.step;
-      return new FiniteRange(from_,to_,step_);
+      return new FiniteRange((from < ¢.from ? from : ¢.from), (to > ¢.to ? to : ¢.to), (step < ¢.step ? step : ¢.step));
     }
 
     public boolean overlapping(final @NotNull FiniteRange ¢) {
