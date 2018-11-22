@@ -7,6 +7,13 @@ import org.junit.*;
 import fluent.ly.*;
 import il.org.spartan.statistics.*;
 
+
+/**
+ * Unit tests for enum Statistic
+ * 
+ * @author Nitzan
+ * @see Statistic
+ */
 public class StatisticTest {
   private final double[] d = { 1, 2, 3, 4 };
   RealStatistics r = new RealStatistics().record(2).record(4).record(6).record(8);
