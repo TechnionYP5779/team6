@@ -6,19 +6,26 @@ import static fluent.ly.azzert.*;
 import fluent.ly.*;
 import il.org.spartan.utils.Outer.*;
 
+
+/**
+ * Unit tests for class Wrapper
+ * 
+ * @author Nitzan
+ * @see Wrapper
+ */
 @SuppressWarnings("null") public class WrapperTest {
   private Wrapper<Integer> nullWrap = new Wrapper<>();
   private Wrapper<Integer> oneWrap = new Wrapper<>(box.boxThis(1));
   private Wrapper<Integer> twoWrap = new Wrapper<>(box.boxThis(2));
 
   @Test public void testEquals() {
-    assert nullWrap.equals(new Wrapper<>());
-    assert !nullWrap.equals(oneWrap);
-    assert oneWrap.equals(new Wrapper<>(box.boxThis(1)));
-    assert !oneWrap.equals(twoWrap);
-    assert !oneWrap.equals(nullWrap);
-    assert !oneWrap.equals(new Wrapper<>(null));
-    assert !oneWrap.equals(new Wrapper<>("hello"));
+    azzert.that(nullWrap, is(new Wrapper<>()));
+    azzert.that(nullWrap, not(oneWrap));
+    azzert.that(oneWrap, is(new Wrapper<>(box.boxThis(1))));
+    azzert.that(oneWrap, not(twoWrap));
+    azzert.that(oneWrap, not(nullWrap));
+    azzert.that(oneWrap, not(new Wrapper<>(null)));
+    azzert.that(oneWrap, not(new Wrapper<>("hello")));
   }
 
   @Test public void testHash() {
