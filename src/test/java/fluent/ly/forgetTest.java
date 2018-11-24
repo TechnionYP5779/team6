@@ -2,7 +2,7 @@ package fluent.ly;
 
 import org.junit.*;
 
-@SuppressWarnings({"static-method", "unused"}) public class forgetTest {
+@SuppressWarnings({ "static-method", "unused" }) public class forgetTest {
   static void auxeAll(final Integer integer) {
     try {
       integer.getClass();

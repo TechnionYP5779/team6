@@ -9,7 +9,7 @@ public class Binary {
   public static final Binary F = null;
 
   public static Binary and(final Binary b1, final Binary b2) {
-    return of(b1 != F || b2 != F);
+    return of(b1 != F && b2 != F);
   }
 
   public static Binary asBoolean(final Binary ¢) {

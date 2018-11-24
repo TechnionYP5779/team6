@@ -6,8 +6,7 @@ import fluent.ly.*;
 
 @SuppressWarnings("static-method") public class PairTest {
   @Test public void testEqualPairs() {
-    final Pair<Integer, Integer> p1 = new Pair<>(box.it(1), box.it(1)), p3 = new Pair<>(box.it(1), box.it(2)),
-        p4 = new Pair<>(box.it(2), box.it(1));
+    final Pair<Integer, Integer> p1 = new Pair<>(box.it(1), box.it(1)), p3 = new Pair<>(box.it(1), box.it(2)), p4 = new Pair<>(box.it(2), box.it(1));
     assert p1.equals(new Pair<>(box.it(1), box.it(1)));
     assert !p1.equals(p3);
     assert !p1.equals(p4);
@@ -25,8 +24,7 @@ import fluent.ly.*;
     assert ps1.hashCode() != ps3.hashCode();
     assert ps1.hashCode() != ps4.hashCode();
     assert ps3.hashCode() != ps4.hashCode();
-    final Pair<Integer, Integer> p1 = new Pair<>(box.it(1), box.it(1)), p3 = new Pair<>(box.it(1), box.it(2)),
-        p4 = new Pair<>(box.it(2), box.it(1));
+    final Pair<Integer, Integer> p1 = new Pair<>(box.it(1), box.it(1)), p3 = new Pair<>(box.it(1), box.it(2)), p4 = new Pair<>(box.it(2), box.it(1));
     assert p1.hashCode() == new Pair<>(box.it(1), box.it(1)).hashCode();
     assert p1.hashCode() != p3.hashCode();
     assert p1.hashCode() != p4.hashCode();
@@ -34,8 +32,7 @@ import fluent.ly.*;
   }
 
   @Test public void testToString() {
-    final Pair<Integer, Integer> p1 = new Pair<>(box.it(1), box.it(1)), p3 = new Pair<>(box.it(1), box.it(2)),
-        p4 = new Pair<>(box.it(2), box.it(1));
+    final Pair<Integer, Integer> p1 = new Pair<>(box.it(1), box.it(1)), p3 = new Pair<>(box.it(1), box.it(2)), p4 = new Pair<>(box.it(2), box.it(1));
     assert (p1 + "").equals(new Pair<>(box.it(1), box.it(1)) + "");
     assert !(p1 + "").equals(p3 + "");
     assert !(p1 + "").equals(p4 + "");

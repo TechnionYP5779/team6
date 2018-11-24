@@ -1,15 +1,16 @@
 language: java
-install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true test -B -V
-jdk:
-  - oraclejdk8
-
-
-  
-  addons:
-  sonarcloud:
-    organization: "team_6" # the key of the org you chose at step #3
-    token:
-      secure:  9a27423c973a1d46d1a2e18007cc3e51abb107fb  # encrypted value of your token
+sudo: false
 script:
-  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+
+jdk:
+  - oraclejdk11  
+  
+addons:
+sonarcloud:
+organization: "team6project" 
+token:
+secure: 6dae3bef6e68bc98d11dc9ae00f85d19ce4cc29d 
+script:
+- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dgpg.skip=true -B -V 
+- mvn test
+- "mvn sonar:sonar -Dsonar.projectKey=team6project -Dsonar.organization=team6 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=6dae3bef6e68bc98d11dc9ae00f85d19ce4cc29d"

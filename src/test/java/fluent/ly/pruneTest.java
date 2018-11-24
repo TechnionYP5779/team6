@@ -66,9 +66,10 @@ import org.junit.*;
   @Test public void whitesEmptyList() {
     azzert.that(0, is(prune.whites().length));
   }
-  
-//  @NotNull final String @NotNull [] nonNullArray = { "1", "2", "4" };
-//  @NotNull final String @NotNull [] alternatingArray = new String[] { null, "A", null, null, "B", null, null, null, "C", null };
+
+  // @NotNull final String @NotNull [] nonNullArray = { "1", "2", "4" };
+  // @NotNull final String @NotNull [] alternatingArray = new String[] { null,
+  // "A", null, null, "B", null, null, null, "C", null };
   @NotNull final Supplier<List<String>> x = () -> {
     final List<String> $ = an.empty.list();
     $.add(null);
@@ -89,28 +90,29 @@ import org.junit.*;
     $.add(null);
     return $;
   };
-//  @NotNull private final List<String> sparseCollection = new Supplier<List<String>>() {
-//    @Override public List<String> get() {
-//      @NotNull final List<String> $ = an.empty.list();
-//      $.add(null);
-//      $.add(null);
-//      $.add(null);
-//      $.add(null);
-//      $.add(null);
-//      $.add("A");
-//      $.add(null);
-//      $.add(null);
-//      $.add(null);
-//      $.add("B");
-//      $.add(null);
-//      $.add("C");
-//      $.add(null);
-//      $.add(null);
-//      $.add(null);
-//      $.add(null);
-//      return $;
-//    }
-//  }.get();
+  // @NotNull private final List<String> sparseCollection = new
+  // Supplier<List<String>>() {
+  // @Override public List<String> get() {
+  // @NotNull final List<String> $ = an.empty.list();
+  // $.add(null);
+  // $.add(null);
+  // $.add(null);
+  // $.add(null);
+  // $.add(null);
+  // $.add("A");
+  // $.add(null);
+  // $.add(null);
+  // $.add(null);
+  // $.add("B");
+  // $.add(null);
+  // $.add("C");
+  // $.add(null);
+  // $.add(null);
+  // $.add(null);
+  // $.add(null);
+  // return $;
+  // }
+  // }.get();
 
   @Test public void testNotNullArrayItems() {
     azzert.that(nulls(nonNullArray)[0], is("1"));

@@ -29,8 +29,7 @@ import org.junit.*;
 
   @Test public void unboxTestDouble() {
     assertArrayEquals(new double[] { 1.1, 2.1, 3.1, 4.1, 5.1 },
-        unbox.it(new Double[] { Double.valueOf(1.1), Double.valueOf(2.1), Double.valueOf(3.1), Double.valueOf(4.1), Double.valueOf(5.1) }),
-        0.0001);
+        unbox.it(new Double[] { Double.valueOf(1.1), Double.valueOf(2.1), Double.valueOf(3.1), Double.valueOf(4.1), Double.valueOf(5.1) }), 0.0001);
   }
 
   @Test public void unboxTestFloat() {

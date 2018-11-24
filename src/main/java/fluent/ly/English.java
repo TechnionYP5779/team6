@@ -77,8 +77,12 @@ import il.org.spartan.utils.*;
     return ¢.getEnclosingClass() == null ? English.selfName(¢) : English.selfName(¢) + "." + name(¢.getEnclosingClass());
   }
 
+  @NotNull static String nameOfClass(final Class<?> ¢) {
+    return English.name(¢);
+  }
+
   @NotNull static String name(final @Nullable Object ¢) {
-    return English.name(¢ == null ? "null" : ¢.getClass());
+    return ¢ == null ? English.name("null") : English.nameOfClass(¢.getClass());
   }
 
   /** Get the plural form of the word if needed, by adding an 'es' to its end.

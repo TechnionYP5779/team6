@@ -1,135 +1,179 @@
 package il.org.spartan.utils;
 
-import org.jetbrains.annotations.*;
-import static fluent.ly.forget.______unused;
-public class AnyRange {
-  public enum RangeType {BOUNDEDABOVERANGE,BOUNDEDBELOWRANGE,FINITE}
-  int from;
-  int to;
-  int step;
-  RangeType type;
-  
-  AnyRange (int from_,int to_,int step_,RangeType type_){
-    from = from_;
-    to = to_;
-    step = step_;
-    type = type_;
-  }
+import static fluent.ly.forget.*;
 
-  @SuppressWarnings("serial") 
+import org.jetbrains.annotations.*;
+
+public class AnyRange {
+  @SuppressWarnings("serial")
   /** we use when we encounter problems like invalid arguments , etc */
-  public static class AnyRangeException extends Exception{
+  public static class AnyRangeException extends Exception {
     //
   }
-  
-  public class BoundedAboveRange{
-    public FiniteRange from (int from_) throws  AnyRangeException{
-      if (to<from)
+
+  public static class BoundedAboveRange {
+    int to;
+    int step;
+
+    BoundedAboveRange(final int to_, final int step_) throws AnyRangeException {
+      if (step_ > 0)
         throw new AnyRangeException();
-      from = from_;
-      return new FiniteRange();
-    }
-    
-    public void step(final int step_) throws  AnyRangeException{
-      if(step_>0) throw new AnyRangeException();
+      to = to_;
       step = step_;
     }
-    
+
+    public void to(final int to_) {
+      to = to_;
+    }
+
+    public int getTo() {
+      return to;
+    }
+
+    public int getStep() {
+      return step;
+    }
+
+    public void step(final int step_) throws AnyRangeException {
+      if (step_ > 0)
+        throw new AnyRangeException();
+      step = step_;
+    }
+
+    public FiniteRange from(final int from) throws AnyRangeException {
+      if (to < from)
+        throw new AnyRangeException();
+      return new FiniteRange(from, to, -step);
+    }
+
     @Override public String toString() {
       return String.format("[%d, %d]", fluent.ly.box.it(to), fluent.ly.box.it(step));
     }
-    
+
     @Override public int hashCode() {
-      return (step + to) > 0 ? -(step + to) :  (step + to);
+      return to + step <= 0 ? to + step : -(to + step);
     }
-    
-    AnyRange asAnyRange () {
-      return new AnyRange (-1,to,step,RangeType.BOUNDEDABOVERANGE);
-    }
-    
+
     @Override public boolean equals(final Object ¢) {
-      if (¢ instanceof BoundedAboveRange) 
-       return this.asAnyRange().equals( ((BoundedAboveRange)¢).asAnyRange() );
-      
-      return true;
+      return ¢ instanceof BoundedAboveRange && to == ((BoundedAboveRange) ¢).to && step == ((BoundedAboveRange) ¢).step;
     }
-    
-    @NotNull public BoundedAboveRange merge(final @NotNull BoundedAboveRange ¢) {
-      AnyRange range = ¢.asAnyRange();
-      int to_ = to > range.to ? to : range.to;
-      int step_ = step < range.step ? step : range.step;
-      return new AnyRange(-1,to_,step_,RangeType.BOUNDEDABOVERANGE).new BoundedAboveRange();
+
+    // in fact it doesn't throws
+    @NotNull public BoundedAboveRange merge(final @NotNull BoundedAboveRange ¢) throws AnyRangeException {
+      return new BoundedAboveRange(to > ¢.to ? to : ¢.to, step < ¢.step ? step : ¢.step);
     }
-    
+
     public boolean includedIn(final @NotNull BoundedAboveRange ¢) {
-      return to <= ¢.asAnyRange().to ;
+      return to <= ¢.to;
     }
-    
-    public boolean overlapping(final @NotNull BoundedAboveRange ¢) {
+
+    @SuppressWarnings("static-method") public boolean overlapping(final @NotNull BoundedAboveRange ¢) {
       ______unused(¢);
       return true;
     }
-    
   }
-  public class BoundedBelowRange{
-    public FiniteRange to (int to_) throws  AnyRangeException{
-      if (to_<from)
+
+  public static class BoundedBelowRange {
+    int from;
+    int step;
+
+    BoundedBelowRange(final int from_, final int step_) throws AnyRangeException {
+      if (step_ < 0)
         throw new AnyRangeException();
-      to = to_;
-      return new FiniteRange();
-    }
-    
-    public void step(final int step_) throws  AnyRangeException{
-      if(step_<0) throw new AnyRangeException();
+      from = from_;
       step = step_;
     }
-    
+
+    public void from(final int from_) {
+      from = from_;
+    }
+
+    public int getFrom() {
+      return from;
+    }
+
+    public int getStep() {
+      return step;
+    }
+
+    public FiniteRange to(final int to_) throws AnyRangeException {
+      if (to_ < from)
+        throw new AnyRangeException();
+      return new FiniteRange(from, to_, step);
+    }
+
+    public void step(final int step_) throws AnyRangeException {
+      if (step_ < 0)
+        throw new AnyRangeException();
+      step = step_;
+    }
+
     @Override public String toString() {
       return String.format("[%d, %d]", fluent.ly.box.it(from), fluent.ly.box.it(step));
     }
-    
+
     @Override public int hashCode() {
-      return (step + to) < 0 ? -(step + to) :  (step + to);
+      return from + step >= 0 ? from + step : -(from + step);
     }
-    
-    AnyRange asAnyRange () {
-      return new AnyRange (from,-1,step,RangeType.BOUNDEDBELOWRANGE);
-    }
-    
+
     @Override public boolean equals(final Object ¢) {
-      if (¢ instanceof BoundedBelowRange) 
-       return this.asAnyRange().equals( ((BoundedBelowRange)¢).asAnyRange() );
-      
-      return true;
+      return ¢ instanceof BoundedBelowRange && from == ((BoundedBelowRange) ¢).from && step == ((BoundedBelowRange) ¢).step;
     }
-    
-    @NotNull public BoundedBelowRange merge(final @NotNull BoundedBelowRange ¢) {
-      AnyRange range = ¢.asAnyRange();
-      int from_ = from < range.from ? from : range.from;
-      int step_ = step < range.step ? step : range.step;
-      return new AnyRange(from_,-1,step_,RangeType.BOUNDEDBELOWRANGE).new BoundedBelowRange();
+
+    // in fact it doesn't throws
+    @NotNull public BoundedBelowRange merge(final @NotNull BoundedBelowRange ¢) throws AnyRangeException {
+      return new BoundedBelowRange(from < ¢.from ? from : ¢.from, step < ¢.step ? step : ¢.step);
     }
-    
+
     public boolean includedIn(final @NotNull BoundedBelowRange ¢) {
-      return from >=  ¢.asAnyRange().from ;
+      return from >= ¢.from;
     }
-    
-    public boolean overlapping(final @NotNull BoundedBelowRange ¢) {
+
+    @SuppressWarnings("static-method") public boolean overlapping(final @NotNull BoundedBelowRange ¢) {
       ______unused(¢);
       return true;
     }
   }
-  
-  public class FiniteRange{
-    AnyRange asAnyRange () {
-      return new AnyRange (from,to,step,RangeType.FINITE);
+
+  public static class FiniteRange {
+    int from;
+    int to;
+    int step;
+
+    FiniteRange(final int from_, final int to_, final int step_) throws AnyRangeException {
+      if (from_ > to_ || step_ < 0)
+        throw new AnyRangeException();
+      from = from_;
+      to = to_;
+      step = step_;
     }
-    
+
+    public FiniteRange from(final int from_) throws AnyRangeException {
+      if (to < from_)
+        throw new AnyRangeException();
+      return new FiniteRange(from_, to, -step);
+    }
+
+    public FiniteRange to(final int to_) throws AnyRangeException {
+      if (to_ < from)
+        throw new AnyRangeException();
+      return new FiniteRange(from, to_, step);
+    }
+
+    public int getFrom() {
+      return from;
+    }
+
+    public int getStep() {
+      return step;
+    }
+
+    public int getTo() {
+      return to;
+    }
+
     @Override public boolean equals(final Object ¢) {
-      if (¢ instanceof FiniteRange) 
-       return this.asAnyRange().equals( ((FiniteRange)¢).asAnyRange() );
-      
-      return true;
+      return ¢ instanceof FiniteRange && from == ((FiniteRange) ¢).from && to == ((FiniteRange) ¢).to && step == ((FiniteRange) ¢).step;
     }
 
     @Override public int hashCode() {
@@ -138,21 +182,16 @@ public class AnyRange {
     }
 
     public boolean includedIn(final @NotNull FiniteRange ¢) {
-      AnyRange range = ¢.asAnyRange();
-      return from >= range.from && to <= range.to;
+      return from >= ¢.from && to <= ¢.to;
     }
 
-    @NotNull public FiniteRange merge(final @NotNull FiniteRange ¢) {
-      AnyRange range = ¢.asAnyRange();
-      int from_ = from < range.from ? from : range.from;
-      int to_ = to > range.to ? to : range.to;
-      int step_ = step < range.step ? step : range.step;
-      return new AnyRange(from_,to_,step_,RangeType.FINITE).new FiniteRange();
+    // in fact it doesn't throws
+    @NotNull public FiniteRange merge(final @NotNull FiniteRange ¢) throws AnyRangeException {
+      return new FiniteRange(from < ¢.from ? from : ¢.from, to > ¢.to ? to : ¢.to, step < ¢.step ? step : ¢.step);
     }
 
     public boolean overlapping(final @NotNull FiniteRange ¢) {
-      AnyRange range = ¢.asAnyRange();
-      return from >= range.from || to <= range.to;
+      return from >= ¢.from || to <= ¢.to;
     }
 
     public int size() {
@@ -162,68 +201,31 @@ public class AnyRange {
     @Override public String toString() {
       return String.format("[%d, %d]", fluent.ly.box.it(from), fluent.ly.box.it(to));
     }
-    
-    public void step(final int step_) throws AnyRangeException{
-      if(step < 0) throw new AnyRangeException();
+
+    public void step(final int step_) throws AnyRangeException {
+      if (step < 0)
+        throw new AnyRangeException();
       step = step_;
     }
   }
-  
-  public BoundedBelowRange from(int from_) throws AnyRangeException{
-    if(step < 0) throw new AnyRangeException();
-    from = from_;
-    step = 0;
-    return new BoundedBelowRange();
-  }
-  
-  public BoundedAboveRange to(int to_) throws AnyRangeException{
-    if(step > 0) throw new AnyRangeException();
-    to = to_;
-    step = 0;
-    return new BoundedAboveRange();
-  }
-  
-  public BoundedBelowRange naturals () {
-    from = 1;
-    step = 1;
-    return new BoundedBelowRange();
-  }
-  
-  public BoundedAboveRange Negativeodds () {
-    from = -1;
-    step = -2;
-    return new BoundedAboveRange();
-  }
-  
-  public BoundedBelowRange Posistiveodds () {
-    from = 1;
-    step = 2;
-    return new BoundedBelowRange();
-  }
-  
-int getFrom () {return from;}
-int getTo() {return to;}
-int getStep() {return step;}
 
-@Override public boolean equals(final Object o) {
-  if ( ! (o instanceof AnyRange)) return false;
-  
-  AnyRange range = (AnyRange) o;
-  if(type != range.type) return false;
-    switch (type) {
-      case BOUNDEDABOVERANGE: if(to != range.to || step != range.step) return false;
-                              break;
-      case BOUNDEDBELOWRANGE: if(from != range.from || step != range.step) return false;
-                              break;
-      case FINITE: if(from != range.from || to != range.to || step != range.step) return false;
-                   break;
-   }
-  
-    return true;
-}
+  public static BoundedBelowRange from(final int from) throws AnyRangeException {
+    return new BoundedBelowRange(from, 0);
+  }
 
-@Override public int hashCode() {
-  return super.hashCode();
-}
- 
+  public static BoundedAboveRange to(final int to) throws AnyRangeException {
+    return new BoundedAboveRange(to, 0);
+  }
+
+  public static BoundedBelowRange naturals() throws AnyRangeException {
+    return new BoundedBelowRange(1, 1);
+  }
+
+  public static BoundedAboveRange Negativeodds() throws AnyRangeException {
+    return new BoundedAboveRange(-1, -2);
+  }
+
+  public static BoundedBelowRange Positiveodds() throws AnyRangeException {
+    return new BoundedBelowRange(1, 2);
+  }
 }

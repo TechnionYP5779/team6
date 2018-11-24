@@ -112,8 +112,8 @@ import org.junit.*;
     res.add("a");
     azzert.that(res, is(lisp.replaceLast(arr, "a")));
   }
-  
-  //added for coverage
+
+  // added for coverage
   @Test public void lispRest2() {
     final ArrayList<String> arr = new ArrayList<>();
     arr.add("a");
@@ -121,32 +121,25 @@ import org.junit.*;
     arr.add("c");
     arr.add("z");
     int c = 0;
-    for(String ¢ : lisp.rest2(arr)) {
-      azzert.that(¢, is(arr.get(c+2)));
+    for (final String ¢ : lisp.rest2(arr)) {
+      azzert.that(¢, is(arr.get(c + 2)));
       ++c;
     }
     azzert.that(box.it(2), is(c));
   }
-  
+
   @Test public void areEqualTest() {
     assert !lisp.areEqual(null, null, null);
     assert !lisp.areEqual(null);
-    
     assert !lisp.areEqual(null, box.it(1), box.it(1));
-    
     assert !lisp.areEqual(box.it(1), box.it(1), box.it(2));
-    
     assert !lisp.areEqual(box.it(2), box.it(1), box.it(1));
-    
     assert !lisp.areEqual(box.it(1), box.it(1), box.it(1), box.it(2));
-    
-    assert lisp.areEqual(box.it(1), box.it(1),  box.it(1));
-    
+    assert lisp.areEqual(box.it(1), box.it(1), box.it(1));
     assert !lisp.areEqual(box.it(true), box.it(true), box.it(false));
-    
     assert lisp.areEqual(box.it(true), box.it(true), box.it(true));
-
   }
+
   @Test public void chopLastListTest() {
     final ArrayList<String> arr = new ArrayList<>();
     arr.add("a");
@@ -154,22 +147,18 @@ import org.junit.*;
     arr.add("c");
     arr.add("d");
     arr.add("e");
-    
-    azzert.that("d", is(lisp.chopLast(arr).get(arr.size()-2)));
-    
-    azzert.that("c", is(lisp.chopLast(lisp.chopLast(arr)).get(arr.size()-3)));
-    
+    azzert.that("d", is(lisp.chopLast(arr).get(arr.size() - 2)));
+    azzert.that("c", is(lisp.chopLast(lisp.chopLast(arr)).get(arr.size() - 3)));
     azzert.that(box.it(4), is(lisp.chopLast(arr).size()));
-    
     azzert.that(box.it(3), is(lisp.chop(lisp.chopLast(arr)).size()));
   }
-  
+
   @Test public void chopLastStringTest() {
-      final String str = "aba";
-      azzert.that("ab", is(lisp.chopLast(str)));
-      azzert.that("a", is(lisp.chopLast(lisp.chopLast(str))));
+    final String str = "aba";
+    azzert.that("ab", is(lisp.chopLast(str)));
+    azzert.that("a", is(lisp.chopLast(lisp.chopLast(str))));
   }
-  
+
   @Test public void removeFromListTest() {
     final ArrayList<String> arr1 = new ArrayList<>(), arr2 = new ArrayList<>();
     arr1.add("a");
@@ -181,9 +170,9 @@ import org.junit.*;
     lisp.removeFromList(arr2, arr1);
     azzert.that(box.it(2), is(arr1.size()));
     azzert.that("a", is(arr1.get(0)));
-    azzert.that("d", is(arr1.get(1)));    
+    azzert.that("d", is(arr1.get(1)));
   }
-  
+
   @Test public void removeLastTest() {
     final ArrayList<String> arr = new ArrayList<>();
     arr.add("a");
@@ -192,9 +181,9 @@ import org.junit.*;
     arr.add("d");
     lisp.removeLast(arr);
     azzert.that(box.it(3), is(arr.size()));
-    azzert.that("c", is(arr.get(arr.size()-1)));
+    azzert.that("c", is(arr.get(arr.size() - 1)));
   }
-  
+
   @Test public void swapTest() {
     final ArrayList<String> arr = new ArrayList<>();
     arr.add("a");
@@ -206,7 +195,4 @@ import org.junit.*;
     azzert.that(arr, is(lisp.swap(arr, 3, 3)));
     azzert.that(arr, is(lisp.swap(arr, 1, 3)));
   }
-  
-  
-  
 }

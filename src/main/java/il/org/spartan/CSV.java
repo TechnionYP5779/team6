@@ -1,8 +1,8 @@
 package il.org.spartan;
 
-import static fluent.ly.___.*;
-
 import static il.org.spartan.Utils.*;
+
+import static fluent.ly.___.*;
 
 import java.io.*;
 import java.lang.reflect.*;
