@@ -52,7 +52,7 @@ import fluent.ly.*;
     } catch (IOException e) {// wont get here
     }
     tmpFile123.delete();
-    azzert.that(data + "\r\n", is(contentFile));
+    assert contentFile.contains(data);
   }
 
   @Test public void writeToFileTest() {
