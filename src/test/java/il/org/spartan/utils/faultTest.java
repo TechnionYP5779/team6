@@ -23,9 +23,9 @@ import fluent.ly.*;
   }
 
   @Test public void specificallyTest() {
-    final String name = "floors", expectedOutput = "\n FAULT: this should not have happened!\n floors\n"
+    final String expectedOutput = "\n FAULT: this should not have happened!\n floors\n"
         + "-----To help you fix the code, here is some info\n String=[a]\n String=[b]\n String=[c]\n   ";
-    String finalOutput = fault.specifically(name, (Object[]) new String[] { "a", "b", "c" }) + "";
+    String finalOutput = fault.specifically("floors", (Object[]) new String[] { "a", "b", "c" }) + "";
     finalOutput = finalOutput.substring(0, finalOutput.indexOf("Stack trace"));
     azzert.that(expectedOutput, is(finalOutput));
   }

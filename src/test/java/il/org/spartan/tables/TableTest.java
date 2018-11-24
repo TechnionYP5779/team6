@@ -59,7 +59,7 @@ import fluent.ly.*;
 
   @Test public void testCreate3() {
     final Table table = new Table("1".getClass(), System.getProperty("user.dir"));
-    assert table.baseName().contains("/");
+    assert table.baseName().contains(System.getProperty("file.separator"));
     table.close();
     new File(".txt").delete();
     new File(".tex2").delete();

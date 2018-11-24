@@ -78,8 +78,7 @@ import fluent.ly.*;
   }
 
   @Test public void splitToClassesTest() {
-    final Class<?>[] cs = CSV.splitToClasses("il.org.spartan.CSVTest,il.org.spartan.CSVTest,il.org.spartan.CSVTest");
-    for (final Class<?> element : cs)
+    for (final Class<?> element : CSV.splitToClasses("il.org.spartan.CSVTest,il.org.spartan.CSVTest,il.org.spartan.CSVTest"))
       azzert.that(element, is(this.getClass()));
   }
 }
