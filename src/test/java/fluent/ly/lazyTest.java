@@ -1,15 +1,15 @@
 package fluent.ly;
 
-import org.jetbrains.annotations.*;
-import org.junit.*;
+import static fluent.ly.azzert.*;
 
 import java.util.function.*;
 
-import static fluent.ly.azzert.*;
+import org.jetbrains.annotations.*;
+import org.junit.*;
 
 @SuppressWarnings("static-method") public class lazyTest {
   @Test public void getTest() {
-    Supplier<@Nullable String> supp = new Supplier<@Nullable String>() {
+    final Supplier<@Nullable String> supp = new Supplier<@Nullable String>() {
       int i;
 
       @Override public String get() {
@@ -19,7 +19,7 @@ import static fluent.ly.azzert.*;
     };
     // compute supp.get with the lazy interface, therefore function get happens only
     // once
-    lazy<@Nullable String> newLazy = lazy.get(supp);
+    final lazy<@Nullable String> newLazy = lazy.get(supp);
     azzert.that("1", is(newLazy.get()));
     azzert.that("1", is(newLazy.get()));
     // compute supp.get withOut the lazy interface, therefore function get happens

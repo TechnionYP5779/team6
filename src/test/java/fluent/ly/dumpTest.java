@@ -4,13 +4,12 @@ import static fluent.ly.azzert.*;
 
 import java.io.*;
 import java.lang.reflect.*;
-import java.net.*;
 import java.util.*;
 
 import org.jetbrains.annotations.*;
 import org.junit.*;
 
-@SuppressWarnings({ "unused", "null" }) public class dumpTest {
+@SuppressWarnings("null") public class dumpTest {
   private ByteArrayOutputStream newOutPut;
 
   public class SomeMethods {
@@ -47,7 +46,7 @@ import org.junit.*;
   }
 
   @Test public void goListTest() {
-    final ArrayList<Integer> ls = new ArrayList<Integer>();
+    final ArrayList<Integer> ls = new ArrayList<>();
     ls.add(box.it(1));
     ls.add(box.it(2));
     ls.add(box.it(3));
@@ -63,13 +62,13 @@ import org.junit.*;
   }
 
   @Test public void goObjectTest() {
-    SomeMethods c1 = new SomeMethods();
+    final SomeMethods c1 = new SomeMethods();
     dump.go(c1, "HELLO");
     String dynamicMethodsOrder = "";
     for (final @NotNull Method m : c1.getClass().getMethods()) {
       if (m.getParameterTypes().length != 0)
         continue;
-      String name = m.getName();
+      final String name = m.getName();
       if (!"getClass".equals(name) && !"toString".equals(name))
         if (name.matches("^get[A-Z].*$"))
           dynamicMethodsOrder += "A = null\n";
@@ -98,7 +97,7 @@ import org.junit.*;
   }
 
   @Test public void goArray() {
-    Object[] arr = new Object[3];
+    final Object[] arr = new Object[3];
     arr[0] = "1";
     arr[0] = "2";
     arr[0] = "3";
@@ -107,7 +106,7 @@ import org.junit.*;
   }
 
   @Test public void goArrayAndMoreParameters() {
-    Object[] arr = new Object[3];
+    final Object[] arr = new Object[3];
     arr[0] = "1";
     arr[0] = "2";
     arr[0] = "3";

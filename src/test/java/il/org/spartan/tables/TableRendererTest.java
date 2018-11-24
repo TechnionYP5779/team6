@@ -166,7 +166,7 @@ import fluent.ly.*;
   }
 
   @Test public void cellArray() {
-    Integer[] arr = new Integer[3];
+    final Integer[] arr = new Integer[3];
     azzert.that(TableRendererForTest.TABLE.cellArray(arr), is(""));
     arr[0] = box.it(1);
     azzert.that(TableRendererForTest.TABLE.cellArray(arr), is("1"));
@@ -224,7 +224,7 @@ import fluent.ly.*;
   }
 
   @Test public void renderRow_Object() {
-    Collection<Object> arr = new ArrayList<>(3);
+    final Collection<Object> arr = new ArrayList<>(3);
     arr.add(box.it(1));
     arr.add(box.it(2));
     arr.add(box.it(3));
@@ -232,7 +232,7 @@ import fluent.ly.*;
   }
 
   @Test public void renderRow_Integer() {
-    Collection<Object> arr = new ArrayList<>(3);
+    final Collection<Object> arr = new ArrayList<>(3);
     arr.add(box.it(1L));
     arr.add(box.it(2L));
     arr.add(box.it(3L));

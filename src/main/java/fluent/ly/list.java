@@ -82,7 +82,7 @@ public interface list {
   }
 
   /** @param <T> JD
-   * @param ¢ a list // lgtm 
+   * @param ¢ a list // lgtm
    * @return last item in a list or <code><b>null</b></code> if the parameter is
    *         <code><b>null</b></code> or empty */
   static <T> @Nullable T penultimate(final List<T> ¢) {

@@ -1,10 +1,10 @@
 package il.org.spartan.utils;
 
+import static il.org.spartan.Utils.*;
+
 import org.jetbrains.annotations.*;
 
 import il.org.spartan.*;
-
-import static il.org.spartan.Utils.*;
 
 /** TODO Yossi Gil: document class
  * @author Yossi Gil
@@ -57,7 +57,7 @@ public class Outer<Inner> implements Cloneable {
   @Override public String toString() {
     return cantBeNull(inner + "");
   }
-  
+
   public static class Wrapper<@Nullable T> {
     @Nullable protected T inner;
 

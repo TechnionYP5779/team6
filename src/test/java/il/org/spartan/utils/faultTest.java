@@ -8,11 +8,10 @@ import fluent.ly.*;
 
 @SuppressWarnings({ "static-method", "null" }) public class faultTest {
   @Test public void doneTest() {
-    String expectedOutput = fault.trace(new AssertionError()) + "\n   END stack trace: .................]]]\n-----this is all I know.";
-    int indexExpectedOutput = expectedOutput.indexOf("at java.base");
-    String finalOutput = fault.done() + "";
+    final String expectedOutput = fault.trace(new AssertionError()) + "\n   END stack trace: .................]]]\n-----this is all I know.";
+    final int indexExpectedOutput = expectedOutput.indexOf("at java.base");
+    final String finalOutput = fault.done() + "";
     azzert.that(expectedOutput.substring(indexExpectedOutput), is(finalOutput.substring(finalOutput.indexOf("at java.base"))));
-
   }
 
   @Test public void dumpTest() {
@@ -24,10 +23,9 @@ import fluent.ly.*;
   }
 
   @Test public void specificallyTest() {
-    String name = "floors",
-        expectedOutput = "\n FAULT: this should not have happened!\n floors\n"
-            + "-----To help you fix the code, here is some info\n String=[a]\n String=[b]\n String=[c]\n   ",
-        finalOutput = fault.specifically(name, (Object[]) new String[] { "a", "b", "c" }) + "";
+    final String name = "floors", expectedOutput = "\n FAULT: this should not have happened!\n floors\n"
+        + "-----To help you fix the code, here is some info\n String=[a]\n String=[b]\n String=[c]\n   ";
+    String finalOutput = fault.specifically(name, (Object[]) new String[] { "a", "b", "c" }) + "";
     finalOutput = finalOutput.substring(0, finalOutput.indexOf("Stack trace"));
     azzert.that(expectedOutput, is(finalOutput));
   }

@@ -24,8 +24,8 @@ import fluent.ly.*;
   @Test @SuppressWarnings("unchecked") public void addAllTypical() {
     final Set<String> ss = new HashSet<>();
     accumulate.to(ss).addAll(as.set("A", "B"), null, as.set("B", "C", "D"));
-    assert !(ss.contains("E"));
-    assert !(ss.contains(null));
+    assert !ss.contains("E");
+    assert !ss.contains(null);
     azzert.that(ss.size(), is(4));
     for (final @NotNull String ¢ : ss)
       azzert.aye("", ss.contains(¢));
@@ -34,12 +34,12 @@ import fluent.ly.*;
   @Test public void addTypical() {
     final Set<String> ss = new HashSet<>();
     accumulate.to(ss).add(null, "A", null, "B", "B", null, "C", "D", null);
-    assert !(ss.contains("E"));
-    assert !(ss.contains(null));
+    assert !ss.contains("E");
+    assert !ss.contains(null);
     azzert.that(ss.size(), is(4));
     for (final @NotNull String ¢ : ss)
       azzert.aye("", ss.contains(¢));
-    assert (ss.contains("A"));
+    assert ss.contains("A");
   }
 
   @Test public void cantBeNullOfNull() {
@@ -107,10 +107,10 @@ import fluent.ly.*;
   }
 
   @Test public void append() {
-    Integer[] arr = new Integer[2];
+    final Integer[] arr = new Integer[2];
     arr[0] = box.it(0);
     arr[1] = box.it(1);
-    Integer[] arrPlusOne = new Integer[3];
+    final Integer[] arrPlusOne = new Integer[3];
     arrPlusOne[0] = box.it(0);
     arrPlusOne[1] = box.it(1);
     arrPlusOne[2] = box.it(2);
@@ -142,18 +142,18 @@ import fluent.ly.*;
   }
 
   @Test public void delete() {
-    Integer[] arr = new Integer[5];
+    final Integer[] arr = new Integer[5];
     arr[0] = box.it(0);
     arr[1] = box.it(1);
     arr[2] = box.it(2);
     arr[3] = box.it(3);
     arr[4] = box.it(4);
-    Integer[] arr2 = new Integer[4];
+    final Integer[] arr2 = new Integer[4];
     arr2[0] = box.it(0);
     arr2[1] = box.it(1);
     arr2[2] = box.it(3);
     arr2[3] = box.it(4);
-    Integer[] arr0 = new Integer[4];
+    final Integer[] arr0 = new Integer[4];
     arr0[0] = box.it(1);
     arr0[1] = box.it(2);
     arr0[2] = box.it(3);
@@ -162,10 +162,10 @@ import fluent.ly.*;
   }
 
   @Test public void found() {
-    FoundHandleForT.FoundHandleForInt f1 = Utils.found(10);
+    final FoundHandleForT.FoundHandleForInt f1 = Utils.found(10);
     assert f1.in(9, 10, 11);
     assert !f1.in(9, 11);
-    FoundHandleForT<String> f2 = Utils.found("s");
+    final FoundHandleForT<String> f2 = Utils.found("s");
     assert f2.in("a", "b", "s");
     assert !f2.in("a", "b");
   }
@@ -176,7 +176,7 @@ import fluent.ly.*;
   }
 
   @Test public void inRange() {
-    List<Integer> list = new ArrayList<>();
+    final List<Integer> list = new ArrayList<>();
     assert !Utils.inRange(1, list);
     list.add(0, box.it(1));
     assert Utils.inRange(0, list);
@@ -190,7 +190,7 @@ import fluent.ly.*;
   }
 
   @Test public void lastIn() {
-    List<Integer> list = new ArrayList<>();
+    final List<Integer> list = new ArrayList<>();
     list.add(0, box.it(0));
     list.add(1, box.it(1));
     list.add(2, box.it(2));
@@ -222,7 +222,7 @@ import fluent.ly.*;
   }
 
   @Test public void removeDuplicates() {
-    List<Integer> list = new ArrayList<>();
+    final List<Integer> list = new ArrayList<>();
     list.add(0, box.it(0));
     list.add(1, box.it(1));
     list.add(2, box.it(0));
@@ -245,12 +245,12 @@ import fluent.ly.*;
   }
 
   @Test public void sort() {
-    int[] arr = new int[4];
+    final int[] arr = new int[4];
     arr[0] = 6;
     arr[1] = 4;
     arr[2] = 8;
     arr[3] = 1;
-    int[] sorted = new int[4];
+    final int[] sorted = new int[4];
     sorted[0] = 1;
     sorted[1] = 4;
     sorted[2] = 6;
@@ -263,7 +263,7 @@ import fluent.ly.*;
   }
 
   @Test public void suffixedBy() {
-    List<String> stringList = new ArrayList<>();
+    final List<String> stringList = new ArrayList<>();
     stringList.add("a");
     stringList.add("b");
     stringList.add("c");
@@ -275,7 +275,7 @@ import fluent.ly.*;
   }
 
   @Test public void swapTest() {
-    Integer[] arr = new Integer[4];
+    final Integer[] arr = new Integer[4];
     arr[0] = box.it(1);
     arr[1] = box.it(3);
     arr[2] = box.it(2);

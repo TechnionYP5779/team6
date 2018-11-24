@@ -46,7 +46,7 @@ import org.jetbrains.annotations.*;
   public static int @NotNull [] it(final @NotNull List<Integer> ¢) {
     return it(¢.toArray(new Integer[¢.size()]));
   }
- 
+
   public static boolean unboxThis(final @NotNull Boolean ¢) {
     return ¢.booleanValue();
   }

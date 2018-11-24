@@ -1,22 +1,19 @@
 package il.org.spartan;
 
-import org.junit.*;
 import static fluent.ly.azzert.*;
+
+import org.junit.*;
 
 import fluent.ly.*;
 import il.org.spartan.utils.Outer.*;
 
-
-/**
- * Unit tests for class Wrapper
- * 
+/** Unit tests for class Wrapper
  * @author Nitzan
- * @see Wrapper
- */
+ * @see Wrapper */
 @SuppressWarnings("null") public class WrapperTest {
-  private Wrapper<Integer> nullWrap = new Wrapper<>();
-  private Wrapper<Integer> oneWrap = new Wrapper<>(box.boxThis(1));
-  private Wrapper<Integer> twoWrap = new Wrapper<>(box.boxThis(2));
+  private final Wrapper<Integer> nullWrap = new Wrapper<>();
+  private final Wrapper<Integer> oneWrap = new Wrapper<>(box.boxThis(1));
+  private final Wrapper<Integer> twoWrap = new Wrapper<>(box.boxThis(2));
 
   @Test public void testEquals() {
     azzert.that(nullWrap, is(new Wrapper<>()));

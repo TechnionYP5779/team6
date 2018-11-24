@@ -2,28 +2,27 @@ package il.org.spartan.utils;
 
 import org.junit.*;
 
-
-import fluent.ly.azzert;
+import fluent.ly.*;
 
 @SuppressWarnings("static-method") public class StrTest {
-   @Test public void emptyTest() {
-    azzert.isNull((new Str()).inner());
-    assert (new Str()).isEmptyx();
-    assert !((new Str()).notEmpty());
+  @Test public void emptyTest() {
+    azzert.isNull(new Str().inner());
+    assert new Str().isEmptyx();
+    assert !new Str().notEmpty();
   }
-   
-   @Test public void notEmptyTest() {
-     Str abc = new Str("abc");
-     assert "abc".equals(abc.inner());
-     assert abc.notEmpty();
-     assert !(abc.isEmptyx());
-   }
-   
-   @Test public void setTest() {
-     Str empty = new Str(), abc = new Str("abc");
-     empty.set("notnull");
-     abc.set("cba");
-     assert "cba".equals(abc.inner());
-     assert "notnull".equals(empty.inner());
-   }
+
+  @Test public void notEmptyTest() {
+    final Str abc = new Str("abc");
+    assert "abc".equals(abc.inner());
+    assert abc.notEmpty();
+    assert !abc.isEmptyx();
+  }
+
+  @Test public void setTest() {
+    final Str empty = new Str(), abc = new Str("abc");
+    empty.set("notnull");
+    abc.set("cba");
+    assert "cba".equals(abc.inner());
+    assert "notnull".equals(empty.inner());
+  }
 }

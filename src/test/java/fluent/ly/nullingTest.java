@@ -34,13 +34,11 @@ import org.junit.*;
   }
 
   @Test public void lyRunnable() {
-    azzert.assertNull(nulling.ly(new Runnable() {
-      @Override public void run() {
-        assert true;
-      }
+    azzert.assertNull(nulling.ly(() -> {
+      assert true;
     }));
   }
-  
+
   @Test public void lySupplier() {
     azzert.assertNull(nulling.ly(() -> "string"));
   }

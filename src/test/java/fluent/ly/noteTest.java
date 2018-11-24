@@ -9,7 +9,7 @@ import org.junit.*;
   class LogHndeler extends Handler {
     private String message;
 
-    @Override public void publish(LogRecord ¢) {
+    @Override public void publish(final LogRecord ¢) {
       message = ¢.getMessage();
     }
 

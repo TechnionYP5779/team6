@@ -7,10 +7,10 @@ import org.junit.*;
   @Nullable private final String nul = null;
 
   @Test public void seriesA01() {
-    assert (has.nulls(nul));
+    assert has.nulls(nul);
   }
 
   @Test public void seriesA02() {
-    assert !(has.nulls("A"));
+    assert !has.nulls("A");
   }
 }
