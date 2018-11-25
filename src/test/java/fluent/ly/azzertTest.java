@@ -7,7 +7,7 @@ import org.junit.*;
 import fluent.ly.azzert;
 
 @SuppressWarnings("static-method") public class azzertTest {
-  @Test public void azzertCollectionEqualtest() {
+  @Test public void azzertCollectionEqualTest() {
     ArrayList<Integer> l1 = new ArrayList<>(); // 1,4,9
     ArrayList<Integer> l2 = new ArrayList<>(); // 1,4,9
     Integer[] arr = new Integer[3];
@@ -26,4 +26,6 @@ import fluent.ly.azzert;
     azzert.assertCollectionsEqual("fail", l1, arr);
     azzert.assertCollectionsEqual("fail", arr, l2);
   }
+  
+  
 }
