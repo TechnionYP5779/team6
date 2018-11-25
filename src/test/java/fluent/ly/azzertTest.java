@@ -6,8 +6,7 @@ import org.junit.*;
 
 @SuppressWarnings("static-method") public class azzertTest {
   @Test public void azzertCollectionEqualTest() {
-    final ArrayList<Integer> l1 = new ArrayList<>(); // 1,4,9
-    final ArrayList<Integer> l2 = new ArrayList<>(); // 1,4,9
+    final ArrayList<Integer> l1 = new ArrayList<>(), l2 = new ArrayList<>();
     final Integer[] arr = new Integer[3];
     arr[0] = box.it(1);
     l1.add(box.it(1));
@@ -26,8 +25,7 @@ import org.junit.*;
   }
 
   @Test(expected = AssertionError.class) public void azzertCollectionNotEqualTest1() {
-    final ArrayList<Integer> l1 = new ArrayList<>(); // 1,4,9
-    final ArrayList<Integer> l2 = new ArrayList<>(); // 1,4
+    final ArrayList<Integer> l1 = new ArrayList<>(), l2 = new ArrayList<>();
     l1.add(box.it(1));
     l2.add(box.it(1));
     l1.add(box.it(4));
@@ -37,8 +35,7 @@ import org.junit.*;
   }
 
   @Test(expected = AssertionError.class) public void azzertCollectionNotEqualTest2() {
-    final ArrayList<Integer> l1 = new ArrayList<>(); // 1,4,9
-    final ArrayList<Integer> l2 = new ArrayList<>(); // 1,4
+    final ArrayList<Integer> l1 = new ArrayList<>(), l2 = new ArrayList<>();
     l1.add(box.it(1));
     l2.add(box.it(1));
     l1.add(box.it(4));
@@ -60,8 +57,7 @@ import org.junit.*;
   }
 
   @Test(expected = AssertionError.class) public void azzertCollectionNotEqualTest4() {
-    final ArrayList<Integer> l1 = new ArrayList<>(); // 1,4,9
-    final ArrayList<Integer> l2 = new ArrayList<>(); // 1,4
+    final ArrayList<Integer> l1 = new ArrayList<>(), l2 = new ArrayList<>();
     l1.add(box.it(1));
     l2.add(box.it(1));
     l1.add(box.it(4));
@@ -124,8 +120,7 @@ import org.junit.*;
   }
 
   @Test public void azzertAssertEqualsTest1() {
-    final Boolean t = box.it(true);
-    final Boolean f = box.it(false);
+    final Boolean t = box.it(true), f = box.it(false);
     azzert.assertEquals(true, true);
     azzert.assertEquals(false, false);
     azzert.assertEquals(t, true);
