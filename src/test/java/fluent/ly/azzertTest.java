@@ -131,6 +131,8 @@ import org.junit.*;
     azzert.assertEquals("fail", true, true);
     azzert.assertEquals("fail", t, true);
     azzert.assertEquals("fail", true, t);
+    azzert.xassertEquals(1, 1);
+    azzert.xassertEquals("fail", 1, 1);
   }
 
   @Test public void azzertAssertEqualsTest2() {
@@ -164,6 +166,7 @@ import org.junit.*;
     azzert.isNull("fail", o);
     azzert.assertNull(o);
     azzert.assertNull("fail", o);
+    azzert.notNull("fail", new ArrayList<>());
   }
 
   @Test public void azzertPositiveTest1() {
@@ -179,9 +182,7 @@ import org.junit.*;
   }
 
   @Test public void azzertSubsetTest1() {
-    final ArrayList<Integer> l1 = new ArrayList<>(); // 1,4,9
-    final ArrayList<Integer> l2 = new ArrayList<>(); // 1,4
-    final ArrayList<Integer> empty = new ArrayList<>();
+    final ArrayList<Integer> l1 = new ArrayList<>(), l2 = new ArrayList<>(), empty = new ArrayList<>();
     l1.add(box.it(1));
     l2.add(box.it(1));
     l1.add(box.it(4));
@@ -192,15 +193,13 @@ import org.junit.*;
   }
 
   @Test(expected = AssertionError.class) public void azzertSubsetTest2() {
-    final ArrayList<Integer> l1 = new ArrayList<>(); // 1
-    final ArrayList<Integer> empty = new ArrayList<>();
+    final ArrayList<Integer> l1 = new ArrayList<>(), empty = new ArrayList<>();
     l1.add(box.it(1));
     azzert.assertSubset(l1, empty);
   }
 
   @Test(expected = AssertionError.class) public void azzertSubsetTest3() {
-    final ArrayList<Integer> l2 = new ArrayList<>(); // 1,4,9
-    final ArrayList<Integer> l1 = new ArrayList<>(); // 1,4
+    final ArrayList<Integer> l2 = new ArrayList<>(), l1 = new ArrayList<>();
     l2.add(box.it(1));
     l1.add(box.it(1));
     l2.add(box.it(4));
@@ -211,6 +210,7 @@ import org.junit.*;
 
   @Test public void azzertZeroTest1() {
     azzert.assertZero(0);
+    azzert.zero(0L);
   }
 
   @Test(expected = AssertionError.class) public void azzertZeroTest2() {
@@ -227,10 +227,10 @@ import org.junit.*;
     azzert.comparesEqualTo(false);
     azzert.comparesEqualTo((byte) 0);
     azzert.comparesEqualTo((char) 0);
-    azzert.comparesEqualTo((double) 0);
+    azzert.comparesEqualTo(0.0);
     azzert.comparesEqualTo((float) 0);
     azzert.comparesEqualTo(0);
-    azzert.comparesEqualTo(1L * 0);
+    azzert.comparesEqualTo(0L);
     azzert.comparesEqualTo((short) 0);
   }
 
@@ -240,10 +240,10 @@ import org.junit.*;
     azzert.greaterThanOrEqualTo(false);
     azzert.greaterThanOrEqualTo((byte) 0);
     azzert.greaterThanOrEqualTo((char) 0);
-    azzert.greaterThanOrEqualTo((double) 0);
+    azzert.greaterThanOrEqualTo(0.0);
     azzert.greaterThanOrEqualTo((float) 0);
     azzert.greaterThanOrEqualTo(0);
-    azzert.greaterThanOrEqualTo(1L * 0);
+    azzert.greaterThanOrEqualTo(0L);
     azzert.greaterThanOrEqualTo((short) 0);
   }
 
@@ -255,7 +255,7 @@ import org.junit.*;
     final double c = 0;
     final float d = 0;
     final short e = (short) 0;
-    final long f = 1L * 0;
+    final long f = 0L;
     azzert.greaterThanOrEqualTo(t);
     azzert.greaterThanOrEqualTo(t); // just to make the spartanizer happy
     azzert.greaterThanOrEqualTo(a);
@@ -275,10 +275,10 @@ import org.junit.*;
     azzert.lessThan(false);
     azzert.lessThan((byte) 0);
     azzert.lessThan((char) 0);
-    azzert.lessThan((double) 0);
+    azzert.lessThan(0.0);
     azzert.lessThan((float) 0);
     azzert.lessThan(0);
-    azzert.lessThan(1L * 0);
+    azzert.lessThan(0L);
     azzert.lessThan((short) 0);
   }
 
@@ -288,10 +288,10 @@ import org.junit.*;
     azzert.lessThanOrEqualTo(false);
     azzert.lessThanOrEqualTo((byte) 0);
     azzert.lessThanOrEqualTo((char) 0);
-    azzert.lessThanOrEqualTo((double) 0);
+    azzert.lessThanOrEqualTo(0.0);
     azzert.lessThanOrEqualTo((float) 0);
     azzert.lessThanOrEqualTo(0);
-    azzert.lessThanOrEqualTo(1L * 0);
+    azzert.lessThanOrEqualTo(0L);
     azzert.lessThanOrEqualTo((short) 0);
   }
 
@@ -301,10 +301,30 @@ import org.junit.*;
     azzert.not(false);
     azzert.not((byte) 0);
     azzert.not((char) 0);
-    azzert.not((double) 0);
+    azzert.not(0.0);
     azzert.not((float) 0);
     azzert.not(0);
-    azzert.not(1L * 0);
+    azzert.not(0L);
     azzert.not((short) 0);
+  }
+
+  @Test public void azzertGreaterThanTest() {
+    // just to increase coverage - I'm not sure this is right
+    azzert.greaterThan(true);
+    azzert.greaterThan(false);
+    azzert.greaterThan((byte) 0);
+    azzert.greaterThan((char) 0);
+    azzert.greaterThan(0.0);
+    azzert.greaterThan((float) 0);
+    azzert.greaterThan(0);
+    azzert.greaterThan(0L);
+    azzert.greaterThan((short) 0);
+  }
+
+  @Test public void azzertThatTest() {
+    // just to increase coverage - I'm not sure this is right
+    azzert.that("fail", 0, azzert.not(1));
+    azzert.that("fail", true, azzert.not(false));
+    azzert.that("fail", (char) 0, azzert.not((char) 1));
   }
 }

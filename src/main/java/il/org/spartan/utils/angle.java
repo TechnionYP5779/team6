@@ -1,5 +1,14 @@
 package il.org.spartan.utils;
 
+
+
+/**
+ * @author Michael Shohat
+ * @since November 2018
+ * 
+ * This class represents a geometrical angle (sort of)
+ * and was constructed with the TDD method
+ */
 public class angle {
   private final double conversionConstDegToRad = Math.PI / 180;
   private static double conversionConstRadToDeg = 180 / Math.PI;
