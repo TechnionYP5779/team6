@@ -14,10 +14,13 @@ import org.junit.*;
     assertNull(nil.forgetting(new int[] { 1, 2, 3 }, null, box.it(7)));
   }
 
-  @Test @SuppressWarnings("null") public void guardingly() {
+  @Test public void guardingly() {
     final Function<String, Integer> stringIntegerFunction = String::length;
     assertNull(nil.guardingly(stringIntegerFunction).on(null));
-    azzert.that(5, is(unbox.it(nil.guardingly(stringIntegerFunction).on("abcde"))));
+    Integer $ = nil.guardingly(stringIntegerFunction).on("abcde");
+    if($==null)
+      return;
+    azzert.that(5, is(unbox.it($)));
     final Function<Integer, String> integerStringFunction = λ -> λ + "";
     assertNull("5", nil.guardingly(integerStringFunction).on(null));
     azzert.that("5", is(nil.guardingly(integerStringFunction).on(box.it(5))));
