@@ -6,7 +6,7 @@ import java.io.*;
 
 import org.junit.*;
 
-@SuppressWarnings({ "static-method" }) public class fileTest {
+@SuppressWarnings( "static-method" ) public class fileTest {
   @Test public void renameToCSVTest() {
     final String path1 = "tmpFile123";
     final File file1 = new File(path1), file2 = new File(path1 + ".csv");
