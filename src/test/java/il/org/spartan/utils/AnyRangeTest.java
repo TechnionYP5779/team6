@@ -514,7 +514,7 @@ public class AnyRangeTest {
     }
   }
 
-  public static class AnyRangeTestAuxe {
+  public static class AnyRangeAuxeTest {
     @Test @SuppressWarnings("static-method") public void fromTest() {
       AnyRange.BoundedBelowRange range = null;
       try {
