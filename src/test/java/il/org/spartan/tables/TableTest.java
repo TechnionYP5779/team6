@@ -1,7 +1,7 @@
 package il.org.spartan.tables;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
+
 
 import static fluent.ly.azzert.*;
 
