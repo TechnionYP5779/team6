@@ -1,7 +1,6 @@
 package il.org.spartan.utils;
 
 import static il.org.spartan.utils.AnyRange.*;
-import static org.junit.Assert.assertEquals;
 
 import static fluent.ly.azzert.assertEquals;
 import static fluent.ly.forget.*;
