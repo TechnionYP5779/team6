@@ -13,6 +13,7 @@ import org.junit.*;
 
 import fluent.ly.*;
 
+
 @SuppressWarnings({ "null", "static-method" }) public class UtilsTest {
   @NotNull public static Integer[] intToIntegers(final int... is) {
     final Integer @NotNull [] $ = new Integer @NotNull [is.length];

@@ -9,7 +9,7 @@ import org.junit.*;
 import fluent.ly.*;
 
 // did more tests than necessary, for better understanding the code
-@SuppressWarnings({ "static-method", "unused", "null" }) public class CSVTest {
+@SuppressWarnings("static-method") public class CSVTest {
   @Test public void unescapeTest() {
     azzert.that("\n \r \t , \\ ", is(CSV.unescape("\\n \\r \\t \\. \\\\ \\w")));
     azzert.that("\\0", is(CSV.escape(null)));
@@ -50,8 +50,7 @@ import fluent.ly.*;
     azzert.that(CSV.split(Mood.class, "HAPPY,SAD,SATISFIED,ANXIETY,OK"), is(Mood.values()));
   }
 
-  // will edit this test later
-  @Test public void saveAndLoadTest() {
+  @Test @SuppressWarnings("null") public void saveAndLoadTest() {
     final File file = new File("tmpFile123");
     final String[][] data = new String[2][];
     final String[] str1 = new String[2], str2 = new String[2];
@@ -63,17 +62,20 @@ import fluent.ly.*;
     data[1] = str2;
     try {
       CSV.save(file, data);
-    } catch (final IOException e) {
-      // wont get here
+    } catch (final IOException ¢) {
+      azzert.that(¢, is(new IOException()));
     }
     String[][] result = null;
     try {
       result = CSV.load(file);
-    } catch (final IOException e) {
-      // wont get here
+    } catch (final IOException ¢) {
+      azzert.that(¢, is(new IOException()));
     }
-    for (int ¢ = 0; ¢ < data.length; ++¢)
+    for (int ¢ = 0; ¢ < data.length; ++¢) {
+      if (result == null)
+        return;
       azzert.that(result[¢], is(data[¢]));
+    }
     file.delete();
   }
 

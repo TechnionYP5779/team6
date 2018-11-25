@@ -9,8 +9,8 @@ import static fluent.ly.forget.*;
 import org.junit.*;
 
 public class AnyRangeTest {
-  public static class BoundedAboveRangeTest {
-    @Test @SuppressWarnings("static-method") public void consTest1() {
+  
+    @Test @SuppressWarnings("static-method") public void consTest11() {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, 10);
@@ -22,7 +22,7 @@ public class AnyRangeTest {
       assert false;
     }
 
-    @Test @SuppressWarnings("static-method") public void consTest2() {
+    @Test @SuppressWarnings("static-method") public void consTest21() {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
@@ -34,7 +34,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void toTest() {
+    @Test @SuppressWarnings("static-method") public void toTest1() {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
@@ -45,7 +45,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void fromTest1() {
+    @Test @SuppressWarnings("static-method") public void fromTest11() {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
@@ -57,7 +57,7 @@ public class AnyRangeTest {
       assert false;
     }
 
-    @Test @SuppressWarnings("static-method") public void fromTest2() {
+    @Test @SuppressWarnings("static-method") public void fromTest21() {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
@@ -68,7 +68,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void stepTest() {
+    @Test @SuppressWarnings("static-method") public void stepTest1() {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
@@ -84,7 +84,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void hashCodeTest() {
+    @Test @SuppressWarnings("static-method") public void hashCodeTest1() {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
@@ -96,7 +96,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void mergeTest() {
+    @Test @SuppressWarnings("static-method") public void mergeTest1() {
       AnyRange.BoundedAboveRange range = null, range2 = null, merged_range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
@@ -113,7 +113,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void IncludedInTest() {
+    @Test @SuppressWarnings("static-method") public void IncludedInTest1() {
       AnyRange.BoundedAboveRange range = null, range2 = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
@@ -125,7 +125,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void overLappingTest() {
+    @Test @SuppressWarnings("static-method") public void overLappingTest1() {
       AnyRange.BoundedAboveRange range = null, range2 = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
@@ -137,7 +137,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings({ "static-method", "unlikely-arg-type" }) public void euaqlsTest() {
+    @Test @SuppressWarnings({ "static-method", "unlikely-arg-type" }) public void euaqlsTest1() {
       AnyRange.BoundedAboveRange range = null, range2 = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
@@ -153,7 +153,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void toStringTest() {
+    @Test @SuppressWarnings("static-method") public void toStringTest1() {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
@@ -162,10 +162,9 @@ public class AnyRangeTest {
         ______unused(¢);
       }
     }
-  }
+ 
 
-  public static class BoundedBelowRangeTest {
-    @Test @SuppressWarnings("static-method") public void consTest1() {
+    @Test @SuppressWarnings("static-method") public void consTest12() {
       AnyRange.BoundedBelowRange range = null;
       try { // invalid step , should be negative
         range = new AnyRange.BoundedBelowRange(0, -10);
@@ -177,7 +176,7 @@ public class AnyRangeTest {
       assert false;
     }
 
-    @Test @SuppressWarnings("static-method") public void consTest2() {
+    @Test @SuppressWarnings("static-method") public void consTest22() {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
@@ -189,7 +188,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void fromTest() {
+    @Test @SuppressWarnings("static-method") public void fromTest2() {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
@@ -200,7 +199,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void toTest1() {
+    @Test @SuppressWarnings("static-method") public void toTest12() {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
@@ -212,7 +211,7 @@ public class AnyRangeTest {
       assert false;
     }
 
-    @Test @SuppressWarnings("static-method") public void toTest2() {
+    @Test @SuppressWarnings("static-method") public void toTest22() {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
@@ -223,7 +222,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void stepTest() {
+    @Test @SuppressWarnings("static-method") public void stepTest2() {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
@@ -239,7 +238,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void hashCodeTest() {
+    @Test @SuppressWarnings("static-method") public void hashCodeTest2() {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
@@ -251,7 +250,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void mergeTest() {
+    @Test @SuppressWarnings("static-method") public void mergeTest2() {
       AnyRange.BoundedBelowRange range = null, range2 = null, merged_range = null;
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
@@ -268,7 +267,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void IncludedInTest() {
+    @Test @SuppressWarnings("static-method") public void IncludedInTest2() {
       AnyRange.BoundedBelowRange range = null, range2 = null;
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
@@ -280,7 +279,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void overLappingTest() {
+    @Test @SuppressWarnings("static-method") public void overLappingTest2() {
       AnyRange.BoundedBelowRange range = null, range2 = null;
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
@@ -292,7 +291,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings({ "static-method", "unlikely-arg-type" }) public void euaqlsTest() {
+    @Test @SuppressWarnings({ "static-method", "unlikely-arg-type" }) public void euaqlsTest2() {
       AnyRange.BoundedBelowRange range = null, range2 = null;
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
@@ -308,7 +307,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void toStringTest() {
+    @Test @SuppressWarnings("static-method") public void toStringTest2() {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, 10);
@@ -317,10 +316,9 @@ public class AnyRangeTest {
         ______unused(¢);
       }
     }
-  }
+  
 
-  public static class FiniteRangeTest {
-    @Test @SuppressWarnings("static-method") public void consTest1() {
+    @Test @SuppressWarnings("static-method") public void consTest13() {
       AnyRange.FiniteRange range = null;
       try { // invalid step , should be negative
         range = new AnyRange.FiniteRange(0, -1, 1);
@@ -332,7 +330,7 @@ public class AnyRangeTest {
       assert false;
     }
 
-    @Test @SuppressWarnings("static-method") public void consTest2() {
+    @Test @SuppressWarnings("static-method") public void consTest23() {
       AnyRange.FiniteRange range = null;
       try { // invalid step , should be negative
         range = new AnyRange.FiniteRange(0, 1, -1);
@@ -344,7 +342,7 @@ public class AnyRangeTest {
       assert false;
     }
 
-    @Test @SuppressWarnings("static-method") public void consTest3() {
+    @Test @SuppressWarnings("static-method") public void consTest33() {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
@@ -357,7 +355,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void fromTest1() {
+    @Test @SuppressWarnings("static-method") public void fromTest13() {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
@@ -369,7 +367,7 @@ public class AnyRangeTest {
       assert false;
     }
 
-    @Test @SuppressWarnings("static-method") public void fromTest2() {
+    @Test @SuppressWarnings("static-method") public void fromTest23() {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
@@ -382,7 +380,7 @@ public class AnyRangeTest {
       assert false;
     }
 
-    @Test @SuppressWarnings("static-method") public void toTest() {
+    @Test @SuppressWarnings("static-method") public void toTest3() {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
@@ -394,7 +392,7 @@ public class AnyRangeTest {
       assert false;
     }
 
-    @Test @SuppressWarnings("static-method") public void toTest1() {
+    @Test @SuppressWarnings("static-method") public void toTest13() {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
@@ -406,7 +404,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings({ "static-method", "unlikely-arg-type" }) public void euaqlsTest() {
+    @Test @SuppressWarnings({ "static-method", "unlikely-arg-type" }) public void euaqlsTest3() {
       AnyRange.FiniteRange range = null, range2 = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
@@ -424,7 +422,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void stepTest() {
+    @Test @SuppressWarnings("static-method") public void stepTest3() {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
@@ -440,7 +438,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void hashCodeTest() {
+    @Test @SuppressWarnings("static-method") public void hashCodeTest3() {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
@@ -450,7 +448,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void sizeTest() {
+    @Test @SuppressWarnings("static-method") public void sizeTest3() {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
@@ -460,7 +458,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void mergeTest() {
+    @Test @SuppressWarnings("static-method") public void mergeTest3() {
       AnyRange.FiniteRange range = null, range2 = null, merged_range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 3);
@@ -479,7 +477,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void IncludedInTest() {
+    @Test @SuppressWarnings("static-method") public void IncludedInTest3() {
       AnyRange.FiniteRange range = null, range2 = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
@@ -491,7 +489,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void overLappingTest() {
+    @Test @SuppressWarnings("static-method") public void overLappingTest3() {
       AnyRange.FiniteRange range = null, range2 = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
@@ -503,7 +501,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void toStringTest() {
+    @Test @SuppressWarnings("static-method") public void toStringTest3() {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
@@ -512,10 +510,8 @@ public class AnyRangeTest {
         ______unused(¢);
       }
     }
-  }
 
-  public static class AnyRangeTestAuxe {
-    @Test @SuppressWarnings("static-method") public void fromTest() {
+    @Test @SuppressWarnings("static-method") public void fromTest4() {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = from(2);
@@ -526,7 +522,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void toTest() {
+    @Test @SuppressWarnings("static-method") public void toTest4() {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = to(2);
@@ -537,7 +533,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void naturalsTest() {
+    @Test @SuppressWarnings("static-method") public void naturalsTest4() {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = naturals();
@@ -548,7 +544,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void positiveOddsTest() {
+    @Test @SuppressWarnings("static-method") public void positiveOddsTest4() {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = Positiveodds();
@@ -559,7 +555,7 @@ public class AnyRangeTest {
       }
     }
 
-    @Test @SuppressWarnings("static-method") public void negativeOddsTest() {
+    @Test @SuppressWarnings("static-method") public void negativeOddsTest4() {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = Negativeodds();
@@ -569,5 +565,4 @@ public class AnyRangeTest {
         ______unused(¢);
       }
     }
-  }
 }
