@@ -1,12 +1,14 @@
 package il.org.spartan.utils;
 
 import static il.org.spartan.utils.AnyRange.*;
-import static org.junit.Assert.assertEquals;
 
-import static fluent.ly.azzert.assertEquals;
+
+import static fluent.ly.azzert.*;
 import static fluent.ly.forget.*;
 
 import org.junit.*;
+
+import fluent.ly.*;
 
 public class AnyRangeTest {
   
@@ -26,8 +28,8 @@ public class AnyRangeTest {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
-        assertEquals(range.getTo(), 0);
-        assertEquals(range.getStep(), -10);
+        azzert.that(0, is(range.getTo()));
+        azzert.that(range.getStep(), is(-10));
       } catch (final Throwable ¢) {
         ______unused(¢);
         assert false;
@@ -39,7 +41,7 @@ public class AnyRangeTest {
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
         range.to(5);
-        assertEquals(range.getTo(), 5);
+        azzert.that(range.getTo(), is(5));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -88,9 +90,9 @@ public class AnyRangeTest {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
-        assertEquals(range.hashCode(), -10);
+        azzert.that(range.hashCode(), is(-10));
         range = new AnyRange.BoundedAboveRange(3, -1);
-        assertEquals(range.hashCode(), -2);
+        azzert.that(range.hashCode(), is(-2));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -102,12 +104,12 @@ public class AnyRangeTest {
         range = new AnyRange.BoundedAboveRange(0, -10);
         range2 = new AnyRange.BoundedAboveRange(3, -9);
         merged_range = range.merge(range2);
-        assertEquals(merged_range.getTo(), 3);
-        assertEquals(merged_range.getStep(), -10);
+        azzert.that(merged_range.getTo(), is(3));
+        azzert.that(merged_range.getStep(), is(-10));
         range2 = new AnyRange.BoundedAboveRange(-3, -19);
         merged_range = range.merge(range2);
-        assertEquals(merged_range.getTo(), 0);
-        assertEquals(merged_range.getStep(), -19);
+        azzert.that(merged_range.getTo(), is(0));
+        azzert.that(merged_range.getStep(), is(-19));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -157,7 +159,7 @@ public class AnyRangeTest {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, -10);
-        assertEquals(range + "", "[0, -10]");
+        azzert.that(range + "", is("[0, -10]"));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -180,8 +182,8 @@ public class AnyRangeTest {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
-        assertEquals(range.getFrom(), 0);
-        assertEquals(range.getStep(), 10);
+        azzert.that(range.getFrom(), is(0));
+        azzert.that(range.getStep(), is(10));
       } catch (final Throwable ¢) {
         ______unused(¢);
         assert false;
@@ -193,7 +195,7 @@ public class AnyRangeTest {
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
         range.from(5);
-        assertEquals(range.getFrom(), 5);
+        azzert.that(range.getFrom(), is(5));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -242,9 +244,9 @@ public class AnyRangeTest {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = new AnyRange.BoundedBelowRange(0, 10);
-        assertEquals(range.hashCode(), 10);
+        azzert.that(range.hashCode(), is(10));
         range = new AnyRange.BoundedBelowRange(-3, 1);
-        assertEquals(range.hashCode(), 2);
+        azzert.that(range.hashCode(), is(2));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -256,12 +258,12 @@ public class AnyRangeTest {
         range = new AnyRange.BoundedBelowRange(0, 10);
         range2 = new AnyRange.BoundedBelowRange(3, 9);
         merged_range = range.merge(range2);
-        assertEquals(merged_range.getFrom(), 0);
-        assertEquals(merged_range.getStep(), 9);
+        azzert.that(merged_range.getFrom(), is(0));
+        azzert.that(merged_range.getStep(), is(9));
         range2 = new AnyRange.BoundedBelowRange(-3, 11);
         merged_range = range.merge(range2);
-        assertEquals(merged_range.getFrom(), -3);
-        assertEquals(merged_range.getStep(), 10);
+        azzert.that(merged_range.getFrom(), is(-3));
+        azzert.that(merged_range.getStep(), is(10));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -311,7 +313,7 @@ public class AnyRangeTest {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = new AnyRange.BoundedAboveRange(0, 10);
-        assertEquals(range + "", "[0, 10]");
+        azzert.that(range + "", is("[0, 10]"));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -346,9 +348,9 @@ public class AnyRangeTest {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
-        assertEquals(range.getFrom(), 0);
-        assertEquals(range.getTo(), 10);
-        assertEquals(range.getStep(), 1);
+        azzert.that(range.getFrom(), is(0));
+        azzert.that(range.getTo(), is(10));
+        azzert.that(range.getStep(), is(1));
       } catch (final Throwable ¢) {
         ______unused(¢);
         assert false;
@@ -372,7 +374,7 @@ public class AnyRangeTest {
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
         range.from(5);
-        assertEquals(range.getFrom(), 5);
+        azzert.that(range.getFrom(), is(5));
       } catch (final Throwable ¢) {
         ______unused(¢);
         return;
@@ -397,7 +399,7 @@ public class AnyRangeTest {
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
         range.to(5);
-        assertEquals(range.getTo(), 5);
+        azzert.that(range.getTo(), is(5));
       } catch (final Throwable ¢) {
         ______unused(¢);
         return;
@@ -442,7 +444,7 @@ public class AnyRangeTest {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
-        assertEquals(range.hashCode(), 55);
+        azzert.that(range.hashCode(), is(55));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -452,7 +454,7 @@ public class AnyRangeTest {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
-        assertEquals(range.size(), 10);
+        azzert.that(range.size(), is(10));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -464,14 +466,14 @@ public class AnyRangeTest {
         range = new AnyRange.FiniteRange(0, 10, 3);
         range2 = new AnyRange.FiniteRange(3, 9, 4);
         merged_range = range.merge(range2);
-        assertEquals(merged_range.getFrom(), 0);
-        assertEquals(merged_range.getStep(), 9);
-        assertEquals(merged_range.getTo(), 10);
+        azzert.that(merged_range.getFrom(), is(0));
+        azzert.that(merged_range.getStep(), is(9));
+        azzert.that(merged_range.getTo(), is(10));
         range2 = new AnyRange.FiniteRange(-3, 11, 2);
         merged_range = range.merge(range2);
-        assertEquals(merged_range.getFrom(), -3);
-        assertEquals(merged_range.getStep(), 10);
-        assertEquals(merged_range.getTo(), 11);
+        azzert.that(merged_range.getFrom(), is(-3));
+        azzert.that(merged_range.getStep(), is(10));
+        azzert.that(merged_range.getTo(), is(11));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -505,7 +507,7 @@ public class AnyRangeTest {
       AnyRange.FiniteRange range = null;
       try {
         range = new AnyRange.FiniteRange(0, 10, 1);
-        assertEquals(range + "", "[0, 10]");
+        azzert.that(range + "", is("[0, 10]"));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -515,8 +517,8 @@ public class AnyRangeTest {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = from(2);
-        assertEquals(range.from, 2);
-        assertEquals(range.step, 0);
+        azzert.that(range.from, is(2));
+        azzert.that(range.step, is(0));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -526,8 +528,8 @@ public class AnyRangeTest {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = to(2);
-        assertEquals(range.getTo(), 2);
-        assertEquals(range.getStep(), 0);
+        azzert.that(range.getTo(), is(2));
+        azzert.that(range.getStep(), is(0));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -537,8 +539,8 @@ public class AnyRangeTest {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = naturals();
-        assertEquals(range.from, 1);
-        assertEquals(range.step, 1);
+        azzert.that(range.from, is(1));
+        azzert.that(range.step, is(1));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -548,8 +550,8 @@ public class AnyRangeTest {
       AnyRange.BoundedBelowRange range = null;
       try {
         range = Positiveodds();
-        assertEquals(range.from, 1);
-        assertEquals(range.step, 2);
+        azzert.that(range.from, is(1));
+        azzert.that(range.step, is(2));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
@@ -559,8 +561,8 @@ public class AnyRangeTest {
       AnyRange.BoundedAboveRange range = null;
       try {
         range = Negativeodds();
-        assertEquals(range.getTo(), -1);
-        assertEquals(range.getStep(), -2);
+        azzert.that(range.getTo(), is(-1));
+        azzert.that(range.getStep(), is(-2));
       } catch (final Throwable ¢) {
         ______unused(¢);
       }
