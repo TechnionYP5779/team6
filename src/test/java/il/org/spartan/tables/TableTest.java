@@ -1,5 +1,8 @@
 package il.org.spartan.tables;
 
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 import static fluent.ly.azzert.*;
 
 import java.io.*;
@@ -10,8 +13,7 @@ import fluent.ly.*;
 
 @SuppressWarnings({ "static-method", "resource", "null" }) public class TableTest {
   @Test public void testTable() {
-    final Table t = new Table(box.it(1));
-    final Table t2 = new Table("", TableRenderer.builtin.values());
+    final Table t = new Table(box.it(1)), t2 = new Table("", TableRenderer.builtin.values());
     assert t.equals(t2);
     t.close();
     t2.close();

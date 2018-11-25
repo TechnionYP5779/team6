@@ -1,5 +1,7 @@
 package fluent.ly;
 
+import static org.junit.Assert.*;
+
 import static fluent.ly.azzert.*;
 
 import java.util.*;

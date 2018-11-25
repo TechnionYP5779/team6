@@ -2,6 +2,7 @@ package il.org.spartan;
 
 import static il.org.spartan.Utils.*;
 import static il.org.spartan.utils.Permutation.swap;
+import static org.junit.Assert.*;
 
 import static fluent.ly.azzert.*;
 
@@ -11,6 +12,7 @@ import org.jetbrains.annotations.*;
 import org.junit.*;
 
 import fluent.ly.*;
+
 
 @SuppressWarnings({ "null", "static-method" }) public class UtilsTest {
   @NotNull public static Integer[] intToIntegers(final int... is) {
