@@ -1,4 +1,4 @@
-package a;
+package fluent.ly;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,7 @@ import java.util.*;
 
 import org.junit.*;
 
-import fluent.ly.*;
+
 
 @SuppressWarnings("static-method") public class singletonTest {
   @Test public void list() {

@@ -71,7 +71,7 @@ import org.junit.*;
   // @NotNull final String @NotNull [] alternatingArray = new String[] { null,
   // "A", null, null, "B", null, null, null, "C", null };
   @NotNull final Supplier<List<String>> x = () -> {
-    final List<String> $ = an.empty.list();
+    final List<String> $ = fluent.ly.empty.list();
     $.add(null);
     $.add(null);
     $.add(null);

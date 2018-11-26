@@ -199,7 +199,7 @@ import fluent.ly.*;
    * @since 2017-03-19 */
   abstract class Some extends Aggregate<List<BooleanSupplier>> {
     public Some(final @NotNull String toString) {
-      super(toString, an.empty.list());
+      super(toString, fluent.ly.empty.list());
     }
 
     protected Stream<BooleanSupplier> stream() {

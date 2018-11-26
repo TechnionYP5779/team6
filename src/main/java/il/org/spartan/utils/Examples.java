@@ -2,13 +2,14 @@ package il.org.spartan.utils;
 
 import java.util.*;
 
-import il.org.spartan.utils.Example.*;
+import fluent.ly.*;
+import fluent.ly.Example.*;
 
 /** A collection of {@link Example}
  * @author Yossi Gil
  * @since 2017-04-01 */
 public class Examples implements Iterable<Example> {
-  private final List<Example> inner = an.empty.list();
+  private final List<Example> inner = fluent.ly.empty.list();
 
   public Examples add(final Example ¢) {
     inner.add(¢);

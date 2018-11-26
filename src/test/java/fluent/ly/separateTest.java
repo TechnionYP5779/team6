@@ -11,7 +11,7 @@ import java.util.function.*;
 import org.jetbrains.annotations.*;
 import org.junit.*;
 
-import an.*;
+
 import il.org.spartan.*;
 
 @SuppressWarnings({ "null", "static-method" }) public class separateTest {
@@ -188,7 +188,7 @@ import il.org.spartan.*;
   }
 
   @Test public void separateBySpaceEmptyIterator() {
-    azzert.that(separateBySpaces(an.empty.list()), is(""));
+    azzert.that(separateBySpaces(fluent.ly.empty.list()), is(""));
   }
 
   @Test public void separateBySpaceMultipleIterator() {

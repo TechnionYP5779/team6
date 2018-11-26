@@ -1,4 +1,4 @@
-package an;
+package fluent.ly;
 
 import static fluent.ly.azzert.*;
 
@@ -6,7 +6,7 @@ import java.util.*;
 
 import org.junit.*;
 
-import fluent.ly.*;
+
 
 @SuppressWarnings("static-method") public class emptyTest {
   @Test public void emptyTestlist() {

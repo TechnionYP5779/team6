@@ -5,7 +5,6 @@ import java.util.*;
 
 import org.jetbrains.annotations.*;
 
-import an.*;
 import fluent.ly.*;
 import il.org.spartan.etc.*;
 import il.org.spartan.statistics.*;
@@ -70,7 +69,7 @@ import il.org.spartan.utils.*;
   @NotNull public final String name;
   Statistic[] statisics = Statistic.values();
   final Map<String, RealStatistics> stats = new LinkedHashMap<>();
-  private final List<RecordWriter> writers = an.empty.list();
+  private final List<RecordWriter> writers = fluent.ly.empty.list();
 
   public String baseName() {
     return system.tmp + name + ".*";

@@ -122,7 +122,7 @@ import org.jetbrains.annotations.*;
    * @param $ what to convert
    * @return parameter, converted to the {@link List} of the given type */
   public static <T> @NotNull List<T> list(final @Nullable Iterable<? extends T> $) {
-    return $ == null ? an.empty.list() : accumulate.to(new ArrayList<T>()).add($).elements();
+    return $ == null ? fluent.ly.empty.list() : accumulate.to(new ArrayList<T>()).add($).elements();
   }
 
   /** Converts a sequence of objects of some common type T into a {@link List} of

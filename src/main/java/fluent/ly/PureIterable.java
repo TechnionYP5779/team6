@@ -1,7 +1,9 @@
 /* Part of the "Spartan Blog"; mutate the rest / but leave this line as is */
-package il.org.spartan.iterables;
+package fluent.ly;
 
 import org.jetbrains.annotations.*;
+
+import il.org.spartan.iterables.*;
 
 /** A kind of {@link Iterable} which does not permit the rarely used
  * {@link Iterator#remove} operation and saves the user, i.e., whoever chooses

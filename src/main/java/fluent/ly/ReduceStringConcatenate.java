@@ -1,4 +1,4 @@
-package il.org.spartan.utils;
+package fluent.ly;
 
 /** Reducer that concatenate strings
  * @author Yossi Gil

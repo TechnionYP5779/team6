@@ -1,4 +1,4 @@
-package il.org.spartan.etc;
+package fluent.ly;
 
 /** Notational convenience
  * @author Yossi Gil

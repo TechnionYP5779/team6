@@ -57,7 +57,7 @@ public interface the {
 
   static <T> List<T> rest(final T t, final Iterable<T> ts) {
     boolean add = false;
-    final List<T> $ = an.empty.list();
+    final List<T> $ = fluent.ly.empty.list();
     for (final T x : ts)
       if (add)
         $.add(x);

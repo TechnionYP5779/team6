@@ -1,6 +1,4 @@
-package il.org.spartan.utils;
-
-import fluent.ly.*;
+package fluent.ly;
 
 /** Boolean or reducer
  * @author oran1248

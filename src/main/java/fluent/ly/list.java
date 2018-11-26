@@ -18,7 +18,7 @@ public interface list {
 
   class Operators<T> extends Outer<List<Operator<T>>> {
     public Operators() {
-      super(an.empty.list());
+      super(fluent.ly.empty.list());
     }
 
     public Operators(final List<Operator<T>> inner) {
@@ -26,7 +26,7 @@ public interface list {
     }
 
     public Operators(final Operators<T> other) {
-      this(other != null ? other.inner : an.empty.list());
+      this(other != null ? other.inner : fluent.ly.empty.list());
     }
   }
 

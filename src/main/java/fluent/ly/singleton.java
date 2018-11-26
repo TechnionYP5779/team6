@@ -1,10 +1,8 @@
-package a;
+package fluent.ly;
 
 import java.util.*;
 
 import org.jetbrains.annotations.*;
-
-import fluent.ly.*;
 
 /** Singleton collections.
  * @author Ori Roth

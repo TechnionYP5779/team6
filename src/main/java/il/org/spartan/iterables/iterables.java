@@ -5,7 +5,6 @@ import java.util.*;
 
 import org.jetbrains.annotations.*;
 
-import an.*;
 import fluent.ly.*;
 
 /** No values in an 'enum' used as name space for a collection of 'static'

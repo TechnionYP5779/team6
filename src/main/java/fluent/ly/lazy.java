@@ -4,8 +4,6 @@ import java.util.function.*;
 
 import org.jetbrains.annotations.*;
 
-import il.org.spartan.etc.*;
-
 /** A class for lazy, memoizing evaluation of objects of arbitrary type. The
  * evaluation must never return <code><b>null</b></code>. Main purpose is for
  * lazy initialization as in {@code
