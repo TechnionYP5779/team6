@@ -1,7 +1,9 @@
 package fluent.ly;
 
 import org.junit.*;
-
+/**
+* For tested interface please see {@link fluent.ly.not} .
+*/
 @SuppressWarnings("static-method") public class notTest {
   @Test public void in() {
     final Integer[] intArray = new Integer[2];

@@ -11,7 +11,9 @@ import org.junit.*;
 
 
 import fluent.ly.*;
-
+/**
+* For tested enum please see {@link il.org.spartan.iterables.iterables} .
+*/
 @SuppressWarnings("static-method") public class iterablesTest {
   @Test public void containsDegenerate() {
     assert !contains("Hello");

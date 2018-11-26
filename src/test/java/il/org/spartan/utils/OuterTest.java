@@ -5,7 +5,9 @@ import org.junit.*;
 
 
 import fluent.ly.*;
-
+/**
+* For tested class please see {@link il.org.spartan.utils.Outer} .
+*/
 @SuppressWarnings({"static-method","null"}) public class OuterTest {
  
   @Test(expected = IllegalArgumentException.class) public void consExceTest() {

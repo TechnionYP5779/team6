@@ -8,6 +8,9 @@ import org.junit.*;
 
 import fluent.ly.*;
 
+/**
+* For tested enum please see {@link il.org.spartan.CSV} .
+*/
 // did more tests than necessary, for better understanding the code
 @SuppressWarnings("static-method") public class CSVTest {
   @Test public void unescapeTest() {

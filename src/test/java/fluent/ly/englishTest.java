@@ -6,6 +6,9 @@ import java.util.*;
 
 import org.junit.*;
 
+/**
+* For tested interface please see {@link fluent.ly.English} .
+*/
 @SuppressWarnings("static-method") public class englishTest {
   @Test public void englishTestList1() {
     final ArrayList<String> arr = new ArrayList<>();

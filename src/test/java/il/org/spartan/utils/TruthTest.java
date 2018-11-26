@@ -3,7 +3,9 @@ package il.org.spartan.utils;
 import java.util.function.*;
 
 import org.junit.*;
-
+/**
+* For tested enum please see {@link il.org.spartan.utils.Truth} .
+*/
 @SuppressWarnings("static-method") public class TruthTest {
   @Test public void TruthOfTest() {
     final BooleanSupplier t = () -> true, f = () -> false, assertionError = () -> {

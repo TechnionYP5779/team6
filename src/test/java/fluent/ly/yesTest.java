@@ -1,7 +1,9 @@
 package fluent.ly;
 
 import org.junit.*;
-
+/**
+* For tested interface please see {@link fluent.ly.yes} .
+*/
 @SuppressWarnings("static-method") public class yesTest {
   @Test public void forgettingRunnable() {
     assert yes.forgetting(() -> {

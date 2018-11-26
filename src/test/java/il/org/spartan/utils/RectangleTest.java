@@ -5,7 +5,9 @@ import static fluent.ly.azzert.*;
 import org.junit.*;
 
 import fluent.ly.*;
-
+/**
+* For tested class please see {@link il.org.spartan.utils.Rectangle} .
+*/
 @SuppressWarnings("static-method") public class RectangleTest {
   @Test @SuppressWarnings("null") public void RectangleTDDTest() {
     azzert.that(new Rectangle(new Point(6.0, 7.0), new Point(12.0, 3.0)).bottomLeft.x,

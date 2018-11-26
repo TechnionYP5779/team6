@@ -5,7 +5,9 @@ import static fluent.ly.azzert.*;
 import java.util.*;
 
 import org.junit.*;
-
+/**
+* For tested interface please see {@link fluent.ly.the} .
+*/
 @SuppressWarnings({ "null", "static-method" }) public class theTest {
   @Test public void theTestIndexFound() {
     azzert.that(1, is(the.index(2, 1, 2, 3)));

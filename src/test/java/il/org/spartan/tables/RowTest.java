@@ -2,7 +2,9 @@ package il.org.spartan.tables;
 import static fluent.ly.azzert.*;
 import il.org.spartan.utils.Accumulator.Counter;
 import org.junit.*;
-
+/**
+* For tested class please see {@link il.org.spartan.tables.Row} .
+*/
 class ExtendsRow extends Row<ExtendsRow>{
   private static final long serialVersionUID = 1;
 

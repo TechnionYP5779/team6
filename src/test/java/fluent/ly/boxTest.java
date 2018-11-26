@@ -3,7 +3,9 @@ package fluent.ly;
 import static fluent.ly.azzert.*;
 
 import org.junit.*;
-
+/**
+* For tested enum please see {@link fluent.ly.box} .
+*/
 @SuppressWarnings("static-method") public class boxTest {
   @Test public void boxBoolTest() {
     final boolean a = true;

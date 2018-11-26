@@ -8,7 +8,9 @@ import java.util.*;
 
 import org.junit.*;
 
-
+/**
+* For tested interface please see {@link fluent.ly.singleton} .
+*/
 
 @SuppressWarnings("static-method") public class singletonTest {
   @Test public void list() {

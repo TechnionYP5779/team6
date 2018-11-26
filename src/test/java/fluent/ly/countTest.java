@@ -5,7 +5,9 @@ import static fluent.ly.azzert.*;
 import java.util.*;
 
 import org.junit.*;
-
+/**
+* For tested interface please see {@link fluent.ly.count} .
+*/
 @SuppressWarnings("static-method") public class countTest {
   @Test(expected = NullPointerException.class) public void ofNull() {
     assertZero(count.of(null)); // null == []

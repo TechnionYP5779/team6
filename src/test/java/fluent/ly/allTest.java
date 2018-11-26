@@ -3,7 +3,9 @@ package fluent.ly;
 import java.util.*;
 
 import org.junit.*;
-
+/**
+* For tested enum please see {@link fluent.ly.all} .
+*/
 @SuppressWarnings("static-method") public class allTest {
   @Test public void notNullIterable() {
     assert !all.notNull((Iterable<Integer>) null);

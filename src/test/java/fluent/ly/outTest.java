@@ -6,7 +6,9 @@ import java.io.*;
 import java.util.*;
 
 import org.junit.*;
-
+/**
+* For tested class please see {@link fluent.ly.out} .
+*/
 public class outTest {
   private ByteArrayOutputStream newOutPut;
 

@@ -4,7 +4,9 @@ import java.io.*;
 import java.util.logging.*;
 
 import org.junit.*;
-
+/**
+* For tested interface please see {@link fluent.ly.note} .
+*/
 @SuppressWarnings("static-method") public class noteTest {
   class LogHndeler extends Handler {
     private String message;

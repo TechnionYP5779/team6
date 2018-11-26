@@ -13,7 +13,9 @@ import org.junit.*;
 
 import fluent.ly.*;
 
-
+/**
+* For tested interface please see {@link il.org.spartan.Utils} .
+*/
 @SuppressWarnings({ "null", "static-method" }) public class UtilsTest {
   @NotNull public static Integer[] intToIntegers(final int... is) {
     final Integer @NotNull [] $ = new Integer @NotNull [is.length];

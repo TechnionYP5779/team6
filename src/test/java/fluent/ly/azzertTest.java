@@ -3,8 +3,9 @@ package fluent.ly;
 import java.util.*;
 
 import org.junit.*;
-
-/** @author micha */
+/**
+* For tested class please see {@link fluent.ly.azzert} .
+ @author micha */
 @SuppressWarnings("static-method") public class azzertTest {
   @Test public void azzertCollectionEqualTest() {
     final ArrayList<Integer> l1 = new ArrayList<>(), l2 = new ArrayList<>();

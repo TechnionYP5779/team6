@@ -3,7 +3,9 @@ package fluent.ly;
 import java.util.function.*;
 
 import org.junit.*;
-
+/**
+* For tested interface please see {@link fluent.ly.nulling} .
+*/
 @SuppressWarnings("static-method") public class nullingTest {
   @Test public void lyBoolean() {
     BooleanSupplier s = () -> true;

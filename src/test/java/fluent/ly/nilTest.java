@@ -5,7 +5,9 @@ import static fluent.ly.azzert.*;
 import java.util.function.*;
 
 import org.junit.*;
-
+/**
+* For tested interface please see {@link fluent.ly.nil} .
+*/
 @SuppressWarnings("static-method") public class nilTest {
   @Test public void forgetting() {
     assertNull(nil.forgetting(null));

@@ -3,7 +3,9 @@ package fluent.ly;
 import java.util.*;
 
 import org.junit.*;
-
+/**
+* For tested interface please see {@link fluent.ly.is} .
+*/
 @SuppressWarnings("static-method") public class isTest {
   @Test public void in() {
     assert !is.in(box.it(0), (Integer) null);

@@ -1,7 +1,9 @@
 package il.org.spartan.statistics;
 
 import org.junit.*;
-
+/**
+* For tested class please see {@link il.org.spartan.statistics.Statistics} .
+*/
 @SuppressWarnings("static-method") public class StatisticsTest {
   @Test public void MedianTest() {
     final double b[] = { 1, 2, 3, 4, 5 }, c[] = { -1, -2, 3, 4 }, d[] = { -1, -2, -3, -4, -5 }, e[] = { 0, 0, 0, 0 }, f[] = { 4.6 };

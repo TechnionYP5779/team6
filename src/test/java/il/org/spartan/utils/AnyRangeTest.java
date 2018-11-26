@@ -9,7 +9,9 @@ import static fluent.ly.forget.*;
 import org.junit.*;
 
 import fluent.ly.*;
-
+/**
+* For tested class please see {@link il.org.spartan.utils.AnyRange} .
+*/
 public class AnyRangeTest {
   
     @Test @SuppressWarnings("static-method") public void consTest11() {

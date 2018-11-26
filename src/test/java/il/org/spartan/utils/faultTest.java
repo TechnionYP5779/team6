@@ -5,7 +5,9 @@ import static fluent.ly.azzert.*;
 import org.junit.*;
 
 import fluent.ly.*;
-
+/**
+* For tested interface please see {@link il.org.spartan.utils.fault} .
+*/
 @SuppressWarnings({ "static-method", "null" }) public class faultTest {
   @Test public void doneTest() {
     final String expectedOutput = fault.trace(new AssertionError()) + "\n   END stack trace: .................]]]\n-----this is all I know.";

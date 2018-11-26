@@ -3,7 +3,9 @@ package fluent.ly;
 import static fluent.ly.azzert.*;
 
 import org.junit.*;
-
+/**
+* For tested class please see {@link fluent.ly.___} .
+*/
 @SuppressWarnings("static-method") public class ___Test {
   @Test public void ensure() {
     ___.ensure(true);

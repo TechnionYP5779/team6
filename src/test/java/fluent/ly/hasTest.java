@@ -2,7 +2,9 @@ package fluent.ly;
 
 import org.jetbrains.annotations.*;
 import org.junit.*;
-
+/**
+* For tested enum please see {@link fluent.ly.has} .
+*/
 @SuppressWarnings("static-method") public class hasTest {
   @Nullable private final String nul = null;
 

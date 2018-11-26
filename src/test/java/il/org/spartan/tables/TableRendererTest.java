@@ -7,7 +7,9 @@ import java.util.*;
 import org.junit.*;
 
 import fluent.ly.*;
-
+/**
+* For tested interface please see {@link il.org.spartan.tables.TableRenderer} .
+*/
 @SuppressWarnings("static-method") public class TableRendererTest {
   String NL = System.getProperty("line.separator");
 

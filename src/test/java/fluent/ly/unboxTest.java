@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 import static fluent.ly.azzert.*;
 
 import org.junit.*;
-
+/**
+* For tested enum please see {@link fluent.ly.unbox} .
+*/
 @SuppressWarnings({ "null", "static-method" }) public class unboxTest {
   @Test public void unboxTestBoolean() {
     assertArrayEquals(new boolean[] { true, false, true, false },

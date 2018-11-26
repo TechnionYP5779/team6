@@ -1,7 +1,9 @@
 package fluent.ly;
 
 import org.junit.*;
-
+/**
+* For tested interface please see {@link fluent.ly.forget} .
+*/
 @SuppressWarnings({ "static-method", "unused" }) public class forgetTest {
   static void auxeAll(final Integer integer) {
     try {

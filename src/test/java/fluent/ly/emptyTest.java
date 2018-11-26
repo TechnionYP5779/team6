@@ -7,7 +7,9 @@ import java.util.*;
 import org.junit.*;
 
 
-
+/**
+* For tested enum please see {@link fluent.ly.empty} .
+*/
 @SuppressWarnings("static-method") public class emptyTest {
   @Test public void emptyTestlist() {
     azzert.that(0, is(empty.list().size()));
