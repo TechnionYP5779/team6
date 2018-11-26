@@ -328,4 +328,14 @@ import org.junit.*;
     azzert.that("fail", true, azzert.not(false));
     azzert.that("fail", (char) 0, azzert.not((char) 1));
   }
+  
+  /*
+  @Test public void azzertFalseTest1() {
+    azzert.assertFalse(false);
+  }
+  
+  @Test(expected = AssertionError.class) public void azzertFalseTest2() {
+    azzert.assertFalse(true);
+  }
+  */
 }
