@@ -1,7 +1,7 @@
 package il.org.spartan.tables;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
+
 
 import static fluent.ly.azzert.*;
 
@@ -107,7 +107,7 @@ import fluent.ly.*;
     table.add(Statistic.N, Statistic.NA);
     table.remove(Statistic.N, Statistic.NA);
     final Table table2 = new Table("1".getClass(), System.getProperty("user.dir"));
-    assertEquals(table, table2);
+    azzert.that(table, is(table2));
     table.close();
     table2.close();
   }
