@@ -329,13 +329,22 @@ import org.junit.*;
     azzert.that("fail", (char) 0, azzert.not((char) 1));
   }
   
-  /*
-  @Test public void azzertFalseTest1() {
-    azzert.assertFalse(false);
-  }
   
-  @Test(expected = AssertionError.class) public void azzertFalseTest2() {
-    azzert.assertFalse(true);
-  }
-  */
+
+ // The following test cases are commented out because Spartanizer keeps trying to
+ // "fix" them (even though they don't need fixing), and suppressing spartanizer's
+ // errors doesn't seem to work.
+ // /**
+ // * [[SuppressWarningsSpartan]]
+ // */
+ // @Test public void azzertFalseTest1() {
+ //   azzert.assertFalse(false);
+ // }
+ // /**
+ // * [[SuppressWarningsSpartan]]
+ // */
+ //  @Test(expected = AssertionError.class) public void azzertFalseTest2() {
+ //    azzert.assertFalse(true);
+ //  }
+  
 }
