@@ -3,7 +3,7 @@ package fluent.ly;
 import java.util.*;
 
 import org.junit.*;
-
+import static fluent.ly.azzert.*;
 /** For tested class please see {@link fluent.ly.azzert} .
  * @author micha */
 @SuppressWarnings("static-method") public class azzertTest {
@@ -324,9 +324,9 @@ import org.junit.*;
 
   @Test public void azzertThatTest() {
     // just to increase coverage - I'm not sure this is right
-    azzert.that("fail", 0, azzert.not(1));
-    azzert.that("fail", true, azzert.not(false));
-    azzert.that("fail", (char) 0, azzert.not((char) 1));
+    azzert.that("fail", 0, not(1));
+    azzert.that("fail", true, not(false));
+    azzert.that("fail", (char) 0, not((char) 1));
   }
   // The following test cases are commented out because Spartanizer keeps trying
   // to

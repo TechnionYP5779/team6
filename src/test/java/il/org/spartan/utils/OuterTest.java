@@ -3,7 +3,7 @@ package il.org.spartan.utils;
 import org.junit.*;
 
 import fluent.ly.*;
-
+import static fluent.ly.azzert.*;
 /** For tested class please see {@link il.org.spartan.utils.Outer} . */
 @SuppressWarnings({ "static-method", "null" }) public class OuterTest {
   @Test(expected = IllegalArgumentException.class) public void consExceTest() {
@@ -31,7 +31,7 @@ import fluent.ly.*;
   }
 
   @Test public void getTest() {
-    azzert.that((new Outer<>(box.boxThis(1))).get(), azzert.is(1));
+    azzert.that((new Outer<>(box.boxThis(1))).get(), is(1));
   }
 
   @Test public void hashTest() {
@@ -41,27 +41,27 @@ import fluent.ly.*;
   @Test(expected = IllegalArgumentException.class) public void setTest() {
     Outer<Integer> iout1 = new Outer<>(box.boxThis(1));
     iout1.set(box.boxThis(2));
-    azzert.that(iout1.inner, azzert.is(2));
+    azzert.that(iout1.inner, is(2));
     iout1.set(null);
   }
 
   @Test public void stringTest() {
-    azzert.that(new Outer<>(box.boxThis(1)) + "", azzert.is("1"));
+    azzert.that(new Outer<>(box.boxThis(1)) + "", is("1"));
   }
 
   @Test public void wrappterTest() {
     Outer.Wrapper<Integer> wr = new Outer.Wrapper<>();
     azzert.isNull(wr.inner);
     azzert.isNull(wr.inner);
-    azzert.that(wr + "", azzert.is("null"));
-    azzert.that(wr.hashCode(), azzert.is(0));
+    azzert.that(wr + "", is("null"));
+    azzert.that(wr.hashCode(), is(0));
     azzert.isNull(wr.get());
     assert wr.equals(new Outer.Wrapper<>());
     Outer.Wrapper<Integer> wr2 = new Outer.Wrapper<>(box.boxThis(2));
     assert !wr.equals(wr2);
     wr.set(box.boxThis(1));
-    azzert.that(wr + "", azzert.is("1"));
-    azzert.that(wr.hashCode(), azzert.is(box.boxThis(1).hashCode()));
+    azzert.that(wr + "", is("1"));
+    azzert.that(wr.hashCode(), is(box.boxThis(1).hashCode()));
     Outer.Wrapper<Integer> wr1 = new Outer.Wrapper<>(box.boxThis(1));
     assert wr1.equals(wr);
     assert !wr1.equals(new Outer.Wrapper<>());
@@ -69,7 +69,7 @@ import fluent.ly.*;
   }
 
   @Test(expected = CloneNotSupportedException.class) public void wrpCloneTest() throws CloneNotSupportedException {
-    azzert.that(new Outer.Wrapper<>(box.boxThis(5)).clone().inner, azzert.is(box.boxThis(5)));
+    azzert.that(new Outer.Wrapper<>(box.boxThis(5)).clone().inner, is(box.boxThis(5)));
     azzert.isNull(new Outer.Wrapper<Integer>().clone().inner);
   }
 }
