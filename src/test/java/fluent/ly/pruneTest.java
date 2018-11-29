@@ -8,9 +8,8 @@ import java.util.function.*;
 
 import org.jetbrains.annotations.*;
 import org.junit.*;
-/**
-* For tested enum please see {@link fluent.ly.prune} .
-*/
+
+/** For tested enum please see {@link fluent.ly.prune} . */
 @SuppressWarnings({ "null", "static-method" }) public class pruneTest {
   @Nullable final String[] alternatingArray = new @Nullable String[] { null, "A", null, null, "B", null, null, null, "C", null };
   @NotNull final String[] nonNullArray = { "1", "2", "4" };

@@ -6,9 +6,8 @@ import org.jetbrains.annotations.*;
 import org.junit.*;
 
 import fluent.ly.*;
-/**
-* For tested class please see {@link il.org.spartan.utils.Accumulator} .
-*/
+
+/** For tested class please see {@link il.org.spartan.utils.Accumulator} . */
 @SuppressWarnings("static-method") public class AccumulatorTest {
   @Test public void booleanAddsLast() {
     final @NotNull Accumulator.Last c = new Accumulator.Last();

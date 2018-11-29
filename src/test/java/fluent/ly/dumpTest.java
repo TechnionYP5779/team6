@@ -8,9 +8,8 @@ import java.util.*;
 
 import org.jetbrains.annotations.*;
 import org.junit.*;
-/**
-* For tested class please see {@link fluent.ly.dump} .
-*/
+
+/** For tested class please see {@link fluent.ly.dump} . */
 @SuppressWarnings("null") public class dumpTest {
   private ByteArrayOutputStream newOutPut;
 

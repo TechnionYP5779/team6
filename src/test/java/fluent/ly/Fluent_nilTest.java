@@ -5,9 +5,8 @@ import static fluent.ly.azzert.*;
 import java.util.function.*;
 
 import org.junit.*;
-/**
-* For tested interface please see {@link fluent.ly.nil} .
-*/
+
+/** For tested interface please see {@link fluent.ly.nil} . */
 public class Fluent_nilTest {
   static String helloString = "Hello";
 

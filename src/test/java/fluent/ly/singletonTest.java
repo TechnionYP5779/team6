@@ -8,16 +8,13 @@ import java.util.*;
 
 import org.junit.*;
 
-/**
-* For tested interface please see {@link fluent.ly.singleton} .
-*/
-
+/** For tested interface please see {@link fluent.ly.singleton} . */
 @SuppressWarnings("static-method") public class singletonTest {
   @Test public void list() {
     List<Object> empty = Collections.emptyList();
     List<Integer> l1 = Collections.singletonList(box.it(5));
     List<String> l2 = Collections.singletonList("555");
-    if(empty==null || l1==null || l2==null)
+    if (empty == null || l1 == null || l2 == null)
       return;
     assertCollectionsEqual(empty, singleton.list(null));
     assertCollectionsEqual(l1, singleton.list(box.it(5)));

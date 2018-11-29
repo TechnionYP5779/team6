@@ -5,9 +5,8 @@ import static fluent.ly.azzert.*;
 import org.junit.*;
 
 import fluent.ly.*;
-/**
-* For tested class please see {@link il.org.spartan.utils.angle} .
-*/
+
+/** For tested class please see {@link il.org.spartan.utils.angle} . */
 @SuppressWarnings("static-method") public class AngleTest {
   @Test public void AngleTDDTest() {
     azzert.that(angle.degrees(20).degrees(), is(20.0));

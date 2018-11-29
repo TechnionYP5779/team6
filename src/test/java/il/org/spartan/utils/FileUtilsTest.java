@@ -8,9 +8,8 @@ import java.util.*;
 import org.junit.*;
 
 import fluent.ly.*;
-/**
-* For tested class please see {@link il.org.spartan.utils.FileUtils} .
-*/
+
+/** For tested class please see {@link il.org.spartan.utils.FileUtils} . */
 @SuppressWarnings({ "static-method", "null", "unused" }) public class FileUtilsTest {
   private ByteArrayOutputStream newErr;
   PrintStream originalErr = System.err;

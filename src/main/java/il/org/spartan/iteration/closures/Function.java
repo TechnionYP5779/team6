@@ -1,6 +1,5 @@
 package il.org.spartan.iteration.closures;
 
-
 import org.jetbrains.annotations.*;
 
 /** An interface representing a typed function with a single argument.

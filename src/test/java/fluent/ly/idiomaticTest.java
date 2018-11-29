@@ -4,9 +4,8 @@ import static fluent.ly.azzert.*;
 import static fluent.ly.idiomatic.*;
 
 import org.junit.*;
-/**
-* For tested interface please see {@link fluent.ly.idiomatic} .
-*/
+
+/** For tested interface please see {@link fluent.ly.idiomatic} . */
 @SuppressWarnings("static-method") public class idiomaticTest {
   @Test public void incaseTest() {
     assert box.it(7).equals(idiomatic.incase(3 > 2, box.it(7)));

@@ -3,9 +3,7 @@ package il.org.spartan.utils;
 import org.junit.*;
 
 // import static fluent.ly.azzert.is;
-/**
-* For tested class please see {@link il.org.spartan.utils.Binary} .
-*/
+/** For tested class please see {@link il.org.spartan.utils.Binary} . */
 public class BinaryTest {
   Binary f = Binary.of(false);
   Binary t = Binary.of(true);

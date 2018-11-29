@@ -5,9 +5,8 @@ import static fluent.ly.azzert.*;
 import java.util.*;
 
 import org.junit.*;
-/**
-* For tested enum please see {@link fluent.ly.string} .
-*/
+
+/** For tested enum please see {@link fluent.ly.string} . */
 @SuppressWarnings({ "null", "static-method" }) public class stringTest {
   @Test public void stringTestAtod() {
     azzert.that(Double.valueOf("2.2"), is(string.atod("2.2")));

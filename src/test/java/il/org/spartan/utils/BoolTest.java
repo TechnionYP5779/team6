@@ -3,9 +3,8 @@ package il.org.spartan.utils;
 import org.junit.*;
 
 import fluent.ly.*;
-/**
-* For tested class please see {@link il.org.spartan.utils.Bool} .
-*/
+
+/** For tested class please see {@link il.org.spartan.utils.Bool} . */
 @SuppressWarnings("static-method") public class BoolTest {
   @Test @SuppressWarnings("null") public void consTest() {
     final Bool vot = Bool.valueOf(true), cd = new Bool(), vof = Bool.valueOf(false), cf = new Bool(false);

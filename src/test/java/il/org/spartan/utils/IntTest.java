@@ -3,9 +3,8 @@ package il.org.spartan.utils;
 import org.junit.*;
 
 import fluent.ly.*;
-/**
-* For tested class please see {@link il.org.spartan.utils.Int} .
-*/
+
+/** For tested class please see {@link il.org.spartan.utils.Int} . */
 @SuppressWarnings("static-method") public class IntTest {
   @Test public void constructorTest() {
     assert new Int(3).inner == 3;

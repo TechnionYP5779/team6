@@ -5,10 +5,9 @@ import static fluent.ly.azzert.*;
 import java.io.*;
 
 import org.junit.*;
-/**
-* For tested class please see {@link fluent.ly.file} .
-*/
-@SuppressWarnings( "static-method" ) public class fileTest {
+
+/** For tested class please see {@link fluent.ly.file} . */
+@SuppressWarnings("static-method") public class fileTest {
   @Test public void renameToCSVTest() {
     final String path1 = "tmpFile123";
     final File file1 = new File(path1), file2 = new File(path1 + ".csv");

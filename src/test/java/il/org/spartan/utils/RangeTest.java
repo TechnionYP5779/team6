@@ -3,9 +3,8 @@ package il.org.spartan.utils;
 import java.util.*;
 
 import org.junit.*;
-/**
-* For tested class please see {@link il.org.spartan.utils.Range} .
-*/
+
+/** For tested class please see {@link il.org.spartan.utils.Range} . */
 @SuppressWarnings("static-method") public class RangeTest {
   @Test public void RangeEqualTest() {
     final Range r1 = new Range(1, 4), r3 = new Range(2, 4), r4 = new Range(1, 5);

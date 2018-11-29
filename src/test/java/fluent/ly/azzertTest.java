@@ -3,9 +3,9 @@ package fluent.ly;
 import java.util.*;
 
 import org.junit.*;
-/**
-* For tested class please see {@link fluent.ly.azzert} .
- @author micha */
+
+/** For tested class please see {@link fluent.ly.azzert} .
+ * @author micha */
 @SuppressWarnings("static-method") public class azzertTest {
   @Test public void azzertCollectionEqualTest() {
     final ArrayList<Integer> l1 = new ArrayList<>(), l2 = new ArrayList<>();
@@ -328,23 +328,21 @@ import org.junit.*;
     azzert.that("fail", true, azzert.not(false));
     azzert.that("fail", (char) 0, azzert.not((char) 1));
   }
-  
-  
-
- // The following test cases are commented out because Spartanizer keeps trying to
- // "fix" them (even though they don't need fixing), and suppressing spartanizer's
- // errors doesn't seem to work.
- // /**
- // * [[SuppressWarningsSpartan]]
- // */
- // @Test public void azzertFalseTest1() {
- //   azzert.assertFalse(false);
- // }
- // /**
- // * [[SuppressWarningsSpartan]]
- // */
- //  @Test(expected = AssertionError.class) public void azzertFalseTest2() {
- //    azzert.assertFalse(true);
- //  }
-  
+  // The following test cases are commented out because Spartanizer keeps trying
+  // to
+  // "fix" them (even though they don't need fixing), and suppressing
+  // spartanizer's
+  // errors doesn't seem to work.
+  // /**
+  // * [[SuppressWarningsSpartan]]
+  // */
+  // @Test public void azzertFalseTest1() {
+  // azzert.assertFalse(false);
+  // }
+  // /**
+  // * [[SuppressWarningsSpartan]]
+  // */
+  // @Test(expected = AssertionError.class) public void azzertFalseTest2() {
+  // azzert.assertFalse(true);
+  // }
 }

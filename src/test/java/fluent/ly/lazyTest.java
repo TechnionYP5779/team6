@@ -6,9 +6,8 @@ import java.util.function.*;
 
 import org.jetbrains.annotations.*;
 import org.junit.*;
-/**
-* For tested interface please see {@link fluent.ly.lazy} .
-*/
+
+/** For tested interface please see {@link fluent.ly.lazy} . */
 @SuppressWarnings("static-method") public class lazyTest {
   @Test public void getTest() {
     final Supplier<@Nullable String> supp = new Supplier<@Nullable String>() {

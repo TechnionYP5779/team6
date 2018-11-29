@@ -5,9 +5,8 @@ import static fluent.ly.azzert.*;
 import java.util.function.*;
 
 import org.junit.*;
-/**
-* For tested interface please see {@link fluent.ly.nil} .
-*/
+
+/** For tested interface please see {@link fluent.ly.nil} . */
 @SuppressWarnings("static-method") public class nilTest {
   @Test public void forgetting() {
     assertNull(nil.forgetting(null));
@@ -20,7 +19,7 @@ import org.junit.*;
     final Function<String, Integer> stringIntegerFunction = String::length;
     assertNull(nil.guardingly(stringIntegerFunction).on(null));
     Integer $ = nil.guardingly(stringIntegerFunction).on("abcde");
-    if($==null)
+    if ($ == null)
       return;
     azzert.that(5, is(unbox.it($)));
     final Function<Integer, String> integerStringFunction = λ -> λ + "";

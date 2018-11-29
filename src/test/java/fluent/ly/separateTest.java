@@ -11,11 +11,9 @@ import java.util.function.*;
 import org.jetbrains.annotations.*;
 import org.junit.*;
 
-
 import il.org.spartan.*;
-/**
-* For tested enum please see {@link fluent.ly.separate} .
-*/
+
+/** For tested enum please see {@link fluent.ly.separate} . */
 @SuppressWarnings({ "null", "static-method" }) public class separateTest {
   @NotNull public static final String SPACE = " ";
   private static final Function<String, String> quote = λ -> "'" + λ + "'";

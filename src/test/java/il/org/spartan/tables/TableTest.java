@@ -2,7 +2,6 @@ package il.org.spartan.tables;
 
 import static org.junit.Assert.*;
 
-
 import static fluent.ly.azzert.*;
 
 import java.io.*;
@@ -10,9 +9,8 @@ import java.io.*;
 import org.junit.*;
 
 import fluent.ly.*;
-/**
-* For tested class please see {@link il.org.spartan.tables.Table} .
-*/
+
+/** For tested class please see {@link il.org.spartan.tables.Table} . */
 @SuppressWarnings({ "static-method", "resource", "null" }) public class TableTest {
   @Test public void testTable() {
     final Table t = new Table(box.it(1)), t2 = new Table("", TableRenderer.builtin.values());

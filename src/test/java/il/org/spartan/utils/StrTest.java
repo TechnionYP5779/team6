@@ -3,9 +3,8 @@ package il.org.spartan.utils;
 import org.junit.*;
 
 import fluent.ly.*;
-/**
-* For tested class please see {@link il.org.spartan.utils.Str} .
-*/
+
+/** For tested class please see {@link il.org.spartan.utils.Str} . */
 @SuppressWarnings("static-method") public class StrTest {
   @Test public void emptyTest() {
     azzert.isNull(new Str().inner());

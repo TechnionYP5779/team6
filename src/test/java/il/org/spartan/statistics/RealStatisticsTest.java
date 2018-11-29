@@ -6,9 +6,9 @@ import org.jetbrains.annotations.*;
 import org.junit.*;
 
 import fluent.ly.*;
-/**
-* For tested class please see {@link il.org.spartan.statistics.RealStatistics} .
-*/
+
+/** For tested class please see {@link il.org.spartan.statistics.RealStatistics}
+ * . */
 @SuppressWarnings("static-method") public class RealStatisticsTest {
   final RealStatistics s11_20_5 = new RealStatistics().record(11).record(20).record(5);
   final RealStatistics s15 = new RealStatistics().record(5).record(3).record(1).record(2).record(4);

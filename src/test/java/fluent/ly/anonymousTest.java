@@ -4,9 +4,7 @@ import java.util.function.*;
 
 import org.junit.*;
 
-/**
-* For tested interface please see {@link fluent.ly.anonymous} .
-*/
+/** For tested interface please see {@link fluent.ly.anonymous} . */
 @SuppressWarnings("static-method") public class anonymousTest {
   @Test public void lyAsBooleanTest() {
     assert anonymous.ly(() -> true);

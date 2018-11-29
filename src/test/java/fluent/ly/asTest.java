@@ -8,12 +8,11 @@ import java.util.*;
 
 import org.jetbrains.annotations.*;
 import org.junit.*;
-/**
- *For tested enum please see {@link fluent.ly.as} .
- *<p>
+
+/** For tested enum please see {@link fluent.ly.as} .
+ * <p>
  * A static nested class hosting unit tests for the nesting class Unit test for
- * the containing class. 
- */
+ * the containing class. */
 @SuppressWarnings({ "null", "static-method" }) public class asTest {
   @Test public void asTestEmptyIterator() {
     assert !as.asIterable().iterator().hasNext();
