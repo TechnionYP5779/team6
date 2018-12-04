@@ -67,8 +67,7 @@ public class AnyRange {
       step = step_;
     }
 
-    /** 
-     * @param from : lower bound
+    /** @param from : lower bound
      * @return new finite range with the old upper bound and step and with the new
      *         lower bound
      * @throws AnyRangeException if to if bigger then from */
@@ -98,7 +97,8 @@ public class AnyRange {
 
     /** @param ¢ : from type BoundedAboveRange
      * @return object from type BoundedAboveRange with the highest upper bound and
-     *         with the smaller step */
+     *         with the smaller step
+     * @throws AnyRangeException no description */
     @NotNull public BoundedAboveRange merge(final @NotNull BoundedAboveRange ¢) throws AnyRangeException {
       return new BoundedAboveRange(to > ¢.to ? to : ¢.to, step < ¢.step ? step : ¢.step);
     }
@@ -110,7 +110,8 @@ public class AnyRange {
       return to <= ¢.to;
     }
 
-    /** @return true because every two above bounded ranges overlap */
+    /** @param ¢ no description
+     * @return true because every two above bounded ranges overlap */
     @SuppressWarnings("static-method") public boolean overlapping(final @NotNull BoundedAboveRange ¢) {
       ______unused(¢);
       return true;
@@ -191,7 +192,8 @@ public class AnyRange {
 
     /** @param ¢ : from type BoundedBelowRange
      * @return object from type BoundedBelowRange with the smaller lower bound and
-     *         with the smaller step */
+     *         with the smaller step
+     * @throws AnyRangeException no description */
     @NotNull public BoundedBelowRange merge(final @NotNull BoundedBelowRange ¢) throws AnyRangeException {
       return new BoundedBelowRange(from < ¢.from ? from : ¢.from, step < ¢.step ? step : ¢.step);
     }
@@ -203,7 +205,8 @@ public class AnyRange {
       return from >= ¢.from;
     }
 
-    /** @return true because every two below bounded ranges overlap */
+    /** @return true because every two below bounded ranges overlap
+     * @param ¢ ¢ no description */
     @SuppressWarnings("static-method") public boolean overlapping(final @NotNull BoundedBelowRange ¢) {
       ______unused(¢);
       return true;
@@ -282,21 +285,24 @@ public class AnyRange {
 
     /** @return true if the current upper bound is smaller the the upper bound of
      *         the parameter and if the lower bound is bigger then the lower bound
-     *         of the parameter otherwise false */
+     *         of the parameter otherwise false
+     * @param ¢ ¢ no description */
     public boolean includedIn(final @NotNull FiniteRange ¢) {
       return from >= ¢.from && to <= ¢.to;
     }
 
     /** @param ¢ : from type FiniteRange
      * @return object from type FiniteRange with the smaller lower bound and bigger
-     *         upper bound and with the smaller step */
+     *         upper bound and with the smaller step
+     * @throws AnyRangeException no descrition */
     @NotNull public FiniteRange merge(final @NotNull FiniteRange ¢) throws AnyRangeException {
       return new FiniteRange(from < ¢.from ? from : ¢.from, to > ¢.to ? to : ¢.to, step < ¢.step ? step : ¢.step);
     }
 
     /** @return true if the current upper bound is smaller the the upper bound of
      *         the parameter or if the lower bound is bigger then the lower bound of
-     *         the parameter otherwise false */
+     *         the parameter otherwise false
+     * @param ¢ ¢ no description */
     public boolean overlapping(final @NotNull FiniteRange ¢) {
       return from >= ¢.from || to <= ¢.to;
     }
@@ -322,28 +328,33 @@ public class AnyRange {
   }
 
   /** @param from : lower bound
-   * @return BoundedBelowRange with from as lower bound and 0 as step */
+   * @return BoundedBelowRange with from as lower bound and 0 as step
+   * @throws AnyRangeException no description */
   public static BoundedBelowRange from(final int from) throws AnyRangeException {
     return new BoundedBelowRange(from, 0);
   }
 
   /** @param to : upper bound
-   * @return BoundedAboveRange with to as upper bound and 0 as step */
+   * @return BoundedAboveRange with to as upper bound and 0 as step
+   * @throws AnyRangeException no description */
   public static BoundedAboveRange to(final int to) throws AnyRangeException {
     return new BoundedAboveRange(to, 0);
   }
 
-  /** @return BoundedBelowRange with 1 as lower bound and 1 as step */
+  /** @return BoundedBelowRange with 1 as lower bound and 1 as step
+   * @throws AnyRangeException no description */
   public static BoundedBelowRange naturals() throws AnyRangeException {
     return new BoundedBelowRange(1, 1);
   }
 
-  /** @return BoundedAboveRange with -1 as upper bound and -2 as step */
+  /** @return BoundedAboveRange with -1 as upper bound and -2 as step
+   * @throws AnyRangeException no description */
   public static BoundedAboveRange Negativeodds() throws AnyRangeException {
     return new BoundedAboveRange(-1, -2);
   }
 
-  /** @return BoundedBelowRange with 1 as lower bound and 2 as step */
+  /** @return BoundedBelowRange with 1 as lower bound and 2 as step
+   * @throws AnyRangeException no description */
   public static BoundedBelowRange Positiveodds() throws AnyRangeException {
     return new BoundedBelowRange(1, 2);
   }
