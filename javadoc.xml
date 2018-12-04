@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" additionalparam=" -tag fluent.ly.Package:a:&quot;Package:&quot;&#13;&#10;-tag fluent.ly.Since:a:&quot;Since:&quot;&#13;&#10;-tag fluent.ly.Author:a:&quot;Author:&quot;&#13;&#10;-tag fluent.ly.Changed:a:&quot;Changed:&quot;" author="true" classpath="target/test-classes;C:\Users\Idan Hadad\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Idan Hadad\.m2\repository\org\hamcrest\hamcrest-all\1.3\hamcrest-all-1.3.jar;C:\Users\Idan Hadad\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Idan Hadad\.m2\repository\org\eclipse\jdt\org.eclipse.jdt.annotation\2.0.0\org.eclipse.jdt.annotation-2.0.0.jar;lib/spartan-1.4.jar;lib/cli-1.01.jar;C:\Users\Idan Hadad\.m2\repository\org\jetbrains\annotations\16.0.3\annotations-16.0.3.jar;C:\Users\Idan Hadad\.p2\pool\plugins\org.junit_4.12.0.v201504281640\junit.jar;C:\Users\Idan Hadad\.p2\pool\plugins\org.hamcrest.core_1.3.0.v20180420-1519.jar" destdir="doc" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="server" sourcepath="src/main/java;src/test/java" splitindex="true" use="true" version="true"/>
+    </target>
+</project>
