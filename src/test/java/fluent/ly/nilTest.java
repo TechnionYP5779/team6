@@ -18,7 +18,7 @@ import org.junit.*;
   @Test public void guardingly() {
     final Function<String, Integer> stringIntegerFunction = String::length;
     assertNull(nil.guardingly(stringIntegerFunction).on(null));
-    Integer $ = nil.guardingly(stringIntegerFunction).on("abcde");
+    final Integer $ = nil.guardingly(stringIntegerFunction).on("abcde");
     if ($ == null)
       return;
     azzert.that(5, is(unbox.it($)));

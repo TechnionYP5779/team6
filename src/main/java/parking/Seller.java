@@ -1,6 +1,6 @@
 package parking;
 
-import java.util.List;
+import java.util.*;
 
 /** @Package: parking
  * @Since: 28 בנוב׳ 2018

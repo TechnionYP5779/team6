@@ -1,9 +1,11 @@
 package fluent.ly;
 
+import static fluent.ly.azzert.*;
+
 import java.util.*;
 
 import org.junit.*;
-import static fluent.ly.azzert.*;
+
 /** For tested class please see {@link fluent.ly.azzert} .
  * @author micha */
 @SuppressWarnings("static-method") public class azzertTest {

@@ -53,9 +53,7 @@ public class Time {
     }
 
     @Override public boolean equals(final Object ¢) {
-      if (¢ == this)
-        return true;
-      return ¢ instanceof DayTime && compareTo((DayTime) ¢) == 0;
+      return ¢ == this || ¢ instanceof DayTime && compareTo((DayTime) ¢) == 0;
     }
 
     @Override public int hashCode() {

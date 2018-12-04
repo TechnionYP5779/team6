@@ -11,7 +11,7 @@ public class OurServer {
   public static class RootHandler implements HttpHandler {
     @Override public void handle(final HttpExchange x) throws IOException {
       final String response = "<h1>It's alive!</h1><h1>And the port is: " + port + "</h1>";
-      x.sendResponseHeaders(200, response.length());
+      x.sendResponseHeaders(200, response.getBytes().length);
       x.getResponseBody().write(response.getBytes());
       x.getResponseBody().close();
     }

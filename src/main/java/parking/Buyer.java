@@ -1,6 +1,6 @@
 package parking;
 
-import java.util.List;
+import java.util.*;
 
 public interface Buyer {
   void rentParkingSlot(int spotID, int slotID);

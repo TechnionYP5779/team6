@@ -67,7 +67,8 @@ public class AnyRange {
       step = step_;
     }
 
-    /** @param form : lower bound
+    /** 
+     * @param from : lower bound
      * @return new finite range with the old upper bound and step and with the new
      *         lower bound
      * @throws AnyRangeException if to if bigger then from */
@@ -232,14 +233,14 @@ public class AnyRange {
       step = step_;
     }
 
-    /** @param form : lower bound
+    /** @param from_arg : lower bound
      * @return new finite range with the old upper bound and step and with the new
      *         lower bound
      * @throws AnyRangeException if to if bigger then from */
-    public FiniteRange from(final int from_) throws AnyRangeException {
-      if (to < from_)
+    public FiniteRange from(final int from_arg) throws AnyRangeException {
+      if (to < from_arg)
         throw new AnyRangeException();
-      return new FiniteRange(from_, to, -step);
+      return new FiniteRange(from_arg, to, -step);
     }
 
     /** @param to_ : upper bound

@@ -1,9 +1,11 @@
 package il.org.spartan.utils;
 
+import static fluent.ly.azzert.*;
+
 import org.junit.*;
 
 import fluent.ly.*;
-import static fluent.ly.azzert.*;
+
 /** For tested class please see {@link il.org.spartan.utils.Bool} . */
 @SuppressWarnings("static-method") public class BoolTest {
   @Test @SuppressWarnings("null") public void consTest() {
