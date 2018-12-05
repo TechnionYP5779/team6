@@ -29,8 +29,8 @@ public class OurServer {
       final byte[] body = new byte[256];
       if (x.getRequestBody().read(body) == -1)
         return;
-      final String response = "<h1>Client name is:" + clName + "</h1><h1> Encrypted input is:" + new StringBuilder(body + "").reverse() + "</h1>"; // lgtm
-                                                                                                                                                   // [java/print-array]
+      final String response = "<h1>Client name is:" + clName + "</h1><h1> Encrypted input is:" + new StringBuilder(new String(body).trim()).reverse()
+          + "</h1>"; // lgtm // [java/print-array]
       x.sendResponseHeaders(444, response.getBytes().length);
       x.getResponseBody().write(response.getBytes());
       x.getResponseBody().close();
