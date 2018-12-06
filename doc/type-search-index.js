@@ -1,1 +1,0 @@
-typeSearchIndex = [{"p":"server","l":"OurServer.AddRentingSpotHandler"},{"l":"All Classes","url":"allclasses-index.html"},{"p":"server","l":"OurServer.GetRentingSpotHandler"},{"p":"server","l":"OurServer"},{"p":"server","l":"OurServer.PostHandler"},{"p":"server","l":"OurServer.RootHandler"}]
