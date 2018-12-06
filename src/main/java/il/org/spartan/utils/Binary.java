@@ -36,7 +36,7 @@ public class Binary {
   private Binary() {
     /**/}
 
-  @Override public boolean equals(final Object ¢) { // lgtm [java/unchecked-cast-in-equals]
+  @Override public boolean equals(final Object ¢) { // LGTM [java/unchecked-cast-in-equals]
     throw new IllegalArgumentException(¢ + "");
   }
 
