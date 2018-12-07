@@ -1,5 +1,7 @@
 package parking;
 
 public class Address {
-  /* String city; String street; int building; */
+  String city;
+  String street;
+  int building;
 }

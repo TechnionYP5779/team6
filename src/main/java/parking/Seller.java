@@ -14,7 +14,9 @@ public interface Seller {
 
   void removeRentSlot(int spotID, int slotID);
 
-  void updateParkingSpotPrice(int slotID, double price);
+  void updateParkingSpotPrice(int spotID, double price);
+  
+  void updateRentSlotPrice(int spotID, int slotID, double price);
 
   // Will be internal function
   // ParkingSpot getParkingSpotByID(int spotID);

@@ -10,4 +10,8 @@ public interface Buyer {
   List<RentSlot> getAllAvailableSlots();
 
   List<RentSlot> getRequstedSlots(Address a);
+
+  void notifyNewPrice(double price, RentSlot s);
+
+  void notifyRentSlotRemoved(RentSlot s);
 }
