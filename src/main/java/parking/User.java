@@ -50,12 +50,13 @@ public class User implements Seller, Buyer {
       throw new IllegalArgumentException();
     if(!checkParkingBelongsToUser(spotID))
       throw new IllegalArgumentException(); //TODO: specify later
-    if(usedRentSlots.containsKey(box.it(slotID)))
-      throw new IllegalArgumentException(); //TODO: specify later
-    if(!freeRentSlots.containsKey(box.it(slotID)))
+    Map<Integer, RentSlot> usedRentSlotsOfPSpot = usedRentSlots.get(box.it(spotID));
+    if(usedRentSlotsOfPSpot.containsKey(box.it(slotID)))
       throw new IllegalArgumentException(); //TODO: specify later
     Map<Integer, RentSlot> freeRentSlotsOfPSpot = freeRentSlots.get(box.it(spotID));
-    usedRentSlots.get(box.it(spotID)).put(box.it(slotID), freeRentSlotsOfPSpot.get(box.it(slotID)));
+    if(!freeRentSlotsOfPSpot.containsKey(box.it(slotID)))
+      throw new IllegalArgumentException(); //TODO: specify later
+    usedRentSlotsOfPSpot.put(box.it(slotID), freeRentSlotsOfPSpot.get(box.it(slotID)));
     freeRentSlotsOfPSpot.remove(box.it(slotID));
   }
 
@@ -69,12 +70,13 @@ public class User implements Seller, Buyer {
       throw new IllegalArgumentException();
     if(!checkParkingBelongsToUser(spotID))
       throw new IllegalArgumentException(); //TODO: specify later
-    if(freeRentSlots.containsKey(box.it(slotID)))
-      throw new IllegalArgumentException(); //TODO: specify later
-    if(!usedRentSlots.containsKey(box.it(slotID)))
+    Map<Integer, RentSlot> freeRentSlotsOfPSpot = freeRentSlots.get(box.it(spotID));
+    if(freeRentSlotsOfPSpot.containsKey(box.it(slotID)))
       throw new IllegalArgumentException(); //TODO: specify later
     Map<Integer, RentSlot> usedRentSlotsOfPSpot = usedRentSlots.get(box.it(spotID));
-    freeRentSlots.get(box.it(spotID)).put(box.it(slotID), usedRentSlotsOfPSpot.get(box.it(slotID)));
+    if(!usedRentSlotsOfPSpot.containsKey(box.it(slotID)))
+      throw new IllegalArgumentException(); //TODO: specify later
+    freeRentSlotsOfPSpot.put(box.it(slotID), usedRentSlotsOfPSpot.get(box.it(slotID)));
     usedRentSlotsOfPSpot.remove(box.it(slotID));
   }
 

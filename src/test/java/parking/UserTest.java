@@ -63,7 +63,7 @@ import fluent.ly.*;
     setPTamar = tamar.getOwnedParkingSpots();
     azzert.that(setPTamar.size(), is(2));
   }
-  
+
   @Test public void addingAndRemovingRentSlotsTest() {
     Address a1 = new Address("Tel-Aviv", "King George", 5);
     Address a2 = new Address("Tel-Aviv", "King George", 5);
@@ -129,6 +129,45 @@ import fluent.ly.*;
     azzert.that(yossi.getAllFreeRentSlots().size(), is(6));
   }
 
+  @Test public void letAndUnletTest() {
+    Address a1 = new Address("Tel-Aviv", "King George", 5);
+    Address a2 = new Address("Tel-Aviv", "King George", 5);
+    Address a3 = new Address("Petah-Tikwa", "Hivner", 25);
+    Address a4 = new Address("Raanana", "Kazan", 30);
+    List<Address> yossiAdd = new ArrayList<>();
+    yossiAdd.add(a1);
+    yossiAdd.add(a2);
+    yossiAdd.add(a3);
+    yossiAdd.add(a4);
+    
+    User yossi = new User("Yossi", "Cohen", "050-123-4567");
+    
+    yossi.addParkingSpot(a1);
+    yossi.addParkingSpot(a2);
+    yossi.addParkingSpot(a3);
+    yossi.addParkingSpot(a4);
+    
+    ParkingSpot pOfYossi1 = yossi.getOwnedParkingSpots().get(0);
+    
+    yossi.addRentSlot(pOfYossi1, new Time(Time.WeekDay.Sunday, new Time.DayTime(10, 53), new Time.DayTime(13, 30)), 23.5);    
+    yossi.addRentSlot(pOfYossi1, new Time(Time.WeekDay.Monday, new Time.DayTime(10, 53), new Time.DayTime(13, 30)), 23.5);
+    yossi.addRentSlot(pOfYossi1, new Time(Time.WeekDay.Monday, new Time.DayTime(14, 53), new Time.DayTime(20, 30)), 30);
+    yossi.addRentSlot(pOfYossi1, new Time(Time.WeekDay.Saturday, new Time.DayTime(14, 53), new Time.DayTime(16, 30)), 30);
+
+    
+    List<RentSlot> freeRS = yossi.getAllFreeRentSlots();
+    List<RentSlot> usedRS = yossi.getAllUsedRentSlots();
+    azzert.that(freeRS.size(), is(4));
+    azzert.that(usedRS.size(), is(0));
+    yossi.letParkingSlot(freeRS.get(0).getParkingSpot().getId(), freeRS.get(0).getId());
+    
+    freeRS = yossi.getAllFreeRentSlots();
+    usedRS = yossi.getAllUsedRentSlots();
+    
+    azzert.that(freeRS.size(), is(3));
+    azzert.that(usedRS.size(), is(1));
+  }
+  
   @Test public void updatePriceOfRentSlot() {
     Address a1 = new Address("Tel-Aviv", "King George", 5);
     Address a2 = new Address("Tel-Aviv", "King George", 5);
@@ -187,5 +226,18 @@ import fluent.ly.*;
     azzert.that(freeRentSlots.get(3).getPrice(), is(20.0));
     
     freeRentSlots = yossi.getAllFreeSlotsBySpotID(pOfYossi2.getId());
+    azzert.that(pOfYossi2.getNumOfSlots(), is(3));
+    azzert.that(freeRentSlots.get(0).getPrice(), is(23.5));
+    azzert.that(freeRentSlots.get(1).getPrice(), is(30.0));
+    azzert.that(freeRentSlots.get(2).getPrice(), is(30.0));
+    
+    yossi.updateRentSlotPrice(pOfYossi2.getId(), freeRentSlots.get(0).getId(), 35);
+    yossi.updateRentSlotPrice(pOfYossi2.getId(), freeRentSlots.get(2).getId(), 40);
+    
+    azzert.that(freeRentSlots.get(0).getPrice(), is(35.0));
+    azzert.that(freeRentSlots.get(1).getPrice(), is(30.0));
+    azzert.that(freeRentSlots.get(2).getPrice(), is(40.0));
   }
+
+  
 }
