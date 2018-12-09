@@ -129,6 +129,12 @@ public class TimeTest {
     
     assert !$.isConflicting(new Time(WeekDay.Friday,new Time.DayTime(9, 20),new Time.DayTime(10, 10)));
     assert !$.isConflicting(new Time(WeekDay.Friday,new Time.DayTime(4, 0),new Time.DayTime(5, 0)));
+    
+    assert $.isConflicting(new Time(WeekDay.Friday,new Time.DayTime(6, 0),new Time.DayTime(8, 20)));
+    assert $.isConflicting(new Time(WeekDay.Friday,new Time.DayTime(4, 0),new Time.DayTime(8, 20)));
+    assert $.isConflicting(new Time(WeekDay.Friday,new Time.DayTime(6, 0),new Time.DayTime(10, 20)));
+    assert $.isConflicting(new Time(WeekDay.Friday,new Time.DayTime(7, 0),new Time.DayTime(8, 0)));
+    assert $.isConflicting(new Time(WeekDay.Friday,new Time.DayTime(2, 0),new Time.DayTime(10, 20)));
   }
   
   
