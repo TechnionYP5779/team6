@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fluent.ly"},{"l":"il.org.spartan"},{"l":"il.org.spartan.etc"},{"l":"il.org.spartan.iterables"},{"l":"il.org.spartan.iteration.closures"},{"l":"il.org.spartan.statistics"},{"l":"il.org.spartan.tables"},{"l":"il.org.spartan.utils"},{"l":"parking"},{"l":"server"}]
