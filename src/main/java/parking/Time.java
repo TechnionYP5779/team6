@@ -85,12 +85,18 @@ public class Time {
   public DayTime getToHour() {
     return toHour;
   }
+  
+  boolean includesInRange(final DayTime $) {
+    if ($.isLaterThan(fromHour) && $.isEarlierThan(toHour) || $.compareTo(fromHour) == 0 || $.compareTo(toHour) == 0)
+      return true;
+    return false;
+  }
 
   public boolean isConflicting(final Time ¢) {
     if (¢.getDay() != this.getDay())
       return false;
-    if (this.getFromHour().isEarlierThan(¢.getFromHour()) && ¢.getFromHour().isEarlierThan(this.getToHour())
-        || ¢.getFromHour().isEarlierThan(this.getFromHour()) && this.getFromHour().isEarlierThan(¢.getToHour()))
+    if (this.includesInRange(¢.fromHour) || this.includesInRange(¢.toHour)
+        || ¢.includesInRange(fromHour) || ¢.includesInRange(toHour))
       return true;
     int diff = Math.abs(¢.getToHour().diffInMinutes(this.getFromHour()));
     if (diff < minDistance)

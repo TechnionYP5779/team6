@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"il.org.spartan.utils","l":"AnyRange"},{"p":"il.org.spartan.utils","l":"AnyRange.AnyRangeException"},{"p":"il.org.spartan.utils","l":"AnyRange.BoundedAboveRange"},{"p":"il.org.spartan.utils","l":"AnyRange.BoundedBelowRange"},{"p":"il.org.spartan.utils","l":"AnyRange.FiniteRange"}]
