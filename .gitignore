@@ -7,3 +7,4 @@
 /.txt
 .settings/org.eclipse.mylyn.tasks.ui.prefs
 /doc/
+.classpath

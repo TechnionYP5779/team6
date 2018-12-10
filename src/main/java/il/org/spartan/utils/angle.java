@@ -6,7 +6,7 @@ package il.org.spartan.utils;
  * just like geometrical angels - pi radians is 180 deg, half pi is 90. <br>
  * You can crate a new angle and give it value by deg or radians. You can also
  * add deg or rad to your angels - but beware, this is how it works:
- * {@link https://i.imgur.com/8AxDjwA.png} <br>
+ * @see <a href="https://i.imgur.com/8AxDjwA.png">explaination</a> <br>
  * @author Michael Shohat
  * @since November 2018 */
 public class angle {
