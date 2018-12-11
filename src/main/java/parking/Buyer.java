@@ -12,40 +12,38 @@ import java.util.*;
 public interface Buyer {
   /**
    * Buyer rents a slot from the seller.
-   * Will notify the seller in this renting.
    * @param s the seller who rents the slot
    * @param spotID the id of the parking spot associated with the slot
-   * @param slotID the id of the slot
+   * @param slotID the id of the rent slot
    */
   void rentParkingSlot(Seller s, int spotID, int slotID);
 
   /**
    * Buyer unrents a slot from the seller.
-   * Will notify the seller in this unrenting.
    * @param s the seller who rents the slot
    * @param spotID the id of the parking spot associated with the slot
-   * @param slotID the id of the slot
+   * @param slotID the id of the rent slot
    */
   void unrentParkingSlot(Seller s, int spotID, int slotID);
 
   /**
    * 
-   * @return all available slots of all users
+   * @return all available rent slots of all users
    */
   List<RentSlot> getAllAvailableSlots();
 
   //List<RentSlot> getRequstedSlots(Address a);
 
   /**
-   * notify the buyer of the new price of the slot
+   * notify the buyer of the new price of a slot
    * @param price new price
-   * @param s the slot its price updated
+   * @param s the rent slot its price updated
    */
   void notifyNewPrice(double price, RentSlot s);
 
   /**
-   * notify the buyer that the slot have been removed
-   * @param s the slot which was removed
+   * notify the buyer that a rent slot have been removed
+   * @param s the rent slot which was removed
    */
   void notifyRentSlotRemoved(RentSlot s);
 }
