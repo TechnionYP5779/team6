@@ -16,10 +16,10 @@ public class RentSlot {
   private static int uniqueId;
 
   /**
-   * 
-   * @param s the owner of the parking that will be rented
-   * @param p the parking spot to be rented
-   * @param t the time that the parking spot will be rented
+   * create new rent slot of a parking spot
+   * @param s the owner of the parking spot
+   * @param p the parking spot
+   * @param t the time that the parking spot can be rented
    * @param price the price of the rent slot
    */
   RentSlot(Seller s, ParkingSpot p, Time t, double price) {
@@ -46,7 +46,7 @@ public class RentSlot {
   
   /**
    * 
-   * @return id of this rent slot
+   * @return id of the rent slot
    */
   public int getId() {
     return id;
@@ -61,7 +61,7 @@ public class RentSlot {
   
   /**
    * 
-   * @return the time this rent slot is rented
+   * @return the time this rent slot can be rented
    */
   public Time getTime() {
     return t;
@@ -85,9 +85,17 @@ public class RentSlot {
   
   /**
    * 
-   * @return the person who rents this rent slot
+   * @return the buyer of the rent slot
    */
   public Buyer getBuyer() {
     return b;
+  }
+  
+  /**
+   * updates the buyer of the rent slot
+   * @param buyer the new buyer of the rent slot
+   */
+  public void setBuyer(Buyer ¢) {
+    this.b = ¢;
   }
 }
