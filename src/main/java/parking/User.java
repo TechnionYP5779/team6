@@ -35,17 +35,20 @@ public class User implements Seller, Buyer {
     this.name = name;
     this.lastName = lastName;
     this.phone = phone;
-    ownedParkingSpots = new HashMap<>();
-    freeRentSlots = new HashMap<>();
-    usedRentSlots = new HashMap<>();
+    ownedParkingSpots = new LinkedHashMap<>();
+    freeRentSlots = new LinkedHashMap<>();
+    usedRentSlots = new LinkedHashMap<>();
   }
 
   /**
    * 
    * @see parking.Seller#letParkingSlot(int, int)
    * @fluent.ly.Changed
+   * @throws IllegalArgumentException on spotID < 0 or slotID < 0
+   * @throws IllegalArgumentException if spotID is not associated with parking spot
+   * @throws IllegalArgumentException if rent slot not available to renting
    */
-  @Override public void letParkingSlot(int spotID, int slotID) {
+  @Override public void letParkingSlot(Buyer b, int spotID, int slotID) {
     if (spotID < 0 || slotID < 0)
       throw new IllegalArgumentException();
     if(!checkParkingBelongsToUser(spotID))
@@ -56,14 +59,18 @@ public class User implements Seller, Buyer {
     Map<Integer, RentSlot> freeRentSlotsOfPSpot = freeRentSlots.get(box.it(spotID));
     if(!freeRentSlotsOfPSpot.containsKey(box.it(slotID)))
       throw new IllegalArgumentException(); //TODO: specify later
-    usedRentSlotsOfPSpot.put(box.it(slotID), freeRentSlotsOfPSpot.get(box.it(slotID)));
-    freeRentSlotsOfPSpot.remove(box.it(slotID));
+    RentSlot rs = freeRentSlotsOfPSpot.remove(box.it(slotID));
+    rs.setBuyer(b);
+    usedRentSlotsOfPSpot.put(box.it(slotID), rs);
   }
 
   /**
    * 
    * @see parking.Seller#unletParkingSlot(int, int)
    * @fluent.ly.Changed
+   * @throws IllegalArgumentException if spotID < 0 or slotID < 0
+   * @throws IllegalArgumentException if spotID is not associated with parking spot
+   * @throws IllegalArgumentException if rent slot is not rented
    */
   @Override public void unletParkingSlot(int spotID, int slotID) {
     if (spotID < 0 || slotID < 0)
@@ -76,8 +83,9 @@ public class User implements Seller, Buyer {
     Map<Integer, RentSlot> usedRentSlotsOfPSpot = usedRentSlots.get(box.it(spotID));
     if(!usedRentSlotsOfPSpot.containsKey(box.it(slotID)))
       throw new IllegalArgumentException(); //TODO: specify later
-    freeRentSlotsOfPSpot.put(box.it(slotID), usedRentSlotsOfPSpot.get(box.it(slotID)));
-    usedRentSlotsOfPSpot.remove(box.it(slotID));
+    RentSlot rs = usedRentSlotsOfPSpot.remove(box.it(slotID));
+    rs.setBuyer(null);
+    freeRentSlotsOfPSpot.put(box.it(slotID), rs);
   }
 
   /**
@@ -94,20 +102,23 @@ public class User implements Seller, Buyer {
    * 
    * @see parking.Seller#addParkingSpot(parking.Address)
    * @fluent.ly.Changed
+   * @throws NullPointerException is Address given is null
    */
   @Override public void addParkingSpot(Address a) {
     // tests of validity of address and parkingSpot in class ParkingSpot
     ParkingSpot p = new ParkingSpot(a);
     p.setOwner(this);
     ownedParkingSpots.put(box.it(p.getId()), p);
-    freeRentSlots.put(box.it(p.getId()), new HashMap<>());
-    usedRentSlots.put(box.it(p.getId()), new HashMap<>());
+    freeRentSlots.put(box.it(p.getId()), new LinkedHashMap<>());
+    usedRentSlots.put(box.it(p.getId()), new LinkedHashMap<>());
   }
 
   /**
    * 
    * @see parking.Seller#removeParkingSpot(int)
    * @fluent.ly.Changed
+   * @throws IllegalArgumentException if spotID < 0
+   * @throws IllegalArgumentException if spotID is not associated with parking spot
    */
   @Override public void removeParkingSpot(int spotID) {
     if (spotID < 0)
@@ -125,6 +136,9 @@ public class User implements Seller, Buyer {
    * 
    * @see parking.Seller#addRentSlot(parking.ParkingSpot, parking.Time, double)
    * @fluent.ly.Changed
+   * @throws NullPointerException if parking spot or time given are null
+   * @throws IllegalArgumentException if spotID is not associated with parking spot
+   * @throws IllegalArgumentException if time is conflicted with another rent slot of same parking spot
    */
   @Override public void addRentSlot(ParkingSpot s, Time t, double price) {
     if (s == null || t == null)
@@ -133,7 +147,6 @@ public class User implements Seller, Buyer {
       throw new IllegalArgumentException();
     if (!checkParkingBelongsToUser(s.getId()))
       throw new IllegalArgumentException(); // TODO: specify later
-    RentSlot newRs = new RentSlot(this, s, t, price); // will check this is the owner of parkingSpot
     Map<Integer, RentSlot> freeRentSlotsOfS = freeRentSlots.get(box.it(s.getId()));
     for (RentSlot rs : freeRentSlotsOfS.values())
       if (t.isConflicting(rs.getTime()))
@@ -141,6 +154,7 @@ public class User implements Seller, Buyer {
     for (RentSlot rs : usedRentSlots.get(box.it(s.getId())).values())
       if (t.isConflicting(rs.getTime()))
         throw new IllegalArgumentException(); // TODO: specify error later
+    RentSlot newRs = new RentSlot(this, s, t, price);
     freeRentSlotsOfS.put(box.it(newRs.getId()), newRs);
   }
 
@@ -148,6 +162,8 @@ public class User implements Seller, Buyer {
    * 
    * @see parking.Seller#removeRentSlot(int, int)
    * @fluent.ly.Changed
+   * @throws IllegalArgumentException if spotID < 0 or slotID < 0
+   * @throws IllegalArgumentException if spotID is not associated with parking spot
    */
   @Override public void removeRentSlot(int spotID, int slotID) {
     if (spotID < 0 || slotID < 0)
@@ -175,6 +191,8 @@ public class User implements Seller, Buyer {
    * 
    * @see parking.Seller#updateParkingSpotPrice(int, double)
    * @fluent.ly.Changed
+   * @throws IllegalArgumentException if spotID < 0
+   * @throws IllegalArgumentException if spotID is not associated with parking spot
    */
   @Override public void updateParkingSpotPrice(int spotID, double change) {
     if (spotID < 0)
@@ -193,6 +211,7 @@ public class User implements Seller, Buyer {
    * 
    * @see parking.Seller#updateRentSlotPrice(int, int, double)
    * @fluent.ly.Changed
+   * @throws IllegalArgumentException if spotID is not associated with parking spot
    */
   @Override public void updateRentSlotPrice(int spotID, int slotID, double price) {
     if (spotID < 0 || slotID < 0 || price < 0)
@@ -224,6 +243,7 @@ public class User implements Seller, Buyer {
    * 
    * @see parking.Seller#getAllSlotsBySpotID(int)
    * @fluent.ly.Changed
+   * @throws IllegalArgumentException if spotID is not associated with parking spot
    */
   @Override public List<RentSlot> getAllSlotsBySpotID(int spotID) {
     if(!checkParkingBelongsToUser(spotID))
@@ -235,6 +255,7 @@ public class User implements Seller, Buyer {
    * 
    * @see parking.Seller#getAllFreeSlotsBySpotID(int)
    * @fluent.ly.Changed
+   * @throws IllegalArgumentException if spotID is not associated with parking spot
    */
   @Override public List<RentSlot> getAllFreeSlotsBySpotID(int spotID) {
     if(!checkParkingBelongsToUser(spotID))
@@ -246,6 +267,7 @@ public class User implements Seller, Buyer {
    * 
    * @see parking.Seller#getAllUsedSlotsBySpotID(int)
    * @fluent.ly.Changed
+   * @throws IllegalArgumentException if spotID is not associated with parking spot
    */
   @Override public List<RentSlot> getAllUsedSlotsBySpotID(int spotID) {
     if(!checkParkingBelongsToUser(spotID))
@@ -341,7 +363,7 @@ public class User implements Seller, Buyer {
    * @fluent.ly.Changed
    */
   @Override public void rentParkingSlot(Seller s, int spotID, int slotID) {
-    s.letParkingSlot(spotID, slotID);
+    s.letParkingSlot(this, spotID, slotID);
   }
 
   /**
