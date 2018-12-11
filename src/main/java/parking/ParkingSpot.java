@@ -11,14 +11,15 @@ public class ParkingSpot {
   private int id; // for now, will be more accurate later
   private Address address;
   private Seller owner;
-  private int slotCounter;
+  private int slotCounter; //number of rent slots associated with this parking spot
   private static int uniqueId;
 
   /**
-   * initialize the parking spot with address
-   * checks validity of address
-   * checks parking spot is not already belongs to a seller
+   * initialize the parking spot with an address
+   * check validity of the address
+   * check parking spot is not already belongs to a seller
    * @param a the address of the parking spot
+   * @throws NullPointerException if the address is null
    */
   ParkingSpot(Address a) {
     // TODO: needs to check if address valid, means exist in our world
@@ -32,7 +33,7 @@ public class ParkingSpot {
   }
 
   /**
-   * @return owner of this parking spot 
+   * @return owner of the parking spot 
    */
   public Seller getOwner() {
     return owner;
@@ -40,7 +41,7 @@ public class ParkingSpot {
 
   
   /**
-   * change owner of this parking spot
+   * change owner of the parking spot
    * @param owner the new owner of the parking spot
    */
   public void setOwner(Seller owner) {
@@ -48,14 +49,14 @@ public class ParkingSpot {
   }
 
   /**
-   * @return address if this parking spot
+   * @return address of the parking spot
    */
   public Address getAddress() {
     return address;
   }
 
   /**
-   * private method, change the address of parking spot
+   * private method, change the address of the parking spot
    * @param ¢ the new address of the parking spot
    */
   private void setAddress(Address ¢) {
