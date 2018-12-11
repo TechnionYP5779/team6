@@ -1,0 +1,43 @@
+<div class="container">
+    <h1>Rent your spot</h1>
+    <form (ngSubmit)="onSubmit()" #RentSpotForm="ngForm">
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" style="width: 150px;" class="form-control" id="city" required [(ngModel)]="model.city" name="city">
+      </div>
+ 
+      <div class="form-group">
+        <label for="street">Street</label>
+        <input type="text" style="width: 150px;" class="form-control" id="street" required [(ngModel)]="model.street" name="street">
+      </div>
+
+      <div class="form-group">
+        <label for="spot_num">parking spot number</label>
+        <input type="text" style="width: 40px;" class="form-control" id="spot_num" [(ngModel)]="model.spot_num" name="spot_num">
+      </div>
+
+      <div class="form-group">
+		<label for="start_time">Start time</label>
+	  	<select style="width: 100px;" class="form-control" id="start_time" required [(ngModel)]="model.start_time" name="start_time">
+	    	<option *ngFor="let hour of Hours" [value]="hour">{{hour}}</option>
+	  	</select>
+	  </div>
+ 	 
+ 	  <div class="form-group">
+		<label for="end_time">End time</label>
+	  	<select style="width: 100px;" class="form-control" id="end_time" required [(ngModel)]="model.end_time" name="end_time">
+	    	<option *ngFor="let hour of Hours" [value]="hour">{{hour}}</option>
+	  	</select>
+	  </div>
+
+	  <div class="form-group">
+        <label for="price">Price per hour</label>
+        <input type="text" style="width: 100px;" class="form-control" id="price" required [(ngModel)]="model.price" name="price">
+      </div>
+
+
+      <button type="submit" class="btn btn-success" [disabled]="!RentSpotForm.form.valid" 
+      (click)="newSpot(); RentSpotForm.reset()" >Submit</button>
+ 
+    </form>
+</div>
