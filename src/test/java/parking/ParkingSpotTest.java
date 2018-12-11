@@ -10,6 +10,13 @@ import fluent.ly.*;
 
 // Unit tests for class ParkingSpot
 
+/**
+ * @fluent.ly.Package parking
+ * @fluent.ly.Since Dec 11, 2018
+ * @fluent.ly.Author Or
+ * @fluent.ly.ClassDesc TODO
+ * @see ParkingSpot
+*/
 @SuppressWarnings({"static-method", "unused"}) public class ParkingSpotTest {
    @Test public void basicParkingSpotFuncsTest () {
     //create a new parking spot and add it to a new user named Yossi
@@ -28,20 +35,15 @@ import fluent.ly.*;
     azzert.that(p1.getOwner(), is(yossi));
     azzert.that(p1.getAddress(), is(a1));
     azzert.that(p1.getNumOfSlots(), is(0));
-    azzert.that(p1.getId(), is(0));
     
     azzert.that(p2.getOwner(), is(tamar));
     azzert.that(p2.getAddress(), is(a2));
     azzert.that(p2.getNumOfSlots(), is(0));
-    azzert.that(p2.getId(), is(1));
   }
   
    @Test public void advancedParkingSpotFuncsTest () {
-     //create new addresses and save them in a list
-    Address a1 = new Address("Tel-Aviv", "King George", 5);
-    Address a2 = new Address("Tel-Aviv", "King George", 5);
-    Address a3 = new Address("Petah-Tikwa", "Hivner", 25);
-    Address a4 = new Address("Raanana", "Kazan", 30);
+     Address a1 = new Address("Tel-Aviv", "King George", 5), a2 = new Address("Tel-Aviv", "King George", 5),
+        a3 = new Address("Petah-Tikwa", "Hivner", 25), a4 = new Address("Raanana", "Kazan", 30);
     List<Address> yossiAdd = new ArrayList<>();
     yossiAdd.add(a1);
     yossiAdd.add(a2);
@@ -55,9 +57,7 @@ import fluent.ly.*;
     yossi.addParkingSpot(a3);
     yossi.addParkingSpot(a4);
     
-  //create new addresses and save them in a list
-    Address a5 = new Address("Tel-Aviv", "King George", 10);
-    Address a6 = new Address("Petah-Tikwa", "Hivner", 13);
+  Address a5 = new Address("Tel-Aviv", "King George", 10), a6 = new Address("Petah-Tikwa", "Hivner", 13);
     List<Address> tamarAdd = new ArrayList<>();
     tamarAdd.add(a5);
     tamarAdd.add(a6);
