@@ -1,6 +1,6 @@
 package parking;
 /**
- * the object that represents an address of parking spot
+ * the class that represents an address of parking spot
  * @fluent.ly.Package parking
  * @fluent.ly.Since Dec 8, 2018
  * @fluent.ly.Author Or, Nitzan
@@ -12,9 +12,9 @@ public class Address {
 
   /**
    * 
-   * @param city the city of the parking spot
-   * @param street the street of the parking spot
-   * @param building the building of the parking spot
+   * @param city the city that the parking spot located in
+   * @param street the street that the parking spot located in
+   * @param building the building that the parking spot located in
    */
   Address(String city, String street, int building) {
     this.city = city;
@@ -24,7 +24,7 @@ public class Address {
 
   /**
    * 
-   * @return the city of the parking spot
+   * @return the city that the parking spot located in
    */
   public String getCity() {
     return city;
@@ -32,7 +32,7 @@ public class Address {
 
   /**
    * 
-   * @return the street of the parking spot
+   * @return the street that the parking spot located in
    */
   public String getStreet() {
     return street;
@@ -40,7 +40,7 @@ public class Address {
 
   /**
    * 
-   * @return the building of the parking spot
+   * @return the building that the parking spot located in
    */
   public int getBuilding() {
     return building;

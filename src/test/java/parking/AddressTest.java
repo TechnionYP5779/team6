@@ -17,7 +17,7 @@ import fluent.ly.*;
   @Test public void addressFuncsTest() {
     Address a = new Address("Tel-Aviv", "Rotchild", 9);
     azzert.that(a.getBuilding(), is(9));
-    azzert.that(a.getCity(), is("Tel-Aviv"));
+    azzert.that(a.getStreet(), is("Rotchild"));
     azzert.that(a.getCity(), is("Tel-Aviv"));
   }
 }
