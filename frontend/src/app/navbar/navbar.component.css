@@ -21,4 +21,7 @@
 .active {
     font-weight:bold;
 } 
-  
+
+.nav-item{
+    align-self: center
+}
