@@ -8,8 +8,7 @@
   </a>
 
   <!-- Collapsing The Navigation Bar -->
-  <button class="
-      navbar-toggler" type="button" (click)="toggleNavbar()" data-target="#mainNavBar">
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-target="#mainNavBar">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -18,38 +17,52 @@
 
     <!-- Left: Find Parking, Become a Host -->
     <ul class="navbar-nav mr-auto">
+
       <li class="nav-item">
         <a class="nav-link" routerLink="" routerLinkActive="active current" [routerLinkActiveOptions]="{exact: true}">
           Home
         </a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" routerLink="/find-parking" routerLinkActive="active current">
           Find Parking
         </a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" routerLink="/become-host" routerLinkActive="active current">
           Become a Host
         </a>
       </li>
+
     </ul>
 
     <!-- Right: SignUp, Login -->
     <ul class="nav navbar-nav navbar-right">
+
+      <li class="nav-item" *ngIf="username">
+        <a *ngIf="username">
+          Welcome {{username}}
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <button type="button" class="btn btn-light" (click)="openLoginDialog()">
+          <span class="fa fa-sign-in"></span>
+          Login
+        </button>
+      </li>
+
       <li class="nav-item">
         <a class="nav-link" routerLink="/sign-up" routerLinkActive="active current">
           <span class="fa fa-user"></span>
           Sign Up
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/login" routerLinkActive="active current">
-          <span class="fa fa-sign-in"></span>
-          Login
-        </a>
-      </li>
+
     </ul>
 
   </div>
+
 </nav>
