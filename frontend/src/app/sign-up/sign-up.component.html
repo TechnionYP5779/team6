@@ -1,3 +1,47 @@
-<p>
-  sign-up works!
-</p>
+<form class="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm.value)">
+
+  <h2 style="text-align:left">Sign Up</h2>
+
+  <!-- UserName -->
+  <div class="form-group">
+    <label class="control-label">Username:</label>
+    <input type="text" class="form-control" formControlName="username">
+    <div class="alert alert-danger" *ngIf="!signUpForm.controls['username'].valid && signUpForm.controls['username'].touched">
+      Field is required
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="form-group">
+    <label class="control-label">Email address:</label>
+    <input type="email" class="form-control" formControlName="email">
+    <div *ngIf="(signUpForm.controls['email'].touched) && !signUpForm.controls['email'].valid">
+      <div class="alert alert-danger" *ngIf="signUpForm.controls['email'].errors.required">
+        Field is required
+      </div>
+      <div class="alert alert-danger" *ngIf="signUpForm.controls['email'].errors && !signUpForm.controls['email'].errors.required">
+        Field is not valid email address
+      </div>
+    </div>
+  </div>
+
+  <!-- Password -->
+  <div class="form-group">
+    <label class="control-label">Password:</label>
+    <input type="text" class="form-control" formControlName="password">
+    <div *ngIf="(signUpForm.controls['password'].touched) && !signUpForm.controls['password'].valid">
+      <div class="alert alert-danger" *ngIf="signUpForm.controls['password'].errors.required">
+        Field is required
+      </div>
+      <div class="alert alert-danger" *ngIf="signUpForm.controls['password'].errors.pattern">
+        Field is not valid password: type at least one digit, one uppercase letter, one lowcase letter, and at least 8
+        or more characters
+      </div>
+    </div>
+
+
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.valid">Sign Up</button>
+
+</form>
