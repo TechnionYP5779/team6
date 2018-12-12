@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {RentSpot} from '../rent-spot'
+import {RentSpot} from '../rent-spot';
+import { WebService } from '../web.service';
 
 @Component({
   selector: 'app-rent-spot-form',
@@ -41,6 +42,12 @@ export class RentSpotFormComponent implements OnInit {
 
 	model = new RentSpot('','','','',0)
 
+ 	constructor(private webService : WebService ) { }
+
+ 	// constructor( ) { }
+
+  	ngOnInit() { }
+
 	onSubmit(){ 
 		this.submitted = true
 	}		
@@ -49,14 +56,12 @@ export class RentSpotFormComponent implements OnInit {
 	 	return JSON.stringify(this.model); 
 	}
 
-	newSpot(){
+	 newSpot(){
 		// fill with a post request
-		console.log(JSON.stringify(this.model))
+		this.webService.addSpot(JSON.stringify(this.model))
+		// console.log(JSON.stringify(x));
 	}
 
-  constructor() 
-
-  ngOnInit() {
-  }
 
 }
+
