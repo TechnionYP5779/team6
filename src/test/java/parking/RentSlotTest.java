@@ -12,7 +12,7 @@ import fluent.ly.*;
  * @fluent.ly.Since Dec 8, 2018
  * @fluent.ly.Author Or
  * @see RentSlot */
-@SuppressWarnings({ "static-method", "unused", "null" }) public class RentSlotTest {
+@SuppressWarnings({ "static-method", "unused" }) public class RentSlotTest {
   @Test public void rebtSlotFuncsTest() {
     Address a1 = new Address("Tel-Aviv", "King George", 5), a2 = new Address("Tel-Aviv", "King George", 5),
         a3 = new Address("Petah-Tikwa", "Hivner", 25), a4 = new Address("Raanana", "Kazan", 30);
