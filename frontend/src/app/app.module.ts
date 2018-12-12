@@ -13,6 +13,7 @@ import { BecomeHostComponent } from './become-host/become-host.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
+import { RentSpotFormComponent } from './rent-spot-form/rent-spot-form.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { LoginComponent } from './login/login.component';
     NotFoundComponent,
     SignUpComponent,
     LoginComponent,
-    
+
+    RentSpotFormComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { LoginComponent } from './login/login.component';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
