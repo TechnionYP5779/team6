@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
 
   navbarOpen = false;
   username: string = 'Guest';
+  userIsLogin = false; // TODO: use service instead
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
@@ -40,12 +41,20 @@ export class NavbarComponent implements OnInit {
 
     /** get data from dialog: only username for now */
     dialogRef.afterClosed().subscribe(result => {
-      if (result != null) this.username = result.username; // else: username is still 'Guest'
+      if (result != null) {
+        this.username = result.username; // else: username is still 'Guest'
+        this.userIsLogin = true;
+      }
     });
   }
 
+  logout(): void {
+    this.username = 'Guest';
+    this.userIsLogin = false;
+  }
+
   openSignUpDialog(): void {
-    
+
     /** config dialog */
     const dialogConfig = new MatDialogConfig();
 

@@ -47,7 +47,7 @@ import { RentSpotFormComponent } from './rent-spot-form/rent-spot-form.component
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [LoginComponent, NavbarComponent] /** TODO: check if need this */
+  entryComponents: [LoginComponent, SignUpComponent]
 
 })
 export class AppModule { }
