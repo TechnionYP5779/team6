@@ -54,7 +54,7 @@ export class RentSpotFormComponent implements OnInit {
 		console.log(JSON.stringify(this.model))
 	}
 
-  constructor() 
+  constructor() {}
 
   ngOnInit() {
   }
