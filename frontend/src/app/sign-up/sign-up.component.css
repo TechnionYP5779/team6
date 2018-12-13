@@ -1,15 +1,8 @@
-.form {
-    margin-left: 30px;
-}
-
-.form-group {
-    width: 50%;
-}
-
-.control-label {
-    font-weight: bold;
-}
-
-input.ng-touched.ng-invalid:not(form) {
-    border: 1px solid #ffdddd;
-}
+.mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.mat-dialog-content > * {
+    width: 100%;
+  }

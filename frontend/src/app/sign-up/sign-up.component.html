@@ -1,47 +1,47 @@
-<form class="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm.value)">
+<!-- Title -->
+<h2 style="text-align:center" mat-dialog-title>Sign Up</h2>
 
-  <h2 style="text-align:left">Sign Up</h2>
+<!-- Content -->
+<div mat-dialog-content [formGroup]="signUpForm">
+
+  <!-- First Nmae -->
+  <mat-form-field>
+    <input matInput placeholder="First name" formControlName="fname" required>
+  </mat-form-field>
+
+  <!-- Last Nmae -->
+  <mat-form-field>
+    <input matInput placeholder="Last name" formControlName="lname" required>
+  </mat-form-field>
 
   <!-- UserName -->
-  <div class="form-group">
-    <label class="control-label">Username:</label>
-    <input type="text" class="form-control" formControlName="username">
-    <div class="alert alert-danger" *ngIf="!signUpForm.controls['username'].valid && signUpForm.controls['username'].touched">
-      Field is required
-    </div>
-  </div>
-
-  <!-- Email -->
-  <div class="form-group">
-    <label class="control-label">Email address:</label>
-    <input type="email" class="form-control" formControlName="email">
-    <div *ngIf="(signUpForm.controls['email'].touched) && !signUpForm.controls['email'].valid">
-      <div class="alert alert-danger" *ngIf="signUpForm.controls['email'].errors.required">
-        Field is required
-      </div>
-      <div class="alert alert-danger" *ngIf="signUpForm.controls['email'].errors && !signUpForm.controls['email'].errors.required">
-        Field is not valid email address
-      </div>
-    </div>
-  </div>
+  <mat-form-field>
+    <input matInput placeholder="Username" formControlName="username" required>
+  </mat-form-field>
 
   <!-- Password -->
-  <div class="form-group">
-    <label class="control-label">Password:</label>
-    <input type="text" class="form-control" formControlName="password">
-    <div *ngIf="(signUpForm.controls['password'].touched) && !signUpForm.controls['password'].valid">
-      <div class="alert alert-danger" *ngIf="signUpForm.controls['password'].errors.required">
-        Field is required
-      </div>
-      <div class="alert alert-danger" *ngIf="signUpForm.controls['password'].errors.pattern">
-        Field is not valid password: type at least one digit, one uppercase letter, one lowcase letter, and at least 8
-        or more characters
-      </div>
-    </div>
+  <mat-form-field hintLabel="{{passwordHintMessage}}">
+    <input matInput placeholder="Password" formControlName="password" required [type]="hidePassword ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-error *ngIf="signUpForm.controls['password'].hasError('pattern')">
+      Please enter a valid password: {{passwordHintMessage}}
+    </mat-error>
+  </mat-form-field>
 
+  <!-- Emaiil -->
+  <mat-form-field>
+    <input matInput placeholder="Email address" formControlName="email" required>
+    <mat-error *ngIf="signUpForm.controls['email'].hasError('email')">
+      Please enter a valid email address
+    </mat-error>
+  </mat-form-field>
 
-  </div>
+</div>
 
-  <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.valid">Sign Up</button>
+<!-- Bottons -->
+<div mat-dialog-actions>
 
-</form>
+  <button type="button" class="btn btn-primary" (click)="signUp()" [disabled]="!signUpForm.valid">Sign Up</button>
+  <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+
+</div>

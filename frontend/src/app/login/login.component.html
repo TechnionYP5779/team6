@@ -6,22 +6,25 @@
 
   <!-- UserName -->
   <mat-form-field>
-    <input matInput placeholder="Enter your Username" formControlName="username" required>
+    <input matInput placeholder="Username" formControlName="username" required>
   </mat-form-field>
 
   <!-- Password -->
   <mat-form-field>
-    <input matInput placeholder="Enter your password" formControlName="password" required [type]="hidePassword ? 'password' : 'text'">
+    <input matInput placeholder="Password" formControlName="password" required [type]="hidePassword ? 'password' : 'text'">
     <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
   </mat-form-field>
 
 </div>
 
 <!-- Bottons -->
-<div mat-dialog-actions>
+<div mat-dialog-actions style="display:inline-block">
 
   <button type="button" class="btn btn-primary" (click)="login()" [disabled]="!loginForm.valid">Login</button>
   <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
-  <button type="button" class="btn btn-link">Sign In</button>
+  <div>
+    <span>Don’t have an account?</span>
+    <button type="button" class="btn btn-secondary" (click)="signUp()">Sign Up</button>
+  </div>
 
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
+import { SignUpComponent } from '../sign-up/sign-up.component';
 
 @Component({
   selector: 'app-navbar',
@@ -16,29 +17,51 @@ export class NavbarComponent implements OnInit {
     this.navbarOpen = !this.navbarOpen;
   }
 
-  constructor(public loginDialog: MatDialog) { }
+  constructor(public loginDialog: MatDialog, public signUpDialog: MatDialog) { }
 
   ngOnInit() {
   }
 
   openLoginDialog(): void {
+
+    /** config dialog */
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;   /** the user will not be able to close the dialog just by clicking outside of it */
+    dialogConfig.autoFocus = false;     /** the focus will not be set automatically on the first form field of the dialog */
 
-    dialogConfig.height = '400px';      /** TODO: change this! */
-    dialogConfig.width = '600px';
+    dialogConfig.height = '300px';      /** size of dialog window */
+    dialogConfig.width = '500px';
 
     dialogConfig.data = {};             /** pass data to dialog - empty for now */
-  
 
     /** open dialog */
     const dialogRef = this.loginDialog.open(LoginComponent, dialogConfig);
 
-    /** get data from dialog */
+    /** get data from dialog: only username for now */
     dialogRef.afterClosed().subscribe(result => {
-      this.username = result.username;
+      if (result != null) this.username = result.username; // else: username is still 'Guest'
     });
+  }
+
+  openSignUpDialog(): void {
+    
+    /** config dialog */
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;   /** the user will not be able to close the dialog just by clicking outside of it */
+    dialogConfig.autoFocus = false;     /** the focus will not be set automatically on the first form field of the dialog */
+
+    dialogConfig.height = '500px';      /** size of dialog window */
+    dialogConfig.width = '500px';
+
+    dialogConfig.data = {};             /** pass data to dialog - empty for now */
+
+    /** open dialog */
+    const dialogRef = this.signUpDialog.open(SignUpComponent, dialogConfig);
+
+    /** get data from dialog - empty for no */
+    dialogRef.afterClosed().subscribe(result => { });
   }
 
 }
