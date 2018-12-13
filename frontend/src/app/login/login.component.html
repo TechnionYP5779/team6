@@ -18,13 +18,15 @@
 </div>
 
 <!-- Bottons -->
-<div mat-dialog-actions style="display:inline-block">
+<div mat-dialog-actions align="center">
 
   <button type="button" class="btn btn-primary" (click)="login()" [disabled]="!loginForm.valid">Login</button>
+
   <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
-  <div>
-    <span>Don’t have an account?</span>
-    <button type="button" class="btn btn-secondary" (click)="signUp()">Sign Up</button>
-  </div>
+
+  <p> <br>
+    Don’t have an account?
+    <button type="button" class="btn btn-link" (click)="signUp()">Sign Up</button>
+  </p>
 
 </div>

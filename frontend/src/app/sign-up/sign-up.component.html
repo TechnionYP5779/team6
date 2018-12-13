@@ -29,7 +29,7 @@
   </mat-form-field>
 
   <!-- Emaiil -->
-  <mat-form-field>
+  <mat-form-field style="margin-top: 30px">
     <input matInput placeholder="Email address" formControlName="email" required>
     <mat-error *ngIf="signUpForm.controls['email'].hasError('email')">
       Please enter a valid email address
@@ -39,7 +39,7 @@
 </div>
 
 <!-- Bottons -->
-<div mat-dialog-actions>
+<div mat-dialog-actions align="center">
 
   <button type="button" class="btn btn-primary" (click)="signUp()" [disabled]="!signUpForm.valid">Sign Up</button>
   <button type="button" class="btn btn-secondary" (click)="close()">Close</button>

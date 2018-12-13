@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
     dialogConfig.disableClose = true;   /** the user will not be able to close the dialog just by clicking outside of it */
     dialogConfig.autoFocus = false;     /** the focus will not be set automatically on the first form field of the dialog */
 
-    dialogConfig.height = '300px';      /** size of dialog window */
+    dialogConfig.height = '350px';      /** size of dialog window */
     dialogConfig.width = '500px';
 
     dialogConfig.data = {};             /** pass data to dialog - empty for now */
