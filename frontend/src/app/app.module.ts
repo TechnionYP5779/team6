@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule  } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { RentSpotFormComponent } from './rent-spot-form/rent-spot-form.component';
+import { WebService } from './web.service';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { RentSpotFormComponent } from './rent-spot-form/rent-spot-form.component
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
@@ -45,9 +47,10 @@ import { RentSpotFormComponent } from './rent-spot-form/rent-spot-form.component
     MatInputModule,
     FormsModule
   ],
-  providers: [],
+  providers: [WebService],
   bootstrap: [AppComponent],
   entryComponents: [LoginComponent, NavbarComponent] /** TODO: check if need this */
 
 })
 export class AppModule { }
+
