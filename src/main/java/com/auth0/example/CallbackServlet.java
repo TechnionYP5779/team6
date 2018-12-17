@@ -57,7 +57,7 @@ import com.auth0.*;
    * the authorize_url included the 'response_mode=form_post' value. This is
    * disabled by default. On the Local Servlet scope you can specify the
    * 'com.auth0.allow_post' parameter to enable this behaviour.
-   * @param req the received request with the tokens (implicit grant) or the
+   * @param r the received request with the tokens (implicit grant) or the
    *            authorization code (code grant) in the parameters.
    * @param res the response to send back to the server.
    * @throws IOException
