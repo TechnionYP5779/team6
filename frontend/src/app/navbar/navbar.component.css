@@ -8,7 +8,6 @@
 .navbar a {
     float: left;
     text-align: center;
-    padding: 12px;
     color: white;
 }
   
@@ -23,5 +22,6 @@
 } 
 
 .nav-item{
-    align-self: center
+    align-self: center;
+    padding: 8px
 }

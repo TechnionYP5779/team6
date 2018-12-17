@@ -41,24 +41,31 @@
     <!-- Right: SignUp, Login -->
     <ul class="nav navbar-nav navbar-right">
 
-      <li class="nav-item" *ngIf="username">
+      <li class="nav-item">
         <a *ngIf="username">
           Welcome {{username}}
         </a>
       </li>
 
-      <li class="nav-item">
-        <button type="button" class="btn btn-light" (click)="openLoginDialog()">
+      <li class="nav-item" *ngIf="!userIsLogin">
+        <button type="button" class="btn btn-light" (click)="openLoginDialog()" style="width: 110px">
           <span class="fa fa-sign-in"></span>
           Login
         </button>
       </li>
 
+      <li class="nav-item" *ngIf="userIsLogin">
+        <button type="button" class="btn btn-light" (click)="logout()" style="width: 110px">
+          <span class="fa fa-sign-out"></span>
+          Logout
+        </button>
+      </li>
+
       <li class="nav-item">
-        <a class="nav-link" routerLink="/sign-up" routerLinkActive="active current">
+        <button type="button" class="btn btn-light" (click)="openSignUpDialog()" style="width: 110px">
           <span class="fa fa-user"></span>
           Sign Up
-        </a>
+        </button>
       </li>
 
     </ul>
