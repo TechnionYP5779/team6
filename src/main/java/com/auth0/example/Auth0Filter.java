@@ -15,7 +15,7 @@ import com.auth0.*;
   }
 
   /** Perform filter check on this request - verify the User Id is present.
-   * @param request  the received request
+   * @param r the received request
    * @param response the response to send
    * @param next     the next filter chain **/
   @Override public void doFilter(final ServletRequest r, final ServletResponse response, final FilterChain next)
