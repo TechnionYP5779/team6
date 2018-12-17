@@ -21,11 +21,10 @@ import il.org.spartan.*;
    * @param ¢ some <code><b>boolean</b></code> value
    * @return a non-<code><b>null</b></code> {@link Boolean} with the value of
    *         <code>c</code> */
-
   public static Boolean boxThis(final boolean ¢) {
     return Boolean.valueOf(¢);
   }
-  
+
   @NotNull public static Boolean[] boxThis(final boolean bs[]) {
     final @NotNull Boolean[] $ = new Boolean[bs.length];
     for (int ¢ = 0; ¢ < $.length; ++¢)

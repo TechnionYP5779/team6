@@ -14,9 +14,9 @@ public class User implements Seller, Buyer {
   private String lastName;
   private String phone;
   // seller info
-  private Map<Integer, ParkingSpot> ownedParkingSpots; // parking spots this user owns
-  private Map<Integer, Map<Integer, RentSlot>> freeRentSlots; // slots of parking ready for renting
-  private Map<Integer, Map<Integer, RentSlot>> usedRentSlots; // slots of parking which already rented to someone
+  private final Map<Integer, ParkingSpot> ownedParkingSpots; // parking spots this user owns
+  private final Map<Integer, Map<Integer, RentSlot>> freeRentSlots; // slots of parking ready for renting
+  private final Map<Integer, Map<Integer, RentSlot>> usedRentSlots; // slots of parking which already rented to someone
   // buyer info
 
   /** initialize a user, including name, last name, phone, and initialization of
@@ -24,7 +24,7 @@ public class User implements Seller, Buyer {
    * @param name     name of the user
    * @param lastName last name of the user
    * @param phone    phone of the user, represented by a string */
-  User(String name, String lastName, String phone) {
+  User(final String name, final String lastName, final String phone) {
     this.name = name;
     this.lastName = lastName;
     this.phone = phone;
@@ -39,16 +39,16 @@ public class User implements Seller, Buyer {
    * @throws IllegalArgumentException if spotID is not associated with parking
    *                                  spot
    * @throws IllegalArgumentException if rent slot not available to renting */
-  @Override public void letParkingSlot(Buyer b, int spotID, int slotID) {
+  @Override public void letParkingSlot(final Buyer b, final int spotID, final int slotID) {
     if (spotID < 0 || slotID < 0 || !checkParkingBelongsToUser(spotID))
       throw new IllegalArgumentException();
-    Map<Integer, RentSlot> usedRentSlotsOfPSpot = usedRentSlots.get(box.it(spotID));
+    final Map<Integer, RentSlot> usedRentSlotsOfPSpot = usedRentSlots.get(box.it(spotID));
     if (usedRentSlotsOfPSpot.containsKey(box.it(slotID)))
       throw new IllegalArgumentException();
-    Map<Integer, RentSlot> freeRentSlotsOfPSpot = freeRentSlots.get(box.it(spotID));
+    final Map<Integer, RentSlot> freeRentSlotsOfPSpot = freeRentSlots.get(box.it(spotID));
     if (!freeRentSlotsOfPSpot.containsKey(box.it(slotID)))
       throw new IllegalArgumentException();
-    RentSlot rs = freeRentSlotsOfPSpot.remove(box.it(slotID));
+    final RentSlot rs = freeRentSlotsOfPSpot.remove(box.it(slotID));
     rs.setBuyer(b);
     usedRentSlotsOfPSpot.put(box.it(slotID), rs);
   }
@@ -59,16 +59,16 @@ public class User implements Seller, Buyer {
    * @throws IllegalArgumentException if spotID is not associated with parking
    *                                  spot
    * @throws IllegalArgumentException if rent slot is not rented */
-  @Override public void unletParkingSlot(int spotID, int slotID) {
+  @Override public void unletParkingSlot(final int spotID, final int slotID) {
     if (spotID < 0 || slotID < 0 || !checkParkingBelongsToUser(spotID))
       throw new IllegalArgumentException();
-    Map<Integer, RentSlot> freeRentSlotsOfPSpot = freeRentSlots.get(box.it(spotID));
+    final Map<Integer, RentSlot> freeRentSlotsOfPSpot = freeRentSlots.get(box.it(spotID));
     if (freeRentSlotsOfPSpot.containsKey(box.it(slotID)))
       throw new IllegalArgumentException();
-    Map<Integer, RentSlot> usedRentSlotsOfPSpot = usedRentSlots.get(box.it(spotID));
+    final Map<Integer, RentSlot> usedRentSlotsOfPSpot = usedRentSlots.get(box.it(spotID));
     if (!usedRentSlotsOfPSpot.containsKey(box.it(slotID)))
       throw new IllegalArgumentException();
-    RentSlot rs = usedRentSlotsOfPSpot.remove(box.it(slotID));
+    final RentSlot rs = usedRentSlotsOfPSpot.remove(box.it(slotID));
     rs.setBuyer(null);
     freeRentSlotsOfPSpot.put(box.it(slotID), rs);
   }
@@ -83,9 +83,9 @@ public class User implements Seller, Buyer {
   /** @see parking.Seller#addParkingSpot(parking.Address)
    * @fluent.ly.Changed
    * @throws NullPointerException is Address given is null */
-  @Override public void addParkingSpot(Address a) {
+  @Override public void addParkingSpot(final Address a) {
     // tests of validity of address and parkingSpot in class ParkingSpot
-    ParkingSpot p = new ParkingSpot(a);
+    final ParkingSpot p = new ParkingSpot(a);
     p.setOwner(this);
     ownedParkingSpots.put(box.it(p.getId()), p);
     freeRentSlots.put(box.it(p.getId()), new LinkedHashMap<>());
@@ -97,12 +97,12 @@ public class User implements Seller, Buyer {
    * @throws IllegalArgumentException if spotID < 0
    * @throws IllegalArgumentException if spotID is not associated with parking
    *                                  spot */
-  @Override public void removeParkingSpot(int spotID) {
+  @Override public void removeParkingSpot(final int spotID) {
     if (spotID < 0 || !checkParkingBelongsToUser(spotID))
       throw new IllegalArgumentException();
     ownedParkingSpots.remove(box.it(spotID));
     freeRentSlots.remove(box.it(spotID));
-    for (RentSlot urs : usedRentSlots.get(box.it(spotID)).values())
+    for (final RentSlot urs : usedRentSlots.get(box.it(spotID)).values())
       urs.getBuyer().notifyRentSlotRemoved(urs);
     usedRentSlots.remove(box.it(spotID));
   }
@@ -114,19 +114,19 @@ public class User implements Seller, Buyer {
    *                                  spot
    * @throws IllegalArgumentException if time is conflicted with another rent slot
    *                                  of same parking spot */
-  @Override public void addRentSlot(ParkingSpot s, Time t, double price) {
+  @Override public void addRentSlot(final ParkingSpot s, final Time t, final double price) {
     if (s == null || t == null)
       throw new NullPointerException();
     if (price < 0 || !checkParkingBelongsToUser(s.getId()))
       throw new IllegalArgumentException();
-    Map<Integer, RentSlot> freeRentSlotsOfS = freeRentSlots.get(box.it(s.getId()));
-    for (RentSlot ¢ : freeRentSlotsOfS.values())
+    final Map<Integer, RentSlot> freeRentSlotsOfS = freeRentSlots.get(box.it(s.getId()));
+    for (final RentSlot ¢ : freeRentSlotsOfS.values())
       if (t.isConflicting(¢.getTime()))
         throw new IllegalArgumentException();
-    for (RentSlot ¢ : usedRentSlots.get(box.it(s.getId())).values())
+    for (final RentSlot ¢ : usedRentSlots.get(box.it(s.getId())).values())
       if (t.isConflicting(¢.getTime()))
         throw new IllegalArgumentException();
-    RentSlot newRs = new RentSlot(this, s, t, price);
+    final RentSlot newRs = new RentSlot(this, s, t, price);
     freeRentSlotsOfS.put(box.it(newRs.getId()), newRs);
   }
 
@@ -135,19 +135,19 @@ public class User implements Seller, Buyer {
    * @throws IllegalArgumentException if spotID < 0 or slotID < 0
    * @throws IllegalArgumentException if spotID is not associated with parking
    *                                  spot */
-  @Override public void removeRentSlot(int spotID, int slotID) {
+  @Override public void removeRentSlot(final int spotID, final int slotID) {
     if (spotID < 0 || slotID < 0 || !checkParkingBelongsToUser(spotID))
       throw new IllegalArgumentException();
-    Map<Integer, RentSlot> freeRentSlotsOfPSpot = freeRentSlots.get(box.it(spotID));
+    final Map<Integer, RentSlot> freeRentSlotsOfPSpot = freeRentSlots.get(box.it(spotID));
     if (freeRentSlotsOfPSpot.containsKey(box.it(slotID))) {
       freeRentSlotsOfPSpot.get(box.it(slotID)).closeRentSlot();
       freeRentSlotsOfPSpot.remove(box.it(slotID));
       return;
     }
-    Map<Integer, RentSlot> usedRentSlotsOfPSpot = usedRentSlots.get(box.it(spotID));
+    final Map<Integer, RentSlot> usedRentSlotsOfPSpot = usedRentSlots.get(box.it(spotID));
     if (!usedRentSlotsOfPSpot.containsKey(box.it(slotID)))
       throw new IllegalArgumentException();
-    RentSlot rs = usedRentSlotsOfPSpot.get(box.it(slotID));
+    final RentSlot rs = usedRentSlotsOfPSpot.get(box.it(slotID));
     rs.getBuyer().notifyRentSlotRemoved(rs);
     rs.closeRentSlot();
     usedRentSlotsOfPSpot.remove(box.it(slotID));
@@ -158,12 +158,12 @@ public class User implements Seller, Buyer {
    * @throws IllegalArgumentException if spotID < 0
    * @throws IllegalArgumentException if spotID is not associated with parking
    *                                  spot */
-  @Override public void updateParkingSpotPrice(int spotID, double change) {
+  @Override public void updateParkingSpotPrice(final int spotID, final double change) {
     if (spotID < 0 || !checkParkingBelongsToUser(spotID))
       throw new IllegalArgumentException();
-    for (RentSlot ¢ : freeRentSlots.get(box.it(spotID)).values())
+    for (final RentSlot ¢ : freeRentSlots.get(box.it(spotID)).values())
       ¢.setPrice(¢.getPrice() + change);
-    for (RentSlot ¢ : usedRentSlots.get(box.it(spotID)).values()) {
+    for (final RentSlot ¢ : usedRentSlots.get(box.it(spotID)).values()) {
       ¢.getBuyer().notifyNewPrice(¢.getPrice() + change, ¢);
       ¢.setPrice(¢.getPrice() + change);
     }
@@ -173,7 +173,7 @@ public class User implements Seller, Buyer {
    * @fluent.ly.Changed
    * @throws IllegalArgumentException if spotID is not associated with parking
    *                                  spot */
-  @Override public void updateRentSlotPrice(int spotID, int slotID, double price) {
+  @Override public void updateRentSlotPrice(final int spotID, final int slotID, final double price) {
     if (spotID < 0 || slotID < 0 || price < 0 || !checkParkingBelongsToUser(spotID))
       throw new IllegalArgumentException();
     RentSlot rs = freeRentSlots.get(box.it(spotID)).get(box.it(slotID));
@@ -198,7 +198,7 @@ public class User implements Seller, Buyer {
    * @fluent.ly.Changed
    * @throws IllegalArgumentException if spotID is not associated with parking
    *                                  spot */
-  @Override public List<RentSlot> getAllSlotsBySpotID(int spotID) {
+  @Override public List<RentSlot> getAllSlotsBySpotID(final int spotID) {
     if (!checkParkingBelongsToUser(spotID))
       throw new IllegalArgumentException(); // TODO: specify exception
     return User.union(freeRentSlots.get(box.it(spotID)).values(), usedRentSlots.get(box.it(spotID)).values());
@@ -208,7 +208,7 @@ public class User implements Seller, Buyer {
    * @fluent.ly.Changed
    * @throws IllegalArgumentException if spotID is not associated with parking
    *                                  spot */
-  @Override public List<RentSlot> getAllFreeSlotsBySpotID(int spotID) {
+  @Override public List<RentSlot> getAllFreeSlotsBySpotID(final int spotID) {
     if (!checkParkingBelongsToUser(spotID))
       throw new IllegalArgumentException(); // TODO: specify exception
     return new ArrayList<>(freeRentSlots.get(box.it(spotID)).values());
@@ -218,7 +218,7 @@ public class User implements Seller, Buyer {
    * @fluent.ly.Changed
    * @throws IllegalArgumentException if spotID is not associated with parking
    *                                  spot */
-  @Override public List<RentSlot> getAllUsedSlotsBySpotID(int spotID) {
+  @Override public List<RentSlot> getAllUsedSlotsBySpotID(final int spotID) {
     if (!checkParkingBelongsToUser(spotID))
       throw new IllegalArgumentException(); // TODO: specify exception
     return new ArrayList<>(usedRentSlots.get(box.it(spotID)).values());
@@ -227,10 +227,10 @@ public class User implements Seller, Buyer {
   /** @see parking.Seller#getAllRentSlots()
    * @fluent.ly.Changed */
   @Override public List<RentSlot> getAllRentSlots() {
-    Set<RentSlot> $ = new HashSet<>();
-    for (Map<Integer, RentSlot> f : freeRentSlots.values())
+    final Set<RentSlot> $ = new HashSet<>();
+    for (final Map<Integer, RentSlot> f : freeRentSlots.values())
       $.addAll(f.values());
-    for (Map<Integer, RentSlot> f : usedRentSlots.values())
+    for (final Map<Integer, RentSlot> f : usedRentSlots.values())
       $.addAll(f.values());
     return new ArrayList<>($);
   }
@@ -238,8 +238,8 @@ public class User implements Seller, Buyer {
   /** @see parking.Seller#getAllFreeRentSlots()
    * @fluent.ly.Changed */
   @Override public List<RentSlot> getAllFreeRentSlots() {
-    Set<RentSlot> $ = new HashSet<>();
-    for (Map<Integer, RentSlot> f : freeRentSlots.values())
+    final Set<RentSlot> $ = new HashSet<>();
+    for (final Map<Integer, RentSlot> f : freeRentSlots.values())
       $.addAll(f.values());
     return new ArrayList<>($);
   }
@@ -247,27 +247,27 @@ public class User implements Seller, Buyer {
   /** @see parking.Seller#getAllUsedRentSlots()
    * @fluent.ly.Changed */
   @Override public List<RentSlot> getAllUsedRentSlots() {
-    Set<RentSlot> $ = new HashSet<>();
-    for (Map<Integer, RentSlot> f : usedRentSlots.values())
+    final Set<RentSlot> $ = new HashSet<>();
+    for (final Map<Integer, RentSlot> f : usedRentSlots.values())
       $.addAll(f.values());
     return new ArrayList<>($);
   }
 
   /** @see parking.Buyer#notifyNewPrice(double, parking.RentSlot)
    * @fluent.ly.Changed */
-  @Override public void notifyNewPrice(double price, RentSlot __) {
+  @Override public void notifyNewPrice(final double price, final RentSlot __) {
     // TODO Auto-generated method stub
   }
 
   /** @see parking.Buyer#notifyRentSlotRemoved(parking.RentSlot)
    * @fluent.ly.Changed */
-  @Override public void notifyRentSlotRemoved(RentSlot __) {
+  @Override public void notifyRentSlotRemoved(final RentSlot __) {
     // TODO Auto-generated method stub
   }
 
   /** @param spotID the identifier of a parking spot
    * @return True if parking spot belongs to this user False otherwise */
-  private boolean checkParkingBelongsToUser(int spotID) {
+  private boolean checkParkingBelongsToUser(final int spotID) {
     return ownedParkingSpots.containsKey(box.it(spotID));
   }
 
@@ -275,21 +275,21 @@ public class User implements Seller, Buyer {
    * @param list1
    * @param list2
    * @return union of those 2 lists */
-  private static <T> List<T> union(Collection<T> list1, Collection<T> list2) {
-    Set<T> $ = new HashSet<>(list1);
+  private static <T> List<T> union(final Collection<T> list1, final Collection<T> list2) {
+    final Set<T> $ = new HashSet<>(list1);
     $.addAll(list2);
     return new ArrayList<>($);
   }
 
   /** @see parking.Buyer#rentParkingSlot(parking.Seller, int, int)
    * @fluent.ly.Changed */
-  @Override public void rentParkingSlot(Seller s, int spotID, int slotID) {
+  @Override public void rentParkingSlot(final Seller s, final int spotID, final int slotID) {
     s.letParkingSlot(this, spotID, slotID);
   }
 
   /** @see parking.Buyer#unrentParkingSlot(parking.Seller, int, int)
    * @fluent.ly.Changed */
-  @Override public void unrentParkingSlot(Seller s, int spotID, int slotID) {
+  @Override public void unrentParkingSlot(final Seller s, final int spotID, final int slotID) {
     s.unletParkingSlot(spotID, slotID);
   }
 
@@ -297,7 +297,7 @@ public class User implements Seller, Buyer {
     return lastName;
   }
 
-  public void setLastName(String lastName) {
+  public void setLastName(final String lastName) {
     this.lastName = lastName;
   }
 
@@ -305,7 +305,7 @@ public class User implements Seller, Buyer {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(final String name) {
     this.name = name;
   }
 
@@ -313,7 +313,7 @@ public class User implements Seller, Buyer {
     return phone;
   }
 
-  public void setPhone(String phone) {
+  public void setPhone(final String phone) {
     this.phone = phone;
   }
 }

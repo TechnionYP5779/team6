@@ -66,5 +66,10 @@
 			<version>9.4.14.v20181114</version>
 		</dependency>
 		<!--Jetty dependencies end here -->
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>mvc-auth-commons</artifactId>
+			<version>1.0.2</version>
+		</dependency>
 	</dependencies>
 </project>

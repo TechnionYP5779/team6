@@ -5,14 +5,14 @@ package parking;
  * @fluent.ly.Since Dec 8, 2018
  * @fluent.ly.Author Or, Nitzan */
 public class Address {
-  private String city;
-  private String street;
-  private int building;
+  private final String city;
+  private final String street;
+  private final int building;
 
   /** @param city the city that the parking spot located in
    * @param street   the street that the parking spot located in
    * @param building the building that the parking spot located in */
-  Address(String city, String street, int building) {
+  Address(final String city, final String street, final int building) {
     this.city = city;
     this.street = street;
     this.building = building;
