@@ -8,15 +8,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+
   loginForm: FormGroup;
-  
+
   loginpModel: LoginModel = {
     username: 'Guest',
     password: '',
   };
 
-  hidePassword = true;
+  hidePassword = true;  /* hide password as default */
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.loginForm = fb.group({
@@ -35,11 +35,20 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   login() {
-    this.dialogRef.close(this.loginForm.value);
+    this.loginpModel.username = this.loginForm.value.username
+    this.loginpModel.password = this.loginForm.value.password
+    this.dialogRef.close(this.loginpModel);
+    console.log("The login form was submitted: " + JSON.stringify(this.loginpModel))  // TODO: delete!
   }
 
   close() {
     this.dialogRef.close();
+    console.log("The login form closed"); // TODO: delete!
+  }
+
+  signUp() {
+    this.dialogRef.close();
+    console.log("The login form was closed and then open sign up form")  // TODO: delete!
   }
 
 }

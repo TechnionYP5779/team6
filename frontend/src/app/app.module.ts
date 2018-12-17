@@ -49,7 +49,7 @@ import { WebService } from './web.service';
   ],
   providers: [WebService],
   bootstrap: [AppComponent],
-  entryComponents: [LoginComponent, NavbarComponent] /** TODO: check if need this */
+  entryComponents: [LoginComponent, SignUpComponent]
 
 })
 export class AppModule { }
