@@ -1,21 +1,33 @@
 package server;
 
+import java.util.*;
+
+import javax.servlet.*;
+
 import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.servlet.*;
-
 import com.auth0.example.*;
+import org.eclipse.jetty.webapp.*;
 
 public class JettyServer {
   public static void main(final String[] args) throws Exception {
     final Server server = new Server(8080);
-    final ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-    context.setContextPath("/");
-    server.setHandler(context);
-    context.addServlet(new ServletHolder(new RootServlet()), "/root");
-    context.addServlet(new ServletHolder(new HomeServlet()), "/portal/home");
-    context.addServlet(new ServletHolder(new LoginServlet()), "/login");
-    context.addServlet(new ServletHolder(new CallbackServlet()), "/callback");
-    context.addServlet(new ServletHolder(new LogoutServlet()), "/logout");
+   
+    WebAppContext webapp = new WebAppContext();
+    webapp.setDescriptor("src/main/java/server/WEB-INF/web.xml");
+    webapp.setResourceBase("src/main/java/server/WEB-INF/");
+    webapp.setContextPath("/");
+    server.setHandler(webapp);
+    FilterHolder holder = new FilterHolder(new Auth0Filter());
+    holder.setName("auth0filter");
+    holder.setInitParameter("param", "a");
+    webapp.addFilter(holder, "/portal/*", EnumSet.allOf(DispatcherType.class));
+    webapp.addServlet(new ServletHolder(new RootServlet()), "/root");
+    webapp.addServlet(new ServletHolder(new HomeServlet()), "/portal/home");
+    webapp.addServlet(new ServletHolder(new LoginServlet()), "/login");
+    webapp.addServlet(new ServletHolder(new CallbackServlet()), "/callback");
+    webapp.addServlet(new ServletHolder(new LogoutServlet()), "/logout");
     server.start();
+    server.join();
   }
 }

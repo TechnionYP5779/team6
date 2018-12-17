@@ -8,13 +8,14 @@ import javax.servlet.http.*;
 
 import com.auth0.*;
 
-@SuppressWarnings("serial") @WebServlet(urlPatterns = { "/portal/home" }) public class HomeServlet extends HttpServlet {
+@WebServlet(urlPatterns = { "/portal/home" }) @SuppressWarnings("serial") public class HomeServlet extends HttpServlet {
   @Override protected void doGet(final HttpServletRequest r, final HttpServletResponse res) throws ServletException, IOException {
     final String accessToken = (String) SessionUtils.get(r, "accessToken"), idToken = (String) SessionUtils.get(r, "idToken");
     if (accessToken != null)
       r.setAttribute("userId", accessToken);
     else if (idToken != null)
       r.setAttribute("userId", idToken);
-    r.getRequestDispatcher("/WEB-INF/jsp/home.jsp").forward(r, res);
+    //r.getRequestDispatcher("/../../../server/WEB-INF/protect.html").include(r, res);
+    res.getWriter().println("Now you see me.");
   }
 }
