@@ -10,7 +10,7 @@ import com.auth0.*;
 
 @WebServlet(urlPatterns = { "/login" }) public class LoginServlet extends HttpServlet {
   /**
-  * 
+  *
   */
   private static final long serialVersionUID = 1;
   private AuthenticationController authenticationController;
@@ -20,7 +20,6 @@ import com.auth0.*;
     super.init(c);
     domain = c.getServletContext().getInitParameter("com.auth0.domain");
     try {
-      System.out.println("here in Login Serv");
       authenticationController = AuthenticationControllerProvider.getInstance(c);
     } catch (final UnsupportedEncodingException ¢) {
       throw new ServletException("Couldn't create the AuthenticationController instance. Check the configuration.", ¢);

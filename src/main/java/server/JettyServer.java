@@ -6,19 +6,19 @@ import javax.servlet.*;
 
 import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.servlet.*;
-import com.auth0.example.*;
 import org.eclipse.jetty.webapp.*;
+
+import com.auth0.example.*;
 
 public class JettyServer {
   public static void main(final String[] args) throws Exception {
     final Server server = new Server(8080);
-   
-    WebAppContext webapp = new WebAppContext();
+    final WebAppContext webapp = new WebAppContext();
     webapp.setDescriptor("src/main/java/server/WEB-INF/web.xml");
     webapp.setResourceBase("src/main/java/server/WEB-INF/");
     webapp.setContextPath("/");
     server.setHandler(webapp);
-    FilterHolder holder = new FilterHolder(new Auth0Filter());
+    final FilterHolder holder = new FilterHolder(new Auth0Filter());
     holder.setName("auth0filter");
     holder.setInitParameter("param", "a");
     webapp.addFilter(holder, "/portal/*", EnumSet.allOf(DispatcherType.class));

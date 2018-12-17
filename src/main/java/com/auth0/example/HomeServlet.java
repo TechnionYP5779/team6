@@ -15,7 +15,6 @@ import com.auth0.*;
       r.setAttribute("userId", accessToken);
     else if (idToken != null)
       r.setAttribute("userId", idToken);
-    //r.getRequestDispatcher("/../../../server/WEB-INF/protect.html").include(r, res);
-    res.getWriter().println("Now you see me.");
+    r.getRequestDispatcher("/protect.html").forward(r, res);
   }
 }

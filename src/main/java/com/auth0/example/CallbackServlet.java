@@ -44,7 +44,7 @@ import com.auth0.*;
   }
 
   /** Process a call to the redirect_uri with a GET HTTP method.
-   * @param r the received request with the tokens (implicit grant) or the
+   * @param r   the received request with the tokens (implicit grant) or the
    *            authorization code (code grant) in the parameters.
    * @param res the response to send back to the server.
    * @throws IOException
