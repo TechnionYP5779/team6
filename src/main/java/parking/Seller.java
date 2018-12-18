@@ -8,8 +8,9 @@ import java.util.*;
  * @fluent.ly.Author Or, Nitzan */
 public interface Seller {
   /** Add parking spot to this seller
+   * @return the parking spot created
    * @param a address of the parking spot */
-  void addParkingSpot(Address a);
+  ParkingSpot addParkingSpot(Address a);
 
   /** Add a rent slot, means slot of time that a buyer can rent the parking spot
    * for the fit price
