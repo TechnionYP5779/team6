@@ -7,11 +7,10 @@ import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
 import com.auth0.*;
-
 /** The Servlet endpoint used as the callback handler in the OAuth 2.0
  * authorization code grant flow. It will be called with the authorization code
  * after a successful login. */
-@SuppressWarnings("serial") @WebServlet(urlPatterns = { "/callback" }) public class CallbackServlet extends HttpServlet {
+@WebServlet(urlPatterns = { "/callback" }) @SuppressWarnings("serial") public class CallbackServlet extends HttpServlet {
   private String redirectOnSuccess;
   private String redirectOnFail;
   private AuthenticationController authenticationController;
@@ -32,6 +31,7 @@ import com.auth0.*;
    * <li>'com.auth0.client_secret': the Auth0 Client secret.</li>
    * </ul>
    */
+  
   @Override public void init(final ServletConfig c) throws ServletException {
     super.init(c);
     redirectOnSuccess = "/portal/home";
@@ -49,6 +49,7 @@ import com.auth0.*;
    * @param res the response to send back to the server.
    * @throws IOException
    * @throws ServletException */
+  
   @Override public void doGet(final HttpServletRequest r, final HttpServletResponse res) throws IOException, ServletException {
     handle(r, res);
   }
@@ -62,6 +63,7 @@ import com.auth0.*;
    * @param res the response to send back to the server.
    * @throws IOException
    * @throws ServletException */
+  
   @Override public void doPost(final HttpServletRequest r, final HttpServletResponse res) throws IOException, ServletException {
     handle(r, res);
   }

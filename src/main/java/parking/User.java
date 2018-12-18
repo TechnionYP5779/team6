@@ -83,13 +83,14 @@ public class User implements Seller, Buyer {
   /** @see parking.Seller#addParkingSpot(parking.Address)
    * @fluent.ly.Changed
    * @throws NullPointerException is Address given is null */
-  @Override public void addParkingSpot(final Address a) {
+  @Override public ParkingSpot addParkingSpot(final Address ¢) {
     // tests of validity of address and parkingSpot in class ParkingSpot
-    final ParkingSpot p = new ParkingSpot(a);
-    p.setOwner(this);
-    ownedParkingSpots.put(box.it(p.getId()), p);
-    freeRentSlots.put(box.it(p.getId()), new LinkedHashMap<>());
-    usedRentSlots.put(box.it(p.getId()), new LinkedHashMap<>());
+    final ParkingSpot $ = new ParkingSpot(¢);
+    $.setOwner(this);
+    ownedParkingSpots.put(box.it($.getId()), $);
+    freeRentSlots.put(box.it($.getId()), new LinkedHashMap<>());
+    usedRentSlots.put(box.it($.getId()), new LinkedHashMap<>());
+    return $;
   }
 
   /** @see parking.Seller#removeParkingSpot(int)

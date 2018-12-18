@@ -58,7 +58,8 @@ export class RentSpotFormComponent implements OnInit {
 
 	 newSpot(){
 		// fill with a post request
-		// this.webService.addSpot(JSON.stringify(this.model))
+		console.log("adding new spot");
+		this.webService.addSpot(JSON.stringify(this.model))
 		// console.log(JSON.stringify(x));
 	}
 
