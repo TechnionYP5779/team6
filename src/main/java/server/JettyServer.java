@@ -27,6 +27,7 @@ public class JettyServer {
     webapp.addServlet(new ServletHolder(new LoginServlet()), "/login");
     webapp.addServlet(new ServletHolder(new CallbackServlet()), "/callback");
     webapp.addServlet(new ServletHolder(new LogoutServlet()), "/logout");
+    webapp.addServlet(new ServletHolder(new LetSpotServlet()), "/add/renting_spot");
     server.start();
     server.join();
   }
