@@ -15,6 +15,6 @@ import com.auth0.*;
       r.setAttribute("userId", accessToken);
     else if (idToken != null)
       r.setAttribute("userId", idToken);
-    r.getRequestDispatcher("/protect.html").forward(r, res);
+    r.getRequestDispatcher("/dist/parking-renting-project/index.html").forward(r, res);
   }
 }
