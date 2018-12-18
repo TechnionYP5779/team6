@@ -1,0 +1,14 @@
+.mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+}
+  
+.mat-dialog-content > * {
+    width: 100%;
+}
+
+.btn-primary, .btn-secondary {
+  width:130px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
