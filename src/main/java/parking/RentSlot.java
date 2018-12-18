@@ -5,9 +5,9 @@ package parking;
  * @fluent.ly.Since Dec 8, 2018
  * @fluent.ly.Author Or, Nitzan */
 public class RentSlot {
-  private int id;
-  private ParkingSpot p;
-  private Time t;
+  private final int id;
+  private final ParkingSpot p;
+  private final Time t;
   private double price;
   private Buyer b;
   private static int uniqueId;
@@ -19,7 +19,7 @@ public class RentSlot {
    * @param price the price of the rent slot
    * @throws NullPointerException     if one of the arguments is null
    * @throws IllegalArgumentException if s is not the owner of p */
-  RentSlot(Seller s, ParkingSpot p, Time t, double price) {
+  RentSlot(final Seller s, final ParkingSpot p, final Time t, final double price) {
     if (s == null || p == null || t == null)
       throw new NullPointerException();
     if (!p.getOwner().equals(s))
@@ -60,7 +60,7 @@ public class RentSlot {
 
   /** updates the price of this rent slot
    * @param price the new price of this rent slot */
-  public void setPrice(double price) {
+  public void setPrice(final double price) {
     this.price = price;
   }
 
@@ -71,7 +71,7 @@ public class RentSlot {
 
   /** updates the buyer of the rent slot
    * @param buyer the new buyer of the rent slot */
-  public void setBuyer(Buyer ¢) {
+  public void setBuyer(final Buyer ¢) {
     this.b = ¢;
   }
 }

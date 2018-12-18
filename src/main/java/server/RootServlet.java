@@ -1,4 +1,4 @@
-package server.servlet;
+package server;
 
 import java.io.*;
 

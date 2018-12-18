@@ -5,7 +5,7 @@ package parking;
  * @fluent.ly.Since Dec 8, 2018
  * @fluent.ly.Author Or, Nitzan */
 public class ParkingSpot {
-  private int id; // for now, will be more accurate later
+  private final int id; // for now, will be more accurate later
   private Address address;
   private Seller owner;
   private int slotCounter; // number of rent slots associated with this parking spot
@@ -15,7 +15,7 @@ public class ParkingSpot {
    * check parking spot is not already belongs to a seller
    * @param a the address of the parking spot
    * @throws NullPointerException if the address is null */
-  ParkingSpot(Address a) {
+  ParkingSpot(final Address a) {
     // TODO: needs to check if address valid, means exist in our world
     // TODO: needs to check if parkingSpot already belongs to a seller
     if (a == null)
@@ -33,7 +33,7 @@ public class ParkingSpot {
 
   /** change owner of the parking spot
    * @param owner the new owner of the parking spot */
-  public void setOwner(Seller owner) {
+  public void setOwner(final Seller owner) {
     this.owner = owner;
   }
 
@@ -44,7 +44,7 @@ public class ParkingSpot {
 
   /** private method, change the address of the parking spot
    * @param ¢ the new address of the parking spot */
-  private void setAddress(Address ¢) {
+  private void setAddress(final Address ¢) {
     this.address = ¢;
   }
 
