@@ -1,43 +1,79 @@
-<div class="container">
-    <h1>Rent your spot</h1>
-    <form (ngSubmit)="onSubmit()" #RentSpotForm="ngForm">
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" style="width: 150px;" class="form-control" id="city" required [(ngModel)]="model.city" name="city">
-      </div>
- 
-      <div class="form-group">
-        <label for="street">Street</label>
-        <input type="text" style="width: 150px;" class="form-control" id="street" required [(ngModel)]="model.street" name="street">
-      </div>
+<div class="container" [formGroup]="rentSpotForm" style="width: max-content;  margin-left: unset;">
 
-      <div class="form-group">
-        <label for="spot_num">parking spot number</label>
-        <input type="text" style="width: 40px;" class="form-control" id="spot_num" [(ngModel)]="model.spot_num" name="spot_num">
-      </div>
+  <!-- Title -->
+  <h2>Rent your spot</h2>
 
-      <div class="form-group">
-		<label for="start_time">Start time</label>
-	  	<select style="width: 100px;" class="form-control" id="start_time" required [(ngModel)]="model.start_time" name="start_time">
-	    	<option *ngFor="let hour of Hours" [value]="hour">{{hour}}</option>
-	  	</select>
-	  </div>
- 	 
- 	  <div class="form-group">
-		<label for="end_time">End time</label>
-	  	<select style="width: 100px;" class="form-control" id="end_time" required [(ngModel)]="model.end_time" name="end_time">
-	    	<option *ngFor="let hour of Hours" [value]="hour">{{hour}}</option>
-	  	</select>
-	  </div>
+  <!-- Form -->
+  <div class="mat-form">
 
-	  <div class="form-group">
-        <label for="price">Price per hour</label>
-        <input type="text" style="width: 100px;" class="form-control" id="price" required [(ngModel)]="model.price" name="price">
-      </div>
+    <!-- City -->
+    <mat-form-field>
+      <input matInput placeholder="City" formControlName="city" required>
+      <mat-error *ngIf="rentSpotForm.controls['city'].hasError('pattern')">
+        Please enter a valid city name: Letters only
+      </mat-error>
+    </mat-form-field>
 
+    <!-- Street -->
+    <mat-form-field>
+      <input matInput placeholder="Street" formControlName="street" required>
+      <mat-error *ngIf="rentSpotForm.controls['street'].hasError('pattern')">
+        Please enter a valid street name: Letters only
+      </mat-error>
+    </mat-form-field>
 
-      <button type="submit" class="btn btn-success" [disabled]="!RentSpotForm.form.valid" 
-      (click)="newSpot(); RentSpotForm.reset()" >Submit</button>
- 
-    </form>
+    <!-- Parking spot number -->
+    <mat-form-field>
+      <input matInput placeholder="Parking spot number" formControlName="spot_num">
+      <mat-error *ngIf="rentSpotForm.controls['spot_num'].hasError('pattern')">
+        Please enter a valid parking spot number: Integer number only
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Start time -->
+    <div style="display:block">
+      <mat-label>Start time: </mat-label>
+
+      <mat-form-field>
+        <input matInput type="date" placeholder="Date" formControlName="start_date" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="time" placeholder="Hour" formControlName="start_hour" required>
+      </mat-form-field>
+
+    </div>
+
+    <!-- End time -->
+    <div style="display:block">
+      <mat-label>End time: </mat-label>
+
+      <mat-form-field>
+        <input matInput type="date" placeholder="Date" formControlName="end_date" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="time" placeholder="Hour" formControlName="end_hour" required>
+      </mat-form-field>
+
+    </div>
+
+    <!-- Price per hour -->
+    <mat-form-field>
+      <input matInput placeholder="Price per hour" formControlName="price" required>
+      <mat-error *ngIf="rentSpotForm.controls['price'].hasError('pattern')">
+        Please enter a valid price: float number only
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <!-- Buttons -->
+  <div style="width:300px; align-self: center">
+
+    <button type="button" class="btn btn-primary" (click)="addNewSpot()" [disabled]="!rentSpotForm.valid" style="float: left">Submit</button>
+    <button type="button" class="btn btn-secondary" (click)="reset()" style="float: right">Reset</button>
+
+  </div>
+
 </div>
