@@ -70,7 +70,7 @@ public class RentSlot {
   }
 
   /** updates the buyer of the rent slot
-   * @param buyer the new buyer of the rent slot */
+   * @param ¢ the new buyer of the rent slot */
   public void setBuyer(final Buyer ¢) {
     this.b = ¢;
   }
