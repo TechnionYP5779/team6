@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RentSpotModel } from '../rent-spot'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebService } from '../web.service';
+import { NgbDatepickerConfig, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
 	selector: 'app-rent-spot-form',
@@ -14,68 +15,72 @@ export class RentSpotFormComponent implements OnInit {
 
 	rentSpotModel: RentSpotModel = new RentSpotModel('', '', null, null, 0)
 
-	constructor(private fb: FormBuilder, private webService: WebService) {
+	constructor(private fb: FormBuilder, datepickerConfig: NgbDatepickerConfig, private webService: WebService) {
+
+		// configuration of NgbDatepickerConfig (used for disable dates before today):
+		const currentDate = new Date();
+		datepickerConfig.minDate = { year: currentDate.getFullYear(), month: currentDate.getMonth() + 1, day: currentDate.getDate() };
+		datepickerConfig.outsideDays = 'hidden';
+
+		// init rentSpotForm (fields and validators):
 		this.rentSpotForm = fb.group({
 			floatLabel: 'auto',
-			'city': ["",
-				[Validators.required,
-				Validators.pattern('[a-zA-Z ]*')]
-			],
-			'street': ["",
-				[Validators.required,
-				Validators.pattern('[a-zA-Z ]*')]
-			],
-			'spot_num': ["",
-				[Validators.pattern('[0-9]*')]
-			],
 
-			'start_date': ["",
-				[Validators.required]
-			],
-			'start_hour': ["",
-				[Validators.required]
-			],
+			'address': this.fb.group({
+				'city': ["", [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+				'street': ["", [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+				'spot_num': ["", [Validators.pattern('[0-9]*')]],
+			}),
 
-			'end_date': ["",
-				[Validators.required]
-			],
-			'end_hour': ["",
-				[Validators.required]
-			],
+			'start_time': this.fb.group({
+				'start_date': ["", [Validators.required]],
+				'start_hour': ['', [Validators.required]],
+			}),
 
-			'price': ["",
-				[Validators.required,
-				Validators.pattern('[0-9]+((.)[0-9]+)?')]
-			],
+			'end_time': this.fb.group({
+				'end_date': ["", [Validators.required]],
+				'end_hour': ['', [Validators.required]],
+			}),
+
+			'price': ["", [Validators.required, Validators.pattern('[0-9]+((.)[0-9]+)?')]],
 		});
 	}
 
 	ngOnInit() { }
 
 	addNewSpot() {
-		this.rentSpotModel.city = this.rentSpotForm.value.city
-		this.rentSpotModel.street = this.rentSpotForm.value.street
-		this.rentSpotModel.spot_num = this.rentSpotForm.value.spot_num
+		this.rentSpotModel.city = this.rentSpotForm.value.address.city
+		this.rentSpotModel.street = this.rentSpotForm.value.address.street
+		this.rentSpotModel.spot_num = this.rentSpotForm.value.address.spot_num
 
-		var startDate = new Date(this.rentSpotForm.value.start_date);
-		var startHourString = this.rentSpotForm.value.start_hour.split(':'); // [0]=hour, [1]=min
-		var startTime = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startHourString[0], startHourString[1])
-
-		var endDate = new Date(this.rentSpotForm.value.end_date);
-		var endHourString = this.rentSpotForm.value.end_hour.split(':'); // [0]=hour, [1]=min
-		var endTime = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), endHourString[0], endHourString[1])
-
+		var startTime = new Date(
+			this.rentSpotForm.value.start_time.start_date.year,
+			this.rentSpotForm.value.start_time.start_date.month - 1,
+			this.rentSpotForm.value.start_time.start_date.day,
+			this.rentSpotForm.value.start_time.start_hour.hour,
+			this.rentSpotForm.value.start_time.start_hour.minute)
 		this.rentSpotModel.start_time = startTime
+
+		var endTime = new Date(
+			this.rentSpotForm.value.end_time.end_date.year,
+			this.rentSpotForm.value.end_time.end_date.month - 1,
+			this.rentSpotForm.value.end_time.end_date.day,
+			this.rentSpotForm.value.end_time.end_hour.hour,
+			this.rentSpotForm.value.end_time.end_hour.minute)
 		this.rentSpotModel.end_time = endTime
 
 		this.rentSpotModel.price = this.rentSpotForm.value.price
 
 		this.reset();
+
 		console.log("The rent spot form was submitted: " + JSON.stringify(this.rentSpotModel))  // TODO: delete!
+
 		this.webService.addSpot(JSON.stringify(this.rentSpotModel))
 
 		// for tests:
-		// console.log("time: " + " yyyy= " + sd.getFullYear() + " mm= " + sd.getMonth() + " dd= " + sd.getDate() + " h= " + sd.getHours() + " m= " + sd.getMinutes())
+		// var sd = startTime;
+		// console.log("sd: ", sd)
+		// console.log("time: " + " yyyy=" + sd.getFullYear() + " mm=" + sd.getMonth() + " dd=" + sd.getDate() + " h=" + sd.getHours() + " m=" + sd.getMinutes())
 	}
 
 	reset() {
