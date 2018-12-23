@@ -1,9 +1,5 @@
 package server;
 
-import java.util.*;
-
-import javax.servlet.*;
-
 import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.servlet.*;
 import org.eclipse.jetty.webapp.*;
@@ -14,32 +10,25 @@ public class JettyServer {
   public static void main(final String[] args) throws Exception {
     final Server server = new Server(8080);
     final WebAppContext webapp = new WebAppContext();
-    webapp.setDescriptor("frontend/WEB-INF/web.xml");
-    webapp.setResourceBase("frontend/");
+    String angularAppLocation = "frontend/dist/parking-renting-project";
     webapp.setContextPath("/");
-    server.setHandler(webapp);
-    
-    //webapp.setWelcomeFiles(new String[] { "index.html", "index.htm", "index.jsp" });
-    //ServletHolder holderPwd = new ServletHolder("default", HomeServlet.class);
-    //holderPwd.setInitParameter("resourceBase","frontend/");
-    //holderPwd.setInitParameter("dirAllowed","true");
-    //webapp.addServlet(holderPwd,"/");
-    
-    
-    final FilterHolder holder = new FilterHolder(new Auth0Filter());
-    holder.setName("auth0filter");
-    holder.setInitParameter("param", "a");
-    webapp.addFilter(holder, "/portal/*", EnumSet.allOf(DispatcherType.class));
+    webapp.setDescriptor(angularAppLocation + "/WEB-INF/web.xml");
+    webapp.setResourceBase(angularAppLocation);
+    // final FilterHolder holder = new FilterHolder(new Auth0Filter());
+    // holder.setName("auth0filter");
+    // holder.setInitParameter("param", "");
+    // webapp.addFilter(holder, "/portal/*", EnumSet.allOf(DispatcherType.class));
+    // webapp.addServlet(new ServletHolder(new HomeServlet()), "/portal/home");
+    // webapp.addServlet(new ServletHolder(new LoginServlet()), "/login");
+    // webapp.addServlet(new ServletHolder(new CallbackServlet()), "/callback");
+    // webapp.addServlet(new ServletHolder(new LogoutServlet()), "/logout");
     webapp.addServlet(new ServletHolder(new RootServlet()), "/root");
-    webapp.addServlet(new ServletHolder(new HomeServlet()), "/portal/home");
-    webapp.addServlet(new ServletHolder(new LoginServlet()), "/login");
-    webapp.addServlet(new ServletHolder(new CallbackServlet()), "/callback");
-    webapp.addServlet(new ServletHolder(new LogoutServlet()), "/logout");
     webapp.addServlet(new ServletHolder(new LetSpotServlet()), "/add/renting_spot");
     webapp.addServlet(new ServletHolder(new RemoveSpotServlet()), "/remove/renting_spot");
     webapp.addServlet(new ServletHolder(new RentSpotServlet()), "/rent/renting_spot");
     webapp.addServlet(new ServletHolder(new UnrentSpotServlet()), "/unrent/renting_spot");
     webapp.addServlet(new ServletHolder(new SearchSpotsServlet()), "/search/renting_spots");
+    server.setHandler(webapp);
     server.start();
     server.join();
   }
