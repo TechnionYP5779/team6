@@ -3,14 +3,28 @@ package database;
 import java.sql.*;
 
 public class DBMain {
-  static final String createParkingSpotsTable = "CREATE TABLE ParkingSpots (\nid INT NOT NULL AUTO_INCREMENT,\nprice INT NOT NULL,\n"
-      + "city VARCHAR(20) NOT NULL,\nstreet VARCHAR(20) NOT NULL,\nbuilding INT NOT NULL,\nstartTime VARCHAR(10) NOT NULL,\n"
-      + "endTime VARCHAR(10) NOT NULL,\nowner INT NOT NULL,\nbuyer INT,\nPRIMARY KEY(id));";
+  static final String createParkingSpotsTable = "CREATE TABLE ParkingSpots (\n"
+      + "id INT NOT NULL AUTO_INCREMENT,\n"
+      + "price INT NOT NULL,\n"
+      + "city VARCHAR(20) NOT NULL,\n"
+      + "street VARCHAR(20) NOT NULL,\n"
+      + "building INT NOT NULL,\n"
+      + "date DATE NOT NULL,\n"
+      + "owner INT NOT NULL,\n"
+      + "buyer INT,\n"
+      + "PRIMARY KEY(id));";
+  
   static final String destroyParkingSpotsTable = "DROP TABLE ParkingSpots;";
 
   public static void main(final String[] args) {
-    // addParkingSpot(10,"Tel Aviv","Street",10,50,40);
-    printAllSpots();
+    try {
+      SQLUtils.runCommand(destroyParkingSpotsTable);
+      SQLUtils.runCommand(createParkingSpotsTable);
+      System.out.println("Good");
+    }
+    catch(SQLException e) {
+      System.out.println(e);
+    }
     System.out.println("Done");
   }
 

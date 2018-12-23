@@ -5,8 +5,27 @@ package parking;
  * @fluent.ly.Since Dec 8, 2018
  * @fluent.ly.Author Or, Nitzan */
 public class ParkingSpot {
-  private final int id; // for now, will be more accurate later
+  
+  //ONLY THESE ARE RELEVANT CURRENTLY
+  private final int id;
   private Address address;
+  private int sellerID;
+  private int buyerID;
+  private String date;
+  private int price;
+  //
+  
+  ParkingSpot(int id, int seller, int buyer, int price, Address a, String date){
+    this.id = id;
+    this.setSellerID(seller);
+    this.setBuyerID(buyer);
+    this.setPrice(price);
+    this.address=a;
+    this.setDate(date);
+  }
+  
+  
+  
   private Seller owner;
   private int slotCounter; // number of rent slots associated with this parking spot
   private static int uniqueId;
@@ -66,5 +85,37 @@ public class ParkingSpot {
   /** decrease the number of rent slots associated to this parking spot */
   public void removeSlotOfParking() {
     --this.slotCounter;
+  }
+
+  public int getSellerID() {
+    return sellerID;
+  }
+
+  public void setSellerID(int sellerID) {
+    this.sellerID = sellerID;
+  }
+
+  public int getBuyerID() {
+    return buyerID;
+  }
+
+  public void setBuyerID(int buyerID) {
+    this.buyerID = buyerID;
+  }
+
+  public String getDate() {
+    return date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
+  }
+
+  public int getPrice() {
+    return price;
+  }
+
+  public void setPrice(int price) {
+    this.price = price;
   }
 }
