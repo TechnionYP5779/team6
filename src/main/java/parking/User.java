@@ -13,6 +13,9 @@ public class User implements Seller, Buyer {
   private String name;// meanwhile, for making unique users
   private String lastName;
   private String phone;
+  private int id;
+  private static int uniqueId;
+  //TODO: fix id
   // seller info
   private final Map<Integer, ParkingSpot> ownedParkingSpots; // parking spots this user owns
   private final Map<Integer, Map<Integer, RentSlot>> freeRentSlots; // slots of parking ready for renting
@@ -31,6 +34,7 @@ public class User implements Seller, Buyer {
     ownedParkingSpots = new LinkedHashMap<>();
     freeRentSlots = new LinkedHashMap<>();
     usedRentSlots = new LinkedHashMap<>();
+    id = uniqueId++;
   }
 
   /** @see parking.Seller#letParkingSlot(int, int)
@@ -86,7 +90,7 @@ public class User implements Seller, Buyer {
   @Override public ParkingSpot addParkingSpot(final Address ¢) {
     // tests of validity of address and parkingSpot in class ParkingSpot
     final ParkingSpot $ = new ParkingSpot(¢);
-    $.setOwner(this);
+    $.setOwner(this.id);
     ownedParkingSpots.put(box.it($.getId()), $);
     freeRentSlots.put(box.it($.getId()), new LinkedHashMap<>());
     usedRentSlots.put(box.it($.getId()), new LinkedHashMap<>());
@@ -316,5 +320,9 @@ public class User implements Seller, Buyer {
 
   public void setPhone(final String phone) {
     this.phone = phone;
+  }
+  
+  public int getId() {
+    return id;
   }
 }

@@ -17,7 +17,8 @@ import fluent.ly.*;
  * @fluent.ly.ClassDesc TODO
  * @see ParkingSpot
 */
-@SuppressWarnings({"static-method", "unused"}) public class ParkingSpotTest {
+@SuppressWarnings("unused") public class ParkingSpotTest {
+  /*
    @Test public void basicParkingSpotFuncsTest () {
     //create a new parking spot and add it to a new user named Yossi
     Address a1 = new Address("Tel-Aviv", "King George", 5);
@@ -115,4 +116,5 @@ import fluent.ly.*;
     
     azzert.that(pOfTamar.getNumOfSlots(), is(0));
   }
+  */
 }

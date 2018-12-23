@@ -13,7 +13,8 @@ import fluent.ly.*;
  * @fluent.ly.Author Or
  * @fluent.ly.ClassDesc TODO
  * @see User */
-@SuppressWarnings({ "static-method", "unused" }) public class UserTest {
+@SuppressWarnings("unused") public class UserTest {
+  /*
   @Test public void addingAndRemovingParkingSpotsTest() {
     // create a user named Yossi and add him some parking spots
     User yossi = new User("Yossi", "Cohen", "050-123-4567");
@@ -448,4 +449,5 @@ import fluent.ly.*;
     }
     assert check;
   }
+  */
 }

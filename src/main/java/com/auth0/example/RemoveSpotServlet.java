@@ -10,14 +10,14 @@ import javax.servlet.http.*;
 import parking.OurSystem;
 
  import org.json.*;
-@WebServlet(urlPatterns = { "/add/renting_spot" }) @SuppressWarnings("serial") public class LetSpotServlet extends HttpServlet {
+@WebServlet(urlPatterns = { "/remove/renting_spot" }) @SuppressWarnings("serial") public class RemoveSpotServlet extends HttpServlet {
   @Override protected void doPost(final HttpServletRequest r, final HttpServletResponse resp) throws ServletException, IOException {
     if (!"POST".equals(r.getMethod()))// should only be used for Post Requests
       return;
-    
-    resp.setHeader("Access-Control-Allow-Origin","*");final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+    final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+    resp.setHeader("Access-Control-Allow-Origin","*");
     try {
-      OurSystem.addParkingSpot(new JSONObject(new String(body)));
+      OurSystem.removeParkingSpot(new JSONObject(new String(body)));
     } catch (SQLException | JSONException ¢) {
       resp.setHeader("Response", "ERROR");
       resp.getWriter().write(¢ + "");
