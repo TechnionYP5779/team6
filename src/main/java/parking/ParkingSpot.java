@@ -15,7 +15,7 @@ public class ParkingSpot {
   private int price;
   //
   
-  ParkingSpot(int id, int seller, int buyer, int price, Address a, String date){
+  public ParkingSpot(int id, int seller, int buyer, int price, Address a, String date){
     this.id = id;
     this.setSellerID(seller);
     this.setBuyerID(buyer);

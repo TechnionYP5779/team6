@@ -1,6 +1,8 @@
 package database;
 
 import java.sql.*;
+import parking.*;
+import java.util.*;
 
 public class DBMain {
   static final String createParkingSpotsTable = "CREATE TABLE ParkingSpots (\n"
@@ -17,9 +19,13 @@ public class DBMain {
   static final String destroyParkingSpotsTable = "DROP TABLE ParkingSpots;";
 
   public static void main(final String[] args) {
+    
     try {
-      SQLUtils.runCommand(destroyParkingSpotsTable);
-      SQLUtils.runCommand(createParkingSpotsTable);
+      Address a = new Address("C","S",5);    
+      //ParkingDataBase.addParkingSpot(new ParkingSpot(3,50,-10,100,a,"2015-01-19"));
+      //ParkingDataBase.unRentParkingSpot(new ParkingSpot(-5,50,20,100,a,"2018-05-17"),200);
+      List<ParkingSpot> p = ParkingDataBase.searchParkingSpots(null,a);
+      System.out.println(p.size());
       System.out.println("Good");
     }
     catch(SQLException e) {
@@ -28,16 +34,7 @@ public class DBMain {
     System.out.println("Done");
   }
 
-  public static void addParkingSpot(final int price, final String city, final String street, final int building, final int owner, final int buyer,
-      final String startTime, final String endTime) {
-    try {
-      SQLUtils.runCommand("INSERT INTO ParkingSpots (price,city,street,building,startTime,endTime,owner,buyer)\nVALUES (" + price + ",'" + city
-          + "','" + street + "'," + building + ",'" + startTime + "','" + endTime + "'," + owner + "," + buyer + ");");
-    } catch (final SQLException ¢) {
-      System.out.println(¢);
-    }
-  }
-
+  
   public static void printAllSpots() {
     QueryResults q = null;
     try {
