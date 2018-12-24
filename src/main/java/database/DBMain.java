@@ -34,7 +34,16 @@ public class DBMain {
     System.out.println("Done");
   }
 
-  
+  public static void addParkingSpot(final int price, final String city, final String street, final int building, final int owner, final int buyer,
+      final String startTime, final String endTime) {
+    try {
+      SQLUtils.runCommand("INSERT INTO ParkingSpots (price,city,street,building,owner,buyer)\nVALUES (" + price + ",'" + city
+          + "','" + street + "'," + building + ",'" + owner + "," + buyer + ");");
+    } catch (final SQLException ¢) {
+      System.out.println(¢);
+    }
+  }
+
   public static void printAllSpots() {
     QueryResults q = null;
     try {
