@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 import parking.OurSystem;
 
  import org.json.*;
-@WebServlet(urlPatterns = { "/rent/renting_spot" }) @SuppressWarnings("serial") public class RentSpotServlet extends HttpServlet {
+@WebServlet(urlPatterns = { "/logged/rent/renting_spot" }) @SuppressWarnings("serial") public class RentSpotServlet extends HttpServlet {
   @Override protected void doPost(final HttpServletRequest r, final HttpServletResponse resp) throws ServletException, IOException {
     if (!"POST".equals(r.getMethod()))// should only be used for Post Requests
       return;
