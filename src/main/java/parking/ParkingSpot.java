@@ -9,37 +9,13 @@ public class ParkingSpot {
   //ONLY THESE ARE RELEVANT CURRENTLY
   private final int id;
   private Address address;
+  private String start_time;
+  private String end_time;
+  private int price;
   private String sellerID;
   private String buyerID;
   private String startDate;
   private String endDate;
-  private String startHour;
-  private String endHour;
-  private int price;
-  //
-  
-  public ParkingSpot(int id, String seller, String buyer, int price, Address a, String startDate, String endDate, String startHour, String endHour){
-    this.id = id;
-    this.sellerID = seller;
-    this.buyerID = buyer;
-    this.price = price;
-    this.address = a;
-    this.startDate = startDate;
-    this.endDate = endDate;
-    this.startHour = startHour;
-    this.endHour = endHour;
-  }
-  
-  @Override 
-  public String toString() {
-    String buyer = buyerID == null ? "-" : buyerID;
-    return ("id: " + id + "\t seller: " + sellerID + "\t buyer: " + buyer + "\t price: " + price 
-        + "\t city: " + address.getCity() +"\t street: "+ address.getStreet() + "\t building: " + address.getBuilding()
-        + "\t startDate: " + startDate + "\t endDate: " + endDate + "\t startHour: " + startHour + "\t endHour: " + endHour);
-  }
-  
-  
-  private Seller owner;
   private int slotCounter; // number of rent slots associated with this parking spot
   private static int uniqueId;
 
@@ -47,26 +23,22 @@ public class ParkingSpot {
    * check parking spot is not already belongs to a seller
    * @param a the address of the parking spot
    * @throws NullPointerException if the address is null */
-  ParkingSpot(final Address a) {
+  public ParkingSpot(int id, String seller, String buyer, final Address a, String start_time, String end_time, String startDate, String endDate, int price) {
     // TODO: needs to check if address valid, means exist in our world
     // TODO: needs to check if parkingSpot already belongs to a seller
     if (a == null)
       throw new NullPointerException();
-    this.id = uniqueId++;
+    this.id = id;
     this.setAddress(a);
-    this.setOwner(null);
+    this.setStartHour(start_time);
+    this.setEndHour(end_time);
+    this.setPrice(price);
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.sellerID = seller;
+    this.buyerID = buyer;
+    
     this.slotCounter = 0;
-  }
-
-  /** @return owner of the parking spot */
-  public Seller getOwner() {
-    return owner;
-  }
-
-  /** change owner of the parking spot
-   * @param owner the new owner of the parking spot */
-  public void setOwner(final Seller owner) {
-    this.owner = owner;
   }
 
   /** @return address of the parking spot */
@@ -99,11 +71,11 @@ public class ParkingSpot {
   public void removeSlotOfParking() {
     --this.slotCounter;
   }
-
+  
   public String getSellerID() {
     return sellerID;
   }
-
+  
   public void setSellerID(String sellerID) {
     this.sellerID = sellerID;
   }
@@ -111,13 +83,12 @@ public class ParkingSpot {
   public String getBuyerID() {
     return buyerID;
   }
-
   public void setBuyerID(String buyerID) {
     this.buyerID = buyerID;
   }
 
   public String getStartDate() {
-    return startDate;
+      return startDate;
   }
 
   public void setStartDate(String startDate) {
@@ -141,18 +112,27 @@ public class ParkingSpot {
   }
 
   public String getStartHour() {
-    return startHour;
+    return start_time;
   }
 
   public void setStartHour(String startHour) {
-    this.startHour = startHour;
+    this.start_time = startHour;
   }
 
   public String getEndHour() {
-    return endHour;
+    return end_time;
   }
 
   public void setEndHour(String endHour) {
-    this.endHour = endHour;
+    this.end_time = endHour;
   }
+  
+@Override 
+  public String toString() {
+    String buyer = buyerID == null ? "-" : buyerID;
+    return ("id=" + id + ", seller=" + sellerID + ", buyer=" + buyer + ", price=" + price 
+        + ", city=" + address.getCity() +", street="+ address.getStreet() + ", building=" + address.getBuilding()
+        + ", startDate=" + startDate + ", endDate=" + endDate + ", start_time=" + start_time + ", end_time=" + end_time);
+  }
+  
 }
