@@ -1,3 +1,112 @@
-<p>
-  find-parking works!
-</p>
+<div class="container">
+
+  <!-- Title -->
+  <h2>Find parking spot</h2>
+
+
+  <!-- split page to 2 columns: table on the left and map on the right -->
+  <div class="row">
+
+    <!-- FEFT -------------------------------------------------------------------------------------->
+    <div class="column-split" id="table">
+
+      <!-- Form (left) ----------------------------------------------------------------------------->
+      <div class="container" [formGroup]="filterForm">
+
+        <div>
+          <mat-form-field class="form-field">
+            <mat-label>Max distance from your location</mat-label>
+            <input matInput placeholder="max distance" formControlName="maxDistance">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="form-field">
+            <mat-label>Max price</mat-label>
+            <input matInput placeholder="max price" formControlName="maxPrice">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <mat-label>Choose how to determine your current location</mat-label>
+            <mat-select placeholder="location options" formControlName="locationOption" required>
+              <mat-option *ngFor="let option of locationOptions" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <button type="button" (click)="filter()" [disabled]="!filterForm.valid">Submit</button>
+      <button type="button" (click)="reset()">Reset (show all spot)</button>
+
+
+      <!-- Table (left) ---------------------------------------------------------------------------->
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Latitude Column -->
+        <ng-container matColumnDef="lat">
+          <th mat-header-cell *matHeaderCellDef> Latitude </th>
+          <td mat-cell *matCellDef="let element"> {{element.lat}} </td>
+        </ng-container>
+
+        <!-- longitude Column -->
+        <ng-container matColumnDef="lng">
+          <th mat-header-cell *matHeaderCellDef> longitude </th>
+          <td mat-cell *matCellDef="let element"> {{element.lng}} </td>
+        </ng-container>
+
+        <!-- Distance Column -->
+        <ng-container matColumnDef="distance">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>
+          <td mat-cell *matCellDef="let element">  {{element.distance == -1 ? '---' : element.distance}} </td>
+        </ng-container>
+
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </div>
+
+    <!-- RIGHT ------------------------------------------------------------------------------------->
+    <div class="column-split" id="map">
+
+      <!-- The map (right) ------------------------------------------------------------------------->
+      <agm-map [zoom]='17' [latitude]="currlat" [longitude]="currlng">
+
+        <!-- Marker for current location -->
+        <agm-marker [latitude]="currlat" [longitude]="currlng" [iconUrl]="'../../assets/img/blue-dot.png'">
+          <agm-info-window>Your current location</agm-info-window>
+        </agm-marker>
+
+        <!-- Markers for all avaiable spot -->
+        <agm-marker *ngFor="let spot of ELEMENT_DATA_FILTER; let i=index" [latitude]="+spot.lat" [longitude]="+spot.lng"
+          [label]="spot.id.toString()">
+          <agm-info-window>parking spot {{i}}</agm-info-window>
+        </agm-marker>
+
+
+      </agm-map>
+
+    </div>
+
+
+  </div>
+
+
+</div>
