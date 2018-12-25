@@ -1,5 +1,11 @@
 package parking;
 
+import java.io.*;
+
+import com.google.maps.errors.*;
+
+import il.org.spartan.utils.*;
+
 /** the object that represent a parking spot
  * @fluent.ly.Package parking
  * @fluent.ly.Since Dec 8, 2018
@@ -11,6 +17,7 @@ public class ParkingSpot {
   private String start_time;
   private String end_time;
   private int price;
+  Pair<Double, Double> coordinates;
   private int slotCounter; // number of rent slots associated with this parking spot
   private static int uniqueId;
 
@@ -30,6 +37,18 @@ public class ParkingSpot {
     this.setEnd_time(end_time);
     this.setPrice(price);
     this.slotCounter = 0;
+    try {
+      this.coordinates = mapUtils.basicUtils.geocodingAddress(a);
+    } catch (ApiException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (InterruptedException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 
   /** @return owner of the parking spot */
@@ -99,7 +118,11 @@ public class ParkingSpot {
   }
 
   @Override public String toString() {
-    return "city=" + address.getCity() + ", street=" + address.getStreet() + ", building=" + address.getBuilding() + ", ownerID="
-        + ownerID + ", start_time=" + start_time + ", end_time=" + end_time + ", price=" + price;
+    return "city=" + address.getCity() + ", street=" + address.getStreet() + ", building=" + address.getBuilding() + ", ownerID=" + ownerID
+        + ", price=" + price + ", latitude=" + coordinates.first + ", longitude=" + coordinates.second;
+    // return "city=" + address.getCity() + ", street=" + address.getStreet() + ",
+    // building=" + address.getBuilding() + ", ownerID="
+    // + ownerID + ", start_time=" + start_time + ", end_time=" + end_time + ",
+    // price=" + price;
   }
 }

@@ -111,6 +111,31 @@ public class OurSystem {
       e.printStackTrace();
     }
   }
+ 
+  
+  public static JSONObject getAllParkingSpots(JSONObject jObj) {
+    List<ParkingSpot> pList = null;
+    try {
+      pList = ParkingDataBase.searchParkingSpots(null, null);
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+    return convertParkingSpotsToJSON(pList);
+  }
+  
+  public static JSONObject getParkingSpotsByDate(JSONObject jObj) {
+    String date = jObj.getString("date");
+    List<ParkingSpot> pList = null;
+    try {
+      pList = ParkingDataBase.searchParkingSpots(date, null);
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return convertParkingSpotsToJSON(pList);
+  }
   
   public static JSONObject searchParkingSpots(JSONObject jObj) {
 /*    String city = jObj.getString("city");
@@ -124,13 +149,12 @@ public class OurSystem {
     if(!checkTimeLegit(startTime, endTime))
       throw new IllegalArgumentException();
     List<ParkingSpot> pList = null;
-    try {
-      pList = ParkingDataBase.searchParkingSpots(date, locX, locY, startTime, endTime);
-    } catch (SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    
+//    try {
+//      pList = ParkingDataBase.searchParkingSpots(date, locX, locY, startTime, endTime);
+//    } catch (SQLException e) {
+//      // TODO Auto-generated catch block
+//      e.printStackTrace();
+//    }
     return convertParkingSpotsToJSON(pList);
   }
   
