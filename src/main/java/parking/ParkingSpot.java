@@ -7,7 +7,10 @@ package parking;
 public class ParkingSpot {
   private final int id; // for now, will be more accurate later
   private Address address;
-  private Seller owner;
+  private int ownerID;
+  private String start_time;
+  private String end_time;
+  private int price;
   private int slotCounter; // number of rent slots associated with this parking spot
   private static int uniqueId;
 
@@ -15,26 +18,29 @@ public class ParkingSpot {
    * check parking spot is not already belongs to a seller
    * @param a the address of the parking spot
    * @throws NullPointerException if the address is null */
-  ParkingSpot(final Address a) {
+  ParkingSpot(int ownerID, final Address a, String start_time, String end_time, int price) {
     // TODO: needs to check if address valid, means exist in our world
     // TODO: needs to check if parkingSpot already belongs to a seller
     if (a == null)
       throw new NullPointerException();
     this.id = uniqueId++;
     this.setAddress(a);
-    this.setOwner(null);
+    this.setOwner(ownerID);
+    this.setStart_time(start_time);
+    this.setEnd_time(end_time);
+    this.setPrice(price);
     this.slotCounter = 0;
   }
 
   /** @return owner of the parking spot */
-  public Seller getOwner() {
-    return owner;
+  public int getOwner() {
+    return ownerID;
   }
 
   /** change owner of the parking spot
    * @param owner the new owner of the parking spot */
-  public void setOwner(final Seller owner) {
-    this.owner = owner;
+  public void setOwner(final int ownerID) {
+    this.ownerID = ownerID;
   }
 
   /** @return address of the parking spot */
@@ -66,5 +72,34 @@ public class ParkingSpot {
   /** decrease the number of rent slots associated to this parking spot */
   public void removeSlotOfParking() {
     --this.slotCounter;
+  }
+
+  public String getStart_time() {
+    return start_time;
+  }
+
+  public void setStart_time(String start_time) {
+    this.start_time = start_time;
+  }
+
+  public String getEnd_time() {
+    return end_time;
+  }
+
+  public void setEnd_time(String end_time) {
+    this.end_time = end_time;
+  }
+
+  public int getPrice() {
+    return price;
+  }
+
+  public void setPrice(int price) {
+    this.price = price;
+  }
+
+  @Override public String toString() {
+    return "city=" + address.getCity() + ", street=" + address.getStreet() + ", building=" + address.getBuilding() + ", ownerID="
+        + ownerID + ", start_time=" + start_time + ", end_time=" + end_time + ", price=" + price;
   }
 }
