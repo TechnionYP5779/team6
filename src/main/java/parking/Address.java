@@ -9,7 +9,7 @@ public class Address {
   private final String street;
   private final int building;
 
-  /** @param city the city that the parking spot located in
+  public /** @param city the city that the parking spot located in
    * @param street   the street that the parking spot located in
    * @param building the building that the parking spot located in */
   Address(final String city, final String street, final int building) {

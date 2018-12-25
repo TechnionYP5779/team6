@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   loginpModel: LoginModel = {
     email: 'Guest',
     password: '',
+    closeOption: ''
   };
 
   hidePassword = true;  /* hide password as default */
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginpModel.email = this.loginForm.value.email
     this.loginpModel.password = this.loginForm.value.password
+    this.loginpModel.closeOption ='login'
     this.dialogRef.close(this.loginpModel);
     console.log("The login form was submitted: " + JSON.stringify(this.loginpModel))  // TODO: delete!
     this.webService.PostLogIn(this.loginpModel)
@@ -50,7 +52,8 @@ export class LoginComponent implements OnInit {
   }
 
   signUp() {
-    this.dialogRef.close();
+    this.loginpModel.closeOption ='signup'
+    this.dialogRef.close(this.loginpModel);
     console.log("The login form was closed and then open sign up form")  // TODO: delete!
   }
 
@@ -59,4 +62,5 @@ export class LoginComponent implements OnInit {
 export interface LoginModel {
   email: string;
   password: string;
+  closeOption: string;
 }
