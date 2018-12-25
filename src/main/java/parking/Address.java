@@ -9,10 +9,10 @@ public class Address {
   private final String street;
   private final int building;
 
-  public /** @param city the city that the parking spot located in
+   /** @param city the city that the parking spot located in
    * @param street   the street that the parking spot located in
    * @param building the building that the parking spot located in */
-  Address(final String city, final String street, final int building) {
+  public Address(final String city, final String street, final int building) {
     this.city = city;
     this.street = street;
     this.building = building;
