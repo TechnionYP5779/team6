@@ -10,9 +10,15 @@ import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule } from '@angular/material';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { AgmCoreModule } from '@agm/core';
 
 // local imports:
 
@@ -56,10 +62,19 @@ import { WebService } from './web.service';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatTableModule,
+    MatSortModule,
 
     NgbModule,
 
     AppRoutingModule,
+
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ',
+      libraries: ['geometry']
+    })
   ],
 
   exports: [
