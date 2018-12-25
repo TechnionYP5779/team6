@@ -30,14 +30,14 @@ public class DBMain {
       
       //Address a = new Address("City","Street",34);    
       //ParkingDataBase.addParkingSpot(new ParkingSpot(-1,"SELLER2","SHOULDT APPEAR",200,a,"2018-05-12","2018-07-12","20:30","20:30"));
-      List<ParkingSpot> l = ParkingDataBase.searchSpotsWithAddress("City", "Street");
+      List<ParkingSpot> l = ParkingDataBase.searchSpotsWithDate("2018-07-11");
       for(ParkingSpot p : l)
         System.out.println(p);
       
       System.out.println("Good");
     }
-    catch(SQLException e) {
-      System.out.println(e);
+    catch(SQLException ¢) {
+      System.out.println(¢);
     }
     System.out.println("Done");
   }
@@ -53,22 +53,8 @@ public class DBMain {
           + "','" + street + "'," + building + ",'" + owner + "," + buyer + ");");
     } catch (final SQLException ¢) {
       System.out.println(¢);
+      System.out.println(startTime+endTime);
     }
   }
   
-  public static void printAllSpots() {
-    QueryResults q = null;
-    try {
-      q = SQLUtils.runQuery("SELECT * FROM ParkingSpots;");
-      for (final ResultSet ¢ = q.getResults(); ¢.next();)
-        System.out.println("ID: " + ¢.getInt("id") + "\tCity: " + ¢.getString("city") + "\tStreet: " + ¢.getString("street") + "\tBuilding: "
-            + ¢.getInt("building") + "\tOwner: " + ¢.getInt("owner") + "\tBuyer: " + ¢.getInt("buyer") + "\tprice: " + ¢.getInt("price")
-            + "\tstart time: " + ¢.getString("startTime") + "\tend time: " + ¢.getString("endTime"));
-    } catch (final SQLException ¢) {
-      System.out.println(¢);
-    } finally {
-      if (q != null)
-        q.close();
-    }
-  }
 }
