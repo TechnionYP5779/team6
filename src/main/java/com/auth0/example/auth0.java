@@ -14,19 +14,19 @@ public class auth0 {
 
     
     
-    AuthRequest request = auth.login("blablabla@gmail.com", "BlaBlaBla1", "Username-Password-Authentication").setScope("openid contacts");
+    AuthRequest $ = auth.login("blablabla@gmail.com", "BlaBlaBla1", "Username-Password-Authentication").setScope("openid contacts");
 //        .setAudience("https://team6a.auth0.com/api/v2").setScope("openid contacts");
     try {
-      return request.execute();
+      return $.execute();
       
 
-    } catch (APIException exception) {
-      System.out.println(exception.getError());
-      System.out.println(exception.getDescription());
+    } catch (APIException ¢) {
+      System.out.println(¢.getError());
+      System.out.println(¢.getDescription());
       return null;
-    } catch (Auth0Exception exception) {
+    } catch (Auth0Exception ¢) {
       
-      System.out.println(exception.toString());
+      System.out.println(¢ + "");
       return null;
     }
   }
@@ -39,16 +39,10 @@ public class auth0 {
   }
   
   public UserInfo tryInfo(String token) {
-    Request<UserInfo> request = auth.userInfo(token);
+    Request<UserInfo> $ = auth.userInfo(token);
     try {
-        UserInfo info = request.execute();
-        // info.getValues();
-        return info;
-    } catch (APIException exception) {
-        // api error
-      return null;
+      return $.execute();
     } catch (Auth0Exception exception) {
-        // request error
       return null;
     }
   }
