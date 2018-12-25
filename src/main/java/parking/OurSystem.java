@@ -25,7 +25,7 @@ public class OurSystem {
   }
 
   public static void addParkingSpot(JSONObject jObj) {
-    DBMain.addParkingSpot((jObj.getInt("price")), jObj.getString("city"), jObj.getString("street"),
+    DBMain.addParkingSpot(jObj.getInt("price"), jObj.getString("city"), jObj.getString("street"),
         0, 1, 0, jObj.getString("start_time"), jObj.getString("end_time"));
     
     /*Seller s = new User("Shlomi", "Sella", "050-123-4567");
