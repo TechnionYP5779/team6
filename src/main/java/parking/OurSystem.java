@@ -31,7 +31,8 @@ public class OurSystem {
     String startTime = jObj.getString("start_time"), endTime = jObj.getString("end_time");
     if(!checkTimeLegit(startTime, endTime))
       throw new IllegalArgumentException();
-    int price = Integer.parseInt(jObj.getString("price")), ownerID = 1;
+    int price = Integer.parseInt(jObj.getString("price"));
+    String ownerID = "1";
     ParkingSpot p = new ParkingSpot(ownerID, new Address(city, street, building),startTime, endTime, price);
     try {
       ParkingDataBase.addParkingSpot(p);
@@ -48,10 +49,11 @@ public class OurSystem {
     String startTime = jObj.getString("start_time"), endTime = jObj.getString("end_time");
     if(!checkTimeLegit(startTime, endTime))
       throw new IllegalArgumentException();
-    int price = Integer.parseInt(jObj.getString("price")), ownerID = 1;
+    int price = Integer.parseInt(jObj.getString("price"));
+    String ownerID = "1";
     ParkingSpot p = new ParkingSpot(ownerID, new Address(city, street, building),startTime, endTime, price);
     try {
-      ParkingDataBase.removeParkingSpot(p);
+      ParkingDataBase.removeParkingSpot(p.getId());
     } catch (SQLException ¢) {
       // TODO Auto-generated catch block
       ¢.printStackTrace();
@@ -65,10 +67,12 @@ public class OurSystem {
     String startTime = jObj.getString("start_time"), endTime = jObj.getString("end_time");
     if(!checkTimeLegit(startTime, endTime))
       throw new IllegalArgumentException();
-    int price = Integer.parseInt(jObj.getString("price")), ownerID = 1, buyerID = 1;
+    int price = Integer.parseInt(jObj.getString("price"));
+    String ownerID = "1";
+    String buyerID = "1";
     ParkingSpot p = new ParkingSpot(ownerID, new Address(city, street, building),startTime, endTime, price);
     try {
-      ParkingDataBase.rentParkingSpot(p, buyerID);
+      ParkingDataBase.rentParkingSpot(p.getId(), buyerID);
     } catch (SQLException ¢) {
       // TODO Auto-generated catch block
       ¢.printStackTrace();
@@ -82,10 +86,12 @@ public class OurSystem {
     String startTime = jObj.getString("start_time"), endTime = jObj.getString("end_time");
     if(!checkTimeLegit(startTime, endTime))
       throw new IllegalArgumentException();
-    int price = Integer.parseInt(jObj.getString("price")), ownerID = 1, buyerID = 1;
+    int price = Integer.parseInt(jObj.getString("price"));
+    String ownerID = "1";
+    String buyerID = "1";
     ParkingSpot p = new ParkingSpot(ownerID, new Address(city, street, building),startTime, endTime, price);
     try {
-      ParkingDataBase.unrentParkingSpot(p, buyerID);
+      ParkingDataBase.unRentParkingSpot(p.getId());
     } catch (SQLException ¢) {
       // TODO Auto-generated catch block
       ¢.printStackTrace();
@@ -122,14 +128,15 @@ String startTime = jObj.getString("start_time"), endTime = jObj.getString("end_t
     date = jObj.getString("date");
     if(!checkTimeLegit(startTime, endTime))
       throw new IllegalArgumentException();
-    List<ParkingSpot> pList = null;
-//    try {
-//      pList = ParkingDataBase.searchParkingSpots(date, locX, locY, startTime, endTime);
-//    } catch (SQLException e) {
-//      // TODO Auto-generated catch block
-//      e.printStackTrace();
-//    }
-    return convertParkingSpotsToJSON(pList);
+    List<ParkingSpot> $ = null;
+    try {
+      $ = ParkingDataBase.getAllParkingSpots();
+    } catch (SQLException ¢) {
+      // TODO Auto-generated catch block
+      ¢.printStackTrace();
+    }
+    
+    return convertParkingSpotsToJSON($);
   }
   
   private static JSONObject convertParkingSpotsToJSON(List<ParkingSpot> pList) {
