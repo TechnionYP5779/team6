@@ -24,7 +24,7 @@ import com.auth0.net.*;
     final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     JSONObject loginInfo = new JSONObject(body);
     AuthRequest request = auth.login(loginInfo.getString("username"), loginInfo.getString("password"), "Username-Password-Authentication").setScope("openid contacts");
-    resp.setHeader("Access-Control-Allow-Origin", "*");
+    resp.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
     try {
       TokenHolder holder = request.execute();
       UserInfo info = auth.userInfo(holder.getAccessToken()).execute();

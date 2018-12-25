@@ -22,6 +22,8 @@
     "@angular/platform-browser": "~7.1.0",
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
+    "@types/auth0-js": "^8.11.8",
+    "auth0-js": "^9.8.2",
     "@ng-bootstrap/ng-bootstrap": "^4.0.1",
     "@types/googlemaps": "^3.30.16",
     "bootstrap": "^4.1.3",
