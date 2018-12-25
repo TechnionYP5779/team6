@@ -93,7 +93,7 @@ public class ParkingDataBase {
   }
   
   /**
-   * Returns all spots whose range of dates includes the given date.
+   * Returns all available spots whose range of dates includes the given date.
    * @param date the date to be searched for, must be in 'yyyy-mm-dd' format.
    * @return a list of all the spots meeting the condition.
    * @throws SQLException
@@ -104,7 +104,7 @@ public class ParkingDataBase {
     List<ParkingSpot> $ = new ArrayList<>();
     try {
       String SQLdate = "DATE '" + date + "'";
-      q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE " + SQLdate + " >= startDate AND " + SQLdate + " <= endDate;");
+      q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE " + SQLdate + " >= startDate AND " + SQLdate + " <= endDate AND buyer IS NULL;");
       @SuppressWarnings("resource") ResultSet rs = q.getResults();
       while(rs.next()) {
         Address a = new Address(rs.getString("city"),rs.getString("street"),rs.getInt("building"));
@@ -125,7 +125,7 @@ public class ParkingDataBase {
   }
   
   /**
-   * Returns all spots in the given city and street.
+   * Returns all available spots in the given city and street.
    * @param city
    * @param street
    * @return a list of all the spots meeting the condition.
@@ -136,7 +136,7 @@ public class ParkingDataBase {
     QueryResults q = null;
     List<ParkingSpot> $ = new ArrayList<>();
     try {
-      q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE city = '"+city+"' AND street = '"+street+"';");
+      q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE city = '"+city+"' AND street = '"+street+"' AND buyer IS NULL;");
       @SuppressWarnings("resource") ResultSet rs = q.getResults();
       while(rs.next()) {
         Address a = new Address(rs.getString("city"),rs.getString("street"),rs.getInt("building"));

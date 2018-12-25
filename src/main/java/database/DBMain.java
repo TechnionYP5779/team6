@@ -30,7 +30,7 @@ public class DBMain {
       
       //Address a = new Address("City","Street",34);    
       //ParkingDataBase.addParkingSpot(new ParkingSpot(-1,"SELLER2","SHOULDT APPEAR",200,a,"2018-05-12","2018-07-12","20:30","20:30"));
-      List<ParkingSpot> l = ParkingDataBase.searchSpotsWithDate("2018-07-11");
+      List<ParkingSpot> l = ParkingDataBase.searchSpotsWithAddress("City","Street");
       for(ParkingSpot p : l)
         System.out.println(p);
       
