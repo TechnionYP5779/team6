@@ -1,6 +1,6 @@
 package server;
-
 import java.util.*;
+import java.util.concurrent.*;
 
 import javax.servlet.*;
 
@@ -9,6 +9,8 @@ import org.eclipse.jetty.servlet.*;
 import org.eclipse.jetty.webapp.*;
 
 import com.auth0.example.*;
+import com.auth0.example.auth0;
+import com.auth0.json.auth.*;
 
 public class JettyServer {
   public static void main(final String[] args) throws Exception {
@@ -29,11 +31,25 @@ public class JettyServer {
     webapp.addServlet(new ServletHolder(new UnrentSpotServlet()), "/logged/unrent/renting_spot");
     webapp.addServlet(new ServletHolder(new SearchSpotsServlet()), "/logged/search/renting_spots");
     final FilterHolder holder1 = new FilterHolder(new Auth0Filter());
+ 
+    
+    
     holder1.setName("auth0filter");
     holder1.setInitParameter("param", "");
     webapp.addFilter(holder1, "/logged/*", EnumSet.allOf(DispatcherType.class));
     server.setHandler(webapp);
     server.start();
+    auth0 test = new auth0();
+    System.out.println("+++++++++++");
+    TokenHolder x = test.loginTry();
+    
+    System.out.println(x.getAccessToken());
+    System.out.println( test.tryInfo(x.getAccessToken()).getValues().toString());
+    
+    System.out.println("=============");
+    TimeUnit.SECONDS.sleep(40);
+    System.out.println("=============");
+   test.logOutTry();
     server.join();
   }
 }
