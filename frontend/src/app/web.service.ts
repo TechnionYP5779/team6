@@ -16,9 +16,8 @@ export class WebService {
 BASE_URL = 'http://localhost:8080';
 ADD_SPOT_URL = '/add/renting_spot';
 SIGNUP_URL = 'https://team6a.auth0.com/dbconnections/signup';
-LOGIN_URL = 'https://team6a.auth0.com/usernamepassword/login'
+LOGIN_URL = 'some url'
 
-client_id= 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
 	
   	constructor(private http: HttpClient) { }
 
@@ -52,32 +51,13 @@ client_id= 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
    })
 }
 
-  // PostLogIn(user){
-  //    var logInHeades={
-  //     headers: new HttpHeaders( { 'content-type': 'application/json' }),
-  //   }
-  //   var body={
-  //    client_id: this.client_id,
-  //    username: user.email,  //the username is the email
-  //    password: user.password,
-  //    connection: 'Username-Password-Authentication',
-  //    tenant: 'team6a',
-  //    json: true,
-  //   }
-  //   console.log(JSON.stringify(body));
-  //  this.http.post(this.LOGIN_URL,body,logInHeades).subscribe( res=>{
-  //   console.log(res);   //TODO: delete
-  //  })
-  // }
 
   PostLogIn(user){
-  var webAuth = new auth0.WebAuth({
-      domain: "https://team6a.auth0.com/",
-      clientID: "BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva"});
-
-  // webAuth.crossOriginVerification();
-    webAuth.login({realm:'Username-Password-Authentication', username:user.email, password:user.password}, (err) => {
-      console.log(err);
-    })
+  this,http.post(this.LOGIN_URL, usr),subscribe(res =>{
+    return res;
+  }
+  err =>{
+    return err;
+  })
   }
 }
