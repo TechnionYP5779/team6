@@ -9,21 +9,34 @@ public class ParkingSpot {
   //ONLY THESE ARE RELEVANT CURRENTLY
   private final int id;
   private Address address;
-  private int sellerID;
-  private int buyerID;
-  private String date;
+  private String sellerID;
+  private String buyerID;
+  private String startDate;
+  private String endDate;
+  private String startHour;
+  private String endHour;
   private int price;
   //
   
-  public ParkingSpot(int id, int seller, int buyer, int price, Address a, String date){
+  public ParkingSpot(int id, String seller, String buyer, int price, Address a, String startDate, String endDate, String startHour, String endHour){
     this.id = id;
-    this.setSellerID(seller);
-    this.setBuyerID(buyer);
-    this.setPrice(price);
-    this.address=a;
-    this.setDate(date);
+    this.sellerID = seller;
+    this.buyerID = buyer;
+    this.price = price;
+    this.address = a;
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.startHour = startHour;
+    this.endHour = endHour;
   }
   
+  @Override 
+  public String toString() {
+    String buyer = buyerID == null ? "-" : buyerID;
+    return ("id: " + id + "\t seller: " + sellerID + "\t buyer: " + buyer + "\t price: " + price 
+        + "\t city: " + address.getCity() +"\t street: "+ address.getStreet() + "\t building: " + address.getBuilding()
+        + "\t startDate: " + startDate + "\t endDate: " + endDate + "\t startHour: " + startHour + "\t endHour: " + endHour);
+  }
   
   
   private Seller owner;
@@ -87,28 +100,28 @@ public class ParkingSpot {
     --this.slotCounter;
   }
 
-  public int getSellerID() {
+  public String getSellerID() {
     return sellerID;
   }
 
-  public void setSellerID(int sellerID) {
+  public void setSellerID(String sellerID) {
     this.sellerID = sellerID;
   }
 
-  public int getBuyerID() {
+  public String getBuyerID() {
     return buyerID;
   }
 
-  public void setBuyerID(int buyerID) {
+  public void setBuyerID(String buyerID) {
     this.buyerID = buyerID;
   }
 
-  public String getDate() {
-    return date;
+  public String getStartDate() {
+    return startDate;
   }
 
-  public void setDate(String date) {
-    this.date = date;
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
   }
 
   public int getPrice() {
@@ -117,5 +130,29 @@ public class ParkingSpot {
 
   public void setPrice(int price) {
     this.price = price;
+  }
+
+  public String getEndDate() {
+    return endDate;
+  }
+
+  public void setEndDate(String endDate) {
+    this.endDate = endDate;
+  }
+
+  public String getStartHour() {
+    return startHour;
+  }
+
+  public void setStartHour(String startHour) {
+    this.startHour = startHour;
+  }
+
+  public String getEndHour() {
+    return endHour;
+  }
+
+  public void setEndHour(String endHour) {
+    this.endHour = endHour;
   }
 }

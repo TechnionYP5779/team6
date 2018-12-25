@@ -9,79 +9,55 @@ import parking.*;
 public class ParkingDataBase {
   
   public static void addParkingSpot(ParkingSpot s) throws SQLException {
-    String buyer;
-    if(s.getBuyerID()<1)
-      buyer = "NULL";
-    else
-      buyer = "'"+s.getBuyerID()+"'";
-    SQLUtils.runCommand("INSERT INTO parkingspots (price,city,street,building,date,owner,buyer)\n"
+    SQLUtils.runCommand("INSERT INTO parkingspots (price,owner,buyer,city,street,building,startDate,endDate,startHour,endHour) "
                       + "VALUES (" + s.getPrice() + ", "
+                                   + "'" + s.getSellerID() + "', "
+                                   + "NULL, "
                                    + "'" + s.getAddress().getCity() + "', "
                                    + "'" + s.getAddress().getStreet() + "', "
                                    + s.getAddress().getBuilding() + ", "
-                                   + "DATE '" + s.getDate() + "', "
-                                   + s.getSellerID() + ", "
-                                   + buyer + ");");
+                                   + "DATE '" + s.getStartDate() + "', "
+                                   + "DATE '" + s.getEndDate() + "', "
+                                   + "TIME '" + s.getStartHour() + ":00', "
+                                   + "TIME '" + s.getEndHour() + ":00')"
+        );
   }
 
-  public static void removeParkingSpot(ParkingSpot s) throws SQLException {
-    if(s.getId()>0)
-      SQLUtils.runCommand("DELETE FROM parkingspots WHERE id = " + s.getId() + ";");
-    else
-      SQLUtils.runCommand("DELETE FROM parkingspots WHERE "
-                        + "city = '" + s.getAddress().getCity() + "' AND "
-                        + "street = '" + s.getAddress().getStreet() + "' AND "
-                        + "building = " + s.getAddress().getBuilding() + " AND "
-                        + "date = DATE '" + s.getDate() + "';");
+  public static void removeParkingSpot(int spotID) throws SQLException {
+    SQLUtils.runCommand("DELETE FROM parkingspots WHERE id = " + spotID + ";");
   }
 
-  public static void rentParkingSpot(ParkingSpot s, int buyerID) throws SQLException {
-    if(s.getId()>0)
-      SQLUtils.runCommand("UPDATE parkingspots SET buyer = " + buyerID + " WHERE id = " + s.getId() + " AND buyer IS NULL;");
-    else
-      SQLUtils.runCommand("UPDATE parkingspots SET buyer = " + buyerID + " WHERE "
-                        + "city = '" + s.getAddress().getCity() + "' AND "
-                        + "street = '" + s.getAddress().getStreet() + "' AND "
-                        + "building = " + s.getAddress().getBuilding() + " AND "
-                        + "date = DATE '" + s.getDate() + "' AND "
-                        + "buyer IS NULL;");
+  public static void rentParkingSpot(int spotID, String buyerID) throws SQLException {
+    SQLUtils.runCommand("UPDATE parkingspots SET buyer = '" + buyerID + "' WHERE id = " + spotID + " AND buyer IS NULL;");
   }
 
-  public static void unRentParkingSpot(ParkingSpot p, int buyerID) throws SQLException {
-    if(p.getId()>0)
-      SQLUtils.runCommand("UPDATE parkingspots SET buyer = NULL WHERE id = " + p.getId() + " AND buyer = " + buyerID + ";");
-    else
-      SQLUtils.runCommand("UPDATE parkingspots SET buyer = NULL WHERE "
-                        + "city = '" + p.getAddress().getCity() + "' AND "
-                        + "street = '" + p.getAddress().getStreet() + "' AND "
-                        + "building = " + p.getAddress().getBuilding() + " AND "
-                        + "date = DATE '" + p.getDate() + "' AND "
-                        + "buyer = " + buyerID + ";");
+  public static void unRentParkingSpot(int spotID) throws SQLException {
+    SQLUtils.runCommand("UPDATE parkingspots SET buyer = NULL WHERE id = " + spotID + ";");
   }
 
-  public static List<ParkingSpot> searchParkingSpots(String date, Address a) throws SQLException {
-    String query = "SELECT * FROM parkingspots";
-    if(date != null || a != null) {
-      query += " WHERE ";
-      if(date != null) {
-        query += ("date = DATE '" + date + "'");
-        if(a != null)
-          query += " AND ";
+  public static List<ParkingSpot> searchSpotsWithAddress(String city, String street) throws SQLException {
+    SQLException exception = null;
+    QueryResults q = null;
+    List<ParkingSpot> results = new ArrayList<>();
+    try {
+      q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE city = '"+city+"' AND street = '"+street+"';");
+      @SuppressWarnings("resource") ResultSet rs = q.getResults();
+      while(rs.next()) {
+        Address a = new Address(rs.getString("city"),rs.getString("street"),rs.getInt("building"));
+        ParkingSpot p = new ParkingSpot(rs.getInt("id"),rs.getString("owner"),rs.getString("buyer"),rs.getInt("price"),a,
+            rs.getDate("startDate")+"",rs.getDate("endDate")+"",rs.getTime("startHour")+"",rs.getTime("endHour")+"");
+        results.add(p);
       }
-      if(a != null)
-        query += ("city = '" + a.getCity() + "' AND street = '" + a.getStreet()+"'");
     }
-    query += ";";
-    
-    QueryResults q = SQLUtils.runQuery(query);
-    @SuppressWarnings("resource") ResultSet rs = q.getResults();
-    List<ParkingSpot> $ = new ArrayList<>();
-    while(rs.next()) {
-      Address newAddress = new Address(rs.getString("city"),rs.getString("street"),rs.getInt("building"));
-      $.add(new ParkingSpot(rs.getInt("id"), rs.getInt("owner"), rs.getInt("buyer"), rs.getInt("price"), newAddress, rs.getDate("date") + ""));
+    catch(SQLException e) {
+      exception = e;
     }
-    q.close();
-    rs.close();
-    return $;
+    finally {
+      if(q != null)
+        q.close();
+    }
+    if(exception != null)
+      throw exception;
+    return results;
   }
 }
