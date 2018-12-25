@@ -24,7 +24,7 @@ import com.auth0.*;
         || (String) SessionUtils.get((HttpServletRequest) r, "idToken") != null)
       next.doFilter(r, response);
     else
-      ((HttpServletResponse) response).sendRedirect("/root");
+      ((HttpServletResponse) response).sendRedirect("/");
   }
 
   @Override public void destroy() {//

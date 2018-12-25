@@ -1,6 +1,6 @@
 package parking;
 
-import java.util.*;
+
 
 /** this interface includes basic functions of a buyer
  * @fluent.ly.Package parking
@@ -20,15 +20,15 @@ public interface Buyer {
   void unrentParkingSlot(Seller s, int spotID, int slotID);
 
   /** @return all available rent slots of all users */
-  List<RentSlot> getAllAvailableSlots();
+//  List<RentSlot> getAllAvailableSlots();
 
-  // List<RentSlot> getRequstedSlots(Address a);
-  /** notify the buyer of the new price of a slot
-   * @param price new price
-   * @param s     the rent slot its price updated */
-  void notifyNewPrice(double price, RentSlot s);
-
-  /** notify the buyer that a rent slot have been removed
-   * @param s the rent slot which was removed */
-  void notifyRentSlotRemoved(RentSlot s);
+//  // List<RentSlot> getRequstedSlots(Address a);
+//  /** notify the buyer of the new price of a slot
+//   * @param price new price
+//   * @param s     the rent slot its price updated */
+//  void notifyNewPrice(double price, RentSlot s);
+//
+//  /** notify the buyer that a rent slot have been removed
+//   * @param s the rent slot which was removed */
+//  void notifyRentSlotRemoved(RentSlot s);
 }

@@ -1,7 +1,6 @@
 package com.auth0.example;
 
 import java.io.*;
-import java.sql.*;
 import java.util.stream.*;
 
 import javax.servlet.*;
@@ -18,7 +17,7 @@ import parking.OurSystem;
     resp.setHeader("Access-Control-Allow-Origin","*");final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     try {
       OurSystem.addParkingSpot(new JSONObject(new String(body)));
-    } catch (SQLException | JSONException ¢) {
+    } catch ( JSONException ¢) {
       resp.setHeader("Response", "ERROR");
       resp.getWriter().write(¢ + "");
       return;
