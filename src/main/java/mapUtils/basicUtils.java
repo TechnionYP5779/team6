@@ -28,12 +28,10 @@ public class basicUtils {
    * @throws InterruptedException
    * @throws IOException
    */
-  public static Pair<Double, Double> geocodingAddress(Address a) throws ApiException, InterruptedException, IOException {
-    GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build();
-    GeocodingResult[] results = GeocodingApi.geocode(context, String.valueOf(a.getStreet() + " " + a.getBuilding()) + ", " + a.getCity()).await();
-     final double lat = Double.parseDouble(new GsonBuilder().setPrettyPrinting().create().toJson(box.it(results[0].geometry.location.lat)));
-     final double lng = Double.parseDouble(new GsonBuilder().setPrettyPrinting().create().toJson(box.it(results[0].geometry.location.lng)));
-     return new Pair<>(box.it(lat), box.it(lng));
+  public static Pair<Double, Double> geocodingAddress(Address ¢) throws ApiException, InterruptedException, IOException {
+    GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(), String.valueOf(¢.getStreet() + " " + ¢.getBuilding()) + ", " + ¢.getCity()).await();
+     return new Pair<>(box.it(Double.parseDouble(new GsonBuilder().setPrettyPrinting().create().toJson(box.it($[0].geometry.location.lat)))),
+        box.it(Double.parseDouble(new GsonBuilder().setPrettyPrinting().create().toJson(box.it($[0].geometry.location.lng)))));
   }
   
   /**
@@ -50,16 +48,14 @@ public class basicUtils {
     GeocodingResult[] results = GeocodingApi.reverseGeocode(context, new LatLng(lat, lng)).await();
     
     String buildingString = new GsonBuilder().setPrettyPrinting().create().toJson(results[0].addressComponents[0].longName);
-    int building = Integer.parseInt(buildingString.substring(1, buildingString.length()-1));
+    int $ = Integer.parseInt(buildingString.substring(1, buildingString.length()-1));
     
     String street = new GsonBuilder().setPrettyPrinting().create().toJson(results[0].addressComponents[1].longName);
     int lastIndex = street.lastIndexOf("Street");
     street = street.substring(1,lastIndex-1);
     
-    String city = new GsonBuilder().setPrettyPrinting().create().toJson(results[0].addressComponents[2].longName);
-    city = city.substring(1,lastIndex-2);
-    
-    return new Address(city, street, building);
+    return new Address(new GsonBuilder().setPrettyPrinting().create().toJson(results[0].addressComponents[2].longName).substring(1, lastIndex - 2),
+        street, $);
   }
 }
 

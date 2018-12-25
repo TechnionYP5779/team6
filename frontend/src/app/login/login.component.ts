@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { WebService } from '../web.service';
 
 @Component({
   selector: 'app-login',
@@ -12,19 +13,23 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   loginpModel: LoginModel = {
-    username: 'Guest',
+    email: 'Guest',
     password: '',
     closeOption: ''
   };
 
-  hidePassword = true;  /* hide password as default */
 
-  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) data) {
+
+  hidePassword = true;  /* hide password as default */
+  logged = false;
+  error = null;
+
+  constructor(private webService : WebService, private fb: FormBuilder, private dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.loginForm = fb.group({
       hideRequired: true,
       floatLabel: 'auto',
-      'username': ["",
-        [Validators.required]
+      'email': ["",
+        [Validators.required, Validators.email]
       ],
       'password': ["",
         [Validators.required]]
@@ -35,12 +40,33 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() { }
 
-  login() {
-    this.loginpModel.username = this.loginForm.value.username
+  async login() {
+    this.loginpModel.email = this.loginForm.value.email
     this.loginpModel.password = this.loginForm.value.password
     this.loginpModel.closeOption ='login'
-    this.dialogRef.close(this.loginpModel);
+    
     console.log("The login form was submitted: " + JSON.stringify(this.loginpModel))  // TODO: delete!
+    var res =  await this.webService.PostLogIn(this.loginpModel)
+    // var obj = JSON.parse(res);
+    // if(res['status'] == "ok"){
+    //   this.error = null
+    //   this.dialogRef.close(res.name);
+    // }
+    // else{
+    //   this.error = res.Desc;
+    // }
+    console.log (res)
+    if (res == 'wrong email or password'){
+      this.error = res;
+      return;
+    }
+    if(res['name']) {
+      this.error = null;
+      console.log('~~~~~~~~~` ' + res['name'])
+      var result = {closeOption:'login', username: res['name']}
+      this.dialogRef.close(result)
+    }
+
   }
 
   close() {
@@ -57,7 +83,7 @@ export class LoginComponent implements OnInit {
 }
 
 export interface LoginModel {
-  username: string;
+  email: string;
   password: string;
   closeOption: string;
 }

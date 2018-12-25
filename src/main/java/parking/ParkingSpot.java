@@ -5,12 +5,17 @@ package parking;
  * @fluent.ly.Since Dec 8, 2018
  * @fluent.ly.Author Or, Nitzan */
 public class ParkingSpot {
-  private final int id; // for now, will be more accurate later
+  
+  //ONLY THESE ARE RELEVANT CURRENTLY
+  private final int id;
   private Address address;
-  private int ownerID;
   private String start_time;
   private String end_time;
   private int price;
+  private String sellerID;
+  private String buyerID;
+  private String startDate;
+  private String endDate;
   private int slotCounter; // number of rent slots associated with this parking spot
   private static int uniqueId;
 
@@ -18,29 +23,27 @@ public class ParkingSpot {
    * check parking spot is not already belongs to a seller
    * @param a the address of the parking spot
    * @throws NullPointerException if the address is null */
-  ParkingSpot(int ownerID, final Address a, String start_time, String end_time, int price) {
+  public ParkingSpot(int id, String seller, String buyer,  int price, final Address a, String start_time, String end_time, String startDate, String endDate) {
     // TODO: needs to check if address valid, means exist in our world
     // TODO: needs to check if parkingSpot already belongs to a seller
     if (a == null)
       throw new NullPointerException();
-    this.id = uniqueId++;
+    this.id = id;
     this.setAddress(a);
-    this.setOwner(ownerID);
-    this.setStart_time(start_time);
-    this.setEnd_time(end_time);
+    this.setStartHour(start_time);
+    this.setEndHour(end_time);
     this.setPrice(price);
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.sellerID = seller;
+    this.buyerID = buyer;
+    
     this.slotCounter = 0;
   }
 
-  /** @return owner of the parking spot */
-  public int getOwner() {
-    return ownerID;
-  }
-
-  /** change owner of the parking spot
-   * @param owner the new owner of the parking spot */
-  public void setOwner(final int ownerID) {
-    this.ownerID = ownerID;
+  public ParkingSpot(String ownerID, Address address2, String startTime, String endTime, int price2) {
+    // TODO Auto-generated constructor stub just for ignore errors for pushing
+    id = 0;
   }
 
   /** @return address of the parking spot */
@@ -73,21 +76,28 @@ public class ParkingSpot {
   public void removeSlotOfParking() {
     --this.slotCounter;
   }
-
-  public String getStart_time() {
-    return start_time;
+  
+  public String getSellerID() {
+    return sellerID;
+  }
+  
+  public void setSellerID(String sellerID) {
+    this.sellerID = sellerID;
   }
 
-  public void setStart_time(String start_time) {
-    this.start_time = start_time;
+  public String getBuyerID() {
+    return buyerID;
+  }
+  public void setBuyerID(String buyerID) {
+    this.buyerID = buyerID;
   }
 
-  public String getEnd_time() {
-    return end_time;
+  public String getStartDate() {
+      return startDate;
   }
 
-  public void setEnd_time(String end_time) {
-    this.end_time = end_time;
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
   }
 
   public int getPrice() {
@@ -98,8 +108,36 @@ public class ParkingSpot {
     this.price = price;
   }
 
-  @Override public String toString() {
-    return "city=" + address.getCity() + ", street=" + address.getStreet() + ", building=" + address.getBuilding() + ", ownerID="
-        + ownerID + ", start_time=" + start_time + ", end_time=" + end_time + ", price=" + price;
+  public String getEndDate() {
+    return endDate;
   }
+
+  public void setEndDate(String endDate) {
+    this.endDate = endDate;
+  }
+
+  public String getStartHour() {
+    return start_time;
+  }
+
+  public void setStartHour(String startHour) {
+    this.start_time = startHour;
+  }
+
+  public String getEndHour() {
+    return end_time;
+  }
+
+  public void setEndHour(String endHour) {
+    this.end_time = endHour;
+  }
+  
+@Override 
+  public String toString() {
+    String buyer = buyerID == null ? "-" : buyerID;
+    return ("id=" + id + ", seller=" + sellerID + ", buyer=" + buyer + ", price=" + price 
+        + ", city=" + address.getCity() +", street="+ address.getStreet() + ", building=" + address.getBuilding()
+        + ", startDate=" + startDate + ", endDate=" + endDate + ", start_time=" + start_time + ", end_time=" + end_time);
+  }
+  
 }
