@@ -10,7 +10,7 @@ import java.sql.*;
  */
 public class SQLUtils {
   
-  static String URL = "jdbc:mysql://den1.mysql6.gear.host/";
+  static String URL = "jdbc:mysql://den1.mysql6.gear.host/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
   static String USER = "parkingdatabase";
   static String PASS = "team6!";
   
