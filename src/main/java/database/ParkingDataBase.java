@@ -35,6 +35,14 @@ public class ParkingDataBase {
     SQLUtils.runCommand("UPDATE parkingspots SET buyer = NULL WHERE id = " + spotID + ";");
   }
 
+  public static List<ParkingSpot> getAllParkingSpots() throws SQLException {
+    return null;
+  }
+  
+  public static List<ParkingSpot> searchSpotsWithDate (String date){
+    return null;
+  }
+  
   public static List<ParkingSpot> searchSpotsWithAddress(String city, String street) throws SQLException {
     SQLException exception = null;
     QueryResults q = null;

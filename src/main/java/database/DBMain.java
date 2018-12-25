@@ -55,4 +55,20 @@ public class DBMain {
       System.out.println(¢);
     }
   }
+  
+  public static void printAllSpots() {
+    QueryResults q = null;
+    try {
+      q = SQLUtils.runQuery("SELECT * FROM ParkingSpots;");
+      for (final ResultSet ¢ = q.getResults(); ¢.next();)
+        System.out.println("ID: " + ¢.getInt("id") + "\tCity: " + ¢.getString("city") + "\tStreet: " + ¢.getString("street") + "\tBuilding: "
+            + ¢.getInt("building") + "\tOwner: " + ¢.getInt("owner") + "\tBuyer: " + ¢.getInt("buyer") + "\tprice: " + ¢.getInt("price")
+            + "\tstart time: " + ¢.getString("startTime") + "\tend time: " + ¢.getString("endTime"));
+    } catch (final SQLException ¢) {
+      System.out.println(¢);
+    } finally {
+      if (q != null)
+        q.close();
+    }
+  }
 }
