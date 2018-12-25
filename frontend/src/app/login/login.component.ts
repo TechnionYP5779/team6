@@ -41,9 +41,8 @@ export class LoginComponent implements OnInit {
     this.loginpModel.password = this.loginForm.value.password
     this.dialogRef.close(this.loginpModel);
     console.log("The login form was submitted: " + JSON.stringify(this.loginpModel))  // TODO: delete!
-    this.webService.PostLogIn(this.loginpModel
-      
-    }
+    this.webService.PostLogIn(this.loginpModel)
+  }
 
   close() {
     this.dialogRef.close();
