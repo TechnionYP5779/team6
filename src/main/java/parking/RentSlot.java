@@ -1,3 +1,4 @@
+
 //package parking;
 //
 ///** the class that represents rent slot

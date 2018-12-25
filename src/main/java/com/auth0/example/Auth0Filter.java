@@ -10,7 +10,7 @@ import com.auth0.*;
 
 /** Filter class to check if a valid session exists. This will be true if the
  * User Id is present. */
-@WebFilter(urlPatterns = "/portal/*") public class Auth0Filter implements Filter {
+@WebFilter(urlPatterns = "/logged/*") public class Auth0Filter implements Filter {
   @Override public void init(final FilterConfig __) throws ServletException {//
   }
 
@@ -24,7 +24,7 @@ import com.auth0.*;
         || (String) SessionUtils.get((HttpServletRequest) r, "idToken") != null)
       next.doFilter(r, response);
     else
-      ((HttpServletResponse) response).sendRedirect("/login");
+      ((HttpServletResponse) response).sendRedirect("/");
   }
 
   @Override public void destroy() {//

@@ -50,6 +50,16 @@ public class ParkingSpot {
       e.printStackTrace();
     }
   }
+  
+  ParkingSpot(final Address a) {
+    // TODO: needs to check if address valid, means exist in our world
+    // TODO: needs to check if parkingSpot already belongs to a seller
+    if (a == null)
+      throw new NullPointerException();
+    this.id = uniqueId++;
+   //TODO: implement
+  }
+
 
   /** @return owner of the parking spot */
   public int getOwner() {
