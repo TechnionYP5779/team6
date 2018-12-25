@@ -535,7 +535,7 @@ module.exports = ".mat-dialog-content {\n    display: flex;\n    flex-direction:
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Title -->\n<h2 style=\"text-align:center\" mat-dialog-title>Login</h2>\n\n<!-- Content -->\n<div mat-dialog-content [formGroup]=\"loginForm\">\n\n  <!-- UserName -->\n  <mat-form-field>\n    <input matInput placeholder=\"email\" formControlName=\"email\" required>\n  </mat-form-field>\n\n  <!-- Password -->\n  <mat-form-field>\n    <input matInput placeholder=\"Password\" formControlName=\"password\" required [type]=\"hidePassword ? 'password' : 'text'\">\n    <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>\n  </mat-form-field>\n\n</div>\n\n<!-- Bottons -->\n<div mat-dialog-actions align=\"center\">\n\n  <button type=\"button\" class=\"btn btn-primary\" (click)=\"login()\" [disabled]=\"!loginForm.valid\">Login</button>\n\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"close()\">Close</button>\n\n  <p> <br>\n    Don’t have an account?\n    <button type=\"button\" class=\"btn btn-link\" (click)=\"signUp()\">Sign Up</button>\n  </p>\n\n</div>"
+module.exports = "<!-- Title -->\n<h2 style=\"text-align:center\" mat-dialog-title>Login</h2>\n<div *ngIf=\"username\"> Error: {{error}} </div>\n<!-- Content -->\n<div mat-dialog-content [formGroup]=\"loginForm\">\n\n  <!-- UserName -->\n  <mat-form-field>\n    <input matInput placeholder=\"email\" formControlName=\"email\" required>\n  </mat-form-field>\n\n  <!-- Password -->\n  <mat-form-field>\n    <input matInput placeholder=\"Password\" formControlName=\"password\" required [type]=\"hidePassword ? 'password' : 'text'\">\n    <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>\n  </mat-form-field>\n\n</div>\n\n<!-- Bottons -->\n<div mat-dialog-actions align=\"center\">\n\n  <button type=\"button\" class=\"btn btn-primary\" (click)=\"login()\" [disabled]=\"!loginForm.valid\">Login</button>\n\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"close()\">Close</button>\n\n  <p> <br>\n    Don’t have an account?\n    <button type=\"button\" class=\"btn btn-link\" (click)=\"signUp()\">Sign Up</button>\n  </p>\n\n</div>"
 
 /***/ }),
 
@@ -571,6 +571,7 @@ var LoginComponent = /** @class */ (function () {
         };
         this.hidePassword = true; /* hide password as default */
         this.logged = false;
+        this.error = null;
         this.loginForm = fb.group({
             hideRequired: true,
             floatLabel: 'auto',
@@ -584,12 +585,50 @@ var LoginComponent = /** @class */ (function () {
     }
     LoginComponent.prototype.ngOnInit = function () { };
     LoginComponent.prototype.login = function () {
-        this.loginpModel.email = this.loginForm.value.email;
-        this.loginpModel.password = this.loginForm.value.password;
-        this.loginpModel.closeOption = 'login';
-        this.dialogRef.close(this.loginpModel);
-        console.log("The login form was submitted: " + JSON.stringify(this.loginpModel)); // TODO: delete!
-        this.webService.PostLogIn(this.loginpModel);
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var res, result;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.loginpModel.email = this.loginForm.value.email;
+                        this.loginpModel.password = this.loginForm.value.password;
+                        this.loginpModel.closeOption = 'login';
+                        console.log("The login form was submitted: " + JSON.stringify(this.loginpModel)); // TODO: delete!
+                        return [4 /*yield*/, this.webService.PostLogIn(this.loginpModel)
+                            // var obj = JSON.parse(res);
+                            // if(res['status'] == "ok"){
+                            //   this.error = null
+                            //   this.dialogRef.close(res.name);
+                            // }
+                            // else{
+                            //   this.error = res.Desc;
+                            // }
+                        ];
+                    case 1:
+                        res = _a.sent();
+                        // var obj = JSON.parse(res);
+                        // if(res['status'] == "ok"){
+                        //   this.error = null
+                        //   this.dialogRef.close(res.name);
+                        // }
+                        // else{
+                        //   this.error = res.Desc;
+                        // }
+                        console.log(res);
+                        if (res == 'wrong email or password') {
+                            this.error = res;
+                            return [2 /*return*/];
+                        }
+                        if (res['name']) {
+                            this.error = null;
+                            console.log('~~~~~~~~~` ' + res['name']);
+                            result = { closeOption: 'login', username: res['name'] };
+                            this.dialogRef.close(result);
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     LoginComponent.prototype.close = function () {
         this.dialogRef.close();
@@ -1055,6 +1094,8 @@ var WebService = /** @class */ (function () {
         this.LOGIN_URL = '/login';
         this.LOGOUT = '/logged/logout';
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
+        this.id_token = null;
+        this.access_token = null;
     }
     WebService.prototype.addSpot = function (rent) {
         this.http.post(this.BASE_URL + this.ADD_SPOT_URL, rent).subscribe(function (res) {
@@ -1081,15 +1122,50 @@ var WebService = /** @class */ (function () {
             console.log(res); //TODO: delete
         });
     };
+    //   async PostLogIn(user){
+    //     var body = {
+    //       username: user.email,
+    //       password: user.password
+    //     }
+    //     console.log(JSON.stringify(body))
+    //     console.log(this.BASE_URL + this.LOGIN_URL)
+    //     await this.http.post(this.BASE_URL + this.LOGIN_URL, body).subscribe(res =>{
+    //     console.log(JSON.stringify(res))
+    //     return {status: "ok", name:res['name']};
+    //   },
+    //   err =>{
+    //     console.log(JSON.stringify(err))
+    //     return {status: "error", name:err['Desc']};
+    //   })
+    //     return null;
+    // }
     WebService.prototype.PostLogIn = function (user) {
-        var body = {
-            username: user.email,
-            password: user.password
-        };
-        console.log(JSON.stringify(body));
-        console.log(this.BASE_URL + this.LOGIN_URL);
-        this.http.post(this.BASE_URL + this.LOGIN_URL, body).subscribe(function (res) {
-            console.log(res);
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var body, x, error_1;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        body = {
+                            username: user.email,
+                            password: user.password
+                        };
+                        console.log(JSON.stringify(body));
+                        console.log(this.BASE_URL + this.LOGIN_URL);
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.LOGIN_URL, body).toPromise()];
+                    case 2:
+                        x = _a.sent();
+                        this.id_token = x['idToken'];
+                        console.log('~~~~~ ' + this.id_token);
+                        return [2 /*return*/, x];
+                    case 3:
+                        error_1 = _a.sent();
+                        return [2 /*return*/, 'wrong email or password'];
+                    case 4: return [2 /*return*/];
+                }
+            });
         });
     };
     WebService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

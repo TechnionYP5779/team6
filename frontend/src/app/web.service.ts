@@ -21,6 +21,9 @@ LOGOUT = '/logged/logout';
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
+id_token = null;
+access_token = null;
+
 
   	constructor(private http: HttpClient) { }
 
@@ -55,15 +58,39 @@ client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'
   }
 
 
-  PostLogIn(user){
+//   async PostLogIn(user){
+//     var body = {
+//       username: user.email,
+//       password: user.password
+//     }
+//     console.log(JSON.stringify(body))
+//     console.log(this.BASE_URL + this.LOGIN_URL)
+//     await this.http.post(this.BASE_URL + this.LOGIN_URL, body).subscribe(res =>{
+//     console.log(JSON.stringify(res))
+//     return {status: "ok", name:res['name']};
+//   },
+//   err =>{
+//     console.log(JSON.stringify(err))
+//     return {status: "error", name:err['Desc']};
+//   })
+//     return null;
+// }
+
+  async PostLogIn(user){
     var body = {
       username: user.email,
       password: user.password
     }
     console.log(JSON.stringify(body))
     console.log(this.BASE_URL + this.LOGIN_URL)
-    this.http.post(this.BASE_URL + this.LOGIN_URL, body).subscribe(res =>{
-    console.log(res)
-  });
-  }
+    try{
+    var x = await this.http.post(this.BASE_URL + this.LOGIN_URL, body).toPromise()
+    this.id_token = x['idToken']
+    console.log('~~~~~ ' + this.id_token)
+    return x;
+    }
+    catch (error) {
+      return 'wrong email or password';
+    }
+}
 } 
