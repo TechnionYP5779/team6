@@ -18,8 +18,11 @@ export class LoginComponent implements OnInit {
     closeOption: ''
   };
 
+
+
   hidePassword = true;  /* hide password as default */
   logged = false;
+  error = null;
 
   constructor(private webService : WebService, private fb: FormBuilder, private dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.loginForm = fb.group({
@@ -37,13 +40,33 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() { }
 
-  login() {
+  async login() {
     this.loginpModel.email = this.loginForm.value.email
     this.loginpModel.password = this.loginForm.value.password
     this.loginpModel.closeOption ='login'
-    this.dialogRef.close(this.loginpModel);
+    
     console.log("The login form was submitted: " + JSON.stringify(this.loginpModel))  // TODO: delete!
-    this.webService.PostLogIn(this.loginpModel)
+    var res =  await this.webService.PostLogIn(this.loginpModel)
+    // var obj = JSON.parse(res);
+    // if(res['status'] == "ok"){
+    //   this.error = null
+    //   this.dialogRef.close(res.name);
+    // }
+    // else{
+    //   this.error = res.Desc;
+    // }
+    console.log (res)
+    if (res == 'wrong email or password'){
+      this.error = res;
+      return;
+    }
+    if(res['name']) {
+      this.error = null;
+      console.log('~~~~~~~~~` ' + res['name'])
+      var result = {closeOption:'login', username: res['name']}
+      this.dialogRef.close(result)
+    }
+
   }
 
   close() {
