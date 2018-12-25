@@ -19,10 +19,10 @@ public class RentSlot {
    * @param price the price of the rent slot
    * @throws NullPointerException     if one of the arguments is null
    * @throws IllegalArgumentException if s is not the owner of p */
-  RentSlot(final Seller s, final ParkingSpot p, final Time t, final double price) {
+  RentSlot(final User s, final ParkingSpot p, final Time t, final double price) {
     if (s == null || p == null || t == null)
       throw new NullPointerException();
-    if (!p.getOwner().equals(s))
+    if (p.getOwner() != s.getId())
       throw new IllegalArgumentException();
     this.id = uniqueId++;
     this.p = p;
