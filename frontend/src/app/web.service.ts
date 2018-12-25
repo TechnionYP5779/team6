@@ -6,7 +6,7 @@ import * as auth0 from 'auth0-js';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Access-Control-Allow-Origin': 'http://localhost:8080/add/renting_spot'
+    'Access-Control-Allow-Origin': 'http://localhost:8080'
   }),
 };
 
@@ -56,6 +56,14 @@ client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'
 
 
   PostLogIn(user){
-  return this.http.post(this.LOGIN_URL, user);
+    var body = {
+      username: user.email,
+      password: user.password
+    }
+    console.log(JSON.stringify(body))
+    console.log(this.BASE_URL + this.LOGIN_URL)
+    this.http.post(this.BASE_URL + this.LOGIN_URL, body).subscribe(res =>{
+    console.log(res)
+  });
   }
-}
+} 
