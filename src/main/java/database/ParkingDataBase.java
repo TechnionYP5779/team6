@@ -93,6 +93,36 @@ public class ParkingDataBase {
   }
   
   /**
+   * Returns all parking spots in the database.
+   * @return a list of all the spots in the database.
+   * @throws SQLException
+   */
+  public static List<ParkingSpot> getAllAvailableParkingSpots() throws SQLException {
+    SQLException exception = null;
+    QueryResults q = null;
+    List<ParkingSpot> $ = new ArrayList<>();
+    try {
+      q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE buyer IS NULL;");
+      @SuppressWarnings("resource") ResultSet rs = q.getResults();
+      while(rs.next()) {
+        Address a = new Address(rs.getString("city"),rs.getString("street"),rs.getInt("building"));
+        $.add(new ParkingSpot(rs.getInt("id"), rs.getString("owner"), rs.getString("buyer"), rs.getInt("price"), a, rs.getDate("startDate") + "",
+            rs.getDate("endDate") + "", rs.getTime("startHour") + "", rs.getTime("endHour") + ""));
+      }
+    }
+    catch(SQLException ¢) {
+      exception = ¢;
+    }
+    finally {
+      if(q != null)
+        q.close();
+    }
+    if(exception != null)
+      throw exception;
+    return $;
+  }
+  
+  /**
    * Returns all available spots whose range of dates includes the given date.
    * @param date the date to be searched for, must be in 'yyyy-mm-dd' format.
    * @return a list of all the spots meeting the condition.
