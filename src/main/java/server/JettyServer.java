@@ -28,7 +28,7 @@ public class JettyServer {
     final FilterHolder holder1 = new FilterHolder(new Auth0Filter());
     holder1.setName("auth0filter");
     holder1.setInitParameter("param", "");
-//    webapp.addFilter(holder1, "/logged/*", EnumSet.allOf(DispatcherType.class));
+    webapp.addFilter(holder1, "/logged/*", EnumSet.allOf(DispatcherType.class));
     server.setHandler(webapp);
     server.start();
     // auth0 test = new auth0();
