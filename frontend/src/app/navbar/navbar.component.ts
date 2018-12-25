@@ -42,8 +42,13 @@ export class NavbarComponent implements OnInit {
     /** get data from dialog: only username for now */
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
-        this.username = result.username; // else: username is still 'Guest'
-        this.userIsLogin = true;
+          if (result.closeOption == 'login'){
+            this.username = result.username; // else: username is still 'Guest'
+            this.userIsLogin = true;
+          }
+          else if (result.closeOption == 'signup'){
+            this.openSignUpDialog();
+          }
       }
     });
   }
