@@ -15,7 +15,7 @@ public class ParkingDataBase {
   public static void rentParkingSpot(ParkingSpot p, int buyerID) throws SQLException {
   }
 
-  public static void unRentParkingSpot(ParkingSpot p, int buyerID) throws SQLException {
+  public static void unrentParkingSpot(ParkingSpot p, int buyerID) throws SQLException {
   }
 
   public static List<ParkingSpot> searchParkingSpots(String date, String locX, String locY, String startTime, String endTime) throws SQLException {
