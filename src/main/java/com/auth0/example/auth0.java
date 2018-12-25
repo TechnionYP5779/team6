@@ -42,7 +42,7 @@ public class auth0 {
     Request<UserInfo> $ = auth.userInfo(token);
     try {
       return $.execute();
-    } catch (Auth0Exception exception) {
+    } catch (@SuppressWarnings("unused") Auth0Exception exception) {
       return null;
     }
   }

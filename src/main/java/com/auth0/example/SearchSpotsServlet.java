@@ -1,7 +1,7 @@
 package com.auth0.example;
 
 import java.io.*;
-import java.sql.*;
+
 import java.util.stream.*;
 
 import javax.servlet.*;
@@ -19,7 +19,7 @@ import parking.OurSystem;
     String psList = "";
     try {
       psList = OurSystem.searchParkingSpots(new JSONObject(new String(body))) + "";
-    } catch (SQLException | JSONException ¢) {
+    } catch ( JSONException ¢) {
       resp.setHeader("Response", "ERROR");
       resp.getWriter().write(¢ + "");
       return;
