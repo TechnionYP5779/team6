@@ -1,14 +1,31 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpHeaders } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule  } from '@angular/material';
+// external imports:
 
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { NgModule } from '@angular/core';
+
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatIconModule } from '@angular/material';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { AgmCoreModule } from '@agm/core';
+
+// local imports:
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
 import { BecomeHostComponent } from './become-host/become-host.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -18,10 +35,12 @@ import { WebService } from './web.service';
 
 
 @NgModule({
+
   declarations: [
     AppComponent,
     NavbarComponent,
     routingComponents,
+    HomeComponent,
     BecomeHostComponent,
     NotFoundComponent,
     SignUpComponent,
@@ -29,28 +48,49 @@ import { WebService } from './web.service';
 
     RentSpotFormComponent
   ],
+
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatDialogModule,
     BrowserAnimationsModule,
+
+    HttpClientModule,
+
+    FormsModule,
+    ReactiveFormsModule,
+
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule 
+    MatIconModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatTableModule,
+    MatSortModule,
+
+    NgbModule,
+
+    AppRoutingModule,
+
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ',
+      libraries: ['geometry']
+    })
   ],
+
   exports: [
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+
     FormsModule
   ],
+
   providers: [WebService],
+
   bootstrap: [AppComponent],
+
   entryComponents: [LoginComponent, SignUpComponent]
 
 })
-export class AppModule { }
 
+export class AppModule { }
