@@ -23,7 +23,7 @@ public class basicUtils {
   /**
    * 
    * @param a address
-   * @return the coordinates of the address
+   * @return the coordinates of the address as a Pair
    * @throws ApiException
    * @throws InterruptedException
    * @throws IOException
