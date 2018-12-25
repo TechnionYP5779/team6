@@ -14,10 +14,12 @@ const httpOptions = {
 export class WebService {
 
 BASE_URL = 'http://localhost:8080';
-ADD_SPOT_URL = '/add/renting_spot';
+ADD_SPOT_URL = '/logged/add/renting_spot';
 SIGNUP_URL = 'https://team6a.auth0.com/dbconnections/signup';
 LOGIN_URL = '/login';
 LOGOUT = '/logged/logout';
+GET_SPOT_URL = '/logged/search/all/renting_spots'
+GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots'
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
@@ -58,23 +60,6 @@ access_token = null;
   }
 
 
-//   async PostLogIn(user){
-//     var body = {
-//       username: user.email,
-//       password: user.password
-//     }
-//     console.log(JSON.stringify(body))
-//     console.log(this.BASE_URL + this.LOGIN_URL)
-//     await this.http.post(this.BASE_URL + this.LOGIN_URL, body).subscribe(res =>{
-//     console.log(JSON.stringify(res))
-//     return {status: "ok", name:res['name']};
-//   },
-//   err =>{
-//     console.log(JSON.stringify(err))
-//     return {status: "error", name:err['Desc']};
-//   })
-//     return null;
-// }
 
   async PostLogIn(user){
     var body = {
@@ -86,11 +71,26 @@ access_token = null;
     try{
     var x = await this.http.post(this.BASE_URL + this.LOGIN_URL, body).toPromise()
     this.id_token = x['idToken']
-    console.log('~~~~~ ' + this.id_token)
+    this.access_token = x['accessToken'];
     return x;
     }
     catch (error) {
       return 'wrong email or password';
     }
 }
+
+  async getSpots(){
+    var body = {
+      accessToken: this.access_token,
+      idToken: this.id_token
+    }
+
+    try{
+      var res = await this.http.post(this.BASE_URL + this.GET_SPOT_URL, body).toPromise();
+      return JSON.stringify(res);
+    }
+    catch(error){
+      return 'logged out';
+    }  
+  }
 } 

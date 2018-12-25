@@ -7,6 +7,7 @@ import { MatRadioModule, MatRadioButton, MatRadioChange } from '@angular/materia
 import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSort, MatTableDataSource } from '@angular/material';
+import { WebService } from '../web.service';
 
 @Component({
   selector: 'app-find-parking',
@@ -34,20 +35,21 @@ export class FindParkingComponent implements OnInit {
   // fake DB TODO: updete this!!!
 
   displayedColumns: string[] = ['id', 'lat', 'lng', 'price', 'distance'];
-  ELEMENT_DATA: spotElement[] = [
-    { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
-    { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, distance: -1, price: 70 },
-    { id: 3, lat: this.thecnionlat + 0.00065, lng: this.thecnionlng + 0.00065, distance: -1, price: 30 },
-    { id: 4, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng - 0.00070, distance: -1, price: 50 },
-    { id: 5, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng - 0.00150, distance: -1, price: 40 },
-    { id: 6, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng + 0.00045, distance: -1, price: 45 },
-    { id: 7, lat: this.thecnionlat - 0.00175, lng: this.thecnionlng + 0.00145, distance: -1, price: 40 },
-    { id: 8, lat: this.thecnionlat + 0.00045, lng: this.thecnionlng - 0.00165, distance: -1, price: 30 },
-    { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, distance: -1, price: 20 },
-    { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, distance: -1, price: 80 },
-  ];
-  ELEMENT_DATA_FILTER: spotElement[] = this.ELEMENT_DATA;
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
+  ELEMENT_DATA: spotElement[] = null;
+  // [
+  //   { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
+  //   { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, distance: -1, price: 70 },
+  //   { id: 3, lat: this.thecnionlat + 0.00065, lng: this.thecnionlng + 0.00065, distance: -1, price: 30 },
+  //   { id: 4, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng - 0.00070, distance: -1, price: 50 },
+  //   { id: 5, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng - 0.00150, distance: -1, price: 40 },
+  //   { id: 6, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng + 0.00045, distance: -1, price: 45 },
+  //   { id: 7, lat: this.thecnionlat - 0.00175, lng: this.thecnionlng + 0.00145, distance: -1, price: 40 },
+  //   { id: 8, lat: this.thecnionlat + 0.00045, lng: this.thecnionlng - 0.00165, distance: -1, price: 30 },
+  //   { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, distance: -1, price: 20 },
+  //   { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, distance: -1, price: 80 },
+  // ];
+  ELEMENT_DATA_FILTER: spotElement[] = null;
+  dataSource = null;
 
   //--- NGINIT & C'TOR ---------------------------------------------------------------------------------------
 
@@ -55,10 +57,14 @@ export class FindParkingComponent implements OnInit {
 
   ngOnInit() {
     this.findCurrentLocation();
+    var res = this.webService.getSpots();
+    this.ELEMENT_DATA = JSON.parse('['+res + ']')
+    this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
+    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private mapsAPILoader: MapsAPILoader, private fb: FormBuilder) {
+  constructor(private mapsAPILoader: MapsAPILoader, private fb: FormBuilder, private webService: WebService) {
     // init filterForm (fields and validators):
     this.filterForm = fb.group({
       floatLabel: 'auto',

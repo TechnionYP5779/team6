@@ -65,7 +65,7 @@ export class RentSpotFormComponent implements OnInit {
 			this.rentSpotForm.value.end_time.end_date.year,
 			this.rentSpotForm.value.end_time.end_date.month - 1,
 			this.rentSpotForm.value.end_time.end_date.day,
-			this.rentSpotForm.value.end_time.end_hour.hour,
+			this.rentSpotForm.value.end_time.end_hour.hour ,
 			this.rentSpotForm.value.end_time.end_hour.minute)
 		this.rentSpotModel.end_time = endTime
 

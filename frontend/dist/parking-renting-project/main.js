@@ -331,16 +331,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/index.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../web.service */ "./src/app/web.service.ts");
 
 /// <reference types="@types/googlemaps" />
 
 
 
 
+
 var FindParkingComponent = /** @class */ (function () {
-    function FindParkingComponent(mapsAPILoader, fb) {
+    function FindParkingComponent(mapsAPILoader, fb, webService) {
         this.mapsAPILoader = mapsAPILoader;
         this.fb = fb;
+        this.webService = webService;
         //--- INIT LOCATION ----------------------------------------------------------------------------------------
         // let the user to define his current location
         this.defineCurrLocOptions = ['GPS location', 'Technion']; // need to add "choose by address"
@@ -351,20 +354,21 @@ var FindParkingComponent = /** @class */ (function () {
         //--- DATABASE ---------------------------------------------------------------------------------------------
         // fake DB TODO: updete this!!!
         this.displayedColumns = ['id', 'lat', 'lng', 'price', 'distance'];
-        this.ELEMENT_DATA = [
-            { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
-            { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, distance: -1, price: 70 },
-            { id: 3, lat: this.thecnionlat + 0.00065, lng: this.thecnionlng + 0.00065, distance: -1, price: 30 },
-            { id: 4, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng - 0.00070, distance: -1, price: 50 },
-            { id: 5, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng - 0.00150, distance: -1, price: 40 },
-            { id: 6, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng + 0.00045, distance: -1, price: 45 },
-            { id: 7, lat: this.thecnionlat - 0.00175, lng: this.thecnionlng + 0.00145, distance: -1, price: 40 },
-            { id: 8, lat: this.thecnionlat + 0.00045, lng: this.thecnionlng - 0.00165, distance: -1, price: 30 },
-            { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, distance: -1, price: 20 },
-            { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, distance: -1, price: 80 },
-        ];
-        this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
-        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
+        this.ELEMENT_DATA = null;
+        // [
+        //   { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
+        //   { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, distance: -1, price: 70 },
+        //   { id: 3, lat: this.thecnionlat + 0.00065, lng: this.thecnionlng + 0.00065, distance: -1, price: 30 },
+        //   { id: 4, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng - 0.00070, distance: -1, price: 50 },
+        //   { id: 5, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng - 0.00150, distance: -1, price: 40 },
+        //   { id: 6, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng + 0.00045, distance: -1, price: 45 },
+        //   { id: 7, lat: this.thecnionlat - 0.00175, lng: this.thecnionlng + 0.00145, distance: -1, price: 40 },
+        //   { id: 8, lat: this.thecnionlat + 0.00045, lng: this.thecnionlng - 0.00165, distance: -1, price: 30 },
+        //   { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, distance: -1, price: 20 },
+        //   { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, distance: -1, price: 80 },
+        // ];
+        this.ELEMENT_DATA_FILTER = null;
+        this.dataSource = null;
         this.filterElement = {
             locationOption: 'GPS location',
             maxDistance: -1,
@@ -381,6 +385,10 @@ var FindParkingComponent = /** @class */ (function () {
     }
     FindParkingComponent.prototype.ngOnInit = function () {
         this.findCurrentLocation();
+        var res = this.webService.getSpots();
+        this.ELEMENT_DATA = JSON.parse('[' + res + ']');
+        this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
+        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
         this.dataSource.sort = this.sort;
     };
     //--- UPDATE LOCATION --------------------------------------------------------------------------------------
@@ -452,7 +460,7 @@ var FindParkingComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./find-parking.component.html */ "./src/app/find-parking/find-parking.component.html"),
             styles: [__webpack_require__(/*! ./find-parking.component.css */ "./src/app/find-parking/find-parking.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_agm_core__WEBPACK_IMPORTED_MODULE_2__["MapsAPILoader"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_agm_core__WEBPACK_IMPORTED_MODULE_2__["MapsAPILoader"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _web_service__WEBPACK_IMPORTED_MODULE_5__["WebService"]])
     ], FindParkingComponent);
     return FindParkingComponent;
 }());
@@ -594,26 +602,9 @@ var LoginComponent = /** @class */ (function () {
                         this.loginpModel.password = this.loginForm.value.password;
                         this.loginpModel.closeOption = 'login';
                         console.log("The login form was submitted: " + JSON.stringify(this.loginpModel)); // TODO: delete!
-                        return [4 /*yield*/, this.webService.PostLogIn(this.loginpModel)
-                            // var obj = JSON.parse(res);
-                            // if(res['status'] == "ok"){
-                            //   this.error = null
-                            //   this.dialogRef.close(res.name);
-                            // }
-                            // else{
-                            //   this.error = res.Desc;
-                            // }
-                        ];
+                        return [4 /*yield*/, this.webService.PostLogIn(this.loginpModel)];
                     case 1:
                         res = _a.sent();
-                        // var obj = JSON.parse(res);
-                        // if(res['status'] == "ok"){
-                        //   this.error = null
-                        //   this.dialogRef.close(res.name);
-                        // }
-                        // else{
-                        //   this.error = res.Desc;
-                        // }
                         console.log(res);
                         if (res == 'wrong email or password') {
                             this.error = res;
@@ -621,7 +612,6 @@ var LoginComponent = /** @class */ (function () {
                         }
                         if (res['name']) {
                             this.error = null;
-                            console.log('~~~~~~~~~` ' + res['name']);
                             result = { closeOption: 'login', username: res['name'] };
                             this.dialogRef.close(result);
                         }
@@ -1089,10 +1079,12 @@ var WebService = /** @class */ (function () {
     function WebService(http) {
         this.http = http;
         this.BASE_URL = 'http://localhost:8080';
-        this.ADD_SPOT_URL = '/add/renting_spot';
+        this.ADD_SPOT_URL = '/logged/add/renting_spot';
         this.SIGNUP_URL = 'https://team6a.auth0.com/dbconnections/signup';
         this.LOGIN_URL = '/login';
         this.LOGOUT = '/logged/logout';
+        this.GET_SPOT_URL = '/logged/search/all/renting_spots';
+        this.GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots';
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
         this.id_token = null;
         this.access_token = null;
@@ -1122,23 +1114,6 @@ var WebService = /** @class */ (function () {
             console.log(res); //TODO: delete
         });
     };
-    //   async PostLogIn(user){
-    //     var body = {
-    //       username: user.email,
-    //       password: user.password
-    //     }
-    //     console.log(JSON.stringify(body))
-    //     console.log(this.BASE_URL + this.LOGIN_URL)
-    //     await this.http.post(this.BASE_URL + this.LOGIN_URL, body).subscribe(res =>{
-    //     console.log(JSON.stringify(res))
-    //     return {status: "ok", name:res['name']};
-    //   },
-    //   err =>{
-    //     console.log(JSON.stringify(err))
-    //     return {status: "error", name:err['Desc']};
-    //   })
-    //     return null;
-    // }
     WebService.prototype.PostLogIn = function (user) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var body, x, error_1;
@@ -1158,11 +1133,36 @@ var WebService = /** @class */ (function () {
                     case 2:
                         x = _a.sent();
                         this.id_token = x['idToken'];
-                        console.log('~~~~~ ' + this.id_token);
+                        this.access_token = x['accessToken'];
                         return [2 /*return*/, x];
                     case 3:
                         error_1 = _a.sent();
                         return [2 /*return*/, 'wrong email or password'];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    WebService.prototype.getSpots = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var body, res, error_2;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        body = {
+                            accessToken: this.access_token,
+                            idToken: this.id_token
+                        };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.GET_SPOT_URL, body).toPromise()];
+                    case 2:
+                        res = _a.sent();
+                        return [2 /*return*/, JSON.stringify(res)];
+                    case 3:
+                        error_2 = _a.sent();
+                        return [2 /*return*/, 'logged out'];
                     case 4: return [2 /*return*/];
                 }
             });
