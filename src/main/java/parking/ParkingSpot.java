@@ -23,7 +23,7 @@ public class ParkingSpot {
    * check parking spot is not already belongs to a seller
    * @param a the address of the parking spot
    * @throws NullPointerException if the address is null */
-  public ParkingSpot(int id, String seller, String buyer, final Address a, String start_time, String end_time, String startDate, String endDate, int price) {
+  public ParkingSpot(int id, String seller, String buyer,  int price, final Address a, String start_time, String end_time, String startDate, String endDate) {
     // TODO: needs to check if address valid, means exist in our world
     // TODO: needs to check if parkingSpot already belongs to a seller
     if (a == null)
@@ -39,6 +39,11 @@ public class ParkingSpot {
     this.buyerID = buyer;
     
     this.slotCounter = 0;
+  }
+
+  public ParkingSpot(String ownerID, Address address2, String startTime, String endTime, int price2) {
+    // TODO Auto-generated constructor stub just for ignore errors for pushing
+    id = 0;
   }
 
   /** @return address of the parking spot */
