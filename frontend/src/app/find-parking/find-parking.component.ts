@@ -164,7 +164,7 @@ export class FindParkingComponent implements OnInit {
       // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
       //   ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
       //   this.ELEMENT_DATA_FILTER.push(spot);
-      // }
+      // } 
 
     }
 
