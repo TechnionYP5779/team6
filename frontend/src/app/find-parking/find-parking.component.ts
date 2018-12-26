@@ -7,9 +7,11 @@ import { MatRadioModule, MatRadioButton, MatRadioChange } from '@angular/materia
 import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSort, MatTableDataSource } from '@angular/material';
+import { WebService } from '../web.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { RentSpotDialogComponent } from '../rent-spot-dialog/rent-spot-dialog.component';
 import { elementStyleProp } from '@angular/core/src/render3';
+
 
 @Component({
   selector: 'app-find-parking',
@@ -36,32 +38,41 @@ export class FindParkingComponent implements OnInit {
 
   // fake DB TODO: updete this!!!
 
-  displayedColumns: string[] = ['id', 'lat', 'lng', 'price', 'distance'];
-  ELEMENT_DATA: SpotElement[] = [
-    { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, address: '', distance: -1, price: 40 },
-    { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, address: '', distance: -1, price: 70 },
-    { id: 3, lat: this.thecnionlat + 0.00065, lng: this.thecnionlng + 0.00065, address: '', distance: -1, price: 30 },
-    { id: 4, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng - 0.00070, address: '', distance: -1, price: 50 },
-    { id: 5, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng - 0.00150, address: '', distance: -1, price: 40 },
-    { id: 6, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng + 0.00045, address: '', distance: -1, price: 45 },
-    { id: 7, lat: this.thecnionlat - 0.00175, lng: this.thecnionlng + 0.00145, address: '', distance: -1, price: 40 },
-    { id: 8, lat: this.thecnionlat + 0.00045, lng: this.thecnionlng - 0.00165, address: '', distance: -1, price: 30 },
-    { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, address: '', distance: -1, price: 20 },
-    { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, address: '', distance: -1, price: 80 },
-  ];
-  ELEMENT_DATA_FILTER: SpotElement[] = this.ELEMENT_DATA;
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
+  displayedColumns: string[] = ['id', 'address', 'price'];
+  ELEMENT_DATA: SpotElement[] = null;
+  // [
+  //   { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
+  //   { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, distance: -1, price: 70 },
+  //   { id: 3, lat: this.thecnionlat + 0.00065, lng: this.thecnionlng + 0.00065, distance: -1, price: 30 },
+  //   { id: 4, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng - 0.00070, distance: -1, price: 50 },
+  //   { id: 5, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng - 0.00150, distance: -1, price: 40 },
+  //   { id: 6, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng + 0.00045, distance: -1, price: 45 },
+  //   { id: 7, lat: this.thecnionlat - 0.00175, lng: this.thecnionlng + 0.00145, distance: -1, price: 40 },
+  //   { id: 8, lat: this.thecnionlat + 0.00045, lng: this.thecnionlng - 0.00165, distance: -1, price: 30 },
+  //   { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, distance: -1, price: 20 },
+  //   { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, distance: -1, price: 80 },
+  // ];
+  ELEMENT_DATA_FILTER: SpotElement[] = null;
+  dataSource = null;
 
   //--- NGINIT & C'TOR ---------------------------------------------------------------------------------------
 
   @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit() {
+  async ngOnInit() {
     this.findCurrentLocation();
+    var res = await this.webService.getSpots();
+    console.log(res)
+    this.ELEMENT_DATA = JSON.parse('' + res + '')
+    this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
+    console.log(this.ELEMENT_DATA_FILTER)
+    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
+    console.log(this.dataSource)
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private mapsAPILoader: MapsAPILoader, private fb: FormBuilder, public rentDialog: MatDialog) {
+
+  constructor(private mapsAPILoader: MapsAPILoader, private fb: FormBuilder, private webService: WebService, public rentDialog: MatDialog) {
     // init filterForm (fields and validators):
     this.filterForm = fb.group({
       floatLabel: 'auto',
@@ -147,13 +158,13 @@ export class FindParkingComponent implements OnInit {
 
     const centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
     for (let spot of this.ELEMENT_DATA) {
-      const markerLoc = new google.maps.LatLng(spot.lat, spot.lng);
-      spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
+      const markerLoc = new google.maps.LatLng(spot.latitude, spot.longitude);
+      // spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
 
-      if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
-        ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
-        this.ELEMENT_DATA_FILTER.push(spot);
-      }
+      // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
+      //   ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
+      //   this.ELEMENT_DATA_FILTER.push(spot);
+      // }
 
     }
 
@@ -186,9 +197,9 @@ export class FindParkingComponent implements OnInit {
     dialogConfig.data = { /** pass data to dialog */
       id: this.selectedSpot.id,
       price: this.selectedSpot.price,
-      lat: this.selectedSpot.lat,
-      lng: this.selectedSpot.lng,
-      address: this.getAddress(this.selectedSpot.lat, this.selectedSpot.lng),
+      lat: this.selectedSpot.latitude,
+      lng: this.selectedSpot.longitude,
+      address: this.getAddress(this.selectedSpot.latitude, this.selectedSpot.longitude),
     };
 
     /** open dialog */
@@ -215,11 +226,17 @@ export class FindParkingComponent implements OnInit {
 
 export interface SpotElement {
   id: number;
-  lat: number;
-  lng: number;
-  address: string;
-  distance: number;
+  latitude: number;
+  longitude: number;
+  street: string;
+  building: number;
+  city: string;
+  start_time: string;
+  end_time: string;
+  // distance: number;
   price: number;
+  userId: string;  
+  buyerId: string;
 }
 
 export interface FilterElement { // TODO: add date

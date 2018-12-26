@@ -102,7 +102,7 @@ public class ParkingDataBase {
     try {
       q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE buyer IS NULL;");
       for (ResultSet ¢ = q.getResults(); ¢.next();)
-        $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
+        $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), "", ¢.getInt("price"),
             new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
             ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
     }

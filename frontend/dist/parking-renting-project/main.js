@@ -158,6 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./rent-spot-form/rent-spot-form.component */ "./src/app/rent-spot-form/rent-spot-form.component.ts");
 /* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./web.service */ "./src/app/web.service.ts");
+/* harmony import */ var _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./rent-spot-dialog/rent-spot-dialog.component */ "./src/app/rent-spot-dialog/rent-spot-dialog.component.ts");
 // external imports:
 
 
@@ -183,6 +184,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -197,7 +199,8 @@ var AppModule = /** @class */ (function () {
                 _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_18__["NotFoundComponent"],
                 _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_19__["SignUpComponent"],
                 _login_login_component__WEBPACK_IMPORTED_MODULE_20__["LoginComponent"],
-                _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_21__["RentSpotFormComponent"]
+                _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_21__["RentSpotFormComponent"],
+                _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_23__["RentSpotDialogComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -228,7 +231,7 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [_web_service__WEBPACK_IMPORTED_MODULE_22__["WebService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]],
-            entryComponents: [_login_login_component__WEBPACK_IMPORTED_MODULE_20__["LoginComponent"], _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_19__["SignUpComponent"]]
+            entryComponents: [_login_login_component__WEBPACK_IMPORTED_MODULE_20__["LoginComponent"], _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_19__["SignUpComponent"], _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_23__["RentSpotDialogComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -312,7 +315,7 @@ module.exports = "/** split page to 2 columns */\n\n.container {\n    margin-top
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\n  <!-- Title -->\n  <h2>Find parking spot</h2>\n\n\n  <!-- split page to 2 columns: table on the left and map on the right -->\n  <div class=\"row\">\n\n    <!-- FEFT -------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"table\">\n\n      <!-- Form (left) ----------------------------------------------------------------------------->\n      <div class=\"container\" [formGroup]=\"filterForm\">\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max distance from your location</mat-label>\n            <input matInput placeholder=\"max distance\" formControlName=\"maxDistance\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max price</mat-label>\n            <input matInput placeholder=\"max price\" formControlName=\"maxPrice\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field>\n            <mat-label>Choose how to determine your current location</mat-label>\n            <mat-select placeholder=\"location options\" formControlName=\"locationOption\" required>\n              <mat-option *ngFor=\"let option of locationOptions\" [value]=\"option\">\n                {{option}}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n        </div>\n\n      </div>\n\n      <button type=\"button\" (click)=\"filter()\" [disabled]=\"!filterForm.valid\">Submit</button>\n      <button type=\"button\" (click)=\"reset()\">Reset (show all spot)</button>\n\n\n      <!-- Table (left) ---------------------------------------------------------------------------->\n      <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" matSort >\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Latitude Column -->\n        <ng-container matColumnDef=\"lat\">\n          <th mat-header-cell *matHeaderCellDef> Latitude </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.lat}} </td>\n        </ng-container>\n\n        <!-- longitude Column -->\n        <ng-container matColumnDef=\"lng\">\n          <th mat-header-cell *matHeaderCellDef> longitude </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.lng}} </td>\n        </ng-container>\n\n        <!-- Distance Column -->\n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>\n          <td mat-cell *matCellDef=\"let element\">  {{element.distance == -1 ? '---' : element.distance}} </td>\n        </ng-container>\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n\n    </div>\n\n    <!-- RIGHT ------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"map\">\n\n      <!-- The map (right) ------------------------------------------------------------------------->\n      <agm-map [zoom]='17' [latitude]=\"currlat\" [longitude]=\"currlng\">\n\n        <!-- Marker for current location -->\n        <agm-marker [latitude]=\"currlat\" [longitude]=\"currlng\" [iconUrl]=\"'../../assets/img/blue-dot.png'\">\n          <agm-info-window>Your current location</agm-info-window>\n        </agm-marker>\n\n        <!-- Markers for all avaiable spot -->\n        <agm-marker *ngFor=\"let spot of ELEMENT_DATA_FILTER; let i=index\" [latitude]=\"+spot.lat\" [longitude]=\"+spot.lng\"\n          [label]=\"spot.id.toString()\">\n          <agm-info-window>parking spot {{i}}</agm-info-window>\n        </agm-marker>\n\n\n      </agm-map>\n\n    </div>\n\n\n  </div>\n\n\n</div>"
+module.exports = "<div class=\"container\">\n\n  <!-- Title -->\n  <h2>Find parking spot</h2>\n\n\n  <!-- split page to 2 columns: table on the left and map on the right -->\n  <div class=\"row\">\n\n    <!-- FEFT -------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"table\">\n\n      <!-- Form (left) ----------------------------------------------------------------------------->\n      <div class=\"container\" [formGroup]=\"filterForm\">\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max distance from your location</mat-label>\n            <input matInput placeholder=\"max distance\" formControlName=\"maxDistance\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max price</mat-label>\n            <input matInput placeholder=\"max price\" formControlName=\"maxPrice\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field>\n            <mat-label>Choose how to determine your current location</mat-label>\n            <mat-select placeholder=\"location options\" formControlName=\"locationOption\" required>\n              <mat-option *ngFor=\"let option of locationOptions\" [value]=\"option\">\n                {{option}}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n        </div>\n\n      </div>\n\n      <button type=\"button\" (click)=\"filter()\" [disabled]=\"!filterForm.valid\">Submit</button>\n      <button type=\"button\" (click)=\"reset()\">Reset (show all spot)</button>\n\n\n      <!-- Table (left) ---------------------------------------------------------------------------->\n      <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" matSort>\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Addres Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef> Address </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.city}} {{element.street}} {{element.building}} </td>\n        </ng-container>\n\n<!--          Distance Column \n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.distance == -1 ? '---' : element.distance}} </td>\n        </ng-container> -->\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n\n    </div>\n\n    <!-- RIGHT ------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"map\">\n\n      <!-- The map (right) ------------------------------------------------------------------------->\n      <agm-map [zoom]='17' [latitude]=\"currlat\" [longitude]=\"currlng\">\n\n        <!-- Marker for current location -->\n        <agm-marker [latitude]=\"currlat\" [longitude]=\"currlng\" [iconUrl]=\"'../../assets/img/blue-dot.png'\">\n          <agm-info-window>Your current location</agm-info-window>\n        </agm-marker>\n\n        <!-- Markers for all avaiable spot -->\n        <agm-marker *ngFor=\"let spot of ELEMENT_DATA_FILTER; let i=index\" [latitude]=\"+spot.latitude\" [longitude]=\"+spot.longitude\"\n          [label]=\"spot.id.toString()\">\n          <agm-info-window>\n            ID: {{spot.id}}\n            <br>\n            price: {{spot.price}}\n            <br>\n            distance: {{spot.distance}}\n            <br>\n            <button type=\"button\" (click)=\"rentSpot(spot)\">Rent Me!</button>\n\n          </agm-info-window>\n        </agm-marker>\n\n\n      </agm-map>\n\n    </div>\n\n\n  </div>\n\n\n</div>"
 
 /***/ }),
 
@@ -331,16 +334,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/index.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../web.service */ "./src/app/web.service.ts");
+/* harmony import */ var _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../rent-spot-dialog/rent-spot-dialog.component */ "./src/app/rent-spot-dialog/rent-spot-dialog.component.ts");
 
 /// <reference types="@types/googlemaps" />
 
 
 
 
+
+
+
 var FindParkingComponent = /** @class */ (function () {
-    function FindParkingComponent(mapsAPILoader, fb) {
+    function FindParkingComponent(mapsAPILoader, fb, webService, rentDialog) {
         this.mapsAPILoader = mapsAPILoader;
         this.fb = fb;
+        this.webService = webService;
+        this.rentDialog = rentDialog;
         //--- INIT LOCATION ----------------------------------------------------------------------------------------
         // let the user to define his current location
         this.defineCurrLocOptions = ['GPS location', 'Technion']; // need to add "choose by address"
@@ -350,27 +360,30 @@ var FindParkingComponent = /** @class */ (function () {
         this.thecnionlng = 35.022610;
         //--- DATABASE ---------------------------------------------------------------------------------------------
         // fake DB TODO: updete this!!!
-        this.displayedColumns = ['id', 'lat', 'lng', 'price', 'distance'];
-        this.ELEMENT_DATA = [
-            { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
-            { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, distance: -1, price: 70 },
-            { id: 3, lat: this.thecnionlat + 0.00065, lng: this.thecnionlng + 0.00065, distance: -1, price: 30 },
-            { id: 4, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng - 0.00070, distance: -1, price: 50 },
-            { id: 5, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng - 0.00150, distance: -1, price: 40 },
-            { id: 6, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng + 0.00045, distance: -1, price: 45 },
-            { id: 7, lat: this.thecnionlat - 0.00175, lng: this.thecnionlng + 0.00145, distance: -1, price: 40 },
-            { id: 8, lat: this.thecnionlat + 0.00045, lng: this.thecnionlng - 0.00165, distance: -1, price: 30 },
-            { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, distance: -1, price: 20 },
-            { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, distance: -1, price: 80 },
-        ];
-        this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
-        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
+        this.displayedColumns = ['id', 'address', 'price'];
+        this.ELEMENT_DATA = null;
+        // [
+        //   { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
+        //   { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, distance: -1, price: 70 },
+        //   { id: 3, lat: this.thecnionlat + 0.00065, lng: this.thecnionlng + 0.00065, distance: -1, price: 30 },
+        //   { id: 4, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng - 0.00070, distance: -1, price: 50 },
+        //   { id: 5, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng - 0.00150, distance: -1, price: 40 },
+        //   { id: 6, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng + 0.00045, distance: -1, price: 45 },
+        //   { id: 7, lat: this.thecnionlat - 0.00175, lng: this.thecnionlng + 0.00145, distance: -1, price: 40 },
+        //   { id: 8, lat: this.thecnionlat + 0.00045, lng: this.thecnionlng - 0.00165, distance: -1, price: 30 },
+        //   { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, distance: -1, price: 20 },
+        //   { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, distance: -1, price: 80 },
+        // ];
+        this.ELEMENT_DATA_FILTER = null;
+        this.dataSource = null;
         this.filterElement = {
             locationOption: 'GPS location',
             maxDistance: -1,
             maxPrice: -1,
         };
         this.locationOptions = ['GPS location', 'Technion']; // need to add "choose by address"
+        //--- RENT SPOT -----------------------------------------------------------------------------------
+        this.selectedSpot = null;
         // init filterForm (fields and validators):
         this.filterForm = fb.group({
             floatLabel: 'auto',
@@ -380,14 +393,46 @@ var FindParkingComponent = /** @class */ (function () {
         });
     }
     FindParkingComponent.prototype.ngOnInit = function () {
-        this.findCurrentLocation();
-        this.dataSource.sort = this.sort;
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var res;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.findCurrentLocation();
+                        return [4 /*yield*/, this.webService.getSpots()];
+                    case 1:
+                        res = _a.sent();
+                        console.log(res);
+                        this.ELEMENT_DATA = JSON.parse('' + res + '');
+                        this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
+                        console.log(this.ELEMENT_DATA_FILTER);
+                        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
+                        console.log(this.dataSource);
+                        this.dataSource.sort = this.sort;
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    FindParkingComponent.prototype.getAddress = function (lat, lng) {
+        if (navigator.geolocation) {
+            var geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(lat, lng);
+            var request = { latLng: latlng };
+            var res_1 = '(lat=' + lat + ',lng=' + lng + ')';
+            geocoder.geocode(request, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK && results[0]) {
+                    //console.log("************ results[0].formatted_address", results[0].formatted_address)
+                    res_1 = results[0].formatted_address;
+                }
+            });
+            return res_1;
+        }
     };
     //--- UPDATE LOCATION --------------------------------------------------------------------------------------
     FindParkingComponent.prototype.findCurrentLocation = function () {
         var _this = this;
         if (this.selectedCurrLocOption == 'GPS location') {
-            console.log("~~~~~~~~ findCurrentLocation: gps");
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     _this.currlat = position.coords.latitude;
@@ -407,12 +452,11 @@ var FindParkingComponent = /** @class */ (function () {
         }
     };
     FindParkingComponent.prototype.changeCurrentLocationToTechnion = function () {
-        console.log("~~~~~~~~ changeCurrentLocationToTechnion");
         this.currlat = this.thecnionlat;
         this.currlng = this.thecnionlng;
+        //this.getAddress(this.currlat, this.currlng)
     };
     FindParkingComponent.prototype.filter = function () {
-        console.log("~~~~~~~~ filter");
         this.filterElement.locationOption = this.filterForm.value.locationOption;
         this.filterElement.maxDistance = (this.filterForm.value.maxDistance == "" || this.filterForm.value.maxDistance == null) ? -1 : this.filterForm.value.maxDistance;
         this.filterElement.maxPrice = (this.filterForm.value.maxPrice == "" || this.filterForm.value.maxPrice == null) ? -1 : this.filterForm.value.maxPrice;
@@ -427,20 +471,53 @@ var FindParkingComponent = /** @class */ (function () {
         this.filterMarkers();
     };
     FindParkingComponent.prototype.filterMarkers = function () {
-        console.log("~~~~~~~~ filterMarkers");
         this.ELEMENT_DATA_FILTER = [];
         var centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
         for (var _i = 0, _a = this.ELEMENT_DATA; _i < _a.length; _i++) {
             var spot = _a[_i];
-            var markerLoc = new google.maps.LatLng(spot.lat, spot.lng);
-            spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
-            if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
-                ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
-                this.ELEMENT_DATA_FILTER.push(spot);
-            }
+            var markerLoc = new google.maps.LatLng(spot.latitude, spot.longitude);
+            // spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
+            // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
+            //   ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
+            //   this.ELEMENT_DATA_FILTER.push(spot);
+            // }
         }
         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
         this.dataSource.sort = this.sort;
+    };
+    FindParkingComponent.prototype.rentSpot = function (spot) {
+        console.log("you choose to rent: ", spot);
+        this.selectedSpot = spot;
+        this.openRentDialog();
+        this.selectedSpot = null;
+    };
+    FindParkingComponent.prototype.openRentDialog = function () {
+        /** config dialog */
+        var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogConfig"]();
+        dialogConfig.disableClose = true; /** the user will not be able to close the dialog just by clicking outside of it */
+        dialogConfig.autoFocus = false; /** the focus will not be set automatically on the first form field of the dialog */
+        dialogConfig.height = '500px'; /** size of dialog window */
+        dialogConfig.width = '500px';
+        dialogConfig.data = {
+            id: this.selectedSpot.id,
+            price: this.selectedSpot.price,
+            lat: this.selectedSpot.latitude,
+            lng: this.selectedSpot.longitude,
+            address: this.getAddress(this.selectedSpot.latitude, this.selectedSpot.longitude),
+        };
+        /** open dialog */
+        var dialogRef = this.rentDialog.open(_rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_6__["RentSpotDialogComponent"], dialogConfig);
+        /** get data from dialog - empty for no */
+        dialogRef.afterClosed().subscribe(function (result) {
+            if (result != null) {
+                if (result == 'rent') {
+                    console.log('The rent dialog was closed - *with* renting');
+                }
+                else if (result == 'close') {
+                    console.log('The rent dialog was closed - *without* renting');
+                }
+            }
+        });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSort"]),
@@ -452,7 +529,7 @@ var FindParkingComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./find-parking.component.html */ "./src/app/find-parking/find-parking.component.html"),
             styles: [__webpack_require__(/*! ./find-parking.component.css */ "./src/app/find-parking/find-parking.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_agm_core__WEBPACK_IMPORTED_MODULE_2__["MapsAPILoader"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_agm_core__WEBPACK_IMPORTED_MODULE_2__["MapsAPILoader"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _web_service__WEBPACK_IMPORTED_MODULE_5__["WebService"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialog"]])
     ], FindParkingComponent);
     return FindParkingComponent;
 }());
@@ -594,26 +671,9 @@ var LoginComponent = /** @class */ (function () {
                         this.loginpModel.password = this.loginForm.value.password;
                         this.loginpModel.closeOption = 'login';
                         console.log("The login form was submitted: " + JSON.stringify(this.loginpModel)); // TODO: delete!
-                        return [4 /*yield*/, this.webService.PostLogIn(this.loginpModel)
-                            // var obj = JSON.parse(res);
-                            // if(res['status'] == "ok"){
-                            //   this.error = null
-                            //   this.dialogRef.close(res.name);
-                            // }
-                            // else{
-                            //   this.error = res.Desc;
-                            // }
-                        ];
+                        return [4 /*yield*/, this.webService.PostLogIn(this.loginpModel)];
                     case 1:
                         res = _a.sent();
-                        // var obj = JSON.parse(res);
-                        // if(res['status'] == "ok"){
-                        //   this.error = null
-                        //   this.dialogRef.close(res.name);
-                        // }
-                        // else{
-                        //   this.error = res.Desc;
-                        // }
                         console.log(res);
                         if (res == 'wrong email or password') {
                             this.error = res;
@@ -621,7 +681,6 @@ var LoginComponent = /** @class */ (function () {
                         }
                         if (res['name']) {
                             this.error = null;
-                            console.log('~~~~~~~~~` ' + res['name']);
                             result = { closeOption: 'login', username: res['name'] };
                             this.dialogRef.close(result);
                         }
@@ -822,6 +881,92 @@ var NotFoundComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/rent-spot-dialog/rent-spot-dialog.component.css":
+/*!*****************************************************************!*\
+  !*** ./src/app/rent-spot-dialog/rent-spot-dialog.component.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3JlbnQtc3BvdC1kaWFsb2cvcmVudC1zcG90LWRpYWxvZy5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/rent-spot-dialog/rent-spot-dialog.component.html":
+/*!******************************************************************!*\
+  !*** ./src/app/rent-spot-dialog/rent-spot-dialog.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1 mat-dialog-title>Rent Spot</h1>\n\n\n<div mat-dialog-content>\n  <p>You select the parking spot with the following characteristics:</p>\n\n  <p><b>ID: </b>{{spot.id}}</p>\n  <p><b>price: </b>{{spot.price}}</p>\n  <p><b>address: </b>{{spot.city}} {{spot.street}} {{spot.building}} </p>\n  <p><b>distance: </b> {{spot.distance}} </p>\n  <p><b>start time: </b> {{spot.start_time}} </p>\n  <p><b>end time: </b> {{spot.end_time}} </p>\n\n</div>\n\n<div mat-dialog-actions>\n  <button mat-button (click)=\"rent(spot.id)\">Rent</button>\n  <button mat-button (click)=\"close()\">Close</button>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/rent-spot-dialog/rent-spot-dialog.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/rent-spot-dialog/rent-spot-dialog.component.ts ***!
+  \****************************************************************/
+/*! exports provided: RentSpotDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RentSpotDialogComponent", function() { return RentSpotDialogComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../web.service */ "./src/app/web.service.ts");
+
+
+
+
+var RentSpotDialogComponent = /** @class */ (function () {
+    function RentSpotDialogComponent(dialogRef, spot, webService) {
+        this.dialogRef = dialogRef;
+        this.spot = spot;
+        this.webService = webService;
+    }
+    RentSpotDialogComponent.prototype.ngOnInit = function () {
+    };
+    RentSpotDialogComponent.prototype.close = function () {
+        this.dialogRef.close('close');
+    };
+    RentSpotDialogComponent.prototype.rent = function (spotId) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var res;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.webService.postRent(spotId)];
+                    case 1:
+                        res = _a.sent();
+                        if (res == null) {
+                            this.dialogRef.close('rent');
+                        }
+                        else {
+                            alert('error');
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RentSpotDialogComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-rent-spot-dialog',
+            template: __webpack_require__(/*! ./rent-spot-dialog.component.html */ "./src/app/rent-spot-dialog/rent-spot-dialog.component.html"),
+            styles: [__webpack_require__(/*! ./rent-spot-dialog.component.css */ "./src/app/rent-spot-dialog/rent-spot-dialog.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object, _web_service__WEBPACK_IMPORTED_MODULE_3__["WebService"]])
+    ], RentSpotDialogComponent);
+    return RentSpotDialogComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/rent-spot-form/rent-spot-form.component.css":
 /*!*************************************************************!*\
   !*** ./src/app/rent-spot-form/rent-spot-form.component.css ***!
@@ -906,7 +1051,7 @@ var RentSpotFormComponent = /** @class */ (function () {
         this.rentSpotModel.price = this.rentSpotForm.value.price;
         this.reset();
         console.log("The rent spot form was submitted: " + JSON.stringify(this.rentSpotModel)); // TODO: delete!
-        this.webService.addSpot(JSON.stringify(this.rentSpotModel));
+        this.webService.addSpot(this.rentSpotModel);
         // for tests:
         // var sd = startTime;
         // console.log("sd: ", sd)
@@ -1089,16 +1234,33 @@ var WebService = /** @class */ (function () {
     function WebService(http) {
         this.http = http;
         this.BASE_URL = 'http://localhost:8080';
-        this.ADD_SPOT_URL = '/add/renting_spot';
+        this.ADD_SPOT_URL = '/logged/add/renting_spot';
         this.SIGNUP_URL = 'https://team6a.auth0.com/dbconnections/signup';
         this.LOGIN_URL = '/login';
         this.LOGOUT = '/logged/logout';
+        this.GET_SPOT_URL = '/logged/search/all/renting_spots';
+        this.GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots';
+        this.RENT_URL = 'logged/rent/renting_spot';
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
         this.id_token = null;
         this.access_token = null;
     }
     WebService.prototype.addSpot = function (rent) {
-        this.http.post(this.BASE_URL + this.ADD_SPOT_URL, rent).subscribe(function (res) {
+        var body = {
+            accessToken: this.access_token,
+            idToken: this.id_token,
+            city: rent.city,
+            street: rent.street,
+            start_time: rent.start_time,
+            end_time: rent.end_time,
+            price: rent.price,
+            spot_num: ''
+        };
+        if (rent.spot_num) {
+            body.spot_num = rent.spot_num.toString();
+        }
+        console.log(body);
+        this.http.post(this.BASE_URL + this.ADD_SPOT_URL, body).subscribe(function (res) {
             console.log(JSON.stringify(res));
             alert("successfully add a new spot");
         }, function (err) {
@@ -1122,23 +1284,6 @@ var WebService = /** @class */ (function () {
             console.log(res); //TODO: delete
         });
     };
-    //   async PostLogIn(user){
-    //     var body = {
-    //       username: user.email,
-    //       password: user.password
-    //     }
-    //     console.log(JSON.stringify(body))
-    //     console.log(this.BASE_URL + this.LOGIN_URL)
-    //     await this.http.post(this.BASE_URL + this.LOGIN_URL, body).subscribe(res =>{
-    //     console.log(JSON.stringify(res))
-    //     return {status: "ok", name:res['name']};
-    //   },
-    //   err =>{
-    //     console.log(JSON.stringify(err))
-    //     return {status: "error", name:err['Desc']};
-    //   })
-    //     return null;
-    // }
     WebService.prototype.PostLogIn = function (user) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var body, x, error_1;
@@ -1158,11 +1303,62 @@ var WebService = /** @class */ (function () {
                     case 2:
                         x = _a.sent();
                         this.id_token = x['idToken'];
-                        console.log('~~~~~ ' + this.id_token);
+                        this.access_token = x['accessToken'];
                         return [2 /*return*/, x];
                     case 3:
                         error_1 = _a.sent();
                         return [2 /*return*/, 'wrong email or password'];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    WebService.prototype.getSpots = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var body, res, error_2;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        body = {
+                            accessToken: this.access_token,
+                            idToken: this.id_token
+                        };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.GET_SPOT_URL, body).toPromise()];
+                    case 2:
+                        res = _a.sent();
+                        return [2 /*return*/, JSON.stringify(res)];
+                    case 3:
+                        error_2 = _a.sent();
+                        return [2 /*return*/, JSON.stringify(error_2)];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    WebService.prototype.postRent = function (spot) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var body, res, error_3;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        body = {
+                            id: spot,
+                            accessToken: this.access_token,
+                            idToken: this.id_token
+                        };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.RENT_URL, body).toPromise()];
+                    case 2:
+                        res = _a.sent();
+                        return [2 /*return*/, null];
+                    case 3:
+                        error_3 = _a.sent();
+                        return [2 /*return*/, 'error'];
                     case 4: return [2 /*return*/];
                 }
             });
