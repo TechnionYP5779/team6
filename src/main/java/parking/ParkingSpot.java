@@ -24,7 +24,6 @@ public class ParkingSpot {
   private String endDate;
   Pair<Double, Double> coordinates;
   private int slotCounter; // number of rent slots associated with this parking spot
-  private static int uniqueId;
 
   /** initialize the parking spot with an address check validity of the address
    * check parking spot is not already belongs to a seller
@@ -48,15 +47,8 @@ public class ParkingSpot {
     this.slotCounter = 0;
     try {
       this.coordinates = mapUtils.basicUtils.geocodingAddress(a);
-    } catch (ApiException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (InterruptedException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+    } catch (IOException | InterruptedException | ApiException ¢) {
+      ¢.printStackTrace();
     }
   }
 
@@ -129,6 +121,10 @@ public class ParkingSpot {
   public void setEndDate(String endDate) {
     this.endDate = endDate;
   }
+  
+  public String getEndTime() {
+    return (endDate + "T" + endHour);
+  }
 
   public String getStartHour() {
     return startHour;
@@ -137,20 +133,32 @@ public class ParkingSpot {
   public void setStartHour(String startHour) {
     this.startHour = startHour;
   }
+  
+  public String getStartTime() {
+    return (startDate + "T" + startHour);
+  }
 
   public String getEndHour() {
     return endHour;
   }
+  
 
   public void setEndHour(String endHour) {
     this.endHour = endHour;
   }
   
+  public Double getLatitude(){
+    return coordinates.first;
+  }
+  
+  public Double getLongitude(){
+    return coordinates.second;
+  }
+  
 @Override 
   public String toString() {
-    String buyer = buyerID == null ? "-" : buyerID;
-    return ("parkingSpotId=" + id + ", sellerId=" + sellerID + ", buyerId=" + buyer + ", price=" + price 
-        + ", city=" + address.getCity() +", street="+ address.getStreet() + ", building=" + address.getBuilding()
-        + ", start_time=" + startDate + " " + startHour + ", end_time=" + endDate + " " + endHour + ", latitude=" + coordinates.first + ", longitude=" + coordinates.second);
+    return ("parkingSpotId=" + id + ", sellerId=" + sellerID + ", buyerId=" + (buyerID == null ? "-" : buyerID) + ", price=" + price + ", city="
+        + address.getCity() + ", street=" + address.getStreet() + ", building=" + address.getBuilding() + ", start_time=" + startDate + " "
+        + startHour + ", end_time=" + endDate + " " + endHour + ", latitude=" + coordinates.first + ", longitude=" + coordinates.second);
   }
 }

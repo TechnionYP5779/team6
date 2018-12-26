@@ -29,26 +29,21 @@ public class OurSystem {
     int hour = Integer.parseInt(startHourComponent[0]) + 2;
     if (hour > 23)
       hour -= 24;
-    String newStartHour = String.valueOf(hour);
-    for(int i = 1; i < startHourComponent.length; ++i) {
-      newStartHour += ":" + startHourComponent[i];
-    }
-    return newStartHour; 
+    String $ = String.valueOf(hour);
+    for(int ¢ = 1; ¢ < startHourComponent.length; ++¢)
+      $ += ":" + startHourComponent[¢];
+    return $; 
   }
   
   public static void addParkingSpot(JSONObject jObj) {
     String city = jObj.getString("city"), street = jObj.getString("street");
     int building = Integer.parseInt(jObj.getString("building"));
-    String startTime = jObj.getString("start_time"), endTime = jObj.getString("end_time");
+    String endTime = jObj.getString("end_time");
     
-    String[] startComponent = startTime.split("T");
-    String startDate = startComponent[0];
-    String startHour = addTwoHours(startComponent[1].substring(0,9));
-    
+    String[] startComponent = jObj.getString("start_time").split("T");
+    String startDate = startComponent[0], startHour = addTwoHours(startComponent[1].substring(0, 9));
     String[] endComponent = endTime.split("T");
-    String endDate = endComponent[0];
-    String endHour = addTwoHours(endComponent[1].substring(0,9));
-
+    String endDate = endComponent[0], endHour = addTwoHours(endComponent[1].substring(0, 9));
     int price = Integer.parseInt(jObj.getString("price"));
     String ownerID = jObj.getString("userId");
     ParkingSpot p = new ParkingSpot(0, ownerID, null, price, new Address(city, street, building),startHour, endHour, startDate, endDate);
@@ -71,7 +66,7 @@ public class OurSystem {
   }
   
   public static void rentParkingSpot(JSONObject jObj) {
-    String buyerId = jObj.getString("userId");
+    String buyerId = jObj.getString("buyerId");
     int parkingSpotId = Integer.parseInt(jObj.getString("parkingSpotId"));
     try {
       ParkingDataBase.rentParkingSpot(parkingSpotId, buyerId);
@@ -92,51 +87,62 @@ public class OurSystem {
   }
  
   
-  public static JSONObject getAllParkingSpots(JSONObject jObj) {
-    List<ParkingSpot> pList = null;
+  public static JSONArray getAllParkingSpots() {
+    List<ParkingSpot> $ = null;
     try {
-      pList = ParkingDataBase.getAllParkingSpots();
-    } catch (SQLException e) {
+      $ = ParkingDataBase.getAllParkingSpots();
+    } catch (SQLException ¢) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
+      ¢.printStackTrace();
     }
-    return convertParkingSpotsToJSON(pList);
+    return convertParkingSpotsToJSONArray($);
   }
   
-  public static JSONObject getAllAvailableParkingSpots(JSONObject jObj) {
-    List<ParkingSpot> pList = null;
+  public static JSONArray getAllParkingSpotsByUser(JSONObject jObj) {
+    List<ParkingSpot> $ = null;
     try {
-      pList = ParkingDataBase.getAllAvailableParkingSpots();
-    } catch (SQLException e) {
+      $ = ParkingDataBase.getAllParkingSpotsByUser(jObj.getString("userId"));
+    } catch (SQLException ¢) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
+      ¢.printStackTrace();
     }
-    return convertParkingSpotsToJSON(pList);
+    return convertParkingSpotsToJSONArray($);
   }
   
-  public static JSONObject getParkingSpotsByDate(JSONObject jObj) {
+  public static JSONArray getAllAvailableParkingSpots() {
+    List<ParkingSpot> $ = null;
+    try {
+      $ = ParkingDataBase.getAllAvailableParkingSpots();
+    } catch (SQLException ¢) {
+      // TODO Auto-generated catch block
+      ¢.printStackTrace();
+    }
+    return convertParkingSpotsToJSONArray($);
+  }
+  
+  public static JSONArray getParkingSpotsByDate(JSONObject jObj) {
     //don't use it yet, need to be fixed 
     String date = jObj.getString("date");
-    List<ParkingSpot> pList = null;
+    List<ParkingSpot> $ = null;
     try {
-      pList = ParkingDataBase.searchSpotsWithDate(date);
-    } catch (SQLException e) {
+      $ = ParkingDataBase.searchSpotsWithDate(date);
+    } catch (SQLException ¢) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
+      ¢.printStackTrace();
     }
-    return convertParkingSpotsToJSON(pList);
+    return convertParkingSpotsToJSONArray($);
   }
   
-  public static JSONObject getParkingSpotsByAddress(JSONObject jObj) {
+  public static JSONArray getParkingSpotsByAddress(JSONObject jObj) {
     String city = jObj.getString("city"), street = jObj.getString("street"); 
-    List<ParkingSpot> pList = null;
+    List<ParkingSpot> $ = null;
     try {
-      pList = ParkingDataBase.searchSpotsWithAddress(city, street);
-    } catch (SQLException e) {
+      $ = ParkingDataBase.searchSpotsWithAddress(city, street);
+    } catch (SQLException ¢) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
+      ¢.printStackTrace();
     }
-    return convertParkingSpotsToJSON(pList);
+    return convertParkingSpotsToJSONArray($);
   }
   
 //  public static JSONObject searchParkingSpots(JSONObject jObj) {
@@ -154,22 +160,30 @@ public class OurSystem {
 //    return convertParkingSpotsToJSON($);
 //  }
   
-  private static JSONObject convertParkingSpotsToJSON(List<ParkingSpot> pList) {
-    //String jsonDataString = "{\"lat\":\"value\",\"lon\":\"value\"}";
-    JSONObject $ = new JSONObject();
-    
-    for(ParkingSpot ¢ : pList) {
-//      JSONObject jsonObjParkingSpot = new JSONObject();
-      $.put(String.valueOf(¢.getId()), ¢ + "");
+  private static JSONArray convertParkingSpotsToJSONArray(List<ParkingSpot> pList) {
+    JSONArray $ = new JSONArray();  
+    for(ParkingSpot ps : pList) {
+      JSONObject jsonObjParkingSpot = new JSONObject();
+      jsonObjParkingSpot.put("city", ps.getAddress().getCity());
+      jsonObjParkingSpot.put("street", ps.getAddress().getStreet());
+      jsonObjParkingSpot.put("building", ps.getAddress().getBuilding());
+      jsonObjParkingSpot.put("start_time", ps.getStartTime());
+      jsonObjParkingSpot.put("end_time", ps.getEndTime());
+      jsonObjParkingSpot.put("price", ps.getPrice());
+      jsonObjParkingSpot.put("userId", ps.getSellerID());
+      jsonObjParkingSpot.put("buyerId", ps.getBuyerID());
+      jsonObjParkingSpot.put("latitude", ps.getLatitude());
+      jsonObjParkingSpot.put("getLongitude", ps.getLongitude());
+      $.put(jsonObjParkingSpot);
     }
     return $;
   }
-  
+  /*
   private static boolean checkTimeLegit(String startTime, String endTime) {
     int sTHour = Integer.parseInt(startTime.substring(0, 2)), sTMin = Integer.parseInt(startTime.substring(3, 5)),
         eTHour = Integer.parseInt(endTime.substring(0, 2)), eTMin = Integer.parseInt(endTime.substring(3, 5));
     return !(eTMin < 0 | sTMin < 0 | eTHour < 0 | sTHour < 0) && !(eTMin >= 60 | sTMin >= 60 | eTHour >= 24 | sTHour >= 24);
   }
-  
+  */
   
 }

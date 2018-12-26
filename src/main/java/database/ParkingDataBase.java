@@ -73,12 +73,10 @@ public class ParkingDataBase {
     List<ParkingSpot> $ = new ArrayList<>();
     try {
       q = SQLUtils.runQuery("SELECT * FROM parkingspots;");
-      @SuppressWarnings("resource") ResultSet rs = q.getResults();
-      while(rs.next()) {
-        Address a = new Address(rs.getString("city"),rs.getString("street"),rs.getInt("building"));
-        $.add(new ParkingSpot(rs.getInt("id"), rs.getString("owner"), rs.getString("buyer"), rs.getInt("price"), a, rs.getDate("startDate") + "",
-            rs.getDate("endDate") + "", rs.getTime("startHour") + "", rs.getTime("endHour") + ""));
-      }
+      for (ResultSet ¢ = q.getResults(); ¢.next();)
+        $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
+            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
+            ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
     }
     catch(SQLException ¢) {
       exception = ¢;
@@ -103,12 +101,10 @@ public class ParkingDataBase {
     List<ParkingSpot> $ = new ArrayList<>();
     try {
       q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE buyer IS NULL;");
-      @SuppressWarnings("resource") ResultSet rs = q.getResults();
-      while(rs.next()) {
-        Address a = new Address(rs.getString("city"),rs.getString("street"),rs.getInt("building"));
-        $.add(new ParkingSpot(rs.getInt("id"), rs.getString("owner"), rs.getString("buyer"), rs.getInt("price"), a, rs.getDate("startDate") + "",
-            rs.getDate("endDate") + "", rs.getTime("startHour") + "", rs.getTime("endHour") + ""));
-      }
+      for (ResultSet ¢ = q.getResults(); ¢.next();)
+        $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
+            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
+            ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
     }
     catch(SQLException ¢) {
       exception = ¢;
@@ -121,6 +117,30 @@ public class ParkingDataBase {
       throw exception;
     return $;
   }
+  
+  public static List<ParkingSpot> getAllParkingSpotsByUser(String userId) throws SQLException {
+    SQLException exception = null;
+    QueryResults q = null;
+    List<ParkingSpot> $ = new ArrayList<>();
+    try {
+      q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE owner IS "+userId+";");
+      for (ResultSet ¢ = q.getResults(); ¢.next();)
+        $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
+            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
+            ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
+    }
+    catch(SQLException ¢) {
+      exception = ¢;
+    }
+    finally {
+      if(q != null)
+        q.close();
+    }
+    if(exception != null)
+      throw exception;
+    return $;
+  }
+  
   
   /**
    * Returns all available spots whose range of dates includes the given date.
@@ -135,12 +155,10 @@ public class ParkingDataBase {
     try {
       String SQLdate = "DATE '" + date + "'";
       q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE " + SQLdate + " >= startDate AND " + SQLdate + " <= endDate AND buyer IS NULL;");
-      @SuppressWarnings("resource") ResultSet rs = q.getResults();
-      while(rs.next()) {
-        Address a = new Address(rs.getString("city"),rs.getString("street"),rs.getInt("building"));
-        $.add(new ParkingSpot(rs.getInt("id"), rs.getString("owner"), rs.getString("buyer"), rs.getInt("price"), a, rs.getDate("startDate") + "",
-            rs.getDate("endDate") + "", rs.getTime("startHour") + "", rs.getTime("endHour") + ""));
-      }
+      for (ResultSet ¢ = q.getResults(); ¢.next();)
+        $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
+            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
+            ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
     }
     catch(SQLException ¢) {
       exception = ¢;
@@ -167,12 +185,10 @@ public class ParkingDataBase {
     List<ParkingSpot> $ = new ArrayList<>();
     try {
       q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE city = '"+city+"' AND street = '"+street+"' AND buyer IS NULL;");
-      @SuppressWarnings("resource") ResultSet rs = q.getResults();
-      while(rs.next()) {
-        Address a = new Address(rs.getString("city"),rs.getString("street"),rs.getInt("building"));
-        $.add(new ParkingSpot(rs.getInt("id"), rs.getString("owner"), rs.getString("buyer"), rs.getInt("price"), a, rs.getDate("startDate") + "",
-            rs.getDate("endDate") + "", rs.getTime("startHour") + "", rs.getTime("endHour") + ""));
-      }
+      for (ResultSet ¢ = q.getResults(); ¢.next();)
+        $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
+            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
+            ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
     }
     catch(SQLException ¢) {
       exception = ¢;
