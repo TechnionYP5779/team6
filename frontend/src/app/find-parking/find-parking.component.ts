@@ -7,6 +7,7 @@ import { MatRadioModule, MatRadioButton, MatRadioChange } from '@angular/materia
 import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSort, MatTableDataSource } from '@angular/material';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { WebService } from '../web.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { RentSpotDialogComponent } from '../rent-spot-dialog/rent-spot-dialog.component';
@@ -30,6 +31,8 @@ export class FindParkingComponent implements OnInit {
   currlat: number;
   currlng: number;
 
+  loading = true
+
   // technion location (used if browser doesn't support GPS)
   thecnionlat: number = 32.776520;
   thecnionlng: number = 35.022610;
@@ -40,18 +43,6 @@ export class FindParkingComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'address', 'price'];
   ELEMENT_DATA: SpotElement[] = null;
-  // [
-  //   { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
-  //   { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, distance: -1, price: 70 },
-  //   { id: 3, lat: this.thecnionlat + 0.00065, lng: this.thecnionlng + 0.00065, distance: -1, price: 30 },
-  //   { id: 4, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng - 0.00070, distance: -1, price: 50 },
-  //   { id: 5, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng - 0.00150, distance: -1, price: 40 },
-  //   { id: 6, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng + 0.00045, distance: -1, price: 45 },
-  //   { id: 7, lat: this.thecnionlat - 0.00175, lng: this.thecnionlng + 0.00145, distance: -1, price: 40 },
-  //   { id: 8, lat: this.thecnionlat + 0.00045, lng: this.thecnionlng - 0.00165, distance: -1, price: 30 },
-  //   { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, distance: -1, price: 20 },
-  //   { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, distance: -1, price: 80 },
-  // ];
   ELEMENT_DATA_FILTER: SpotElement[] = null;
   dataSource = null;
 
@@ -69,6 +60,7 @@ export class FindParkingComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
     console.log(this.dataSource)
     this.dataSource.sort = this.sort;
+    this.loading = false;
   }
 
 
@@ -162,9 +154,10 @@ export class FindParkingComponent implements OnInit {
       // spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
 
       // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
-      //   ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
-      //   this.ELEMENT_DATA_FILTER.push(spot);
-      // }
+
+        if(((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
+        this.ELEMENT_DATA_FILTER.push(spot);
+      }
 
     }
 
@@ -196,10 +189,12 @@ export class FindParkingComponent implements OnInit {
 
     dialogConfig.data = { /** pass data to dialog */
       id: this.selectedSpot.id,
+      building: this.selectedSpot.building,
+      city: this.selectedSpot.city,
+      street: this.selectedSpot.street,
+      end_time: this.selectedSpot.end_time,
+      start_time: this.selectedSpot.start_time,
       price: this.selectedSpot.price,
-      lat: this.selectedSpot.latitude,
-      lng: this.selectedSpot.longitude,
-      address: this.getAddress(this.selectedSpot.latitude, this.selectedSpot.longitude),
     };
 
     /** open dialog */

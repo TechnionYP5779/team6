@@ -146,20 +146,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/esm5/select.es5.js");
 /* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm5/table.es5.js");
 /* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/esm5/sort.es5.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/index.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-/* harmony import */ var _become_host_become_host_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./become-host/become-host.component */ "./src/app/become-host/become-host.component.ts");
-/* harmony import */ var _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./not-found/not-found.component */ "./src/app/not-found/not-found.component.ts");
-/* harmony import */ var _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./sign-up/sign-up.component */ "./src/app/sign-up/sign-up.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./rent-spot-form/rent-spot-form.component */ "./src/app/rent-spot-form/rent-spot-form.component.ts");
-/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./web.service */ "./src/app/web.service.ts");
-/* harmony import */ var _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./rent-spot-dialog/rent-spot-dialog.component */ "./src/app/rent-spot-dialog/rent-spot-dialog.component.ts");
+/* harmony import */ var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/progress-spinner */ "./node_modules/@angular/material/esm5/progress-spinner.es5.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/index.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _become_host_become_host_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./become-host/become-host.component */ "./src/app/become-host/become-host.component.ts");
+/* harmony import */ var _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./not-found/not-found.component */ "./src/app/not-found/not-found.component.ts");
+/* harmony import */ var _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./sign-up/sign-up.component */ "./src/app/sign-up/sign-up.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./rent-spot-form/rent-spot-form.component */ "./src/app/rent-spot-form/rent-spot-form.component.ts");
+/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./web.service */ "./src/app/web.service.ts");
+/* harmony import */ var _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./rent-spot-dialog/rent-spot-dialog.component */ "./src/app/rent-spot-dialog/rent-spot-dialog.component.ts");
 // external imports:
+
 
 
 
@@ -191,16 +193,16 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"],
-                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_15__["NavbarComponent"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_13__["routingComponents"],
-                _home_home_component__WEBPACK_IMPORTED_MODULE_16__["HomeComponent"],
-                _become_host_become_host_component__WEBPACK_IMPORTED_MODULE_17__["BecomeHostComponent"],
-                _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_18__["NotFoundComponent"],
-                _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_19__["SignUpComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_20__["LoginComponent"],
-                _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_21__["RentSpotFormComponent"],
-                _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_23__["RentSpotDialogComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"],
+                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_16__["NavbarComponent"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_14__["routingComponents"],
+                _home_home_component__WEBPACK_IMPORTED_MODULE_17__["HomeComponent"],
+                _become_host_become_host_component__WEBPACK_IMPORTED_MODULE_18__["BecomeHostComponent"],
+                _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_19__["NotFoundComponent"],
+                _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_20__["SignUpComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_21__["LoginComponent"],
+                _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_22__["RentSpotFormComponent"],
+                _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_24__["RentSpotDialogComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -216,9 +218,10 @@ var AppModule = /** @class */ (function () {
                 _angular_material_radio__WEBPACK_IMPORTED_MODULE_7__["MatRadioModule"],
                 _angular_material_table__WEBPACK_IMPORTED_MODULE_9__["MatTableModule"],
                 _angular_material_sort__WEBPACK_IMPORTED_MODULE_10__["MatSortModule"],
-                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_11__["NgbModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_13__["AppRoutingModule"],
-                _agm_core__WEBPACK_IMPORTED_MODULE_12__["AgmCoreModule"].forRoot({
+                _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_11__["MatProgressSpinnerModule"],
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__["NgbModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_14__["AppRoutingModule"],
+                _agm_core__WEBPACK_IMPORTED_MODULE_13__["AgmCoreModule"].forRoot({
                     apiKey: 'AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ',
                     libraries: ['geometry']
                 })
@@ -229,9 +232,9 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatInputModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"]
             ],
-            providers: [_web_service__WEBPACK_IMPORTED_MODULE_22__["WebService"]],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]],
-            entryComponents: [_login_login_component__WEBPACK_IMPORTED_MODULE_20__["LoginComponent"], _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_19__["SignUpComponent"], _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_23__["RentSpotDialogComponent"]]
+            providers: [_web_service__WEBPACK_IMPORTED_MODULE_23__["WebService"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"]],
+            entryComponents: [_login_login_component__WEBPACK_IMPORTED_MODULE_21__["LoginComponent"], _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_20__["SignUpComponent"], _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_24__["RentSpotDialogComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -315,7 +318,7 @@ module.exports = "/** split page to 2 columns */\n\n.container {\n    margin-top
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\n  <!-- Title -->\n  <h2>Find parking spot</h2>\n\n\n  <!-- split page to 2 columns: table on the left and map on the right -->\n  <div class=\"row\">\n\n    <!-- FEFT -------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"table\">\n\n      <!-- Form (left) ----------------------------------------------------------------------------->\n      <div class=\"container\" [formGroup]=\"filterForm\">\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max distance from your location</mat-label>\n            <input matInput placeholder=\"max distance\" formControlName=\"maxDistance\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max price</mat-label>\n            <input matInput placeholder=\"max price\" formControlName=\"maxPrice\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field>\n            <mat-label>Choose how to determine your current location</mat-label>\n            <mat-select placeholder=\"location options\" formControlName=\"locationOption\" required>\n              <mat-option *ngFor=\"let option of locationOptions\" [value]=\"option\">\n                {{option}}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n        </div>\n\n      </div>\n\n      <button type=\"button\" (click)=\"filter()\" [disabled]=\"!filterForm.valid\">Submit</button>\n      <button type=\"button\" (click)=\"reset()\">Reset (show all spot)</button>\n\n\n      <!-- Table (left) ---------------------------------------------------------------------------->\n      <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" matSort>\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Addres Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef> Address </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.city}} {{element.street}} {{element.building}} </td>\n        </ng-container>\n\n<!--          Distance Column \n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.distance == -1 ? '---' : element.distance}} </td>\n        </ng-container> -->\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n\n    </div>\n\n    <!-- RIGHT ------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"map\">\n\n      <!-- The map (right) ------------------------------------------------------------------------->\n      <agm-map [zoom]='17' [latitude]=\"currlat\" [longitude]=\"currlng\">\n\n        <!-- Marker for current location -->\n        <agm-marker [latitude]=\"currlat\" [longitude]=\"currlng\" [iconUrl]=\"'../../assets/img/blue-dot.png'\">\n          <agm-info-window>Your current location</agm-info-window>\n        </agm-marker>\n\n        <!-- Markers for all avaiable spot -->\n        <agm-marker *ngFor=\"let spot of ELEMENT_DATA_FILTER; let i=index\" [latitude]=\"+spot.latitude\" [longitude]=\"+spot.longitude\"\n          [label]=\"spot.id.toString()\">\n          <agm-info-window>\n            ID: {{spot.id}}\n            <br>\n            price: {{spot.price}}\n            <br>\n            distance: {{spot.distance}}\n            <br>\n            <button type=\"button\" (click)=\"rentSpot(spot)\">Rent Me!</button>\n\n          </agm-info-window>\n        </agm-marker>\n\n\n      </agm-map>\n\n    </div>\n\n\n  </div>\n\n\n</div>"
+module.exports = "<div style=\"width:40%; margin:5% auto;\" *ngIf=\"loading\">\n  <mat-progress-spinner mode=\"indeterminate\" value=\"indeterminate\" diameter=\"200\" strokeWidth=\"10\" style=\"width:15%; margin:0 auto;\">\n  </mat-progress-spinner>\n</div> \n\n<div class=\"container\" *ngIf=\"!loading\">\n  <!-- Title -->\n  <h2>Find parking spot</h2> \n  <!-- split page to 2 columns: table on the left and map on the right -->\n  <div class=\"row\">\n\n    <!-- FEFT -------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"table\">\n\n      <!-- Form (left) ----------------------------------------------------------------------------->\n      <div class=\"container\" [formGroup]=\"filterForm\">\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max distance from your location</mat-label>\n            <input matInput placeholder=\"max distance\" formControlName=\"maxDistance\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max price</mat-label>\n            <input matInput placeholder=\"max price\" formControlName=\"maxPrice\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field>\n            <mat-label>Choose how to determine your current location</mat-label>\n            <mat-select placeholder=\"location options\" formControlName=\"locationOption\" required>\n              <mat-option *ngFor=\"let option of locationOptions\" [value]=\"option\">\n                {{option}}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n        </div>\n\n      </div>\n\n      <button type=\"button\" (click)=\"filter()\" [disabled]=\"!filterForm.valid\">Submit</button>\n      <button type=\"button\" (click)=\"reset()\">Reset (show all spot)</button>\n\n\n      <!-- Table (left) ---------------------------------------------------------------------------->\n      <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" matSort>\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Addres Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef> Address </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.city}} {{element.street}} {{element.building}} </td>\n        </ng-container>\n\n<!--          Distance Column \n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.distance == -1 ? '---' : element.distance}} </td>\n        </ng-container> -->\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n\n    </div>\n\n    <!-- RIGHT ------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"map\">\n\n      <!-- The map (right) ------------------------------------------------------------------------->\n      <agm-map [zoom]='17' [latitude]=\"currlat\" [longitude]=\"currlng\">\n\n        <!-- Marker for current location -->\n        <agm-marker [latitude]=\"currlat\" [longitude]=\"currlng\" [iconUrl]=\"'../../assets/img/blue-dot.png'\">\n          <agm-info-window>Your current location</agm-info-window>\n        </agm-marker>\n\n        <!-- Markers for all avaiable spot -->\n        <agm-marker *ngFor=\"let spot of ELEMENT_DATA_FILTER; let i=index\" [latitude]=\"+spot.latitude\" [longitude]=\"+spot.longitude\"\n          [label]=\"spot.id.toString()\">\n          <agm-info-window>\n            ID: {{spot.id}}\n            <br>\n            price: {{spot.price}}\n            <br>\n            distance: {{spot.distance}}\n            <br>\n            <button type=\"button\" (click)=\"rentSpot(spot)\">Rent Me!</button>\n\n          </agm-info-window>\n        </agm-marker>\n\n\n      </agm-map>\n\n    </div>\n\n\n  </div>\n\n \n</div>"
 
 /***/ }),
 
@@ -355,6 +358,7 @@ var FindParkingComponent = /** @class */ (function () {
         // let the user to define his current location
         this.defineCurrLocOptions = ['GPS location', 'Technion']; // need to add "choose by address"
         this.selectedCurrLocOption = 'GPS location';
+        this.loading = true;
         // technion location (used if browser doesn't support GPS)
         this.thecnionlat = 32.776520;
         this.thecnionlng = 35.022610;
@@ -362,18 +366,6 @@ var FindParkingComponent = /** @class */ (function () {
         // fake DB TODO: updete this!!!
         this.displayedColumns = ['id', 'address', 'price'];
         this.ELEMENT_DATA = null;
-        // [
-        //   { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
-        //   { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, distance: -1, price: 70 },
-        //   { id: 3, lat: this.thecnionlat + 0.00065, lng: this.thecnionlng + 0.00065, distance: -1, price: 30 },
-        //   { id: 4, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng - 0.00070, distance: -1, price: 50 },
-        //   { id: 5, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng - 0.00150, distance: -1, price: 40 },
-        //   { id: 6, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng + 0.00045, distance: -1, price: 45 },
-        //   { id: 7, lat: this.thecnionlat - 0.00175, lng: this.thecnionlng + 0.00145, distance: -1, price: 40 },
-        //   { id: 8, lat: this.thecnionlat + 0.00045, lng: this.thecnionlng - 0.00165, distance: -1, price: 30 },
-        //   { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, distance: -1, price: 20 },
-        //   { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, distance: -1, price: 80 },
-        // ];
         this.ELEMENT_DATA_FILTER = null;
         this.dataSource = null;
         this.filterElement = {
@@ -409,6 +401,7 @@ var FindParkingComponent = /** @class */ (function () {
                         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
                         console.log(this.dataSource);
                         this.dataSource.sort = this.sort;
+                        this.loading = false;
                         return [2 /*return*/];
                 }
             });
@@ -478,9 +471,9 @@ var FindParkingComponent = /** @class */ (function () {
             var markerLoc = new google.maps.LatLng(spot.latitude, spot.longitude);
             // spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
             // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
-            //   ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
-            //   this.ELEMENT_DATA_FILTER.push(spot);
-            // }
+            if (((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
+                this.ELEMENT_DATA_FILTER.push(spot);
+            }
         }
         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
         this.dataSource.sort = this.sort;
@@ -500,10 +493,12 @@ var FindParkingComponent = /** @class */ (function () {
         dialogConfig.width = '500px';
         dialogConfig.data = {
             id: this.selectedSpot.id,
+            building: this.selectedSpot.building,
+            city: this.selectedSpot.city,
+            street: this.selectedSpot.street,
+            end_time: this.selectedSpot.end_time,
+            start_time: this.selectedSpot.start_time,
             price: this.selectedSpot.price,
-            lat: this.selectedSpot.latitude,
-            lng: this.selectedSpot.longitude,
-            address: this.getAddress(this.selectedSpot.latitude, this.selectedSpot.longitude),
         };
         /** open dialog */
         var dialogRef = this.rentDialog.open(_rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_6__["RentSpotDialogComponent"], dialogConfig);
@@ -612,7 +607,7 @@ module.exports = ".mat-dialog-content {\n    display: flex;\n    flex-direction:
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Title -->\n<h2 style=\"text-align:center\" mat-dialog-title>Login</h2>\n<div *ngIf=\"username\"> Error: {{error}} </div>\n<!-- Content -->\n<div mat-dialog-content [formGroup]=\"loginForm\">\n\n  <!-- UserName -->\n  <mat-form-field>\n    <input matInput placeholder=\"email\" formControlName=\"email\" required>\n  </mat-form-field>\n\n  <!-- Password -->\n  <mat-form-field>\n    <input matInput placeholder=\"Password\" formControlName=\"password\" required [type]=\"hidePassword ? 'password' : 'text'\">\n    <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>\n  </mat-form-field>\n\n</div>\n\n<!-- Bottons -->\n<div mat-dialog-actions align=\"center\">\n\n  <button type=\"button\" class=\"btn btn-primary\" (click)=\"login()\" [disabled]=\"!loginForm.valid\">Login</button>\n\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"close()\">Close</button>\n\n  <p> <br>\n    Don’t have an account?\n    <button type=\"button\" class=\"btn btn-link\" (click)=\"signUp()\">Sign Up</button>\n  </p>\n\n</div>"
+module.exports = "<!-- Title -->\n<h2 style=\"text-align:center\" mat-dialog-title>Login</h2>\n<!-- Content -->\n<div  >\n  <div *ngIf=\"loading\">\n    <mat-progress-spinner mode=\"indeterminate\" value=\"indeterminate\" style=\"width:15%; margin:0 auto;\"></mat-progress-spinner>\n    <p> {{spacer}} </p>\n    <p> {{spacer}} </p>\n  </div>\n</div>  \n<div *ngIf=\"!loading\" mat-dialog-content [formGroup]=\"loginForm\">\n  <p style=\"color:red;\" *ngIf=\"error\"> Error: {{error}} </p>\n\n  <!-- UserName -->\n  <mat-form-field>\n    <input matInput placeholder=\"email\" formControlName=\"email\" required>\n  </mat-form-field>\n\n  <!-- Password -->\n  <mat-form-field>\n    <input matInput placeholder=\"Password\" formControlName=\"password\" required [type]=\"hidePassword ? 'password' : 'text'\">\n    <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>\n  </mat-form-field>\n\n</div>\n\n<!-- Bottons -->\n<div mat-dialog-actions align=\"center\">\n\n  <button type=\"button\" class=\"btn btn-primary\" (click)=\"login()\" [disabled]=\"!loginForm.valid\">Login</button>\n\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"close()\">Close</button>\n\n  <p> <br>\n    Don’t have an account?\n    <button type=\"button\" class=\"btn btn-link\" (click)=\"signUp()\">Sign Up</button>\n  </p>\n\n</div>"
 
 /***/ }),
 
@@ -649,6 +644,8 @@ var LoginComponent = /** @class */ (function () {
         this.hidePassword = true; /* hide password as default */
         this.logged = false;
         this.error = null;
+        this.loading = false;
+        this.spacer = '         ';
         this.loginForm = fb.group({
             hideRequired: true,
             floatLabel: 'auto',
@@ -663,26 +660,31 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.ngOnInit = function () { };
     LoginComponent.prototype.login = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var res, result;
+            var res, result, tmp;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        this.loading = true;
                         this.loginpModel.email = this.loginForm.value.email;
                         this.loginpModel.password = this.loginForm.value.password;
                         this.loginpModel.closeOption = 'login';
+                        this.error = '';
                         console.log("The login form was submitted: " + JSON.stringify(this.loginpModel)); // TODO: delete!
                         return [4 /*yield*/, this.webService.PostLogIn(this.loginpModel)];
                     case 1:
                         res = _a.sent();
                         console.log(res);
-                        if (res == 'wrong email or password') {
-                            this.error = res;
-                            return [2 /*return*/];
-                        }
                         if (res['name']) {
                             this.error = null;
                             result = { closeOption: 'login', username: res['name'] };
                             this.dialogRef.close(result);
+                            this.loading = false;
+                        }
+                        if (res.Desc) {
+                            tmp = res.Desc.split(":");
+                            this.loading = false;
+                            this.error = tmp[tmp.length - 1];
+                            return [2 /*return*/];
                         }
                         return [2 /*return*/];
                 }
@@ -751,15 +753,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../sign-up/sign-up.component */ "./src/app/sign-up/sign-up.component.ts");
+/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../web.service */ "./src/app/web.service.ts");
+
 
 
 
 
 
 var NavbarComponent = /** @class */ (function () {
-    function NavbarComponent(loginDialog, signUpDialog) {
+    function NavbarComponent(loginDialog, signUpDialog, webService) {
         this.loginDialog = loginDialog;
         this.signUpDialog = signUpDialog;
+        this.webService = webService;
         this.navbarOpen = false;
         this.username = 'Guest';
         this.userIsLogin = false; // TODO: use service instead
@@ -794,6 +799,7 @@ var NavbarComponent = /** @class */ (function () {
         });
     };
     NavbarComponent.prototype.logout = function () {
+        this.webService.postLogOut();
         this.username = 'Guest';
         this.userIsLogin = false;
     };
@@ -816,7 +822,7 @@ var NavbarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./navbar.component.html */ "./src/app/navbar/navbar.component.html"),
             styles: [__webpack_require__(/*! ./navbar.component.css */ "./src/app/navbar/navbar.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _web_service__WEBPACK_IMPORTED_MODULE_5__["WebService"]])
     ], NavbarComponent);
     return NavbarComponent;
 }());
@@ -899,7 +905,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Rent Spot</h1>\n\n\n<div mat-dialog-content>\n  <p>You select the parking spot with the following characteristics:</p>\n\n  <p><b>ID: </b>{{spot.id}}</p>\n  <p><b>price: </b>{{spot.price}}</p>\n  <p><b>address: </b>{{spot.city}} {{spot.street}} {{spot.building}} </p>\n  <p><b>distance: </b> {{spot.distance}} </p>\n  <p><b>start time: </b> {{spot.start_time}} </p>\n  <p><b>end time: </b> {{spot.end_time}} </p>\n\n</div>\n\n<div mat-dialog-actions>\n  <button mat-button (click)=\"rent(spot.id)\">Rent</button>\n  <button mat-button (click)=\"close()\">Close</button>\n</div>"
+module.exports = "<h1 mat-dialog-title>Rent Spot</h1>\n\n\n<div mat-dialog-content>\n  <p>You have selected the parking spot with the following characteristics:</p>\n\n  <p><b>ID: </b>{{spot.id}}</p>\n  <p><b>price: </b>{{spot.price}}</p>\n  <p><b>address: </b>{{spot.city}} {{spot.street}} {{spot.building}} </p>\n  <p><b>start time: </b> {{spot.start_time}} </p>\n  <p><b>end time: </b> {{spot.end_time}} </p>\n\n</div>\n\n<div mat-dialog-actions>\n  <button mat-button (click)=\"rent(spot.id)\">Rent</button>\n  <button mat-button (click)=\"close()\">Close</button>\n</div> "
 
 /***/ }),
 
@@ -985,7 +991,7 @@ module.exports = ".container{\n    width: 800px; \n    margin-left: unset; \n   
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" [formGroup]=\"rentSpotForm\">\n\n  <!-- Title -->\n  <h2>Rent your spot</h2>\n\n  <!-- Form -->\n  <div class=\"mat-form\">\n\n\n    <!-- Address: -->\n    <div class=\"row\" formGroupName=\"address\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>Address:</mat-label>\n      </div>\n\n      <!-- City -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"City\" formControlName=\"city\" required>\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['city'].hasError('pattern')\">\n            Please enter a valid city name: Letters only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n      <!-- Street -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"Street\" formControlName=\"street\" required>\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['street'].hasError('pattern')\">\n            Please enter a valid street name: Letters only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n      <!-- Parking spot number -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"Parking spot number\" formControlName=\"spot_num\">\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['spot_num'].hasError('pattern')\">\n            Please enter a valid parking spot number: Integer number only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n    </div>\n\n\n    <!-- Start time: -->\n    <div class=\"row\" formGroupName=\"start_time\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>Start time:</mat-label>\n      </div>\n\n      <!-- Date: -->\n      <div class=\"col-sm-3\">\n        <div class=\"input-group\">\n          <input formControlName=\"start_date\" placeholder=\"yyyy-mm-dd\" name=\"dpS\" ngbDatepicker #dS=\"ngbDatepicker\"\n            class=\"date-input-field\">\n          <div class=\"input-group-append\">\n            <button type=\"button\" class=\"btn btn-outline-secondary\" (click)=\"dS.toggle()\">\n              <span class=\"fa fa-calendar\"></span>\n            </button>\n          </div>\n        </div>\n      </div>\n\n      <!-- Hour: -->\n      <div class=\"col-sm-3\">\n        <ngb-timepicker formControlName=\"start_hour\" required></ngb-timepicker>\n      </div>\n\n    </div>\n\n\n    <!-- End time: -->\n    <div class=\"row\" formGroupName=\"end_time\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>End time:</mat-label>\n      </div>\n\n      <!-- Date: -->\n      <div class=\"col-sm-3\">\n        <div class=\"input-group\">\n          <input formControlName=\"end_date\" placeholder=\"yyyy-mm-dd\" name=\"dpE\" ngbDatepicker #dE=\"ngbDatepicker\"\n            [markDisabled]=\"isDisabled\" class=\"date-input-field\">\n          <div class=\"input-group-append\">\n            <button type=\"button\" class=\"btn btn-outline-secondary\" (click)=\"dE.toggle()\">\n              <span class=\"fa fa-calendar\"></span>\n            </button>\n          </div>\n        </div>\n      </div>\n\n      <!-- Hour: -->\n      <div class=\"col-sm-3\">\n        <ngb-timepicker formControlName=\"end_hour\" required></ngb-timepicker>\n      </div>\n\n    </div>\n\n\n    <!-- Price per hour: -->\n    <div class=\"row\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>Price:</mat-label>\n      </div>\n\n      <!-- Price -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"Price per hour\" formControlName=\"price\" required>\n          <mat-error *ngIf=\"rentSpotForm.controls['price'].hasError('pattern')\">\n            Please enter a valid price: float number only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n    </div>\n\n\n  </div>\n\n\n  <!-- Buttons -->\n  <div style=\"width:300px; align-self: center\">\n\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"addNewSpot()\" [disabled]=\"!rentSpotForm.valid\" style=\"float: left\">Submit</button>\n    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"reset()\" style=\"float: right\">Reset</button>\n\n  </div>\n\n\n</div>"
+module.exports = "<div class=\"container\" [formGroup]=\"rentSpotForm\">\n\n  <!-- Title -->\n  <h2>Rent your spot</h2>\n\n  <!-- Form -->\n  <div class=\"mat-form\">\n\n\n    <!-- Address: -->\n    <div class=\"row\" formGroupName=\"address\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>Address:</mat-label>\n      </div>\n\n      <!-- City -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"City\" formControlName=\"city\" required>\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['city'].hasError('pattern')\">\n            Please enter a valid city name: Letters only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n      <!-- Street -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"Street\" formControlName=\"street\" required>\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['street'].hasError('pattern')\">\n            Please enter a valid street name: Letters only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n      <!-- Parking spot number -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"Parking spot number\" formControlName=\"spot_num\">\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['spot_num'].hasError('pattern')\">\n            Please enter a valid parking spot number: Integer number only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n    </div>\n\n\n    <!-- Start time: -->\n    <div class=\"row\" formGroupName=\"start_time\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>Start time:</mat-label>\n      </div>\n\n      <!-- Date: -->\n      <div class=\"col-sm-3\">\n        <div class=\"input-group\">\n          <input formControlName=\"start_date\" placeholder=\"yyyy-mm-dd\" name=\"dpS\" ngbDatepicker #dS=\"ngbDatepicker\"\n            class=\"date-input-field\">\n          <div class=\"input-group-append\">\n            <button type=\"button\" class=\"btn btn-outline-secondary\" (click)=\"dS.toggle()\">\n              <span class=\"fa fa-calendar\"></span>\n            </button>\n          </div>\n        </div>\n      </div>\n\n      <!-- Hour: -->\n      <div class=\"col-sm-3\">\n        <ngb-timepicker formControlName=\"start_hour\" required></ngb-timepicker>\n      </div>\n\n    </div>\n\n\n    <!-- End time: -->\n    <div class=\"row\" formGroupName=\"end_time\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>End time:</mat-label>\n      </div>\n\n      <!-- Date: -->\n      <div class=\"col-sm-3\">\n        <div class=\"input-group\">\n          <input formControlName=\"end_date\" placeholder=\"yyyy-mm-dd\" name=\"dpE\" ngbDatepicker #dE=\"ngbDatepicker\"\n            [markDisabled]=\"isDisabled\" class=\"date-input-field\">\n          <div class=\"input-group-append\">\n            <button type=\"button\" class=\"btn btn-outline-secondary\" (click)=\"dE.toggle()\">\n              <span class=\"fa fa-calendar\"></span>\n            </button>\n          </div>\n        </div>\n      </div>\n\n      <!-- Hour: -->\n      <div class=\"col-sm-3\">\n        <ngb-timepicker formControlName=\"end_hour\" required></ngb-timepicker>\n      </div>\n\n    </div>\n\n\n    <!-- Price per hour: -->\n    <div class=\"row\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>Price:</mat-label>\n      </div>\n\n      <!-- Price -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"Price per hour\" formControlName=\"price\" required>\n          <mat-error *ngIf=\"rentSpotForm.controls['price'].hasError('pattern')\">\n            Please enter a valid price: float number only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n    </div>\n\n\n  </div>\n\n  <p style=\"color:green;\" *ngIf=\"added\">successfully add a new spot</p>\n  <p style=\"color:red;\" *ngIf=\"error_msg\">{{error_msg}}</p>\n\n  <!-- Buttons -->\n  <div style=\"width:300px; align-self: center\">\n\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"addNewSpot()\" [disabled]=\"!rentSpotForm.valid\" style=\"float: left\">Submit</button>\n    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"reset()\" style=\"float: right\">Reset</button>\n\n  </div>\n\n\n</div>"
 
 /***/ }),
 
@@ -1015,6 +1021,8 @@ var RentSpotFormComponent = /** @class */ (function () {
     function RentSpotFormComponent(fb, datepickerConfig, webService) {
         this.fb = fb;
         this.webService = webService;
+        this.error_msg = '';
+        this.added = false;
         this.rentSpotModel = new _rent_spot__WEBPACK_IMPORTED_MODULE_2__["RentSpotModel"]('', '', null, null, 0);
         // configuration of NgbDatepickerConfig (used for disable dates before today):
         var currentDate = new Date();
@@ -1041,21 +1049,37 @@ var RentSpotFormComponent = /** @class */ (function () {
     }
     RentSpotFormComponent.prototype.ngOnInit = function () { };
     RentSpotFormComponent.prototype.addNewSpot = function () {
-        this.rentSpotModel.city = this.rentSpotForm.value.address.city;
-        this.rentSpotModel.street = this.rentSpotForm.value.address.street;
-        this.rentSpotModel.spot_num = this.rentSpotForm.value.address.spot_num;
-        var startTime = new Date(this.rentSpotForm.value.start_time.start_date.year, this.rentSpotForm.value.start_time.start_date.month - 1, this.rentSpotForm.value.start_time.start_date.day, this.rentSpotForm.value.start_time.start_hour.hour, this.rentSpotForm.value.start_time.start_hour.minute);
-        this.rentSpotModel.start_time = startTime;
-        var endTime = new Date(this.rentSpotForm.value.end_time.end_date.year, this.rentSpotForm.value.end_time.end_date.month - 1, this.rentSpotForm.value.end_time.end_date.day, this.rentSpotForm.value.end_time.end_hour.hour, this.rentSpotForm.value.end_time.end_hour.minute);
-        this.rentSpotModel.end_time = endTime;
-        this.rentSpotModel.price = this.rentSpotForm.value.price;
-        this.reset();
-        console.log("The rent spot form was submitted: " + JSON.stringify(this.rentSpotModel)); // TODO: delete!
-        this.webService.addSpot(this.rentSpotModel);
-        // for tests:
-        // var sd = startTime;
-        // console.log("sd: ", sd)
-        // console.log("time: " + " yyyy=" + sd.getFullYear() + " mm=" + sd.getMonth() + " dd=" + sd.getDate() + " h=" + sd.getHours() + " m=" + sd.getMinutes())
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var startTime, endTime, res;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.added = false;
+                        this.error_msg = '';
+                        this.rentSpotModel.city = this.rentSpotForm.value.address.city;
+                        this.rentSpotModel.street = this.rentSpotForm.value.address.street;
+                        this.rentSpotModel.spot_num = this.rentSpotForm.value.address.spot_num;
+                        startTime = new Date(this.rentSpotForm.value.start_time.start_date.year, this.rentSpotForm.value.start_time.start_date.month - 1, this.rentSpotForm.value.start_time.start_date.day, this.rentSpotForm.value.start_time.start_hour.hour, this.rentSpotForm.value.start_time.start_hour.minute);
+                        this.rentSpotModel.start_time = startTime;
+                        endTime = new Date(this.rentSpotForm.value.end_time.end_date.year, this.rentSpotForm.value.end_time.end_date.month - 1, this.rentSpotForm.value.end_time.end_date.day, this.rentSpotForm.value.end_time.end_hour.hour, this.rentSpotForm.value.end_time.end_hour.minute);
+                        this.rentSpotModel.end_time = endTime;
+                        this.rentSpotModel.price = this.rentSpotForm.value.price;
+                        this.reset();
+                        console.log("The rent spot form was submitted: " + JSON.stringify(this.rentSpotModel)); // TODO: delete!
+                        return [4 /*yield*/, this.webService.addSpot(this.rentSpotModel)];
+                    case 1:
+                        res = _a.sent();
+                        if (res = "successfully add a new spot") {
+                            this.added = true;
+                        }
+                        else {
+                            this.error_msg = res.Desc;
+                            // this.error = true
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     RentSpotFormComponent.prototype.reset = function () {
         this.rentSpotForm.reset();
@@ -1242,29 +1266,36 @@ var WebService = /** @class */ (function () {
         this.GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots';
         this.RENT_URL = 'logged/rent/renting_spot';
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
-        this.id_token = null;
-        this.access_token = null;
     }
     WebService.prototype.addSpot = function (rent) {
-        var body = {
-            accessToken: this.access_token,
-            idToken: this.id_token,
-            city: rent.city,
-            street: rent.street,
-            start_time: rent.start_time,
-            end_time: rent.end_time,
-            price: rent.price,
-            spot_num: ''
-        };
-        if (rent.spot_num) {
-            body.spot_num = rent.spot_num.toString();
-        }
-        console.log(body);
-        this.http.post(this.BASE_URL + this.ADD_SPOT_URL, body).subscribe(function (res) {
-            console.log(JSON.stringify(res));
-            alert("successfully add a new spot");
-        }, function (err) {
-            alert("an error occurred. please try again");
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var body;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        body = {
+                            city: rent.city,
+                            street: rent.street,
+                            start_time: rent.start_time,
+                            end_time: rent.end_time,
+                            price: rent.price,
+                            spot_num: ''
+                        };
+                        if (rent.spot_num) {
+                            body.spot_num = rent.spot_num.toString();
+                        }
+                        console.log(JSON.stringify(body));
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.ADD_SPOT_URL, body).subscribe(function (res) {
+                                console.log(JSON.stringify(res));
+                                return "successfully add a new spot";
+                            }, function (err) {
+                                return err;
+                            })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, null];
+                }
+            });
         });
     };
     WebService.prototype.PostSignUp = function (form) {
@@ -1302,12 +1333,10 @@ var WebService = /** @class */ (function () {
                         return [4 /*yield*/, this.http.post(this.BASE_URL + this.LOGIN_URL, body).toPromise()];
                     case 2:
                         x = _a.sent();
-                        this.id_token = x['idToken'];
-                        this.access_token = x['accessToken'];
                         return [2 /*return*/, x];
                     case 3:
                         error_1 = _a.sent();
-                        return [2 /*return*/, 'wrong email or password'];
+                        return [2 /*return*/, error_1.Desc];
                     case 4: return [2 /*return*/];
                 }
             });
@@ -1319,10 +1348,7 @@ var WebService = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        body = {
-                            accessToken: this.access_token,
-                            idToken: this.id_token
-                        };
+                        body = {};
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
@@ -1346,8 +1372,6 @@ var WebService = /** @class */ (function () {
                     case 0:
                         body = {
                             id: spot,
-                            accessToken: this.access_token,
-                            idToken: this.id_token
                         };
                         _a.label = 1;
                     case 1:
@@ -1363,6 +1387,9 @@ var WebService = /** @class */ (function () {
                 }
             });
         });
+    };
+    WebService.prototype.postLogOut = function () {
+        this.http.get(this.BASE_URL + this.LOGOUT);
     };
     WebService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),

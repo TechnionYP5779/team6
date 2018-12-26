@@ -25,16 +25,11 @@ RENT_URL = 'logged/rent/renting_spot'
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
-id_token = null;
-access_token = null;
-
 
   	constructor(private http: HttpClient) { }
 
-  	addSpot(rent: RentSpotModel){
+  	async addSpot(rent: RentSpotModel){
       var body = {
-          accessToken: this.access_token,
-          idToken: this.id_token,
           city: rent.city,
           street: rent.street,
           start_time: rent.start_time,
@@ -46,14 +41,15 @@ access_token = null;
         body.spot_num = rent.spot_num.toString();
       }
       console.log(JSON.stringify( body))
-  		this.http.post(this.BASE_URL+this.ADD_SPOT_URL, body).subscribe(res=>{
+  		await this.http.post(this.BASE_URL+this.ADD_SPOT_URL, body).subscribe(res=>{
   			console.log(JSON.stringify(res));	
-  			alert("successfully add a new spot")
+  			return "successfully add a new spot"
   		},
   		err=>{
-  			alert("an error occurred. please try again")
+  			return err
   		}
   		);
+      return null
   	}
 
     PostSignUp(form){
@@ -86,19 +82,15 @@ access_token = null;
     console.log(this.BASE_URL + this.LOGIN_URL)
     try{
       var x = await this.http.post(this.BASE_URL + this.LOGIN_URL, body).toPromise()
-      this.id_token = x['idToken']
-      this.access_token = x['accessToken'];
       return x;
     }
     catch (error) {
-      return 'wrong email or password';
+      return error.Desc;
     }
 }
 
   async getSpots(){
     var body = {
-      accessToken: this.access_token,
-      idToken: this.id_token
     }
 
     try{
@@ -114,8 +106,6 @@ access_token = null;
   async postRent(spot){
     var body = {
       id: spot,
-      accessToken: this.access_token,
-      idToken: this.id_token
     }
     try{
       var res = await this.http.post(this.BASE_URL + this.RENT_URL, body).toPromise();
@@ -124,5 +114,10 @@ access_token = null;
     catch(error){
       return 'error';
     } 
+  }
+
+  postLogOut(){
+    this.http.get(this.BASE_URL + this.LOGOUT)
+
   }
 } 
