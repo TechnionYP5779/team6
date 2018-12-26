@@ -1,6 +1,7 @@
 package com.auth0.example;
 
 import java.io.*;
+import java.util.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -9,6 +10,8 @@ import javax.servlet.http.*;
 import org.json.*;
 
 import com.auth0.*;
+
+import io.jsonwebtoken.*;
 
 // import com.auth0.*;
 //
@@ -26,15 +29,36 @@ import com.auth0.*;
    * @param next     the next filter chain **/
   @Override public void doFilter(final ServletRequest r, final ServletResponse response, final FilterChain next)
       throws IOException, ServletException {
-    if ((String) SessionUtils.get((HttpServletRequest) r, "accessToken") != null
-        || (String) SessionUtils.get((HttpServletRequest) r, "idToken") != null)
-      next.doFilter(r, response);
-    else
+    // we want both accessToken and idTokken
+    if ((String) SessionUtils.get((HttpServletRequest) r, "accessToken") == null
+        || (String) SessionUtils.get((HttpServletRequest) r, "idToken") == null) {
       ((HttpServletResponse) response).setHeader("Response", "ERROR");
-    ((HttpServletResponse) response).setHeader("status", "400");
-    ((HttpServletResponse) response).setStatus(400);
-    ((HttpServletResponse) response).getWriter().write(new JSONObject().put("Desc", "no accessToken and idToken") + "");
-   // ((HttpServletResponse) response).sendRedirect("/");
+      ((HttpServletResponse) response).setHeader("status", "400");
+      ((HttpServletResponse) response).setStatus(400);
+      ((HttpServletResponse) response).getWriter().write(new JSONObject().put("Desc", "no accessToken or idToken") + "");
+      return;
+    }
+    // veryfing the signature of the idToken
+    Jws<Claims> jws;
+    try {
+      jws = Jwts.parser().setSigningKey("https://team6a.auth0.com/.well-known/jwks.json")
+          .parseClaimsJws((String) SessionUtils.get((HttpServletRequest) r, "idToken"));
+    } catch (JwtException ¢) {
+      ((HttpServletResponse) response).setHeader("Response", "ERROR");
+      ((HttpServletResponse) response).getWriter().write(new JSONObject().put("Desc", ¢ + "") + "");
+      return;
+    }
+    // validating the values of the idToken
+    Date exp = jws.getBody().getExpiration();
+    if ((exp == null || exp.after(new Date())) && "https://team6a.auth0.com/".equals(jws.getBody().getIssuer())
+        && "BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva".equals(jws.getBody().getAudience()))
+      next.doFilter(r, response);
+    else {
+      ((HttpServletResponse) response).setHeader("Response", "ERROR");
+      ((HttpServletResponse) response).setHeader("status", "400");
+      ((HttpServletResponse) response).setStatus(400);
+      ((HttpServletResponse) response).getWriter().write(new JSONObject().put("Desc", "problem validating idToken") + "");
+    }
   }
 
   // @Override public void doFilter(final ServletRequest r, final ServletResponse
