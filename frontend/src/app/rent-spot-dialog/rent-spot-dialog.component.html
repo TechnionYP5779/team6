@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Rent Spot</h1>
+
+
+<div mat-dialog-content>
+  <p>You select the parking spot with the following characteristics:</p>
+
+  <p><b>ID: </b>{{spot.id}}</p>
+  <p><b>price: </b>{{spot.price}}</p>
+  <p><b>address: </b>{{spot.address}} ( lat={{spot.lat}} , lan={{spot.lng}} )</p>
+  <p><b>start time: </b>---complete this ---</p>
+  <p><b>end time: </b>---complete this ---</p>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="rent()">Rent</button>
+  <button mat-button (click)="close()">Close</button>
+</div>
