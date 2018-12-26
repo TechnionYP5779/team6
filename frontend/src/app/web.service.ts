@@ -126,4 +126,15 @@ access_token = null;
       return 'error';
     } 
   }
+
+  postLogOut(){
+    var body = {
+      accessToken: this.access_token,
+      idToken: this.id_token
+    }
+    this.http.post(this.BASE_URL + this.LOGOUT, body)
+    this.access_token = null;
+    this.id_token = null;
+
+  }
 } 
