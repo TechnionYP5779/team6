@@ -22,20 +22,21 @@ import com.auth0.net.*;
     if (!"POST".equals(r.getMethod()))// should only be used for Post Requests
       return;
     final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-    JSONObject loginInfo = new JSONObject(body);
-    AuthRequest request = auth.login(loginInfo.getString("username"), loginInfo.getString("password"), "Username-Password-Authentication").setScope("openid contacts");
+    final JSONObject loginInfo = new JSONObject(body);
+    final AuthRequest request = auth.login(loginInfo.getString("username"), loginInfo.getString("password"), "Username-Password-Authentication")
+        .setScope("openid contacts");
     resp.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
     try {
-      TokenHolder holder = request.execute();
-      UserInfo info = auth.userInfo(holder.getAccessToken()).execute();
+      final TokenHolder holder = request.execute();
+      final UserInfo info = auth.userInfo(holder.getAccessToken()).execute();
       resp.setHeader("Response", "OK");
-      JSONObject tokens = new JSONObject();
+      final JSONObject tokens = new JSONObject();
       tokens.put("accessToken", holder.getAccessToken());
       tokens.put("idToken", holder.getIdToken());
       tokens.put("name", info.getValues().get("name"));
       tokens.put("email", info.getValues().get("email"));
       resp.getWriter().write(tokens + "");
-    } catch (Auth0Exception ¢) {
+    } catch (final Auth0Exception ¢) {
       resp.setHeader("Response", "ERROR");
       resp.getWriter().write(new JSONObject().put("Desc", ¢ + "") + "");
       return;
