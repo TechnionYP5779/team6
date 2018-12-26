@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebService } from '../web.service';
 
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
   hidePassword = true;  /* hide password as default */
   logged = false;
   error = null;
+  loading = false
 
   constructor(private webService : WebService, private fb: FormBuilder, private dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.loginForm = fb.group({
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   async login() {
+    this.loading = true
     this.loginpModel.email = this.loginForm.value.email
     this.loginpModel.password = this.loginForm.value.password
     this.loginpModel.closeOption ='login'
@@ -52,10 +55,11 @@ export class LoginComponent implements OnInit {
       this.error = null;
       var result = {closeOption:'login', username: res['name']}
       this.dialogRef.close(result)
+      this.loading = false;
     }
     if (res.Desc){
       var tmp = res.Desc.split(":");
-      
+      this.loading = false;
       this.error = tmp[tmp.length -1]
       return;
     }

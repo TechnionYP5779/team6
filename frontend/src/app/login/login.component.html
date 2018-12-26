@@ -1,7 +1,12 @@
 <!-- Title -->
 <h2 style="text-align:center" mat-dialog-title>Login</h2>
 <!-- Content -->
-<div mat-dialog-content [formGroup]="loginForm">
+<div  >
+  <div *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" value="indeterminate" style="width:15%; margin:0 auto;"></mat-progress-spinner>
+  </div>
+</div>  
+<div *ngIf="!loading" mat-dialog-content [formGroup]="loginForm">
   <p style="color:red;" *ngIf="error"> Error: {{error}} </p>
 
   <!-- UserName -->

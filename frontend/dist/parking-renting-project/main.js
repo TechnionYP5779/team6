@@ -146,20 +146,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/esm5/select.es5.js");
 /* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm5/table.es5.js");
 /* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/esm5/sort.es5.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/index.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-/* harmony import */ var _become_host_become_host_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./become-host/become-host.component */ "./src/app/become-host/become-host.component.ts");
-/* harmony import */ var _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./not-found/not-found.component */ "./src/app/not-found/not-found.component.ts");
-/* harmony import */ var _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./sign-up/sign-up.component */ "./src/app/sign-up/sign-up.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./rent-spot-form/rent-spot-form.component */ "./src/app/rent-spot-form/rent-spot-form.component.ts");
-/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./web.service */ "./src/app/web.service.ts");
-/* harmony import */ var _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./rent-spot-dialog/rent-spot-dialog.component */ "./src/app/rent-spot-dialog/rent-spot-dialog.component.ts");
+/* harmony import */ var _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/progress-spinner */ "./node_modules/@angular/material/esm5/progress-spinner.es5.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/index.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./navbar/navbar.component */ "./src/app/navbar/navbar.component.ts");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _become_host_become_host_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./become-host/become-host.component */ "./src/app/become-host/become-host.component.ts");
+/* harmony import */ var _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./not-found/not-found.component */ "./src/app/not-found/not-found.component.ts");
+/* harmony import */ var _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./sign-up/sign-up.component */ "./src/app/sign-up/sign-up.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./rent-spot-form/rent-spot-form.component */ "./src/app/rent-spot-form/rent-spot-form.component.ts");
+/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./web.service */ "./src/app/web.service.ts");
+/* harmony import */ var _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./rent-spot-dialog/rent-spot-dialog.component */ "./src/app/rent-spot-dialog/rent-spot-dialog.component.ts");
 // external imports:
+
 
 
 
@@ -191,16 +193,16 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"],
-                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_15__["NavbarComponent"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_13__["routingComponents"],
-                _home_home_component__WEBPACK_IMPORTED_MODULE_16__["HomeComponent"],
-                _become_host_become_host_component__WEBPACK_IMPORTED_MODULE_17__["BecomeHostComponent"],
-                _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_18__["NotFoundComponent"],
-                _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_19__["SignUpComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_20__["LoginComponent"],
-                _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_21__["RentSpotFormComponent"],
-                _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_23__["RentSpotDialogComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"],
+                _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_16__["NavbarComponent"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_14__["routingComponents"],
+                _home_home_component__WEBPACK_IMPORTED_MODULE_17__["HomeComponent"],
+                _become_host_become_host_component__WEBPACK_IMPORTED_MODULE_18__["BecomeHostComponent"],
+                _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_19__["NotFoundComponent"],
+                _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_20__["SignUpComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_21__["LoginComponent"],
+                _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_22__["RentSpotFormComponent"],
+                _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_24__["RentSpotDialogComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -216,9 +218,10 @@ var AppModule = /** @class */ (function () {
                 _angular_material_radio__WEBPACK_IMPORTED_MODULE_7__["MatRadioModule"],
                 _angular_material_table__WEBPACK_IMPORTED_MODULE_9__["MatTableModule"],
                 _angular_material_sort__WEBPACK_IMPORTED_MODULE_10__["MatSortModule"],
-                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_11__["NgbModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_13__["AppRoutingModule"],
-                _agm_core__WEBPACK_IMPORTED_MODULE_12__["AgmCoreModule"].forRoot({
+                _angular_material_progress_spinner__WEBPACK_IMPORTED_MODULE_11__["MatProgressSpinnerModule"],
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_12__["NgbModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_14__["AppRoutingModule"],
+                _agm_core__WEBPACK_IMPORTED_MODULE_13__["AgmCoreModule"].forRoot({
                     apiKey: 'AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ',
                     libraries: ['geometry']
                 })
@@ -229,9 +232,9 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatInputModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"]
             ],
-            providers: [_web_service__WEBPACK_IMPORTED_MODULE_22__["WebService"]],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_14__["AppComponent"]],
-            entryComponents: [_login_login_component__WEBPACK_IMPORTED_MODULE_20__["LoginComponent"], _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_19__["SignUpComponent"], _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_23__["RentSpotDialogComponent"]]
+            providers: [_web_service__WEBPACK_IMPORTED_MODULE_23__["WebService"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_15__["AppComponent"]],
+            entryComponents: [_login_login_component__WEBPACK_IMPORTED_MODULE_21__["LoginComponent"], _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_20__["SignUpComponent"], _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_24__["RentSpotDialogComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -614,7 +617,7 @@ module.exports = ".mat-dialog-content {\n    display: flex;\n    flex-direction:
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Title -->\n<h2 style=\"text-align:center\" mat-dialog-title>Login</h2>\n<!-- Content -->\n<div mat-dialog-content [formGroup]=\"loginForm\">\n  <p style=\"color:red;\" *ngIf=\"error\"> Error: {{error}} </p>\n\n  <!-- UserName -->\n  <mat-form-field>\n    <input matInput placeholder=\"email\" formControlName=\"email\" required>\n  </mat-form-field>\n\n  <!-- Password -->\n  <mat-form-field>\n    <input matInput placeholder=\"Password\" formControlName=\"password\" required [type]=\"hidePassword ? 'password' : 'text'\">\n    <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>\n  </mat-form-field>\n\n</div>\n\n<!-- Bottons -->\n<div mat-dialog-actions align=\"center\">\n\n  <button type=\"button\" class=\"btn btn-primary\" (click)=\"login()\" [disabled]=\"!loginForm.valid\">Login</button>\n\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"close()\">Close</button>\n\n  <p> <br>\n    Don’t have an account?\n    <button type=\"button\" class=\"btn btn-link\" (click)=\"signUp()\">Sign Up</button>\n  </p>\n\n</div>"
+module.exports = "<!-- Title -->\n<h2 style=\"text-align:center\" mat-dialog-title>Login</h2>\n<!-- Content -->\n<div  >\n  <div *ngIf=\"loading\">\n    <mat-progress-spinner mode=\"indeterminate\" value=\"indeterminate\" style=\"width:15%; margin:0 auto;\"></mat-progress-spinner>\n  </div>\n</div>  \n<div *ngIf=\"!loading\" mat-dialog-content [formGroup]=\"loginForm\">\n  <p style=\"color:red;\" *ngIf=\"error\"> Error: {{error}} </p>\n\n  <!-- UserName -->\n  <mat-form-field>\n    <input matInput placeholder=\"email\" formControlName=\"email\" required>\n  </mat-form-field>\n\n  <!-- Password -->\n  <mat-form-field>\n    <input matInput placeholder=\"Password\" formControlName=\"password\" required [type]=\"hidePassword ? 'password' : 'text'\">\n    <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>\n  </mat-form-field>\n\n</div>\n\n<!-- Bottons -->\n<div mat-dialog-actions align=\"center\">\n\n  <button type=\"button\" class=\"btn btn-primary\" (click)=\"login()\" [disabled]=\"!loginForm.valid\">Login</button>\n\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"close()\">Close</button>\n\n  <p> <br>\n    Don’t have an account?\n    <button type=\"button\" class=\"btn btn-link\" (click)=\"signUp()\">Sign Up</button>\n  </p>\n\n</div>"
 
 /***/ }),
 
@@ -651,6 +654,7 @@ var LoginComponent = /** @class */ (function () {
         this.hidePassword = true; /* hide password as default */
         this.logged = false;
         this.error = null;
+        this.loading = false;
         this.loginForm = fb.group({
             hideRequired: true,
             floatLabel: 'auto',
@@ -669,6 +673,7 @@ var LoginComponent = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        this.loading = true;
                         this.loginpModel.email = this.loginForm.value.email;
                         this.loginpModel.password = this.loginForm.value.password;
                         this.loginpModel.closeOption = 'login';
@@ -682,9 +687,11 @@ var LoginComponent = /** @class */ (function () {
                             this.error = null;
                             result = { closeOption: 'login', username: res['name'] };
                             this.dialogRef.close(result);
+                            this.loading = false;
                         }
                         if (res.Desc) {
                             tmp = res.Desc.split(":");
+                            this.loading = false;
                             this.error = tmp[tmp.length - 1];
                             return [2 /*return*/];
                         }
