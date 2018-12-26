@@ -162,9 +162,9 @@ export class FindParkingComponent implements OnInit {
       // spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
 
       // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
-      //   ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
-      //   this.ELEMENT_DATA_FILTER.push(spot);
-      // }
+        if(((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
+        this.ELEMENT_DATA_FILTER.push(spot);
+      }
 
     }
 
@@ -196,10 +196,12 @@ export class FindParkingComponent implements OnInit {
 
     dialogConfig.data = { /** pass data to dialog */
       id: this.selectedSpot.id,
+      building: this.selectedSpot.building,
+      city: this.selectedSpot.city,
+      street: this.selectedSpot.street,
+      end_time: this.selectedSpot.end_time,
+      start_time: this.selectedSpot.start_time,
       price: this.selectedSpot.price,
-      lat: this.selectedSpot.latitude,
-      lng: this.selectedSpot.longitude,
-      address: this.getAddress(this.selectedSpot.latitude, this.selectedSpot.longitude),
     };
 
     /** open dialog */
