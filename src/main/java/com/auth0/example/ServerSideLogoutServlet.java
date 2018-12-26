@@ -10,6 +10,5 @@ import javax.servlet.http.*;
   @Override protected void doGet(final HttpServletRequest r, final HttpServletResponse response) throws ServletException, IOException {
     if (r.getSession() != null)
       r.getSession().invalidate();
-    response.sendRedirect("/");
   }
 }

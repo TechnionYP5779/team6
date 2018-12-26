@@ -30,10 +30,12 @@ import parking.*;
       OurSystem.rentParkingSpot(jo);
     } catch (final JSONException ¢) {
       resp.setHeader("Response", "ERROR");
+      resp.setStatus(400);
       resp.getWriter().write(new JSONObject().put("Desc", ¢ + "") + "");
       return;
     }
     resp.setHeader("Response", "OK");
+    resp.setStatus(200);
     resp.getWriter().write(new JSONObject() + "");
   }
 }

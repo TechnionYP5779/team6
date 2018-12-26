@@ -15,8 +15,9 @@ import com.auth0.*;
 // import parking.*;
 /** Filter class to check if a valid session exists. This will be true if the
  * User Id is present. */
-@WebFilter(urlPatterns = "/portal/*") public class Auth0Filter implements Filter {
+@WebFilter(urlPatterns = "/logged/*") public class Auth0Filter implements Filter {
   @Override public void init(final FilterConfig __) throws ServletException {
+    /**/
   }
 
   /** Perform filter check on this request - verify the User Id is present.
@@ -30,8 +31,10 @@ import com.auth0.*;
       next.doFilter(r, response);
     else
       ((HttpServletResponse) response).setHeader("Response", "ERROR");
+    ((HttpServletResponse) response).setHeader("status", "400");
+    ((HttpServletResponse) response).setStatus(400);
     ((HttpServletResponse) response).getWriter().write(new JSONObject().put("Desc", "no accessToken and idToken") + "");
-    ((HttpServletResponse) response).sendRedirect("/");
+   // ((HttpServletResponse) response).sendRedirect("/");
   }
 
   // @Override public void doFilter(final ServletRequest r, final ServletResponse
