@@ -1,9 +1,18 @@
-<div class="container">
+<div style="width:40%; margin:5% auto;" *ngIf="loading">
+  <mat-progress-spinner mode="indeterminate" value="indeterminate" diameter="220" strokeWidth="35" style="width:15%; margin:0 auto;">
+  </mat-progress-spinner>
+  <div>
+    <img src="../../assets/img/get_spot_wait_line1.png" style="width:130%; margin-left:-10%; margin-top:20%;" align="middle">
+  </div>
+  <div>
+    <img src="../../assets/img/get_spot_wait_line2.png" style="width:22%; margin-left:40% ;" >
+  </div>
+  
+</div> 
 
+<div class="container" *ngIf="!loading">
   <!-- Title -->
-  <h2>Find parking spot</h2>
-
-
+  <h2>Find parking spot</h2> 
   <!-- split page to 2 columns: table on the left and map on the right -->
   <div class="row">
 
@@ -111,5 +120,5 @@
 
   </div>
 
-
+ 
 </div>

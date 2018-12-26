@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
+import { WebService } from '../web.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +19,7 @@ export class NavbarComponent implements OnInit {
     this.navbarOpen = !this.navbarOpen;
   }
 
-  constructor(public loginDialog: MatDialog, public signUpDialog: MatDialog) { }
+  constructor(public loginDialog: MatDialog, public signUpDialog: MatDialog , private webService: WebService) { }
 
   ngOnInit() {
   }
@@ -54,6 +55,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(): void {
+    this.webService.postLogOut();
     this.username = 'Guest';
     this.userIsLogin = false;
   }
