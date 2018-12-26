@@ -31,7 +31,7 @@ access_token = null;
 
   	constructor(private http: HttpClient) { }
 
-  	addSpot(rent: RentSpotModel){
+  	async addSpot(rent: RentSpotModel){
       var body = {
           accessToken: this.access_token,
           idToken: this.id_token,
@@ -46,14 +46,15 @@ access_token = null;
         body.spot_num = rent.spot_num.toString();
       }
       console.log(JSON.stringify( body))
-  		this.http.post(this.BASE_URL+this.ADD_SPOT_URL, body).subscribe(res=>{
+  		await this.http.post(this.BASE_URL+this.ADD_SPOT_URL, body).subscribe(res=>{
   			console.log(JSON.stringify(res));	
-  			alert("successfully add a new spot")
+  			return "successfully add a new spot"
   		},
   		err=>{
-  			alert("an error occurred. please try again")
+  			return err
   		}
   		);
+      return null
   	}
 
     PostSignUp(form){
@@ -91,7 +92,7 @@ access_token = null;
       return x;
     }
     catch (error) {
-      return 'wrong email or password';
+      return error.Desc;
     }
 }
 
