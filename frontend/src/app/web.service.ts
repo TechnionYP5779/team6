@@ -31,7 +31,20 @@ access_token = null;
   	constructor(private http: HttpClient) { }
 
   	addSpot(rent){
-  		this.http.post(this.BASE_URL+this.ADD_SPOT_URL, rent).subscribe(res=>{
+      var body = {
+          accessToken: this.access_token,
+          idToken: this.id_token,
+          city: rent['city'],
+          street: rent['street'],
+          start_time: rent['start_time'],
+          end_time: rent['end_time'],
+          price: rent['price'],
+          spot_num: ''
+        }
+      if(rent['spot_num']){
+        body.spot_num = rent['spot_num'];
+      }
+  		this.http.post(this.BASE_URL+this.ADD_SPOT_URL, body).subscribe(res=>{
   			console.log(JSON.stringify(res));	
   			alert("successfully add a new spot")
   		},
@@ -50,12 +63,12 @@ access_token = null;
        email: form.email,
        password: form.password,
        connection: 'Username-Password-Authentication',
-      user_metadata: { name: form.name ,username: form.username },
+       user_metadata: { name: form.name ,username: form.username },
        json: true,
      };
 
-       console.log(body);
-     this.http.post(this.SIGNUP_URL,body,signUpHeades).subscribe( res=>{
+      console.log(body);
+      this.http.post(this.SIGNUP_URL,body,signUpHeades).subscribe( res=>{
       console.log(res);   //TODO: delete
      })
   }
@@ -70,10 +83,10 @@ access_token = null;
     console.log(JSON.stringify(body))
     console.log(this.BASE_URL + this.LOGIN_URL)
     try{
-    var x = await this.http.post(this.BASE_URL + this.LOGIN_URL, body).toPromise()
-    this.id_token = x['idToken']
-    this.access_token = x['accessToken'];
-    return x;
+      var x = await this.http.post(this.BASE_URL + this.LOGIN_URL, body).toPromise()
+      this.id_token = x['idToken']
+      this.access_token = x['accessToken'];
+      return x;
     }
     catch (error) {
       return 'wrong email or password';
@@ -91,7 +104,7 @@ access_token = null;
       return JSON.stringify(res);
     }
     catch(error){
-      return 'logged out';
+      return JSON.stringify(error);
     }  
   }
 
@@ -103,7 +116,7 @@ access_token = null;
       idToken: this.id_token
     }
     try{
-      var res = await this.httpOptions.post(this.BASE_URL + this.RENT_URL, body).toPromise();
+      var res = await this.http.post(this.BASE_URL + this.RENT_URL, body).toPromise();
       return null;
     }
     catch(error){

@@ -315,7 +315,7 @@ module.exports = "/** split page to 2 columns */\n\n.container {\n    margin-top
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\n  <!-- Title -->\n  <h2>Find parking spot</h2>\n\n\n  <!-- split page to 2 columns: table on the left and map on the right -->\n  <div class=\"row\">\n\n    <!-- FEFT -------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"table\">\n\n      <!-- Form (left) ----------------------------------------------------------------------------->\n      <div class=\"container\" [formGroup]=\"filterForm\">\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max distance from your location</mat-label>\n            <input matInput placeholder=\"max distance\" formControlName=\"maxDistance\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max price</mat-label>\n            <input matInput placeholder=\"max price\" formControlName=\"maxPrice\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field>\n            <mat-label>Choose how to determine your current location</mat-label>\n            <mat-select placeholder=\"location options\" formControlName=\"locationOption\" required>\n              <mat-option *ngFor=\"let option of locationOptions\" [value]=\"option\">\n                {{option}}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n        </div>\n\n      </div>\n\n      <button type=\"button\" (click)=\"filter()\" [disabled]=\"!filterForm.valid\">Submit</button>\n      <button type=\"button\" (click)=\"reset()\">Reset (show all spot)</button>\n\n\n      <!-- Table (left) ---------------------------------------------------------------------------->\n      <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" matSort>\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Addres Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef> Address </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.city}} {{element.street}} {{element.building}} </td>\n        </ng-container>\n\n        <!-- Distance Column -->\n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.distance == -1 ? '---' : element.distance}} </td>\n        </ng-container>\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n\n    </div>\n\n    <!-- RIGHT ------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"map\">\n\n      <!-- The map (right) ------------------------------------------------------------------------->\n      <agm-map [zoom]='17' [latitude]=\"currlat\" [longitude]=\"currlng\">\n\n        <!-- Marker for current location -->\n        <agm-marker [latitude]=\"currlat\" [longitude]=\"currlng\" [iconUrl]=\"'../../assets/img/blue-dot.png'\">\n          <agm-info-window>Your current location</agm-info-window>\n        </agm-marker>\n\n        <!-- Markers for all avaiable spot -->\n        <agm-marker *ngFor=\"let spot of ELEMENT_DATA_FILTER; let i=index\" [latitude]=\"+spot.lat\" [longitude]=\"+spot.lng\"\n          [label]=\"spot.id.toString()\">\n          <agm-info-window>\n            ID: {{spot.id}}\n            <br>\n            price: {{spot.price}}\n            <br>\n            distance: {{spot.distance}}\n            <br>\n            <button type=\"button\" (click)=\"rentSpot(spot)\">Rent Me!</button>\n\n          </agm-info-window>\n        </agm-marker>\n\n\n      </agm-map>\n\n    </div>\n\n\n  </div>\n\n\n</div>"
+module.exports = "<div class=\"container\">\n\n  <!-- Title -->\n  <h2>Find parking spot</h2>\n\n\n  <!-- split page to 2 columns: table on the left and map on the right -->\n  <div class=\"row\">\n\n    <!-- FEFT -------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"table\">\n\n      <!-- Form (left) ----------------------------------------------------------------------------->\n      <div class=\"container\" [formGroup]=\"filterForm\">\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max distance from your location</mat-label>\n            <input matInput placeholder=\"max distance\" formControlName=\"maxDistance\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max price</mat-label>\n            <input matInput placeholder=\"max price\" formControlName=\"maxPrice\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field>\n            <mat-label>Choose how to determine your current location</mat-label>\n            <mat-select placeholder=\"location options\" formControlName=\"locationOption\" required>\n              <mat-option *ngFor=\"let option of locationOptions\" [value]=\"option\">\n                {{option}}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n        </div>\n\n      </div>\n\n      <button type=\"button\" (click)=\"filter()\" [disabled]=\"!filterForm.valid\">Submit</button>\n      <button type=\"button\" (click)=\"reset()\">Reset (show all spot)</button>\n\n\n      <!-- Table (left) ---------------------------------------------------------------------------->\n      <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" matSort>\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Addres Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef> Address </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.city}} {{element.street}} {{element.building}} </td>\n        </ng-container>\n\n        <!-- Distance Column -->\n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.distance == -1 ? '---' : element.distance}} </td>\n        </ng-container>\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n\n    </div>\n\n    <!-- RIGHT ------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"map\">\n\n      <!-- The map (right) ------------------------------------------------------------------------->\n      <agm-map [zoom]='17' [latitude]=\"currlat\" [longitude]=\"currlng\">\n\n        <!-- Marker for current location -->\n        <agm-marker [latitude]=\"currlat\" [longitude]=\"currlng\" [iconUrl]=\"'../../assets/img/blue-dot.png'\">\n          <agm-info-window>Your current location</agm-info-window>\n        </agm-marker>\n\n        <!-- Markers for all avaiable spot -->\n        <agm-marker *ngFor=\"let spot of ELEMENT_DATA_FILTER; let i=index\" [latitude]=\"+spot.lat\" [longitude]=\"+spot.lng\"\n          [label]=\"foo\">\n          <agm-info-window>\n            ID: {{spot.id}}\n            <br>\n            price: {{spot.price}}\n            <br>\n            distance: {{spot.distance}}\n            <br>\n            <button type=\"button\" (click)=\"rentSpot(spot)\">Rent Me!</button>\n\n          </agm-info-window>\n        </agm-marker>\n\n\n      </agm-map>\n\n    </div>\n\n\n  </div>\n\n\n</div>"
 
 /***/ }),
 
@@ -393,12 +393,24 @@ var FindParkingComponent = /** @class */ (function () {
         });
     }
     FindParkingComponent.prototype.ngOnInit = function () {
-        this.findCurrentLocation();
-        var res = this.webService.getSpots();
-        this.ELEMENT_DATA = JSON.parse('[' + res + ']');
-        this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
-        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
-        this.dataSource.sort = this.sort;
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var res;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.findCurrentLocation();
+                        return [4 /*yield*/, this.webService.getSpots()];
+                    case 1:
+                        res = _a.sent();
+                        console.log(res);
+                        this.ELEMENT_DATA = JSON.parse('[' + res + ']');
+                        this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
+                        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
+                        this.dataSource.sort = this.sort;
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     FindParkingComponent.prototype.getAddress = function (lat, lng) {
         if (navigator.geolocation) {
@@ -885,7 +897,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Rent Spot</h1>\n\n\n<div mat-dialog-content>\n  <p>You select the parking spot with the following characteristics:</p>\n\n  <p><b>ID: </b>{{spot.id}}</p>\n  <p><b>price: </b>{{spot.price}}</p>\n  <p><b>address: </b>{{spot.address}} ( lat={{spot.lat}} , lan={{spot.lng}} )</p>\n  <p><b>start time: </b>---complete this ---</p>\n  <p><b>end time: </b>---complete this ---</p>\n\n</div>\n\n<div mat-dialog-actions>\n  <button mat-button (click)=\"rent()\">Rent</button>\n  <button mat-button (click)=\"close()\">Close</button>\n</div>"
+module.exports = "<h1 mat-dialog-title>Rent Spot</h1>\n\n\n<div mat-dialog-content>\n  <p>You select the parking spot with the following characteristics:</p>\n\n  <p><b>ID: </b>{{spot.id}}</p>\n  <p><b>price: </b>{{spot.price}}</p>\n  <p><b>address: </b>{{spot.city}} {{spot.street}} {{spot.building}} </p>\n  <p><b>distance: </b> {{spot.distance}} </p>\n  <p><b>start time: </b> {{spot.start_time}} </p>\n  <p><b>end time: </b> {{spot.end_time}} </p>\n\n</div>\n\n<div mat-dialog-actions>\n  <button mat-button (click)=\"rent(spot.id)\">Rent</button>\n  <button mat-button (click)=\"close()\">Close</button>\n</div>"
 
 /***/ }),
 
@@ -902,21 +914,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../web.service */ "./src/app/web.service.ts");
+
 
 
 
 var RentSpotDialogComponent = /** @class */ (function () {
-    function RentSpotDialogComponent(dialogRef, spot) {
+    function RentSpotDialogComponent(dialogRef, spot, webService) {
         this.dialogRef = dialogRef;
         this.spot = spot;
+        this.webService = webService;
     }
     RentSpotDialogComponent.prototype.ngOnInit = function () {
     };
     RentSpotDialogComponent.prototype.close = function () {
         this.dialogRef.close('close');
     };
-    RentSpotDialogComponent.prototype.rent = function () {
-        this.dialogRef.close('rent');
+    RentSpotDialogComponent.prototype.rent = function (spotId) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var res;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.webService.postRent(spotId)];
+                    case 1:
+                        res = _a.sent();
+                        if (res == null) {
+                            this.dialogRef.close('rent');
+                        }
+                        else {
+                            alert('error');
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     RentSpotDialogComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -925,7 +956,7 @@ var RentSpotDialogComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./rent-spot-dialog.component.css */ "./src/app/rent-spot-dialog/rent-spot-dialog.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object, _web_service__WEBPACK_IMPORTED_MODULE_3__["WebService"]])
     ], RentSpotDialogComponent);
     return RentSpotDialogComponent;
 }());
@@ -1207,12 +1238,26 @@ var WebService = /** @class */ (function () {
         this.LOGOUT = '/logged/logout';
         this.GET_SPOT_URL = '/logged/search/all/renting_spots';
         this.GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots';
+        this.RENT_URL = 'logged/rent/renting_spot';
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
         this.id_token = null;
         this.access_token = null;
     }
     WebService.prototype.addSpot = function (rent) {
-        this.http.post(this.BASE_URL + this.ADD_SPOT_URL, rent).subscribe(function (res) {
+        var body = {
+            accessToken: this.access_token,
+            idToken: this.id_token,
+            city: rent['city'],
+            street: rent['street'],
+            start_time: rent['start_time'],
+            end_time: rent['end_time'],
+            price: rent['price'],
+            spot_num: ''
+        };
+        if (rent['spot_num']) {
+            body.spot_num = rent['spot_num'];
+        }
+        this.http.post(this.BASE_URL + this.ADD_SPOT_URL, body).subscribe(function (res) {
             console.log(JSON.stringify(res));
             alert("successfully add a new spot");
         }, function (err) {
@@ -1284,7 +1329,33 @@ var WebService = /** @class */ (function () {
                         return [2 /*return*/, JSON.stringify(res)];
                     case 3:
                         error_2 = _a.sent();
-                        return [2 /*return*/, 'logged out'];
+                        return [2 /*return*/, JSON.stringify(error_2)];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    WebService.prototype.postRent = function (spot) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var body, res, error_3;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        body = {
+                            id: spot,
+                            accessToken: this.access_token,
+                            idToken: this.id_token
+                        };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.RENT_URL, body).toPromise()];
+                    case 2:
+                        res = _a.sent();
+                        return [2 /*return*/, null];
+                    case 3:
+                        error_3 = _a.sent();
+                        return [2 /*return*/, 'error'];
                     case 4: return [2 /*return*/];
                 }
             });

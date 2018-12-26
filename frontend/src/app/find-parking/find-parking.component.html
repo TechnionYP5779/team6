@@ -90,7 +90,7 @@
 
         <!-- Markers for all avaiable spot -->
         <agm-marker *ngFor="let spot of ELEMENT_DATA_FILTER; let i=index" [latitude]="+spot.lat" [longitude]="+spot.lng"
-          [label]="spot.id.toString()">
+          [label]="foo">
           <agm-info-window>
             ID: {{spot.id}}
             <br>

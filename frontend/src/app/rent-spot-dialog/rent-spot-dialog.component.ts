@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
+import { WebService } from '../web.service';
 
 @Component({
   selector: 'app-rent-spot-dialog',
@@ -18,7 +19,7 @@ export class RentSpotDialogComponent implements OnInit {
     this.dialogRef.close('close');
   }
 
-  async rent(spotId): void {
+  async rent(spotId) {
     var res = await this.webService.postRent(spotId);
     if(res == null){
       this.dialogRef.close('rent');
