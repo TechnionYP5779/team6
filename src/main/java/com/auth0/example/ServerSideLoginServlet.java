@@ -37,7 +37,7 @@ import com.auth0.net.*;
       resp.getWriter().write(tokens + "");
     } catch (Auth0Exception ¢) {
       resp.setHeader("Response", "ERROR");
-      resp.getWriter().write(¢ + "");
+      resp.getWriter().write(new JSONObject().put("Desc", ¢ + "") + "");
       return;
     }
   }

@@ -10,7 +10,7 @@ import javax.servlet.http.*;
 import parking.OurSystem;
 
  import org.json.*;
-@WebServlet(urlPatterns = { "/logged/search/renting_spots" }) @SuppressWarnings("serial") public class SearchSpotsServlet extends HttpServlet {
+@WebServlet(urlPatterns = { "/logged/search/user/renting_spots" }) @SuppressWarnings("serial") public class SearchUserSpotsServlet extends HttpServlet {
   @Override protected void doPost(final HttpServletRequest r, final HttpServletResponse resp) throws ServletException, IOException {
     if (!"POST".equals(r.getMethod()))// should only be used for Post Requests
       return;
@@ -18,15 +18,15 @@ import parking.OurSystem;
     resp.setHeader("Access-Control-Allow-Origin","*");
     String psList = "";
     try {
-      psList = OurSystem.searchParkingSpots(new JSONObject(new String(body))) + "";
+      psList = OurSystem.getAllParkingSpotsByUser(new JSONObject(new String(body))) + "";
     } catch ( JSONException ¢) {
       resp.setHeader("Response", "ERROR");
-      resp.getWriter().write(¢ + "");
+      resp.getWriter().write(new JSONObject().put("Desc", ¢ + "") + "");
       return;
     }
     if(psList.equals(null)) {
       resp.setHeader("Response", "ERROR");
-      resp.getWriter().write("Couldn't parse from JSONObject to string");
+      resp.getWriter().write(new JSONObject().put("Desc", "Couldn't parse from JSONObject to string") + "");
       return;
     }
     resp.setHeader("Response", "OK");
