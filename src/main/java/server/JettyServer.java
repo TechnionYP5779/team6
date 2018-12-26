@@ -10,6 +10,9 @@ import org.eclipse.jetty.webapp.*;
 
 import com.auth0.example.*;
 
+import fluent.ly.*;
+import parking.*;
+
 public class JettyServer {
   public static void main(final String[] args) throws Exception {
     final Server server = new Server(8080);
@@ -26,6 +29,7 @@ public class JettyServer {
     webapp.addServlet(new ServletHolder(new SearchUserSpotsServlet()), "/logged/search/user/renting_spots");
     webapp.addServlet(new ServletHolder(new ServerSideLoginServlet()), "/login");
     webapp.addServlet(new ServletHolder(new ServerSideLogoutServlet()), "/logged/logout");
+    webapp.addServlet(new ServletHolder(new RootServlet()), "/getDetailRoot");
     final FilterHolder holder1 = new FilterHolder(new Auth0Filter());
     holder1.setName("auth0filter");
     holder1.setInitParameter("param", "");
