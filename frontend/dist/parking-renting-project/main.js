@@ -1051,7 +1051,7 @@ var RentSpotFormComponent = /** @class */ (function () {
         this.rentSpotModel.price = this.rentSpotForm.value.price;
         this.reset();
         console.log("The rent spot form was submitted: " + JSON.stringify(this.rentSpotModel)); // TODO: delete!
-        this.webService.addSpot(JSON.stringify(this.rentSpotModel));
+        this.webService.addSpot(this.rentSpotModel);
         // for tests:
         // var sd = startTime;
         // console.log("sd: ", sd)
@@ -1249,15 +1249,15 @@ var WebService = /** @class */ (function () {
         var body = {
             accessToken: this.access_token,
             idToken: this.id_token,
-            city: rent['city'],
-            street: rent['street'],
-            start_time: rent['start_time'],
-            end_time: rent['end_time'],
-            price: rent['price'],
+            city: rent.city,
+            street: rent.street,
+            start_time: rent.start_time,
+            end_time: rent.end_time,
+            price: rent.price,
             spot_num: ''
         };
-        if (rent['spot_num']) {
-            body.spot_num = rent['spot_num'];
+        if (rent.spot_num) {
+            body.spot_num = rent.spot_num.toString();
         }
         console.log(body);
         this.http.post(this.BASE_URL + this.ADD_SPOT_URL, body).subscribe(function (res) {

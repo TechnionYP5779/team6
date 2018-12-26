@@ -21,6 +21,9 @@ import com.auth0.client.auth.*;
       return;
     
     resp.setHeader("Access-Control-Allow-Origin","*");final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+    System.out.println("========");
+    System.out.println(body);
+    System.out.println("========");
     try {
       JSONObject jo = new JSONObject(new String(body));
       jo.put("userId",auth.userInfo(jo.getString("accessToken")).execute().getValues().get("user_id"));

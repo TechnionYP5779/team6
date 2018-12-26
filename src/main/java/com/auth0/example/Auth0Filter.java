@@ -35,6 +35,7 @@ import org.json.*;
   @Override public void doFilter(final ServletRequest r, final ServletResponse response, final FilterChain next)
       throws IOException, ServletException {
     final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+    r.getReader().reset();
    JSONObject jbody = new JSONObject(body);
    if( !jbody.has("accessToken") || !jbody.has("idToken")){
      ((HttpServletResponse)response).setHeader("Response", "ERROR");

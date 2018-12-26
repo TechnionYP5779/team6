@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient , HttpHeaders } from '@angular/common/http';
+import { RentSpotModel } from './rent-spot'
 import * as auth0 from 'auth0-js';
 
 
@@ -30,21 +31,21 @@ access_token = null;
 
   	constructor(private http: HttpClient) { }
 
-  	addSpot(rent){
+  	addSpot(rent: RentSpotModel){
       var body = {
           accessToken: this.access_token,
           idToken: this.id_token,
-          city: rent['city'],
-          street: rent['street'],
-          start_time: rent['start_time'],
-          end_time: rent['end_time'],
-          price: rent['price'],
+          city: rent.city,
+          street: rent.street,
+          start_time: rent.start_time,
+          end_time: rent.end_time,
+          price: rent.price,
           spot_num: ''
         }
-      if(rent['spot_num']){
-        body.spot_num = rent['spot_num'];
+      if(rent.spot_num){
+        body.spot_num = rent.spot_num.toString();
       }
-      console.log(body)
+      console.log(JSON.stringify( body))
   		this.http.post(this.BASE_URL+this.ADD_SPOT_URL, body).subscribe(res=>{
   			console.log(JSON.stringify(res));	
   			alert("successfully add a new spot")
