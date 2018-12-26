@@ -1,7 +1,6 @@
 package com.auth0.example;
 
 import java.io.*;
-import java.util.stream.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;

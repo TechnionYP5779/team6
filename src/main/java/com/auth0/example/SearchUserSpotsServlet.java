@@ -2,7 +2,6 @@ package com.auth0.example;
 
 import java.io.*;
 
-import java.util.stream.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -26,7 +25,7 @@ import com.auth0.client.auth.*;
     String psList = "";
     try {
       JSONObject jo = new JSONObject(new String(body));
-      jo.put("userId",auth.userInfo(jo.getString("accessToken")).execute().getValues().get("user_id"));
+      jo.put("userId",auth.userInfo(jo.getString("accessToken")).execute().getValues().get("sub"));
       psList = OurSystem.getAllParkingSpotsByUser(jo) + "";
     } catch ( JSONException ¢) {
       resp.setHeader("Response", "ERROR");

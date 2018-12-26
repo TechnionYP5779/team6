@@ -2,7 +2,6 @@ package com.auth0.example;
 
 import java.io.*;
 
-import java.util.stream.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -25,7 +24,7 @@ import com.auth0.client.auth.*;
     resp.setHeader("Access-Control-Allow-Origin","*");
     try {
       JSONObject jo = new JSONObject(new String(body));
-      jo.put("buyerId",auth.userInfo(jo.getString("accessToken")).execute().getValues().get("user_id"));
+      jo.put("buyerId",auth.userInfo(jo.getString("accessToken")).execute().getValues().get("sub"));
       OurSystem.rentParkingSpot(jo);
     } catch ( JSONException ¢) {
       resp.setHeader("Response", "ERROR");

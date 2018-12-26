@@ -3,7 +3,6 @@ package database;
 import java.sql.*;
 import java.util.*;
 
-import com.auth0.example.*;
 
 import parking.*;
 

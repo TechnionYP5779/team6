@@ -29,6 +29,7 @@ import com.auth0.client.auth.*;
     try {
       JSONObject jo = new JSONObject(new String(body));
       jo.put("userId",auth.userInfo(jo.getString("accessToken")).execute().getValues().get("sub"));
+      System.out.println(body);
       System.out.println(jo.toString());
       System.out.println(auth.userInfo(jo.getString("accessToken")).execute().getValues().keySet().toString());
       OurSystem.addParkingSpot(jo);
