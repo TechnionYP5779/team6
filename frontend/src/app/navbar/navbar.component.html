@@ -61,7 +61,7 @@
         </button>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!userIsLogin">
         <button type="button" class="btn btn-light" (click)="openSignUpDialog()" style="width: 110px">
           <span class="fa fa-user"></span>
           Sign Up
