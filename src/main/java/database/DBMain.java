@@ -14,10 +14,28 @@ public class DBMain {
 
   public static void main(final String[] args) {
     try {
-      // Address a = new Address("City","Street",34);
-      // ParkingDataBase.addParkingSpot(new ParkingSpot(-1,"SELLER2","SHOULDT
-      // APPEAR",200,a,"2018-05-12","2018-07-12","20:30","20:30"));
-      final List<ParkingSpot> l = ParkingDataBase.searchSpotsWithAddress("City", "Street");
+//       Address a = new Address("hadera","hahida",20);
+//       ParkingDataBase.addParkingSpot(new ParkingSpot(-1,"SELLER2","SHOULDTAPPEAR",200,a,"2018-05-12","2018-07-12","20:30","20:30"));
+
+       SQLUtils.runCommand("INSERT INTO parkingspots (price,owner,buyer,city,street,building,startDate,endDate,startHour,endHour) "
+           + "VALUES (" + "40" + ", "
+                        + "'" +"kuku" + "', "
+                        + "NULL, "
+                        + "'" + "hadera" + "', "
+                        + "'" + "hahida" + "', "
+                        + "20" + ", "
+                        + "DATE '" + "2019-05-12" + "', "
+                        + "DATE '" + "2019-07-12" + "', "
+                        + "TIME '" + "20:30" + ":00', "
+                        + "TIME '" + "20:30" + ":00')");
+       
+       
+       
+       
+       
+     
+    
+       final List<ParkingSpot> l = ParkingDataBase.searchSpotsWithAddress("City", "Street");
       for (final ParkingSpot ¢ : l)
         System.out.println(¢);
       System.out.println("Good");

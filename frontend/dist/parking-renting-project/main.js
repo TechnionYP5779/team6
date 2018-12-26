@@ -315,7 +315,7 @@ module.exports = "/** split page to 2 columns */\n\n.container {\n    margin-top
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n\n  <!-- Title -->\n  <h2>Find parking spot</h2>\n\n\n  <!-- split page to 2 columns: table on the left and map on the right -->\n  <div class=\"row\">\n\n    <!-- FEFT -------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"table\">\n\n      <!-- Form (left) ----------------------------------------------------------------------------->\n      <div class=\"container\" [formGroup]=\"filterForm\">\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max distance from your location</mat-label>\n            <input matInput placeholder=\"max distance\" formControlName=\"maxDistance\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max price</mat-label>\n            <input matInput placeholder=\"max price\" formControlName=\"maxPrice\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field>\n            <mat-label>Choose how to determine your current location</mat-label>\n            <mat-select placeholder=\"location options\" formControlName=\"locationOption\" required>\n              <mat-option *ngFor=\"let option of locationOptions\" [value]=\"option\">\n                {{option}}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n        </div>\n\n      </div>\n\n      <button type=\"button\" (click)=\"filter()\" [disabled]=\"!filterForm.valid\">Submit</button>\n      <button type=\"button\" (click)=\"reset()\">Reset (show all spot)</button>\n\n\n      <!-- Table (left) ---------------------------------------------------------------------------->\n      <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" matSort>\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Addres Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef> Address </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.city}} {{element.street}} {{element.building}} </td>\n        </ng-container>\n\n        <!-- Distance Column -->\n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.distance == -1 ? '---' : element.distance}} </td>\n        </ng-container>\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n\n    </div>\n\n    <!-- RIGHT ------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"map\">\n\n      <!-- The map (right) ------------------------------------------------------------------------->\n      <agm-map [zoom]='17' [latitude]=\"currlat\" [longitude]=\"currlng\">\n\n        <!-- Marker for current location -->\n        <agm-marker [latitude]=\"currlat\" [longitude]=\"currlng\" [iconUrl]=\"'../../assets/img/blue-dot.png'\">\n          <agm-info-window>Your current location</agm-info-window>\n        </agm-marker>\n\n        <!-- Markers for all avaiable spot -->\n        <agm-marker *ngFor=\"let spot of ELEMENT_DATA_FILTER; let i=index\" [latitude]=\"+spot.lat\" [longitude]=\"+spot.lng\"\n          [label]=\"foo\">\n          <agm-info-window>\n            ID: {{spot.id}}\n            <br>\n            price: {{spot.price}}\n            <br>\n            distance: {{spot.distance}}\n            <br>\n            <button type=\"button\" (click)=\"rentSpot(spot)\">Rent Me!</button>\n\n          </agm-info-window>\n        </agm-marker>\n\n\n      </agm-map>\n\n    </div>\n\n\n  </div>\n\n\n</div>"
+module.exports = "<div class=\"container\">\n\n  <!-- Title -->\n  <h2>Find parking spot</h2>\n\n\n  <!-- split page to 2 columns: table on the left and map on the right -->\n  <div class=\"row\">\n\n    <!-- FEFT -------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"table\">\n\n      <!-- Form (left) ----------------------------------------------------------------------------->\n      <div class=\"container\" [formGroup]=\"filterForm\">\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max distance from your location</mat-label>\n            <input matInput placeholder=\"max distance\" formControlName=\"maxDistance\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max price</mat-label>\n            <input matInput placeholder=\"max price\" formControlName=\"maxPrice\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field>\n            <mat-label>Choose how to determine your current location</mat-label>\n            <mat-select placeholder=\"location options\" formControlName=\"locationOption\" required>\n              <mat-option *ngFor=\"let option of locationOptions\" [value]=\"option\">\n                {{option}}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n        </div>\n\n      </div>\n\n      <button type=\"button\" (click)=\"filter()\" [disabled]=\"!filterForm.valid\">Submit</button>\n      <button type=\"button\" (click)=\"reset()\">Reset (show all spot)</button>\n\n\n      <!-- Table (left) ---------------------------------------------------------------------------->\n      <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" matSort>\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Addres Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef> Address </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.city}} {{element.street}} {{element.building}} </td>\n        </ng-container>\n\n<!--          Distance Column \n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.distance == -1 ? '---' : element.distance}} </td>\n        </ng-container> -->\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n\n    </div>\n\n    <!-- RIGHT ------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"map\">\n\n      <!-- The map (right) ------------------------------------------------------------------------->\n      <agm-map [zoom]='17' [latitude]=\"currlat\" [longitude]=\"currlng\">\n\n        <!-- Marker for current location -->\n        <agm-marker [latitude]=\"currlat\" [longitude]=\"currlng\" [iconUrl]=\"'../../assets/img/blue-dot.png'\">\n          <agm-info-window>Your current location</agm-info-window>\n        </agm-marker>\n\n        <!-- Markers for all avaiable spot -->\n        <agm-marker *ngFor=\"let spot of ELEMENT_DATA_FILTER; let i=index\" [latitude]=\"+spot.latitude\" [longitude]=\"+spot.longitude\"\n          [label]=\"spot.id.toString()\">\n          <agm-info-window>\n            ID: {{spot.id}}\n            <br>\n            price: {{spot.price}}\n            <br>\n            distance: {{spot.distance}}\n            <br>\n            <button type=\"button\" (click)=\"rentSpot(spot)\">Rent Me!</button>\n\n          </agm-info-window>\n        </agm-marker>\n\n\n      </agm-map>\n\n    </div>\n\n\n  </div>\n\n\n</div>"
 
 /***/ }),
 
@@ -360,7 +360,7 @@ var FindParkingComponent = /** @class */ (function () {
         this.thecnionlng = 35.022610;
         //--- DATABASE ---------------------------------------------------------------------------------------------
         // fake DB TODO: updete this!!!
-        this.displayedColumns = ['id', 'address', 'price', 'distance'];
+        this.displayedColumns = ['id', 'address', 'price'];
         this.ELEMENT_DATA = null;
         // [
         //   { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
@@ -403,9 +403,11 @@ var FindParkingComponent = /** @class */ (function () {
                     case 1:
                         res = _a.sent();
                         console.log(res);
-                        this.ELEMENT_DATA = JSON.parse('[' + res + ']');
+                        this.ELEMENT_DATA = JSON.parse('' + res + '');
                         this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
+                        console.log(this.ELEMENT_DATA_FILTER);
                         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
+                        console.log(this.dataSource);
                         this.dataSource.sort = this.sort;
                         return [2 /*return*/];
                 }
@@ -473,12 +475,12 @@ var FindParkingComponent = /** @class */ (function () {
         var centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
         for (var _i = 0, _a = this.ELEMENT_DATA; _i < _a.length; _i++) {
             var spot = _a[_i];
-            var markerLoc = new google.maps.LatLng(spot.lat, spot.lng);
-            spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
-            if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
-                ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
-                this.ELEMENT_DATA_FILTER.push(spot);
-            }
+            var markerLoc = new google.maps.LatLng(spot.latitude, spot.longitude);
+            // spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
+            // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
+            //   ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
+            //   this.ELEMENT_DATA_FILTER.push(spot);
+            // }
         }
         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
         this.dataSource.sort = this.sort;
@@ -499,9 +501,9 @@ var FindParkingComponent = /** @class */ (function () {
         dialogConfig.data = {
             id: this.selectedSpot.id,
             price: this.selectedSpot.price,
-            lat: this.selectedSpot.lat,
-            lng: this.selectedSpot.lng,
-            address: this.getAddress(this.selectedSpot.lat, this.selectedSpot.lng),
+            lat: this.selectedSpot.latitude,
+            lng: this.selectedSpot.longitude,
+            address: this.getAddress(this.selectedSpot.latitude, this.selectedSpot.longitude),
         };
         /** open dialog */
         var dialogRef = this.rentDialog.open(_rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_6__["RentSpotDialogComponent"], dialogConfig);
@@ -1257,6 +1259,7 @@ var WebService = /** @class */ (function () {
         if (rent['spot_num']) {
             body.spot_num = rent['spot_num'];
         }
+        console.log(body);
         this.http.post(this.BASE_URL + this.ADD_SPOT_URL, body).subscribe(function (res) {
             console.log(JSON.stringify(res));
             alert("successfully add a new spot");

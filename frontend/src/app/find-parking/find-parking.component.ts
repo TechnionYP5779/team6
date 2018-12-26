@@ -38,7 +38,7 @@ export class FindParkingComponent implements OnInit {
 
   // fake DB TODO: updete this!!!
 
-  displayedColumns: string[] = ['id', 'address', 'price', 'distance'];
+  displayedColumns: string[] = ['id', 'address', 'price'];
   ELEMENT_DATA: SpotElement[] = null;
   // [
   //   { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
@@ -63,9 +63,11 @@ export class FindParkingComponent implements OnInit {
     this.findCurrentLocation();
     var res = await this.webService.getSpots();
     console.log(res)
-    this.ELEMENT_DATA = JSON.parse('[' + res + ']')
+    this.ELEMENT_DATA = JSON.parse('' + res + '')
     this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
+    console.log(this.ELEMENT_DATA_FILTER)
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
+    console.log(this.dataSource)
     this.dataSource.sort = this.sort;
   }
 
@@ -156,13 +158,13 @@ export class FindParkingComponent implements OnInit {
 
     const centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
     for (let spot of this.ELEMENT_DATA) {
-      const markerLoc = new google.maps.LatLng(spot.lat, spot.lng);
-      spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
+      const markerLoc = new google.maps.LatLng(spot.latitude, spot.longitude);
+      // spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
 
-      if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
-        ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
-        this.ELEMENT_DATA_FILTER.push(spot);
-      }
+      // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
+      //   ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
+      //   this.ELEMENT_DATA_FILTER.push(spot);
+      // }
 
     }
 
@@ -195,9 +197,9 @@ export class FindParkingComponent implements OnInit {
     dialogConfig.data = { /** pass data to dialog */
       id: this.selectedSpot.id,
       price: this.selectedSpot.price,
-      lat: this.selectedSpot.lat,
-      lng: this.selectedSpot.lng,
-      address: this.getAddress(this.selectedSpot.lat, this.selectedSpot.lng),
+      lat: this.selectedSpot.latitude,
+      lng: this.selectedSpot.longitude,
+      address: this.getAddress(this.selectedSpot.latitude, this.selectedSpot.longitude),
     };
 
     /** open dialog */
@@ -224,15 +226,17 @@ export class FindParkingComponent implements OnInit {
 
 export interface SpotElement {
   id: number;
-  lat: number;
-  lng: number;
+  latitude: number;
+  longitude: number;
   street: string;
   building: number;
   city: string;
   start_time: string;
   end_time: string;
-  distance: number;
+  // distance: number;
   price: number;
+  userId: string;  
+  buyerId: string;
 }
 
 export interface FilterElement { // TODO: add date

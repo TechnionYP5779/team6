@@ -161,7 +161,7 @@ public class OurSystem {
 //  }
   
   private static JSONArray convertParkingSpotsToJSONArray(List<ParkingSpot> pList) {
-    JSONArray $ = new JSONArray();  
+    JSONArray $ = new JSONArray();
     for(ParkingSpot ps : pList) {
       JSONObject jsonObjParkingSpot = new JSONObject();
       jsonObjParkingSpot.put("city", ps.getAddress().getCity());
@@ -173,7 +173,9 @@ public class OurSystem {
       jsonObjParkingSpot.put("userId", ps.getSellerID());
       jsonObjParkingSpot.put("buyerId", ps.getBuyerID());
       jsonObjParkingSpot.put("latitude", ps.getLatitude());
-      jsonObjParkingSpot.put("getLongitude", ps.getLongitude());
+      jsonObjParkingSpot.put("longitude", ps.getLongitude());
+      jsonObjParkingSpot.put("id", ps.getId());
+
       $.put(jsonObjParkingSpot);
     }
     return $;

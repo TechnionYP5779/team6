@@ -44,6 +44,7 @@ access_token = null;
       if(rent['spot_num']){
         body.spot_num = rent['spot_num'];
       }
+      console.log(body)
   		this.http.post(this.BASE_URL+this.ADD_SPOT_URL, body).subscribe(res=>{
   			console.log(JSON.stringify(res));	
   			alert("successfully add a new spot")
