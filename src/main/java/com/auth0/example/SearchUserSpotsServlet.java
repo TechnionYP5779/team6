@@ -1,6 +1,7 @@
 package com.auth0.example;
 
 import java.io.*;
+import java.util.stream.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -22,12 +23,12 @@ import parking.*;
       return;
     // final String body =
     // r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-    final String body = Auth0Filter.body;
+    final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     resp.setHeader("Access-Control-Allow-Origin", "*");
     String psList = "";
     try {
       final JSONObject jo = new JSONObject(new String(body));
-      jo.put("userId", auth.userInfo(jo.getString("accessToken")).execute().getValues().get("sub"));
+      jo.put("userId", auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute().getValues().get("sub"));
       psList = OurSystem.getAllParkingSpotsByUser(jo) + "";
     } catch (final JSONException ¢) {
       resp.setHeader("Response", "ERROR");

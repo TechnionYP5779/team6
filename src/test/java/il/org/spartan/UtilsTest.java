@@ -12,7 +12,6 @@ import org.jetbrains.annotations.*;
 import org.junit.*;
 
 import fluent.ly.*;
-import il.org.spartan.Utils.*;
 
 /** For tested interface please see {@link il.org.spartan.Utils} . */
 @SuppressWarnings({ "null", "static-method" }) public class UtilsTest {

@@ -17,10 +17,10 @@ public class ParkingDataBase {
    * @param ¢ The parking spot to be added to the DB.
    * @throws SQLException */
   public static void addParkingSpot(final ParkingSpot ¢) throws SQLException {
-    SQLUtils.runCommand("INSERT INTO parkingspots (price,owner,buyer,city,street,building,startDate,endDate,startHour,endHour) VALUES (" + ¢.getPrice() + ", '"
-        + ¢.getSellerID() + "', NULL, '" + ¢.getAddress().getCity() + "', '" + ¢.getAddress().getStreet() + "', " + ¢.getAddress().getBuilding()
-        + ", DATE '" + ¢.getStartDate() + "', DATE '" + ¢.getEndDate() + "', TIME '" + ¢.getStartHour().substring(0, 7) + "', TIME '"
-        + ¢.getEndHour().substring(0, 7) + "')");
+    SQLUtils.runCommand("INSERT INTO parkingspots (price,owner,buyer,city,street,building,startDate,endDate,startHour,endHour) VALUES ("
+        + ¢.getPrice() + ", '" + ¢.getSellerID() + "', NULL, '" + ¢.getAddress().getCity() + "', '" + ¢.getAddress().getStreet() + "', "
+        + ¢.getAddress().getBuilding() + ", DATE '" + ¢.getStartDate() + "', DATE '" + ¢.getEndDate() + "', TIME '" + ¢.getStartHour().substring(0, 7)
+        + "', TIME '" + ¢.getEndHour().substring(0, 7) + "')");
   }
 
   /** Removes a spot from the DB according to its ID.
