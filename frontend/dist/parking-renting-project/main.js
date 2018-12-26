@@ -1069,7 +1069,7 @@ var RentSpotFormComponent = /** @class */ (function () {
                         return [4 /*yield*/, this.webService.addSpot(this.rentSpotModel)];
                     case 1:
                         res = _a.sent();
-                        if (res = "successfully add a new spot") {
+                        if (res == "successfully add a new spot") {
                             this.added = true;
                         }
                         else {
