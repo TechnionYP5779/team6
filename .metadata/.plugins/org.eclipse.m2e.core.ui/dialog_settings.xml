@@ -2,16 +2,18 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
-			<item value="/home/eyal/Documents/school/semester_6/yearly_project"/>
-			<item value="/home/eyal/Documents/school/semester_6/yearly_project/proj"/>
+			<item
+				value="/home/eyal/Documents/school/semester_6/yearly_project" />
+			<item
+				value="/home/eyal/Documents/school/semester_6/yearly_project/proj" />
 		</list>
 		<list key="projectNameTemplate">
-			<item value="[artifactId]"/>
-			<item value="[artifactId]-TRUNK"/>
-			<item value="[artifactId]-[version]"/>
-			<item value="[groupId].[artifactId]"/>
-			<item value="[groupId].[artifactId]-[version]"/>
-			<item value="[name]"/>
+			<item value="[artifactId]" />
+			<item value="[artifactId]-TRUNK" />
+			<item value="[artifactId]-[version]" />
+			<item value="[groupId].[artifactId]" />
+			<item value="[groupId].[artifactId]-[version]" />
+			<item value="[name]" />
 		</list>
 	</section>
 </section>

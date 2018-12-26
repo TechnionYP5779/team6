@@ -129,10 +129,9 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-jackson</artifactId>
-			<version>0.10.5</version>
-			<scope>runtime</scope>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>3.4.1</version>
 		</dependency>
 	</dependencies>
 </project>

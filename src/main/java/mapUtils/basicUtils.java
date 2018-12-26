@@ -46,37 +46,32 @@ public class basicUtils {
         street, $);
   }
 
-  /**
-   * 
-   * @param source the address which the distance is calculated from
+  /** @param source  the address which the distance is calculated from
    * @param destination the address which the distance is calculated to
    * @return air distance between the two addresses in meters.
    * @throws ApiException
    * @throws InterruptedException
-   * @throws IOException
-   */
-  @SuppressWarnings("boxing") public static double calculateDistanceByAddress(Address source, Address destination) throws ApiException, InterruptedException, IOException {
-    Pair<Double, Double> sourceCoordinates = geocodingAddress(source);
-    Pair<Double, Double> destinationCoordinates = geocodingAddress(destination);
-    return calculateDistanceByCoordinates(sourceCoordinates.first, sourceCoordinates.second, destinationCoordinates.first,
-        destinationCoordinates.second);
+   * @throws IOException */
+  @SuppressWarnings("boxing") public static double calculateDistanceByAddress(final Address source, final Address destination)
+      throws ApiException, InterruptedException, IOException {
+    final Pair<Double, Double> $ = geocodingAddress(source), destinationCoordinates = geocodingAddress(destination);
+    return calculateDistanceByCoordinates($.first, $.second, destinationCoordinates.first, destinationCoordinates.second);
   }
 
-  //this function gets coordinates and return the distance between the coordinates
-  private static double calculateDistanceByCoordinates(double sourceLat, double sourceLng, double destinationLat, double destinationLng) {
-    final int R = 6371; // Radius of the earth
-    double latDistance = Math.toRadians(destinationLat - sourceLat);
-    double lngDistance = Math.toRadians(destinationLng - sourceLng);
-    double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-        + Math.cos(Math.toRadians(sourceLat)) * Math.cos(Math.toRadians(destinationLat)) * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
-    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    double distance = R * c * 1000; // convert to meters
-    return Math.sqrt(Math.pow(distance, 2));
+  // this function gets coordinates and return the distance between the
+  // coordinates
+  private static double calculateDistanceByCoordinates(final double sourceLat, final double sourceLng, final double destinationLat,
+      final double destinationLng) {
+    final int $ = 6371; // Radius of the earth
+    final double latDistance = Math.toRadians(destinationLat - sourceLat), lngDistance = Math.toRadians(destinationLng - sourceLng),
+        a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+            + Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2) * Math.cos(Math.toRadians(sourceLat)) * Math.cos(Math.toRadians(destinationLat));
+    return Math.sqrt(Math.pow(2000 * $ * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)), 2));
   }
-
-//  public static void main(final String[] args) throws ApiException, InterruptedException, IOException {
-//    Address source = new Address("Petah Tikwa", "Salomon", 3);
-//    Address destination = new Address("Petah Tikwa", "Tidhar", 6);
-//    System.out.print(calculateDistanceByAddress(source, destination));
-//  }
+  // public static void main(final String[] args) throws ApiException,
+  // InterruptedException, IOException {
+  // Address source = new Address("Petah Tikwa", "Salomon", 3);
+  // Address destination = new Address("Petah Tikwa", "Tidhar", 6);
+  // System.out.print(calculateDistanceByAddress(source, destination));
+  // }
 }

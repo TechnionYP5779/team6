@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
-		<item value="/home/eyal/Documents/school/semester_6/yearly_project/proj/lib"/>
-		<item value="/home/eyal/Documents/school/semester_6/yearly_project/proj/src"/>
-		<item value="/home/eyal/Documents/school/semester_6/yearly_project/proj/src/main/java/fluent/ly"/>
-		<item value="/home/eyal/Documents/school/semester_6/yearly_project/proj"/>
+	<list
+		key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item
+			value="/home/eyal/Documents/school/semester_6/yearly_project/proj/lib" />
+		<item
+			value="/home/eyal/Documents/school/semester_6/yearly_project/proj/src" />
+		<item
+			value="/home/eyal/Documents/school/semester_6/yearly_project/proj/src/main/java/fluent/ly" />
+		<item
+			value="/home/eyal/Documents/school/semester_6/yearly_project/proj" />
 	</list>
 </section>

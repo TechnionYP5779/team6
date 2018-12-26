@@ -31,8 +31,8 @@ import parking.*;
     try {
       final JSONObject jo = new JSONObject(new String(body));
       jo.put("userId", auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute().getValues().get("sub"));
-    //  System.out.println(body);
-  //    System.out.println(jo + "");
+      // System.out.println(body);
+      // System.out.println(jo + "");
       System.out.println(auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute().getValues().keySet() + "");
       OurSystem.addParkingSpot(jo);
     } catch (final JSONException ¢) {
