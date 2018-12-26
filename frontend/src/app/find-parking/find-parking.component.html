@@ -1,9 +1,11 @@
-<div class="container">
+<div style="width:40%; margin:5% auto;" *ngIf="loading">
+  <mat-progress-spinner mode="indeterminate" value="indeterminate" diameter="200" strokeWidth="10" style="width:15%; margin:0 auto;">
+  </mat-progress-spinner>
+</div> 
 
+<div class="container" *ngIf="!loading">
   <!-- Title -->
-  <h2>Find parking spot</h2>
-
-
+  <h2>Find parking spot</h2> 
   <!-- split page to 2 columns: table on the left and map on the right -->
   <div class="row">
 
@@ -111,5 +113,5 @@
 
   </div>
 
-
+ 
 </div>

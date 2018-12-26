@@ -4,6 +4,8 @@
 <div  >
   <div *ngIf="loading">
     <mat-progress-spinner mode="indeterminate" value="indeterminate" style="width:15%; margin:0 auto;"></mat-progress-spinner>
+    <p> {{spacer}} </p>
+    <p> {{spacer}} </p>
   </div>
 </div>  
 <div *ngIf="!loading" mat-dialog-content [formGroup]="loginForm">

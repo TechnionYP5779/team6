@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   logged = false;
   error = null;
   loading = false
+  spacer = '         '
 
   constructor(private webService : WebService, private fb: FormBuilder, private dialogRef: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.loginForm = fb.group({
