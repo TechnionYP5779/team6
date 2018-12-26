@@ -40,14 +40,16 @@ public class OurSystem {
   }
 
   /** add parking spot to the system
-   * @param jObj should include: 
+   * @param jObj - should include: 
    * <p>            city -> the city of the parking spot
    * <br>            street -> the street of the parking spot 
    * <br>            spot_num -> the building number of the parking spot 
    * <br>            start_time -> the start time of renting the parking spot in format: DateTHour
    * <br>            end_time -> the end time of renting the parking spot in format: DateTHour
    * <br>            price -> the price per hour for renting the like that: dateTtime parking spot
-   * <br>            userId -> the userId of the owner of the parking spot */
+   * <br>            userId -> the userId of the owner of the parking spot 
+   * @throws IllegalArgumentException in most cases of invalid addresses. Invalid street number, for instance, will be count as valid.
+   * @see {@link mapUtils.basicUtils#checkValidityOfAddress} for more information about this exception.  */
   public static void addParkingSpot(final JSONObject jObj) {
     final String city = jObj.getString("city"), street = jObj.getString("street");
     final int building = Integer.parseInt(jObj.getString("spot_num"));
@@ -57,7 +59,14 @@ public class OurSystem {
     final String endDate = endComponent[0], endHour = addTwoHours(endComponent[1].substring(0, 9));
     final int price = Integer.parseInt(jObj.getString("price"));
     final String ownerID = jObj.getString("userId");
-    final ParkingSpot p = new ParkingSpot(0, ownerID, null, price, new Address(city, street, building), startHour, endHour, startDate, endDate);
+    Address a = new Address(city, street, building);
+    try {
+      if (!basicUtils.checkValidityOfAddress(a)) throw new IllegalArgumentException("Invalid Address");
+    } catch (ApiException | InterruptedException | IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    final ParkingSpot p = new ParkingSpot(0, ownerID, null, price, a, startHour, endHour, startDate, endDate);
     try {
       ParkingDataBase.addParkingSpot(p);
     } catch (final SQLException ¢) {
@@ -67,7 +76,7 @@ public class OurSystem {
   }
 
   /** remove parking spot from the system
-   * @param jObj should include: 
+   * @param jObj - should include: 
    * <p>       parkingSpotId -> the id of the sparking spot to be removed */
   public static void removeParkingSpot(final JSONObject jObj) {
     final int parkingSpotId = Integer.parseInt(jObj.getString("parkingSpotId"));
@@ -82,7 +91,7 @@ public class OurSystem {
   /** rent available parking spot that exist in the system. you cannot rent
    * specific time, but the whole blank of time of the parking spot as the seller
    * wanted
-   * @param jObj should include: 
+   * @param jObj - should include: 
    * <p>           buyerId -> the id of the buyer of the parking spot
    * <br>           parkingSpotId -> the id of the parking spot the buyer want to rent */
   public static void rentParkingSpot(final JSONObject jObj) {
@@ -97,7 +106,7 @@ public class OurSystem {
   }
 
   /** unrent rented parking spot
-   * @param jObj should include: 
+   * @param jObj - should include: 
    * <p>           parkingSpotId -> the id of the parking spot to be unrented */
   public static void unrentParkingSpot(final JSONObject jObj) {
     final int parkingSpotId = Integer.parseInt(jObj.getString("parkingSpotId"));
@@ -134,7 +143,7 @@ public class OurSystem {
 
   /**
    * 
-   * @param jObj should include:
+   * @param jObj - should include:
    * <p>         userId -> the id of the user which his parking spots will be returned (available and none available)
    * @return      the parking spots of the user as JSONArray of JSONObjects that each one contains parking spot's information in the following format:
    * <p>         city -> the city of the parking spot
@@ -185,7 +194,7 @@ public class OurSystem {
 
   /**
    * 
-   * @param jObj should include:
+   * @param jObj - should include:
    * <p>         date -> the date the user want to rent a parking spot.
    * @return      all the available parking spots that fit to the date as JSONArray of JSONObjects that each one contains parking spots information in the following format:
    * <p>         city -> the city of the parking spot
@@ -214,7 +223,7 @@ public class OurSystem {
 
   /**
    * 
-   * @param jObj should include:
+   * @param jObj - should include:
    * <p>           city -> the city the user want to rent a parking spot at
    * <br>           street -> the street the user want to rent a parking spot at
    * @return      all the available parking spots that fit to the street and city as JSONArray of JSONObjects that each one contains parking spots information in the following format:
@@ -244,7 +253,7 @@ public class OurSystem {
   
   /**
    * 
-   * @param jObj should include:
+   * @param jObj - should include:
    * <p>         distance -> the radius from the wanted location that the user want parking spots from
    * <br>         city -> the city of the wanted location
    * <br>         street -> the street of the wanted location

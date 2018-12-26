@@ -16,7 +16,7 @@ import parking.*;
  * @fluent.ly.Author Or
  * @fluent.ly.ClassDesc TODO */
 public class basicUtils {
-  /** @param a address
+  /** @param a - address
    * @return the coordinates of the address as a Pair
    * @throws ApiException
    * @throws InterruptedException
@@ -28,8 +28,8 @@ public class basicUtils {
         box.it(Double.parseDouble(new GsonBuilder().setPrettyPrinting().create().toJson(box.it($[0].geometry.location.lng)))));
   }
 
-  /** @param lat lat coordinates of an address
-   * @param lng lng coordinates of an address
+  /** @param lat - latitude coordinates of an address
+   * @param lng - longitude coordinates of an address
    * @return the address of the coordinates
    * @throws ApiException
    * @throws InterruptedException
@@ -47,9 +47,29 @@ public class basicUtils {
   }
 
   /**
+   * check the validity of address and return the result.
+   * <p> <b>IMPORTANT NOTES: 
+   * <br> 1. Some invalid addresses will be returned as valid. For example, wrong street number will pass this validation.
+   * <br> 2. The function depends strongly on the implementation of the Google Api. Will not work on other implementation than this specific one.
+   * @param a - address
+   * @return True - if address is valid or only the building number is invalid
+   * <br> False - otherwise
+   * @throws ApiException
+   * @throws InterruptedException
+   * @throws IOException
+   */
+  public static boolean checkValidityOfAddress(Address a) throws ApiException, InterruptedException, IOException {
+    final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(),
+        String.valueOf(a.getStreet() + " " + a.getBuilding()) + ", " + a.getCity()).await();
+    if($ == null || $.length == 0) return false;
+    if($[0].addressComponents.length <= 5)  return false;
+    return true;
+  }
+  
+  /**
    * 
-   * @param source the address which the distance is calculated from
-   * @param destination the address which the distance is calculated to
+   * @param source - the address which the distance is calculated from
+   * @param destination - the address which the distance is calculated to
    * @return air distance between the two addresses in meters.
    * @throws ApiException
    * @throws InterruptedException
@@ -75,8 +95,13 @@ public class basicUtils {
   }
 
 //  public static void main(final String[] args) throws ApiException, InterruptedException, IOException {
-//    Address source = new Address("Petah Tikwa", "Salomon", 3);
-//    Address destination = new Address("Petah Tikwa", "Tidhar", 6);
+//    Address ¢ = new Address("Petah Tikwa", "jabotinsky", 2);
+//    System.out.print(checkValidityOfAddress(¢));
+//    System.out.print(checkValidityOfAddress(¢));
+//    final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(),
+//        String.valueOf(¢.getStreet() + " " + ¢.getBuilding()) + ", " + ¢.getCity()).await();
+//    System.out.print(new GsonBuilder().setPrettyPrinting().create().toJson($[0].addressComponents));
+//    Address destination = new Address("Petah Tikwa", "Herzel", 3);
 //    System.out.print(calculateDistanceByAddress(source, destination));
 //  }
 }
