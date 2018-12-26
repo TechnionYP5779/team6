@@ -7,6 +7,9 @@ import { MatRadioModule, MatRadioButton, MatRadioChange } from '@angular/materia
 import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
+import { RentSpotDialogComponent } from '../rent-spot-dialog/rent-spot-dialog.component';
+import { elementStyleProp } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-find-parking',
@@ -34,19 +37,19 @@ export class FindParkingComponent implements OnInit {
   // fake DB TODO: updete this!!!
 
   displayedColumns: string[] = ['id', 'lat', 'lng', 'price', 'distance'];
-  ELEMENT_DATA: spotElement[] = [
-    { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
-    { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, distance: -1, price: 70 },
-    { id: 3, lat: this.thecnionlat + 0.00065, lng: this.thecnionlng + 0.00065, distance: -1, price: 30 },
-    { id: 4, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng - 0.00070, distance: -1, price: 50 },
-    { id: 5, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng - 0.00150, distance: -1, price: 40 },
-    { id: 6, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng + 0.00045, distance: -1, price: 45 },
-    { id: 7, lat: this.thecnionlat - 0.00175, lng: this.thecnionlng + 0.00145, distance: -1, price: 40 },
-    { id: 8, lat: this.thecnionlat + 0.00045, lng: this.thecnionlng - 0.00165, distance: -1, price: 30 },
-    { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, distance: -1, price: 20 },
-    { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, distance: -1, price: 80 },
+  ELEMENT_DATA: SpotElement[] = [
+    { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, address: '', distance: -1, price: 40 },
+    { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, address: '', distance: -1, price: 70 },
+    { id: 3, lat: this.thecnionlat + 0.00065, lng: this.thecnionlng + 0.00065, address: '', distance: -1, price: 30 },
+    { id: 4, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng - 0.00070, address: '', distance: -1, price: 50 },
+    { id: 5, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng - 0.00150, address: '', distance: -1, price: 40 },
+    { id: 6, lat: this.thecnionlat - 0.00075, lng: this.thecnionlng + 0.00045, address: '', distance: -1, price: 45 },
+    { id: 7, lat: this.thecnionlat - 0.00175, lng: this.thecnionlng + 0.00145, address: '', distance: -1, price: 40 },
+    { id: 8, lat: this.thecnionlat + 0.00045, lng: this.thecnionlng - 0.00165, address: '', distance: -1, price: 30 },
+    { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, address: '', distance: -1, price: 20 },
+    { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, address: '', distance: -1, price: 80 },
   ];
-  ELEMENT_DATA_FILTER: spotElement[] = this.ELEMENT_DATA;
+  ELEMENT_DATA_FILTER: SpotElement[] = this.ELEMENT_DATA;
   dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
 
   //--- NGINIT & C'TOR ---------------------------------------------------------------------------------------
@@ -58,7 +61,7 @@ export class FindParkingComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private mapsAPILoader: MapsAPILoader, private fb: FormBuilder) {
+  constructor(private mapsAPILoader: MapsAPILoader, private fb: FormBuilder, public rentDialog: MatDialog) {
     // init filterForm (fields and validators):
     this.filterForm = fb.group({
       floatLabel: 'auto',
@@ -68,11 +71,26 @@ export class FindParkingComponent implements OnInit {
     });
   }
 
+  getAddress(lat: number, lng: number): string {
+    if (navigator.geolocation) {
+      let geocoder = new google.maps.Geocoder();
+      let latlng = new google.maps.LatLng(lat, lng);
+      let request = { latLng: latlng };
+      let res = '(lat=' + lat + ',lng=' + lng + ')'
+      geocoder.geocode(request, (results, status) => {
+        if (status == google.maps.GeocoderStatus.OK && results[0]) {
+          //console.log("************ results[0].formatted_address", results[0].formatted_address)
+          res = results[0].formatted_address
+        }
+      });
+      return res
+    }
+  }
+
   //--- UPDATE LOCATION --------------------------------------------------------------------------------------
 
   findCurrentLocation() {
     if (this.selectedCurrLocOption == 'GPS location') {
-      console.log("~~~~~~~~ findCurrentLocation: gps")
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
           this.currlat = position.coords.latitude;
@@ -90,15 +108,15 @@ export class FindParkingComponent implements OnInit {
   }
 
   changeCurrentLocationToTechnion() {
-    console.log("~~~~~~~~ changeCurrentLocationToTechnion")
     this.currlat = this.thecnionlat;
     this.currlng = this.thecnionlng;
+    //this.getAddress(this.currlat, this.currlng)
   }
 
   //--- FILTER --------------------------------------------------------------------------------------
 
   filterForm: FormGroup;
-  filterElement: filterElement = {
+  filterElement: FilterElement = {
     locationOption: 'GPS location',
     maxDistance: -1, // meters
     maxPrice: -1,
@@ -106,8 +124,6 @@ export class FindParkingComponent implements OnInit {
   locationOptions: string[] = ['GPS location', 'Technion']; // need to add "choose by address"
 
   filter() {
-    console.log("~~~~~~~~ filter")
-
     this.filterElement.locationOption = this.filterForm.value.locationOption;
 
     this.filterElement.maxDistance = (this.filterForm.value.maxDistance == "" || this.filterForm.value.maxDistance == null) ? -1 : this.filterForm.value.maxDistance;
@@ -127,8 +143,6 @@ export class FindParkingComponent implements OnInit {
   }
 
   filterMarkers() {
-    console.log("~~~~~~~~ filterMarkers")
-
     this.ELEMENT_DATA_FILTER = [];
 
     const centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
@@ -145,20 +159,70 @@ export class FindParkingComponent implements OnInit {
 
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
     this.dataSource.sort = this.sort;
-
   }
+
+  //--- RENT SPOT -----------------------------------------------------------------------------------
+
+  selectedSpot: SpotElement = null;
+
+  rentSpot(spot: SpotElement) {
+    console.log("you choose to rent: ", spot);
+    this.selectedSpot = spot;
+    this.openRentDialog();
+    this.selectedSpot = null;
+  }
+
+  openRentDialog(): void {
+
+    /** config dialog */
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;   /** the user will not be able to close the dialog just by clicking outside of it */
+    dialogConfig.autoFocus = false;     /** the focus will not be set automatically on the first form field of the dialog */
+
+    dialogConfig.height = '500px';      /** size of dialog window */
+    dialogConfig.width = '500px';
+
+    dialogConfig.data = { /** pass data to dialog */
+      id: this.selectedSpot.id,
+      price: this.selectedSpot.price,
+      lat: this.selectedSpot.lat,
+      lng: this.selectedSpot.lng,
+      address: this.getAddress(this.selectedSpot.lat, this.selectedSpot.lng),
+    };
+
+    /** open dialog */
+    const dialogRef = this.rentDialog.open(RentSpotDialogComponent, dialogConfig);
+
+    /** get data from dialog - empty for no */
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        if (result == 'rent') {
+          console.log('The rent dialog was closed - *with* renting');
+        }
+        else if (result == 'close') {
+          console.log('The rent dialog was closed - *without* renting');
+        }
+      }
+    });
+  }
+
+
 
 }
 
-export interface spotElement {
+//--- INTERFACES -----------------------------------------------------------------------------------
+
+export interface SpotElement {
   id: number;
   lat: number;
   lng: number;
+  address: string;
   distance: number;
   price: number;
 }
 
-export interface filterElement { // TODO: add date
+export interface FilterElement { // TODO: add date
   locationOption: string
   maxDistance: number;
   maxPrice: number;

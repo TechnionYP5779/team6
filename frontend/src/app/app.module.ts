@@ -33,6 +33,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { RentSpotFormComponent } from './rent-spot-form/rent-spot-form.component';
 import { WebService } from './web.service';
+import { RentSpotDialogComponent } from './rent-spot-dialog/rent-spot-dialog.component';
 
 
 @NgModule({
@@ -46,8 +47,8 @@ import { WebService } from './web.service';
     NotFoundComponent,
     SignUpComponent,
     LoginComponent,
-
-    RentSpotFormComponent
+    RentSpotFormComponent,
+    RentSpotDialogComponent
   ],
 
   imports: [
@@ -90,7 +91,7 @@ import { WebService } from './web.service';
 
   bootstrap: [AppComponent],
 
-  entryComponents: [LoginComponent, SignUpComponent]
+  entryComponents: [LoginComponent, SignUpComponent, RentSpotDialogComponent]
 
 })
 

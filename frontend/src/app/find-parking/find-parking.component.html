@@ -45,7 +45,7 @@
 
 
       <!-- Table (left) ---------------------------------------------------------------------------->
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
         <!-- ID Column -->
         <ng-container matColumnDef="id">
@@ -61,14 +61,14 @@
 
         <!-- longitude Column -->
         <ng-container matColumnDef="lng">
-          <th mat-header-cell *matHeaderCellDef> longitude </th>
+          <th mat-header-cell *matHeaderCellDef> Longitude </th>
           <td mat-cell *matCellDef="let element"> {{element.lng}} </td>
         </ng-container>
 
         <!-- Distance Column -->
         <ng-container matColumnDef="distance">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>
-          <td mat-cell *matCellDef="let element">  {{element.distance == -1 ? '---' : element.distance}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.distance == -1 ? '---' : element.distance}} </td>
         </ng-container>
 
         <!-- Price Column -->
@@ -97,7 +97,16 @@
         <!-- Markers for all avaiable spot -->
         <agm-marker *ngFor="let spot of ELEMENT_DATA_FILTER; let i=index" [latitude]="+spot.lat" [longitude]="+spot.lng"
           [label]="spot.id.toString()">
-          <agm-info-window>parking spot {{i}}</agm-info-window>
+          <agm-info-window>
+            ID: {{spot.id}}
+            <br>
+            price: {{spot.price}}
+            <br>
+            distance: {{spot.distance}}
+            <br>
+            <button type="button" (click)="rentSpot(spot)">Rent Me!</button>
+
+          </agm-info-window>
         </agm-marker>
 
 
