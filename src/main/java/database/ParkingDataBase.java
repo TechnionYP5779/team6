@@ -11,6 +11,7 @@ import parking.*;
  * @fluent.ly.ClassDesc Class responsible for sending the database queries
  *                      relating to parking spots. */
 public class ParkingDataBase {
+  
   /** This method adds a spot to the db. Make sure dates are in 'yyyy-mm-dd'
    * format, and hours are in the 'hh:mm' format. The buyer field is ignored and a
    * null value is added in its place.
@@ -142,6 +143,15 @@ public class ParkingDataBase {
     return $;
   }
 
+  /**
+   * Returns all empty parking spots whose range involves today.
+   * @return a list of all the relevant spots.
+   * @throws SQLException
+   */
+  public static List<ParkingSpot> getAllAvailableSpotsToday() throws SQLException {
+    return searchSpotsWithDate(java.time.LocalDate.now()+"");
+  }
+  
   /** Returns all available spots in the given city and street.
    * @param city
    * @param street
@@ -167,4 +177,99 @@ public class ParkingDataBase {
       throw exception;
     return $;
   }
+  
+  /**
+   * A helper function, should only be used with queries that reduce the table into numbers and count it.
+   * @param query
+   * @return the counted rows.
+   * @throws SQLException
+   */
+  private static int countSpots(String query) throws SQLException {
+    SQLException exception = null;
+    QueryResults q = null;
+    int $ = -1;
+    try {
+      q = SQLUtils.runQuery(query);
+      q.getResults().next();
+      $ = q.getResults().getInt("count");
+    }
+    catch(SQLException ¢) {
+      exception = ¢;
+    }
+    finally {
+      if(q!=null)
+        q.close();
+    }
+    if(exception != null)
+      throw exception;
+    return $;
+  }
+  
+  /**
+   * Returns the total number of spots in the database.
+   * @return the number of spots.
+   * @throws SQLException
+   */
+  public static int countAllParkingSpots() throws SQLException {
+    return countSpots("SELECT COUNT(*) AS count FROM parkingspots;");
+  }
+
+  /**
+   * Returns the number of spots which are available for renting.
+   * @return the number of spots.
+   * @throws SQLException
+   */
+  public static int countAvailableParkingSpots() throws SQLException {
+    return countSpots("SELECT COUNT(*) AS count FROM parkingspots WHERE buyer IS NULL;");
+  }
+  
+  /**
+   * Returns the number of spots which are available for renting today.
+   * @return the number of spots.
+   * @throws SQLException
+   */
+  public static int countAvailableSpotsToday() throws SQLException {
+    String $ = "DATE '" + java.time.LocalDate.now() + "'";
+    return countSpots("SELECT COUNT(*) AS count FROM parkingspots WHERE "
+                      + "startDate <= " + $ + " AND endDate >= " + $ +" AND buyer IS NULL;");
+  }
+  
+  /**
+   * Resets the table in the database.
+   * Isn't public on purpose, as it should only be reset manually.
+   */
+  static void resetParkingSpotsTable() {
+    try {
+      SQLUtils.runCommand(destroyParkingSpotsTable);
+    }
+    catch(SQLException ¢) {
+      System.out.println(¢);
+    }
+    
+    try {
+      SQLUtils.runCommand(createParkingSpotsTable);
+    }
+    catch(SQLException ¢) {
+      System.out.println(¢);
+    }
+  }
+  
+  static final String createParkingSpotsTable = "CREATE TABLE ParkingSpots (\n"
+      + "id INT NOT NULL AUTO_INCREMENT,\n"
+      + "price INT NOT NULL,\n"
+      + "owner VARCHAR(50) NOT NULL,\n"
+      + "buyer VARCHAR(50),\n"
+      
+      + "city VARCHAR(20) NOT NULL,\n"
+      + "street VARCHAR(20) NOT NULL,\n"
+      + "building INT NOT NULL,\n"
+      
+      + "startDate DATE NOT NULL,\n"
+      + "endDate DATE NOT NULL, \n"
+      + "startHour TIME NOT NULL, \n"
+      + "endHour TIME NOT NULL, \n"
+      
+      + "PRIMARY KEY(id));";
+  
+  static final String destroyParkingSpotsTable = "DROP TABLE ParkingSpots;";
 }
