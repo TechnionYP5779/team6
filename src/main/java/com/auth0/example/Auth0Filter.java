@@ -9,7 +9,6 @@ import javax.servlet.http.*;
 
 import org.json.*;
 
-
 // import com.auth0.*;
 //
 // import parking.*;
@@ -35,7 +34,7 @@ import org.json.*;
       throws IOException, ServletException {
     body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     try {
-      JSONObject jbody = new JSONObject(body);
+      final JSONObject jbody = new JSONObject(body);
       if (body.contains("\"accessToken\":null") || body.contains("\"idToken\":null") || !jbody.has("accessToken") || !jbody.has("idToken")) {
         ((HttpServletResponse) response).setHeader("Response", "ERROR");
         ((HttpServletResponse) response).getWriter().write(new JSONObject().put("Desc", "no accessToken or idToken") + "");
@@ -43,7 +42,7 @@ import org.json.*;
         return;
       }
       next.doFilter(r, response);
-    } catch (JSONException ¢) {
+    } catch (final JSONException ¢) {
       ((HttpServletResponse) response).setHeader("Response", "ERROR");
       ((HttpServletResponse) response).getWriter().write(new JSONObject().put("Desc", ¢ + "") + "");
       ((HttpServletResponse) response).sendRedirect("/");

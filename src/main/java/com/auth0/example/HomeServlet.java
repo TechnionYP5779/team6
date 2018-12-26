@@ -16,6 +16,7 @@ import com.auth0.*;
     else if (idToken != null)
       r.setAttribute("userId", idToken);
     res.sendRedirect("http://localhost:4200");
-    //r.getRequestDispatcher("/dist/parking-renting-project/index.html").forward(r, res);
+    // r.getRequestDispatcher("/dist/parking-renting-project/index.html").forward(r,
+    // res);
   }
 }

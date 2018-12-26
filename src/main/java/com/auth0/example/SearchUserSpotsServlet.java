@@ -2,37 +2,39 @@ package com.auth0.example;
 
 import java.io.*;
 
-
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
-import parking.OurSystem;
 
- import org.json.*;
+import org.json.*;
 
 import com.auth0.client.auth.*;
 
-@WebServlet(urlPatterns = { "/logged/search/user/renting_spots" }) @SuppressWarnings("serial") public class SearchUserSpotsServlet extends HttpServlet {
+import parking.*;
+
+@WebServlet(urlPatterns = { "/logged/search/user/renting_spots" }) @SuppressWarnings("serial") public class SearchUserSpotsServlet
+    extends HttpServlet {
   AuthAPI auth = new AuthAPI("team6a.auth0.com", "BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva",
       "znc165307qVtiGnsCq7_3MfmjhuoGC0bo0aE5VMa8X91p--gxzujy6dqolSjmbD3");
-  
+
   @Override protected void doPost(final HttpServletRequest r, final HttpServletResponse resp) throws ServletException, IOException {
     if (!"POST".equals(r.getMethod()))// should only be used for Post Requests
       return;
-  //  final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-    String body = Auth0Filter.body;
-    resp.setHeader("Access-Control-Allow-Origin","*");
+    // final String body =
+    // r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+    final String body = Auth0Filter.body;
+    resp.setHeader("Access-Control-Allow-Origin", "*");
     String psList = "";
     try {
-      JSONObject jo = new JSONObject(new String(body));
-      jo.put("userId",auth.userInfo(jo.getString("accessToken")).execute().getValues().get("sub"));
+      final JSONObject jo = new JSONObject(new String(body));
+      jo.put("userId", auth.userInfo(jo.getString("accessToken")).execute().getValues().get("sub"));
       psList = OurSystem.getAllParkingSpotsByUser(jo) + "";
-    } catch ( JSONException ¢) {
+    } catch (final JSONException ¢) {
       resp.setHeader("Response", "ERROR");
       resp.getWriter().write(new JSONObject().put("Desc", ¢ + "") + "");
       return;
     }
-    if(psList.equals(null)) {
+    if (psList.equals(null)) {
       resp.setHeader("Response", "ERROR");
       resp.getWriter().write(new JSONObject().put("Desc", "Couldn't parse from JSONObject to string") + "");
       return;

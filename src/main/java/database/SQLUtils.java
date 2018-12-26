@@ -8,7 +8,6 @@ import java.sql.*;
  * @fluent.ly.ClassDesc A utility class for SQL. Mainly used to reduce boiler
  *                      plate code. */
 public class SQLUtils {
-  
   static String URL = "jdbc:mysql://den1.mysql6.gear.host/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
   static String USER = "parkingdatabase";
   static String PASS = "team6!";
