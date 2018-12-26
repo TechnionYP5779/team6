@@ -7,13 +7,11 @@ import { MatRadioModule, MatRadioButton, MatRadioChange } from '@angular/materia
 import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSort, MatTableDataSource } from '@angular/material';
-<<<<<<< HEAD
 import { WebService } from '../web.service';
-=======
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { RentSpotDialogComponent } from '../rent-spot-dialog/rent-spot-dialog.component';
 import { elementStyleProp } from '@angular/core/src/render3';
->>>>>>> master
+
 
 @Component({
   selector: 'app-find-parking',
@@ -40,8 +38,8 @@ export class FindParkingComponent implements OnInit {
 
   // fake DB TODO: updete this!!!
 
-  displayedColumns: string[] = ['id', 'lat', 'lng', 'price', 'distance'];
-  ELEMENT_DATA: spotElement[] = null;
+  displayedColumns: string[] = ['id', 'address', 'price', 'distance'];
+  ELEMENT_DATA: SpotElement[] = null;
   // [
   //   { id: 1, lat: this.thecnionlat - 0.00230, lng: this.thecnionlng + 0.00200, distance: -1, price: 40 },
   //   { id: 2, lat: this.thecnionlat + 0.00150, lng: this.thecnionlng + 0.00200, distance: -1, price: 70 },
@@ -54,7 +52,7 @@ export class FindParkingComponent implements OnInit {
   //   { id: 9, lat: this.thecnionlat + 0.00180, lng: this.thecnionlng - 0.00020, distance: -1, price: 20 },
   //   { id: 10, lat: this.thecnionlat + 0.00125, lng: this.thecnionlng - 0.00080, distance: -1, price: 80 },
   // ];
-  ELEMENT_DATA_FILTER: spotElement[] = null;
+  ELEMENT_DATA_FILTER: SpotElement[] = null;
   dataSource = null;
 
   //--- NGINIT & C'TOR ---------------------------------------------------------------------------------------
@@ -64,7 +62,7 @@ export class FindParkingComponent implements OnInit {
   ngOnInit() {
     this.findCurrentLocation();
     var res = this.webService.getSpots();
-    this.ELEMENT_DATA = JSON.parse('['+res + ']')
+    this.ELEMENT_DATA = JSON.parse('[' + res + ']')
     this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
     this.dataSource.sort = this.sort;
@@ -227,7 +225,11 @@ export interface SpotElement {
   id: number;
   lat: number;
   lng: number;
-  address: string;
+  street: string;
+  building: number;
+  city: string;
+  start_time: string;
+  end_time: string
   distance: number;
   price: number;
 }
