@@ -40,8 +40,10 @@
 
       </div>
 
-      <button type="button" (click)="filter()" [disabled]="!filterForm.valid">Submit</button>
-      <button type="button" (click)="reset()">Reset (show all spot)</button>
+      <div>
+        <button type="button" (click)="filter()" [disabled]="!filterForm.valid">Submit</button>
+        <button type="button" (click)="reset()">Reset (show all spots)</button>
+      </div>
 
 
       <!-- Table (left) ---------------------------------------------------------------------------->
@@ -56,10 +58,10 @@
         <!-- Addres Column -->
         <ng-container matColumnDef="address">
           <th mat-header-cell *matHeaderCellDef> Address </th>
-          <td mat-cell *matCellDef="let element"> {{element.city}} {{element.street}} {{element.building}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.street}} St {{element.building}}, {{element.city}} </td>
         </ng-container>
 
-<!--          Distance Column 
+        <!-- Distance Column 
         <ng-container matColumnDef="distance">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>
           <td mat-cell *matCellDef="let element"> {{element.distance == -1 ? '---' : element.distance}} </td>
@@ -90,13 +92,15 @@
 
         <!-- Markers for all avaiable spot -->
         <agm-marker *ngFor="let spot of ELEMENT_DATA_FILTER; let i=index" [latitude]="+spot.latitude" [longitude]="+spot.longitude"
-          [label]="spot.id.toString()">
+          [label]="{color: 'black', text: spot.price.toString()+'&#8362;'}">
           <agm-info-window>
             ID: {{spot.id}}
             <br>
-            price: {{spot.price}}
+            Price: {{spot.price.toString()}}&#8362;
+            <!-- <br>
+            Distance: {{spot.distance}} -->
             <br>
-            distance: {{spot.distance}}
+            Address: {{spot.street}} St {{spot.building}}
             <br>
             <button type="button" (click)="rentSpot(spot)">Rent Me!</button>
 
