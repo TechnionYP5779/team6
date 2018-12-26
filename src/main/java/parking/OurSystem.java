@@ -1,11 +1,15 @@
 package parking;
 
+import java.io.*;
 import java.sql.*;
 import java.util.*;
 
 import org.json.*;
 
+import com.google.maps.errors.*;
+
 import database.*;
+import mapUtils.*;
 
 /** @fluent.ly.Package parking
  * @fluent.ly.Since Dec 18, 2018
@@ -138,6 +142,33 @@ public class OurSystem {
     } catch (final SQLException ¢) {
       // TODO Auto-generated catch block
       ¢.printStackTrace();
+    }
+    return convertParkingSpotsToJSONArray($);
+  }
+  
+  public static JSONArray getParkingSpotsByDistance(final JSONObject jObj) {
+    final double distance = Double.parseDouble(jObj.getString("distance"));
+    final String city = jObj.getString("city"), street = jObj.getString("street");
+    final int building = Integer.parseInt(jObj.getString("building"));
+    Address sourceAddress = new Address(city, street, building);
+    List<ParkingSpot> allAvailableParkingSpots = null;
+    List<ParkingSpot> $ = new ArrayList<>();
+    try {
+      allAvailableParkingSpots = ParkingDataBase.getAllAvailableParkingSpots();
+    } catch (final SQLException ¢) {
+      // TODO Auto-generated catch block
+      ¢.printStackTrace();
+    }
+    if (allAvailableParkingSpots == null) return new JSONArray();
+    for (ParkingSpot p : allAvailableParkingSpots) {
+      try {
+        if (basicUtils.calculateDistanceByAddress(sourceAddress, p.getAddress()) <= distance) {
+          $.add(p);
+        }
+      } catch (ApiException | InterruptedException | IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
     }
     return convertParkingSpotsToJSONArray($);
   }
