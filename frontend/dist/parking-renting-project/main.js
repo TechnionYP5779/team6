@@ -478,9 +478,9 @@ var FindParkingComponent = /** @class */ (function () {
             var markerLoc = new google.maps.LatLng(spot.latitude, spot.longitude);
             // spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
             // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
-            //   ((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
-            //   this.ELEMENT_DATA_FILTER.push(spot);
-            // }
+            if (((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
+                this.ELEMENT_DATA_FILTER.push(spot);
+            }
         }
         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
         this.dataSource.sort = this.sort;
@@ -500,10 +500,12 @@ var FindParkingComponent = /** @class */ (function () {
         dialogConfig.width = '500px';
         dialogConfig.data = {
             id: this.selectedSpot.id,
+            building: this.selectedSpot.building,
+            city: this.selectedSpot.city,
+            street: this.selectedSpot.street,
+            end_time: this.selectedSpot.end_time,
+            start_time: this.selectedSpot.start_time,
             price: this.selectedSpot.price,
-            lat: this.selectedSpot.latitude,
-            lng: this.selectedSpot.longitude,
-            address: this.getAddress(this.selectedSpot.latitude, this.selectedSpot.longitude),
         };
         /** open dialog */
         var dialogRef = this.rentDialog.open(_rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_6__["RentSpotDialogComponent"], dialogConfig);
@@ -1259,7 +1261,7 @@ var WebService = /** @class */ (function () {
         if (rent.spot_num) {
             body.spot_num = rent.spot_num.toString();
         }
-        console.log(body);
+        console.log(JSON.stringify(body));
         this.http.post(this.BASE_URL + this.ADD_SPOT_URL, body).subscribe(function (res) {
             console.log(JSON.stringify(res));
             alert("successfully add a new spot");

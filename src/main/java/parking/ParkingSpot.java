@@ -11,8 +11,7 @@ import il.org.spartan.utils.*;
  * @fluent.ly.Since Dec 8, 2018
  * @fluent.ly.Author Or, Nitzan */
 public class ParkingSpot {
-  
-  //ONLY THESE ARE RELEVANT CURRENTLY
+  // ONLY THESE ARE RELEVANT CURRENTLY
   private final int id;
   private Address address;
   private String startHour;
@@ -29,7 +28,8 @@ public class ParkingSpot {
    * check parking spot is not already belongs to a seller
    * @param a the address of the parking spot
    * @throws NullPointerException if the address is null */
-  public ParkingSpot(int id, String seller, String buyer,  int price, final Address a, String startHour, String endHour, String startDate, String endDate) {
+  public ParkingSpot(final int id, final String seller, final String buyer, final int price, final Address a, final String startHour,
+      final String endHour, final String startDate, final String endDate) {
     // TODO: needs to check if address valid, means exist in our world
     // TODO: needs to check if parkingSpot already belongs to a seller
     if (a == null)
@@ -43,7 +43,6 @@ public class ParkingSpot {
     this.endDate = endDate;
     this.sellerID = seller;
     this.buyerID = buyer;
-    
     this.slotCounter = 0;
     try {
       this.coordinates = mapUtils.basicUtils.geocodingAddress(a);
@@ -82,27 +81,28 @@ public class ParkingSpot {
   public void removeSlotOfParking() {
     --this.slotCounter;
   }
-  
+
   public String getSellerID() {
     return sellerID;
   }
-  
-  public void setSellerID(String sellerID) {
+
+  public void setSellerID(final String sellerID) {
     this.sellerID = sellerID;
   }
 
   public String getBuyerID() {
     return buyerID;
   }
-  public void setBuyerID(String buyerID) {
+
+  public void setBuyerID(final String buyerID) {
     this.buyerID = buyerID;
   }
 
   public String getStartDate() {
-      return startDate;
+    return startDate;
   }
 
-  public void setStartDate(String startDate) {
+  public void setStartDate(final String startDate) {
     this.startDate = startDate;
   }
 
@@ -110,7 +110,7 @@ public class ParkingSpot {
     return price;
   }
 
-  public void setPrice(int price) {
+  public void setPrice(final int price) {
     this.price = price;
   }
 
@@ -118,47 +118,45 @@ public class ParkingSpot {
     return endDate;
   }
 
-  public void setEndDate(String endDate) {
+  public void setEndDate(final String endDate) {
     this.endDate = endDate;
   }
-  
+
   public String getEndTime() {
-    return (endDate + "T" + endHour);
+    return endDate + "T" + endHour;
   }
 
   public String getStartHour() {
     return startHour;
   }
 
-  public void setStartHour(String startHour) {
+  public void setStartHour(final String startHour) {
     this.startHour = startHour;
   }
-  
+
   public String getStartTime() {
-    return (startDate + "T" + startHour);
+    return startDate + "T" + startHour;
   }
 
   public String getEndHour() {
     return endHour;
   }
-  
 
-  public void setEndHour(String endHour) {
+  public void setEndHour(final String endHour) {
     this.endHour = endHour;
   }
-  
-  public Double getLatitude(){
+
+  public Double getLatitude() {
     return coordinates.first;
   }
-  
-  public Double getLongitude(){
+
+  public Double getLongitude() {
     return coordinates.second;
   }
-  
-@Override 
-  public String toString() {
-    return ("parkingSpotId=" + id + ", sellerId=" + sellerID + ", buyerId=" + (buyerID == null ? "-" : buyerID) + ", price=" + price + ", city="
+
+  @Override public String toString() {
+    return "parkingSpotId=" + id + ", sellerId=" + sellerID + ", buyerId=" + (buyerID == null ? "-" : buyerID) + ", price=" + price + ", city="
         + address.getCity() + ", street=" + address.getStreet() + ", building=" + address.getBuilding() + ", start_time=" + startDate + " "
-        + startHour + ", end_time=" + endDate + " " + endHour + ", latitude=" + coordinates.first + ", longitude=" + coordinates.second);
+        + startHour + ", end_time=" + endDate + " " + endHour + ", latitude=" + coordinates.first + ", longitude=" + coordinates.second;
   }
 }

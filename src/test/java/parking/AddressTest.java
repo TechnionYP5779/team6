@@ -12,7 +12,7 @@ import fluent.ly.*;
  * @see Address */
 @SuppressWarnings("static-method") public class AddressTest {
   @Test public void addressFuncsTest() {
-    Address a = new Address("Tel-Aviv", "Rotchild", 9);
+    final Address a = new Address("Tel-Aviv", "Rotchild", 9);
     azzert.that(a.getBuilding(), is(9));
     azzert.that(a.getStreet(), is("Rotchild"));
     azzert.that(a.getCity(), is("Tel-Aviv"));
