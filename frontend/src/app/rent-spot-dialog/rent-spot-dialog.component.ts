@@ -8,7 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angu
 })
 export class RentSpotDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<RentSpotDialogComponent>, @Inject(MAT_DIALOG_DATA) public spot: SpotElement) { }
+  constructor(public dialogRef: MatDialogRef<RentSpotDialogComponent>, @Inject(MAT_DIALOG_DATA) public spot: SpotElement, private webService: WebService) { }
 
 
   ngOnInit() {
@@ -18,17 +18,24 @@ export class RentSpotDialogComponent implements OnInit {
     this.dialogRef.close('close');
   }
 
-  rent(): void {
-    this.dialogRef.close('rent');
+  async rent(spotId): void {
+    var res = await this.webService.postRent(spotId);
+    if(res == null){
+      this.dialogRef.close('rent');
+    } else {
+      alert('error');
+    }
   }
 }
 
 
 export interface SpotElement {
   id: number;
-  lat: number;
-  lng: number;
-  address: string;
+  street: string;
+  building: number;
+  city: string;
+  start_time: string;
+  end_time: string;
   distance: number;
   price: number;
 }

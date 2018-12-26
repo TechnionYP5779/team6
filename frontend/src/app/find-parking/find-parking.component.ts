@@ -229,7 +229,7 @@ export interface SpotElement {
   building: number;
   city: string;
   start_time: string;
-  end_time: string
+  end_time: string;
   distance: number;
   price: number;
 }
