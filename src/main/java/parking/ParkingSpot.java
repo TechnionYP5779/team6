@@ -1,5 +1,11 @@
 package parking;
 
+import java.io.*;
+
+import com.google.maps.errors.*;
+
+import il.org.spartan.utils.*;
+
 /** the object that represent a parking spot
  * @fluent.ly.Package parking
  * @fluent.ly.Since Dec 8, 2018
@@ -9,29 +15,29 @@ public class ParkingSpot {
   //ONLY THESE ARE RELEVANT CURRENTLY
   private final int id;
   private Address address;
-  private String start_time;
-  private String end_time;
+  private String startHour;
+  private String endHour;
   private int price;
   private String sellerID;
   private String buyerID;
   private String startDate;
   private String endDate;
+  Pair<Double, Double> coordinates;
   private int slotCounter; // number of rent slots associated with this parking spot
-  private static int uniqueId;
 
   /** initialize the parking spot with an address check validity of the address
    * check parking spot is not already belongs to a seller
    * @param a the address of the parking spot
    * @throws NullPointerException if the address is null */
-  public ParkingSpot(int id, String seller, String buyer,  int price, final Address a, String start_time, String end_time, String startDate, String endDate) {
+  public ParkingSpot(int id, String seller, String buyer,  int price, final Address a, String startHour, String endHour, String startDate, String endDate) {
     // TODO: needs to check if address valid, means exist in our world
     // TODO: needs to check if parkingSpot already belongs to a seller
     if (a == null)
       throw new NullPointerException();
     this.id = id;
     this.setAddress(a);
-    this.setStartHour(start_time);
-    this.setEndHour(end_time);
+    this.setStartHour(startHour);
+    this.setEndHour(endHour);
     this.setPrice(price);
     this.startDate = startDate;
     this.endDate = endDate;
@@ -39,11 +45,11 @@ public class ParkingSpot {
     this.buyerID = buyer;
     
     this.slotCounter = 0;
-  }
-
-  public ParkingSpot(String ownerID, Address address2, String startTime, String endTime, int price2) {
-    // TODO Auto-generated constructor stub just for ignore errors for pushing
-    id = 0;
+    try {
+      this.coordinates = mapUtils.basicUtils.geocodingAddress(a);
+    } catch (IOException | InterruptedException | ApiException ¢) {
+      ¢.printStackTrace();
+    }
   }
 
   /** @return address of the parking spot */
@@ -115,29 +121,44 @@ public class ParkingSpot {
   public void setEndDate(String endDate) {
     this.endDate = endDate;
   }
+  
+  public String getEndTime() {
+    return (endDate + "T" + endHour);
+  }
 
   public String getStartHour() {
-    return start_time;
+    return startHour;
   }
 
   public void setStartHour(String startHour) {
-    this.start_time = startHour;
+    this.startHour = startHour;
+  }
+  
+  public String getStartTime() {
+    return (startDate + "T" + startHour);
   }
 
   public String getEndHour() {
-    return end_time;
+    return endHour;
   }
+  
 
   public void setEndHour(String endHour) {
-    this.end_time = endHour;
+    this.endHour = endHour;
+  }
+  
+  public Double getLatitude(){
+    return coordinates.first;
+  }
+  
+  public Double getLongitude(){
+    return coordinates.second;
   }
   
 @Override 
   public String toString() {
-    String buyer = buyerID == null ? "-" : buyerID;
-    return ("id=" + id + ", seller=" + sellerID + ", buyer=" + buyer + ", price=" + price 
-        + ", city=" + address.getCity() +", street="+ address.getStreet() + ", building=" + address.getBuilding()
-        + ", startDate=" + startDate + ", endDate=" + endDate + ", start_time=" + start_time + ", end_time=" + end_time);
+    return ("parkingSpotId=" + id + ", sellerId=" + sellerID + ", buyerId=" + (buyerID == null ? "-" : buyerID) + ", price=" + price + ", city="
+        + address.getCity() + ", street=" + address.getStreet() + ", building=" + address.getBuilding() + ", start_time=" + startDate + " "
+        + startHour + ", end_time=" + endDate + " " + endHour + ", latitude=" + coordinates.first + ", longitude=" + coordinates.second);
   }
-  
 }

@@ -20,10 +20,10 @@ import parking.OurSystem;
       OurSystem.rentParkingSpot(new JSONObject(new String(body)));
     } catch ( JSONException ¢) {
       resp.setHeader("Response", "ERROR");
-      resp.getWriter().write(¢ + "");
+      resp.getWriter().write(new JSONObject().put("Desc", ¢ + "") + "");
       return;
     }
     resp.setHeader("Response", "OK");
-    resp.getWriter().write("");
+    resp.getWriter().write(new JSONObject() + "");
   }
 }

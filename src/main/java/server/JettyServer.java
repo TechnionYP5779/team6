@@ -22,13 +22,14 @@ public class JettyServer {
     webapp.addServlet(new ServletHolder(new RemoveSpotServlet()), "/logged/remove/renting_spot");
     webapp.addServlet(new ServletHolder(new RentSpotServlet()), "/logged/rent/renting_spot");
     webapp.addServlet(new ServletHolder(new UnrentSpotServlet()), "/logged/unrent/renting_spot");
-    webapp.addServlet(new ServletHolder(new SearchSpotsServlet()), "/logged/search/renting_spots");
+    webapp.addServlet(new ServletHolder(new SearchAllAvailableSpotsServlet()), "/logged/search/all/renting_spots");
+    webapp.addServlet(new ServletHolder(new SearchUserSpotsServlet()), "/logged/search/user/renting_spots");
     webapp.addServlet(new ServletHolder(new ServerSideLoginServlet()), "/login");
     webapp.addServlet(new ServletHolder(new ServerSideLogoutServlet()), "/logged/logout");
     final FilterHolder holder1 = new FilterHolder(new Auth0Filter());
     holder1.setName("auth0filter");
     holder1.setInitParameter("param", "");
-//    webapp.addFilter(holder1, "/logged/*", EnumSet.allOf(DispatcherType.class));
+    webapp.addFilter(holder1, "/logged/*", EnumSet.allOf(DispatcherType.class));
     server.setHandler(webapp);
     server.start();
     // auth0 test = new auth0();
