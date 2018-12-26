@@ -16,6 +16,7 @@ import org.json.*;
 /** Filter class to check if a valid session exists. This will be true if the
  * User Id is present. */
 @WebFilter(urlPatterns = "/logged/*") public class Auth0Filter implements Filter {
+  static String body = "";
   @Override public void init(final FilterConfig __) throws ServletException {//
   }
 
@@ -34,10 +35,10 @@ import org.json.*;
 */
   @Override public void doFilter(final ServletRequest r, final ServletResponse response, final FilterChain next)
       throws IOException, ServletException {
-    final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-    r.getReader().reset();
+    BufferedReader br = r.getReader();
+    body = br.lines().collect(Collectors.joining(System.lineSeparator()));
    JSONObject jbody = new JSONObject(body);
-   if( !jbody.has("accessToken") || !jbody.has("idToken")){
+   if( !jbody.has("accessToken") || !jbody.has("idToken") || jbody.get("accessToken")==null || jbody.get("idToken")==null){
      ((HttpServletResponse)response).setHeader("Response", "ERROR");
      ((HttpServletResponse)response).getWriter().write(new JSONObject().put("Desc", "no accessToken or idToken") + "");
      ((HttpServletResponse) response).sendRedirect("/");

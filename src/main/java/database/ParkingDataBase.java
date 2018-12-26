@@ -29,8 +29,8 @@ public class ParkingDataBase {
                                    + ¢.getAddress().getBuilding() + ", "
                                    + "DATE '" + ¢.getStartDate() + "', "
                                    + "DATE '" + ¢.getEndDate() + "', "
-                                   + "TIME '" + ¢.getStartHour() + ":00', "
-                                   + "TIME '" + ¢.getEndHour() + ":00')"
+                                   + "TIME '" + ¢.getStartHour().substring(0, 7) + "', "
+                                   + "TIME '" + ¢.getEndHour().substring(0, 7) + "')"
         );
   }
 

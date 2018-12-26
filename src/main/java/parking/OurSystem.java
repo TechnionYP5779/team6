@@ -37,7 +37,7 @@ public class OurSystem {
   
   public static void addParkingSpot(JSONObject jObj) {
     String city = jObj.getString("city"), street = jObj.getString("street");
-    int building = Integer.parseInt(jObj.getString("building"));
+    int building = Integer.parseInt(jObj.getString("spot_num"));
     String endTime = jObj.getString("end_time");
     
     String[] startComponent = jObj.getString("start_time").split("T");
