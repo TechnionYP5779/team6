@@ -753,15 +753,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../sign-up/sign-up.component */ "./src/app/sign-up/sign-up.component.ts");
+/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../web.service */ "./src/app/web.service.ts");
+
 
 
 
 
 
 var NavbarComponent = /** @class */ (function () {
-    function NavbarComponent(loginDialog, signUpDialog) {
+    function NavbarComponent(loginDialog, signUpDialog, webService) {
         this.loginDialog = loginDialog;
         this.signUpDialog = signUpDialog;
+        this.webService = webService;
         this.navbarOpen = false;
         this.username = 'Guest';
         this.userIsLogin = false; // TODO: use service instead
@@ -796,6 +799,7 @@ var NavbarComponent = /** @class */ (function () {
         });
     };
     NavbarComponent.prototype.logout = function () {
+        this.webService.postLogOut();
         this.username = 'Guest';
         this.userIsLogin = false;
     };
@@ -818,7 +822,7 @@ var NavbarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./navbar.component.html */ "./src/app/navbar/navbar.component.html"),
             styles: [__webpack_require__(/*! ./navbar.component.css */ "./src/app/navbar/navbar.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _web_service__WEBPACK_IMPORTED_MODULE_5__["WebService"]])
     ], NavbarComponent);
     return NavbarComponent;
 }());
@@ -1262,8 +1266,6 @@ var WebService = /** @class */ (function () {
         this.GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots';
         this.RENT_URL = 'logged/rent/renting_spot';
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
-        this.id_token = null;
-        this.access_token = null;
     }
     WebService.prototype.addSpot = function (rent) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -1272,8 +1274,6 @@ var WebService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         body = {
-                            accessToken: this.access_token,
-                            idToken: this.id_token,
                             city: rent.city,
                             street: rent.street,
                             start_time: rent.start_time,
@@ -1333,8 +1333,6 @@ var WebService = /** @class */ (function () {
                         return [4 /*yield*/, this.http.post(this.BASE_URL + this.LOGIN_URL, body).toPromise()];
                     case 2:
                         x = _a.sent();
-                        this.id_token = x['idToken'];
-                        this.access_token = x['accessToken'];
                         return [2 /*return*/, x];
                     case 3:
                         error_1 = _a.sent();
@@ -1350,10 +1348,7 @@ var WebService = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        body = {
-                            accessToken: this.access_token,
-                            idToken: this.id_token
-                        };
+                        body = {};
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
@@ -1377,8 +1372,6 @@ var WebService = /** @class */ (function () {
                     case 0:
                         body = {
                             id: spot,
-                            accessToken: this.access_token,
-                            idToken: this.id_token
                         };
                         _a.label = 1;
                     case 1:
@@ -1394,6 +1387,9 @@ var WebService = /** @class */ (function () {
                 }
             });
         });
+    };
+    WebService.prototype.postLogOut = function () {
+        this.http.get(this.BASE_URL + this.LOGOUT);
     };
     WebService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
