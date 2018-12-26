@@ -614,7 +614,7 @@ module.exports = ".mat-dialog-content {\n    display: flex;\n    flex-direction:
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Title -->\n<h2 style=\"text-align:center\" mat-dialog-title>Login</h2>\n<div *ngIf=\"username\"> Error: {{error}} </div>\n<!-- Content -->\n<div mat-dialog-content [formGroup]=\"loginForm\">\n\n  <!-- UserName -->\n  <mat-form-field>\n    <input matInput placeholder=\"email\" formControlName=\"email\" required>\n  </mat-form-field>\n\n  <!-- Password -->\n  <mat-form-field>\n    <input matInput placeholder=\"Password\" formControlName=\"password\" required [type]=\"hidePassword ? 'password' : 'text'\">\n    <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>\n  </mat-form-field>\n\n</div>\n\n<!-- Bottons -->\n<div mat-dialog-actions align=\"center\">\n\n  <button type=\"button\" class=\"btn btn-primary\" (click)=\"login()\" [disabled]=\"!loginForm.valid\">Login</button>\n\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"close()\">Close</button>\n\n  <p> <br>\n    Don’t have an account?\n    <button type=\"button\" class=\"btn btn-link\" (click)=\"signUp()\">Sign Up</button>\n  </p>\n\n</div>"
+module.exports = "<!-- Title -->\n<h2 style=\"text-align:center\" mat-dialog-title>Login</h2>\n<!-- Content -->\n<div mat-dialog-content [formGroup]=\"loginForm\">\n  <p style=\"color:red;\" *ngIf=\"error\"> Error: {{error}} </p>\n\n  <!-- UserName -->\n  <mat-form-field>\n    <input matInput placeholder=\"email\" formControlName=\"email\" required>\n  </mat-form-field>\n\n  <!-- Password -->\n  <mat-form-field>\n    <input matInput placeholder=\"Password\" formControlName=\"password\" required [type]=\"hidePassword ? 'password' : 'text'\">\n    <mat-icon matSuffix (click)=\"hidePassword = !hidePassword\">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>\n  </mat-form-field>\n\n</div>\n\n<!-- Bottons -->\n<div mat-dialog-actions align=\"center\">\n\n  <button type=\"button\" class=\"btn btn-primary\" (click)=\"login()\" [disabled]=\"!loginForm.valid\">Login</button>\n\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"close()\">Close</button>\n\n  <p> <br>\n    Don’t have an account?\n    <button type=\"button\" class=\"btn btn-link\" (click)=\"signUp()\">Sign Up</button>\n  </p>\n\n</div>"
 
 /***/ }),
 
@@ -665,26 +665,28 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.ngOnInit = function () { };
     LoginComponent.prototype.login = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var res, result;
+            var res, result, tmp;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         this.loginpModel.email = this.loginForm.value.email;
                         this.loginpModel.password = this.loginForm.value.password;
                         this.loginpModel.closeOption = 'login';
+                        this.error = '';
                         console.log("The login form was submitted: " + JSON.stringify(this.loginpModel)); // TODO: delete!
                         return [4 /*yield*/, this.webService.PostLogIn(this.loginpModel)];
                     case 1:
                         res = _a.sent();
                         console.log(res);
-                        if (res == 'wrong email or password') {
-                            this.error = res;
-                            return [2 /*return*/];
-                        }
                         if (res['name']) {
                             this.error = null;
                             result = { closeOption: 'login', username: res['name'] };
                             this.dialogRef.close(result);
+                        }
+                        if (res.Desc) {
+                            tmp = res.Desc.split(":");
+                            this.error = tmp[tmp.length - 1];
+                            return [2 /*return*/];
                         }
                         return [2 /*return*/];
                 }
@@ -901,7 +903,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Rent Spot</h1>\n\n\n<div mat-dialog-content>\n  <p>You select the parking spot with the following characteristics:</p>\n\n  <p><b>ID: </b>{{spot.id}}</p>\n  <p><b>price: </b>{{spot.price}}</p>\n  <p><b>address: </b>{{spot.city}} {{spot.street}} {{spot.building}} </p>\n  <p><b>distance: </b> {{spot.distance}} </p>\n  <p><b>start time: </b> {{spot.start_time}} </p>\n  <p><b>end time: </b> {{spot.end_time}} </p>\n\n</div>\n\n<div mat-dialog-actions>\n  <button mat-button (click)=\"rent(spot.id)\">Rent</button>\n  <button mat-button (click)=\"close()\">Close</button>\n</div>"
+module.exports = "<h1 mat-dialog-title>Rent Spot</h1>\n\n\n<div mat-dialog-content>\n  <p>You select the parking spot with the following characteristics:</p>\n\n  <p><b>ID: </b>{{spot.id}}</p>\n  <p><b>price: </b>{{spot.price}}</p>\n  <p><b>address: </b>{{spot.city}} {{spot.street}} {{spot.building}} </p>\n  <p><b>start time: </b> {{spot.start_time}} </p>\n  <p><b>end time: </b> {{spot.end_time}} </p>\n\n</div>\n\n<div mat-dialog-actions>\n  <button mat-button (click)=\"rent(spot.id)\">Rent</button>\n  <button mat-button (click)=\"close()\">Close</button>\n</div> "
 
 /***/ }),
 
@@ -987,7 +989,7 @@ module.exports = ".container{\n    width: 800px; \n    margin-left: unset; \n   
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" [formGroup]=\"rentSpotForm\">\n\n  <!-- Title -->\n  <h2>Rent your spot</h2>\n\n  <!-- Form -->\n  <div class=\"mat-form\">\n\n\n    <!-- Address: -->\n    <div class=\"row\" formGroupName=\"address\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>Address:</mat-label>\n      </div>\n\n      <!-- City -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"City\" formControlName=\"city\" required>\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['city'].hasError('pattern')\">\n            Please enter a valid city name: Letters only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n      <!-- Street -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"Street\" formControlName=\"street\" required>\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['street'].hasError('pattern')\">\n            Please enter a valid street name: Letters only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n      <!-- Parking spot number -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"Parking spot number\" formControlName=\"spot_num\">\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['spot_num'].hasError('pattern')\">\n            Please enter a valid parking spot number: Integer number only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n    </div>\n\n\n    <!-- Start time: -->\n    <div class=\"row\" formGroupName=\"start_time\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>Start time:</mat-label>\n      </div>\n\n      <!-- Date: -->\n      <div class=\"col-sm-3\">\n        <div class=\"input-group\">\n          <input formControlName=\"start_date\" placeholder=\"yyyy-mm-dd\" name=\"dpS\" ngbDatepicker #dS=\"ngbDatepicker\"\n            class=\"date-input-field\">\n          <div class=\"input-group-append\">\n            <button type=\"button\" class=\"btn btn-outline-secondary\" (click)=\"dS.toggle()\">\n              <span class=\"fa fa-calendar\"></span>\n            </button>\n          </div>\n        </div>\n      </div>\n\n      <!-- Hour: -->\n      <div class=\"col-sm-3\">\n        <ngb-timepicker formControlName=\"start_hour\" required></ngb-timepicker>\n      </div>\n\n    </div>\n\n\n    <!-- End time: -->\n    <div class=\"row\" formGroupName=\"end_time\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>End time:</mat-label>\n      </div>\n\n      <!-- Date: -->\n      <div class=\"col-sm-3\">\n        <div class=\"input-group\">\n          <input formControlName=\"end_date\" placeholder=\"yyyy-mm-dd\" name=\"dpE\" ngbDatepicker #dE=\"ngbDatepicker\"\n            [markDisabled]=\"isDisabled\" class=\"date-input-field\">\n          <div class=\"input-group-append\">\n            <button type=\"button\" class=\"btn btn-outline-secondary\" (click)=\"dE.toggle()\">\n              <span class=\"fa fa-calendar\"></span>\n            </button>\n          </div>\n        </div>\n      </div>\n\n      <!-- Hour: -->\n      <div class=\"col-sm-3\">\n        <ngb-timepicker formControlName=\"end_hour\" required></ngb-timepicker>\n      </div>\n\n    </div>\n\n\n    <!-- Price per hour: -->\n    <div class=\"row\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>Price:</mat-label>\n      </div>\n\n      <!-- Price -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"Price per hour\" formControlName=\"price\" required>\n          <mat-error *ngIf=\"rentSpotForm.controls['price'].hasError('pattern')\">\n            Please enter a valid price: float number only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n    </div>\n\n\n  </div>\n\n\n  <!-- Buttons -->\n  <div style=\"width:300px; align-self: center\">\n\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"addNewSpot()\" [disabled]=\"!rentSpotForm.valid\" style=\"float: left\">Submit</button>\n    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"reset()\" style=\"float: right\">Reset</button>\n\n  </div>\n\n\n</div>"
+module.exports = "<div class=\"container\" [formGroup]=\"rentSpotForm\">\n\n  <!-- Title -->\n  <h2>Rent your spot</h2>\n\n  <!-- Form -->\n  <div class=\"mat-form\">\n\n\n    <!-- Address: -->\n    <div class=\"row\" formGroupName=\"address\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>Address:</mat-label>\n      </div>\n\n      <!-- City -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"City\" formControlName=\"city\" required>\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['city'].hasError('pattern')\">\n            Please enter a valid city name: Letters only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n      <!-- Street -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"Street\" formControlName=\"street\" required>\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['street'].hasError('pattern')\">\n            Please enter a valid street name: Letters only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n      <!-- Parking spot number -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"Parking spot number\" formControlName=\"spot_num\">\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['spot_num'].hasError('pattern')\">\n            Please enter a valid parking spot number: Integer number only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n    </div>\n\n\n    <!-- Start time: -->\n    <div class=\"row\" formGroupName=\"start_time\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>Start time:</mat-label>\n      </div>\n\n      <!-- Date: -->\n      <div class=\"col-sm-3\">\n        <div class=\"input-group\">\n          <input formControlName=\"start_date\" placeholder=\"yyyy-mm-dd\" name=\"dpS\" ngbDatepicker #dS=\"ngbDatepicker\"\n            class=\"date-input-field\">\n          <div class=\"input-group-append\">\n            <button type=\"button\" class=\"btn btn-outline-secondary\" (click)=\"dS.toggle()\">\n              <span class=\"fa fa-calendar\"></span>\n            </button>\n          </div>\n        </div>\n      </div>\n\n      <!-- Hour: -->\n      <div class=\"col-sm-3\">\n        <ngb-timepicker formControlName=\"start_hour\" required></ngb-timepicker>\n      </div>\n\n    </div>\n\n\n    <!-- End time: -->\n    <div class=\"row\" formGroupName=\"end_time\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>End time:</mat-label>\n      </div>\n\n      <!-- Date: -->\n      <div class=\"col-sm-3\">\n        <div class=\"input-group\">\n          <input formControlName=\"end_date\" placeholder=\"yyyy-mm-dd\" name=\"dpE\" ngbDatepicker #dE=\"ngbDatepicker\"\n            [markDisabled]=\"isDisabled\" class=\"date-input-field\">\n          <div class=\"input-group-append\">\n            <button type=\"button\" class=\"btn btn-outline-secondary\" (click)=\"dE.toggle()\">\n              <span class=\"fa fa-calendar\"></span>\n            </button>\n          </div>\n        </div>\n      </div>\n\n      <!-- Hour: -->\n      <div class=\"col-sm-3\">\n        <ngb-timepicker formControlName=\"end_hour\" required></ngb-timepicker>\n      </div>\n\n    </div>\n\n\n    <!-- Price per hour: -->\n    <div class=\"row\">\n\n      <!-- Label -->\n      <div class=\"col-sm-2\">\n        <mat-label>Price:</mat-label>\n      </div>\n\n      <!-- Price -->\n      <div class=\"col-sm-3\">\n        <mat-form-field class=\"form-field\">\n          <input matInput placeholder=\"Price per hour\" formControlName=\"price\" required>\n          <mat-error *ngIf=\"rentSpotForm.controls['price'].hasError('pattern')\">\n            Please enter a valid price: float number only\n          </mat-error>\n        </mat-form-field>\n      </div>\n\n    </div>\n\n\n  </div>\n\n  <p style=\"color:green;\" *ngIf=\"added\">successfully add a new spot</p>\n  <p style=\"color:red;\" *ngIf=\"error_msg\">{{error_msg}}</p>\n\n  <!-- Buttons -->\n  <div style=\"width:300px; align-self: center\">\n\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"addNewSpot()\" [disabled]=\"!rentSpotForm.valid\" style=\"float: left\">Submit</button>\n    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"reset()\" style=\"float: right\">Reset</button>\n\n  </div>\n\n\n</div>"
 
 /***/ }),
 
@@ -1017,6 +1019,8 @@ var RentSpotFormComponent = /** @class */ (function () {
     function RentSpotFormComponent(fb, datepickerConfig, webService) {
         this.fb = fb;
         this.webService = webService;
+        this.error_msg = '';
+        this.added = false;
         this.rentSpotModel = new _rent_spot__WEBPACK_IMPORTED_MODULE_2__["RentSpotModel"]('', '', null, null, 0);
         // configuration of NgbDatepickerConfig (used for disable dates before today):
         var currentDate = new Date();
@@ -1043,21 +1047,37 @@ var RentSpotFormComponent = /** @class */ (function () {
     }
     RentSpotFormComponent.prototype.ngOnInit = function () { };
     RentSpotFormComponent.prototype.addNewSpot = function () {
-        this.rentSpotModel.city = this.rentSpotForm.value.address.city;
-        this.rentSpotModel.street = this.rentSpotForm.value.address.street;
-        this.rentSpotModel.spot_num = this.rentSpotForm.value.address.spot_num;
-        var startTime = new Date(this.rentSpotForm.value.start_time.start_date.year, this.rentSpotForm.value.start_time.start_date.month - 1, this.rentSpotForm.value.start_time.start_date.day, this.rentSpotForm.value.start_time.start_hour.hour, this.rentSpotForm.value.start_time.start_hour.minute);
-        this.rentSpotModel.start_time = startTime;
-        var endTime = new Date(this.rentSpotForm.value.end_time.end_date.year, this.rentSpotForm.value.end_time.end_date.month - 1, this.rentSpotForm.value.end_time.end_date.day, this.rentSpotForm.value.end_time.end_hour.hour, this.rentSpotForm.value.end_time.end_hour.minute);
-        this.rentSpotModel.end_time = endTime;
-        this.rentSpotModel.price = this.rentSpotForm.value.price;
-        this.reset();
-        console.log("The rent spot form was submitted: " + JSON.stringify(this.rentSpotModel)); // TODO: delete!
-        this.webService.addSpot(this.rentSpotModel);
-        // for tests:
-        // var sd = startTime;
-        // console.log("sd: ", sd)
-        // console.log("time: " + " yyyy=" + sd.getFullYear() + " mm=" + sd.getMonth() + " dd=" + sd.getDate() + " h=" + sd.getHours() + " m=" + sd.getMinutes())
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var startTime, endTime, res;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        this.added = false;
+                        this.error_msg = '';
+                        this.rentSpotModel.city = this.rentSpotForm.value.address.city;
+                        this.rentSpotModel.street = this.rentSpotForm.value.address.street;
+                        this.rentSpotModel.spot_num = this.rentSpotForm.value.address.spot_num;
+                        startTime = new Date(this.rentSpotForm.value.start_time.start_date.year, this.rentSpotForm.value.start_time.start_date.month - 1, this.rentSpotForm.value.start_time.start_date.day, this.rentSpotForm.value.start_time.start_hour.hour, this.rentSpotForm.value.start_time.start_hour.minute);
+                        this.rentSpotModel.start_time = startTime;
+                        endTime = new Date(this.rentSpotForm.value.end_time.end_date.year, this.rentSpotForm.value.end_time.end_date.month - 1, this.rentSpotForm.value.end_time.end_date.day, this.rentSpotForm.value.end_time.end_hour.hour, this.rentSpotForm.value.end_time.end_hour.minute);
+                        this.rentSpotModel.end_time = endTime;
+                        this.rentSpotModel.price = this.rentSpotForm.value.price;
+                        this.reset();
+                        console.log("The rent spot form was submitted: " + JSON.stringify(this.rentSpotModel)); // TODO: delete!
+                        return [4 /*yield*/, this.webService.addSpot(this.rentSpotModel)];
+                    case 1:
+                        res = _a.sent();
+                        if (res = "successfully add a new spot") {
+                            this.added = true;
+                        }
+                        else {
+                            this.error_msg = res.Desc;
+                            // this.error = true
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     RentSpotFormComponent.prototype.reset = function () {
         this.rentSpotForm.reset();
@@ -1248,25 +1268,36 @@ var WebService = /** @class */ (function () {
         this.access_token = null;
     }
     WebService.prototype.addSpot = function (rent) {
-        var body = {
-            accessToken: this.access_token,
-            idToken: this.id_token,
-            city: rent.city,
-            street: rent.street,
-            start_time: rent.start_time,
-            end_time: rent.end_time,
-            price: rent.price,
-            spot_num: ''
-        };
-        if (rent.spot_num) {
-            body.spot_num = rent.spot_num.toString();
-        }
-        console.log(JSON.stringify(body));
-        this.http.post(this.BASE_URL + this.ADD_SPOT_URL, body).subscribe(function (res) {
-            console.log(JSON.stringify(res));
-            alert("successfully add a new spot");
-        }, function (err) {
-            alert("an error occurred. please try again");
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var body;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        body = {
+                            accessToken: this.access_token,
+                            idToken: this.id_token,
+                            city: rent.city,
+                            street: rent.street,
+                            start_time: rent.start_time,
+                            end_time: rent.end_time,
+                            price: rent.price,
+                            spot_num: ''
+                        };
+                        if (rent.spot_num) {
+                            body.spot_num = rent.spot_num.toString();
+                        }
+                        console.log(JSON.stringify(body));
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.ADD_SPOT_URL, body).subscribe(function (res) {
+                                console.log(JSON.stringify(res));
+                                return "successfully add a new spot";
+                            }, function (err) {
+                                return err;
+                            })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, null];
+                }
+            });
         });
     };
     WebService.prototype.PostSignUp = function (form) {
@@ -1309,7 +1340,7 @@ var WebService = /** @class */ (function () {
                         return [2 /*return*/, x];
                     case 3:
                         error_1 = _a.sent();
-                        return [2 /*return*/, 'wrong email or password'];
+                        return [2 /*return*/, error_1.Desc];
                     case 4: return [2 /*return*/];
                 }
             });

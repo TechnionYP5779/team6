@@ -1,8 +1,8 @@
 <!-- Title -->
 <h2 style="text-align:center" mat-dialog-title>Login</h2>
-<div *ngIf="username"> Error: {{error}} </div>
 <!-- Content -->
 <div mat-dialog-content [formGroup]="loginForm">
+  <p style="color:red;" *ngIf="error"> Error: {{error}} </p>
 
   <!-- UserName -->
   <mat-form-field>

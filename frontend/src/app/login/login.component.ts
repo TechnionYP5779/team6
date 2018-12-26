@@ -44,18 +44,20 @@ export class LoginComponent implements OnInit {
     this.loginpModel.email = this.loginForm.value.email
     this.loginpModel.password = this.loginForm.value.password
     this.loginpModel.closeOption ='login'
-    
+    this.error = '';
     console.log("The login form was submitted: " + JSON.stringify(this.loginpModel))  // TODO: delete!
     var res =  await this.webService.PostLogIn(this.loginpModel)
     console.log (res)
-    if (res == 'wrong email or password'){
-      this.error = res;
-      return;
-    }
     if(res['name']) {
       this.error = null;
       var result = {closeOption:'login', username: res['name']}
       this.dialogRef.close(result)
+    }
+    if (res.Desc){
+      var tmp = res.Desc.split(":");
+      
+      this.error = tmp[tmp.length -1]
+      return;
     }
 
   }
