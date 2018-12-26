@@ -20,6 +20,7 @@ LOGIN_URL = '/login';
 LOGOUT = '/logged/logout';
 GET_SPOT_URL = '/logged/search/all/renting_spots'
 GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots'
+RENT_URL = 'logged/rent/renting_spot'
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
@@ -92,5 +93,21 @@ access_token = null;
     catch(error){
       return 'logged out';
     }  
+  }
+
+
+  async postRent(spot){
+    var body = {
+      id: spot,
+      accessToken: this.access_token,
+      idToken: this.id_token
+    }
+    try{
+      var res = await this.httpOptions.post(this.BASE_URL + this.RENT_URL, body).toPromise();
+      return null;
+    }
+    catch(error){
+      return 'error';
+    } 
   }
 } 
