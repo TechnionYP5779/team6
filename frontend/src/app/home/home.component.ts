@@ -11,7 +11,8 @@ export class HomeComponent implements OnInit {
   constructor(private webService : WebService) { }
 
   ngOnInit() {
-	  this.webService.GetDetailRoot();
+	  var jo = this.webService.GetDetailRoot();
+	  var jop = JSON.parse('' + jo + '')
   }
 
 }

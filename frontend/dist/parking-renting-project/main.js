@@ -551,7 +551,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\r\n<html>\r\n<h1 style=\"text-align: center;\"><strong>The world is your parking space</strong></h1>\r\n<h1 style=\"text-align: center;\"><strong style=\"font-size: 14px;\">Remember that time you were trying to find a parking space but all spaces around were private? <span style=\"color: #ff0000;\">Now you may use some of them.</span></strong></h1>\r\n<p style=\"text-align: center;\"><strong>Remember that time your car was in the&nbsp;shop for a week and your own private space was just all empty? <span style=\"color: #ff0000;\">Now you can make money off it.</span></strong></p>\r\n<p style=\"text-align: center;\"><strong>Use our solution to find a parking space close to your location or rent out your own private parking space!</strong></p>\r\n<p>&nbsp;</p>\r\n<p style=\"text-align: center;\"><strong><img src=\"https://i.imgur.com/AsCGHTI.jpg\" alt=\"\" width=\"1280\" height=\"854\" /></strong></p>\r\n\r\n</html>\r\n"
+module.exports = "<!DOCTYPE html>\r\n<html>\r\n<h1 style=\"text-align: center;\"><strong>The world is your parking space</strong></h1>\r\n<h1 style=\"text-align: center;\"><strong style=\"font-size: 14px;\">Remember that time you were trying to find a parking space but all spaces around were private? <span style=\"color: #ff0000;\">Now you may use some of them.</span></strong></h1>\r\n<p style=\"text-align: center;\"><strong>Remember that time your car was in the&nbsp;shop for a week and your own private space was just all empty? <span style=\"color: #ff0000;\">Now you can make money off it.</span></strong></p>\r\n<p style=\"text-align: center;\"><strong>Use our solution to find a parking space close to your location or rent out your own private parking space!</strong></p>\r\n<p>&nbsp;</p>\r\n<p style=\"text-align: center;\"><strong><img src=\"https://i.imgur.com/AsCGHTI.jpg\" alt=\"\" width=\"1280\" height=\"854\" /></strong></p>\r\n</html>\r\n"
 
 /***/ }),
 
@@ -576,7 +576,8 @@ var HomeComponent = /** @class */ (function () {
         this.webService = webService;
     }
     HomeComponent.prototype.ngOnInit = function () {
-        this.webService.GetDetailRoot();
+        var jo = this.webService.GetDetailRoot();
+        var jop = JSON.parse('' + jo + '');
     };
     HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
