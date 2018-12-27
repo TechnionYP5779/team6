@@ -22,6 +22,7 @@ LOGOUT = '/logged/logout';
 GET_SPOT_URL = '/logged/search/all/renting_spots'
 GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots'
 RENT_URL = 'logged/rent/renting_spot'
+GETDETAILROOT_URL = '/getDetailRoot'
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
@@ -137,4 +138,9 @@ access_token = null;
     this.id_token = null;
 
   }
+  
+  async GetDetailRoot(){
+      var x = await this.http.get(this.BASE_URL + this.GETDETAILROOT_URL).toPromise()
+      return x;
+	}
 } 
