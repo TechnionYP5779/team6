@@ -46,6 +46,27 @@ public class basicUtils {
         street, $);
   }
 
+  public static Address transferStringToAddress (String s) throws ApiException, InterruptedException, IOException {
+    final GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build();
+    final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(), s).await();
+    
+    String city = "";
+    String street = "";
+    int building = 0;
+    for (AddressComponent ac : $[0].addressComponents) {
+      switch(ac.types[0]) {
+        case STREET_ADDRESS: city += ac.longName;
+          break;
+        case ROUTE: street += ac.longName;
+          break;
+        case LOCALITY: building = Integer.parseInt(ac.longName);
+          break;
+        default:
+      }
+    }
+    return new Address(city, street, building);
+  }
+  
   /** check the validity of address and return the result.
    * <p>
    * <b>IMPORTANT NOTES: <br>
