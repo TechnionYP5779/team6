@@ -19,15 +19,11 @@ ADD_SPOT_URL = '/logged/add/renting_spot';
 SIGNUP_URL = 'https://team6a.auth0.com/dbconnections/signup';
 LOGIN_URL = '/login';
 LOGOUT = '/logged/logout';
-BASE_URL = 'http://localhost:8080';
-ADD_SPOT_URL = '/logged/add/renting_spot';
-SIGNUP_URL = 'https://team6a.auth0.com/dbconnections/signup';
-LOGIN_URL = '/login';
-LOGOUT = '/logged/logout';
 GET_SPOT_URL = '/search/all/renting_spots'
 RENT_URL = '/logged/rent/renting_spot'
 GET_RENTED = 'logged/search/user/renting_spots'
 GET_RENTING = '/logged/search/buyer/renting_spots'
+GETDETAILROOT_URL = '/getDetailRoot'
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
