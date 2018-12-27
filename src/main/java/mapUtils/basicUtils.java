@@ -57,22 +57,25 @@ public class basicUtils {
    * @return True - if address is valid or only the building number is invalid
    *         <br>
    *         False - otherwise
+   * @throws InvalidAddressException
    * @throws ApiException
    * @throws InterruptedException
    * @throws IOException */
-  public static boolean checkValidityOfAddress(Address a) throws ApiException, InterruptedException, IOException {
+  public static void checkValidityOfAddress(Address a) throws ApiException, InterruptedException, IOException, InvalidAddressException {
     final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(),
         String.valueOf(a.getStreet() + " " + a.getBuilding()) + ", " + a.getCity()).await();
     if ($ == null || $.length == 0)
-      return false;
+        throw new InvalidAddressException();
     boolean checkStreet = false, checkCity = false, checkBuilding = false;
     for(AddressComponent ac : $[0].addressComponents) {
       if(ac.types[0].equals(AddressComponentType.STREET_NUMBER)) checkBuilding = true;
       else if(ac.types[0].equals(AddressComponentType.ROUTE)) checkStreet = true;
       else if(ac.types[0].equals(AddressComponentType.LOCALITY)) checkCity = true;
     }
-    return checkCity && checkStreet && checkBuilding;
+    if (!checkCity || !checkStreet || !checkBuilding)
+      throw new InvalidAddressException(checkCity, checkStreet, checkBuilding, a.getCity(), a.getStreet(), a.getBuilding());
   }
+  
 
   /** @param source  - the address which the distance is calculated from
    * @param destination - the address which the distance is calculated to
@@ -102,7 +105,16 @@ public class basicUtils {
   }
 
 //  public static void main(final String[] args) throws ApiException, InterruptedException, IOException {
-//    Address ¢ = new Address("פתח תקווה", "צהל", 2);
+//    Address ¢ = new Address("sdsd", "סלומון", 2);
+//    try {
+//      checkValidityOfAddress(¢);
+//    } catch(InvalidAddressException e) {
+//      System.out.println("City " + e.getCityName() + " is " + e.isCityOk());
+//      System.out.println("street " + e.getStreetName() +" is " + e.isStreetOk());
+//      System.out.println("building " + e.getBuildingNumber() + " is " + e.isBuildingOk());
+//    }
+//    
+//    System.out.println("OK");
 //    
 //    System.out.println(calculateDistanceByAddress(new Address("אריאל", "דרך הציונות", 2) ,¢));
 //    System.out.println(checkValidityOfAddress(¢));

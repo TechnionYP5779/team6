@@ -61,7 +61,7 @@ public class OurSystem {
     final String ownerID = jObj.getString("userId");
     Address a = new Address(city, street, building);
     try {
-      if (!basicUtils.checkValidityOfAddress(a)) throw new IllegalArgumentException("Invalid Address");
+      basicUtils.checkValidityOfAddress(a);
     } catch (ApiException | InterruptedException | IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
