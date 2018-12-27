@@ -2,17 +2,17 @@ package database;
 
 import java.sql.*;
 import java.util.*;
-import parking.ParkingSpot;
+
+import parking.*;
 
 public class DBMain {
   public static void main(final String[] args) {
     try {
-      List<ParkingSpot> l = ParkingDataBase.getAllAvailableSpotsToday();
-      for(ParkingSpot p : l)
-        System.out.println(p);
+      final List<ParkingSpot> l = ParkingDataBase.getAllAvailableSpotsToday();
+      for (final ParkingSpot ¢ : l)
+        System.out.println(¢);
       System.out.println(ParkingDataBase.countAvailableSpotsToday());
-    }
-    catch(SQLException ¢) {
+    } catch (final SQLException ¢) {
       System.out.println(¢);
     }
     System.out.println("Done");
