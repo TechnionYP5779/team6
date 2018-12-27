@@ -23,6 +23,8 @@ GET_SPOT_URL = '/logged/search/all/renting_spots'
 GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots'
 RENT_URL = 'logged/rent/renting_spot'
 GETDETAILROOT_URL = '/getDetailRoot'
+SEARCH_SPOTS_URL = 'someurl'   //TODO: change
+
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
@@ -34,8 +36,6 @@ access_token = null;
 
   	async addSpot(rent: RentSpotModel){
       var body = {
-          accessToken: this.access_token,
-          idToken: this.id_token,
           city: rent.city,
           street: rent.street,
           start_time: rent.start_time,
@@ -63,8 +63,7 @@ access_token = null;
         headers: new HttpHeaders( { 'content-type': 'application/json' }),
       }
       var body={
-       client_id: this.client_id,
-       email: form.email,
+
        password: form.password,
        connection: 'Username-Password-Authentication',
        user_metadata: { name: form.name ,username: form.username },
@@ -88,8 +87,6 @@ access_token = null;
     console.log(this.BASE_URL + this.LOGIN_URL)
     try{
       var x = await this.http.post(this.BASE_URL + this.LOGIN_URL, body).toPromise()
-      this.id_token = x['idToken']
-      this.access_token = x['accessToken'];
       return x;
     }
     catch (error) {
@@ -98,10 +95,7 @@ access_token = null;
 }
 
   async getSpots(){
-    var body = {
-      accessToken: this.access_token,
-      idToken: this.id_token
-    }
+    var body = {}
 
     try{
       var res = await this.http.post(this.BASE_URL + this.GET_SPOT_URL, body).toPromise();
@@ -115,9 +109,7 @@ access_token = null;
 
   async postRent(spot){
     var body = {
-      id: spot,
-      accessToken: this.access_token,
-      idToken: this.id_token
+      id: spot
     }
     try{
       var res = await this.http.post(this.BASE_URL + this.RENT_URL, body).toPromise();
@@ -129,15 +121,13 @@ access_token = null;
   }
 
   postLogOut(){
-    var body = {
-      accessToken: this.access_token,
-      idToken: this.id_token
-    }
-    this.http.post(this.BASE_URL + this.LOGOUT, body)
+    var body = {}
+    this.http.get(this.BASE_URL + this.LOGOUT, body).toPromise();
     this.access_token = null;
     this.id_token = null;
 
   }
+
   
   async GetDetailRoot(){
 	  try{
@@ -148,5 +138,20 @@ access_token = null;
 	  }
       return x;
 	}
+
+
+ async findSpotsByParamaters(toSearch){
+
+    try{
+      var res = await this.http.post(this.BASE_URL + this.SEARCH_SPOTS_URL, toSearch).toPromise();
+      return JSON.stringify(res);
+    }
+    catch(error){
+      return null;
+    }  
+
+  }
+
+
 
 } 

@@ -24,20 +24,24 @@ import com.auth0.net.*;
     final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     final JSONObject loginInfo = new JSONObject(body);
     final AuthRequest request = auth.login(loginInfo.getString("username"), loginInfo.getString("password"), "Username-Password-Authentication")
-        .setScope("openid contacts");
-    resp.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+        .setScope("openid");
+    // resp.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
     try {
       final TokenHolder holder = request.execute();
       final UserInfo info = auth.userInfo(holder.getAccessToken()).execute();
+      System.out.println(info.getValues().keySet().toString());
+      System.out.println(info.getValues().values().toString());
       resp.setHeader("Response", "OK");
+      resp.setStatus(200);
       final JSONObject tokens = new JSONObject();
-      tokens.put("accessToken", holder.getAccessToken());
-      tokens.put("idToken", holder.getIdToken());
-      tokens.put("name", info.getValues().get("name"));
+      r.getSession().setAttribute("accessToken", holder.getAccessToken());
+      r.getSession().setAttribute("idToken", holder.getIdToken());
+      tokens.put("name", info.getValues().get("nickname"));
       tokens.put("email", info.getValues().get("email"));
       resp.getWriter().write(tokens + "");
     } catch (final Auth0Exception ¢) {
       resp.setHeader("Response", "ERROR");
+      resp.setStatus(400);
       resp.getWriter().write(new JSONObject().put("Desc", ¢ + "") + "");
       return;
     }

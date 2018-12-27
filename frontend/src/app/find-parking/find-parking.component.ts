@@ -1,17 +1,16 @@
 /// <reference types="@types/googlemaps" />
 declare let google: any;
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
-import { MatRadioModule, MatRadioButton, MatRadioChange } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSort, MatTableDataSource } from '@angular/material';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { WebService } from '../web.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { RentSpotDialogComponent } from '../rent-spot-dialog/rent-spot-dialog.component';
 import { elementStyleProp } from '@angular/core/src/render3';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -23,13 +22,18 @@ export class FindParkingComponent implements OnInit {
 
   //--- INIT LOCATION ----------------------------------------------------------------------------------------
 
+  // shown location on the map
+  shownlat: number;
+  shownlng: number;
+
   // let the user to define his current location
-  defineCurrLocOptions: string[] = ['GPS location', 'Technion']; // need to add "choose by address"
+  locationOptions: string[] = ['GPS location', 'Address', 'Technion'];
   selectedCurrLocOption: string = 'GPS location';
 
   // cuurent location (as defined by user choice)
   currlat: number;
   currlng: number;
+  addressByForm = '';
 
   loading = true
 
@@ -38,8 +42,6 @@ export class FindParkingComponent implements OnInit {
   thecnionlng: number = 35.022610;
 
   //--- DATABASE ---------------------------------------------------------------------------------------------
-
-  // fake DB TODO: updete this!!!
 
   displayedColumns: string[] = ['id', 'address', 'price'];
   ELEMENT_DATA: SpotElement[] = null;
@@ -50,89 +52,113 @@ export class FindParkingComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
+  @ViewChild("search") public searchElementRef: ElementRef;
+  public searchControl: FormControl;
+  addressIsValid: boolean = false;
+
   async ngOnInit() {
     this.findCurrentLocation();
     var res = await this.webService.getSpots();
-    console.log(res)
     this.ELEMENT_DATA = JSON.parse('' + res + '')
     this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
-    console.log(this.ELEMENT_DATA_FILTER)
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
-    console.log(this.dataSource)
     this.dataSource.sort = this.sort;
+
     this.loading = false;
+
+    // create search FormControl
+    this.searchControl = new FormControl();
+    // load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, { types: ["address"] });
+      autocomplete.addListener("place_changed", () => {
+        this.addressIsValid = false;
+        this.ngZone.run(() => {
+          // get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          // verify result:
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          // set latitude, longitude and zoom
+          this.currlat = place.geometry.location.lat();
+          this.currlng = place.geometry.location.lng();
+          this.addressByForm = place.formatted_address;
+          this.addressIsValid = true;
+        });
+      });
+    });
   }
 
-
-  constructor(private mapsAPILoader: MapsAPILoader, private fb: FormBuilder, private webService: WebService, public rentDialog: MatDialog) {
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder, private webService: WebService, public rentDialog: MatDialog) {
     // init filterForm (fields and validators):
     this.filterForm = fb.group({
       floatLabel: 'auto',
       'maxPrice': ["", [Validators.pattern('[0-9]*')]],
       'maxDistance': ["", [Validators.pattern('[0-9]*')]],
       'locationOption': ["", [Validators.required]],
+      'address': ["", []],
     });
-  }
-
-  getAddress(lat: number, lng: number): string {
-    if (navigator.geolocation) {
-      let geocoder = new google.maps.Geocoder();
-      let latlng = new google.maps.LatLng(lat, lng);
-      let request = { latLng: latlng };
-      let res = '(lat=' + lat + ',lng=' + lng + ')'
-      geocoder.geocode(request, (results, status) => {
-        if (status == google.maps.GeocoderStatus.OK && results[0]) {
-          //console.log("************ results[0].formatted_address", results[0].formatted_address)
-          res = results[0].formatted_address
-        }
-      });
-      return res
-    }
   }
 
   //--- UPDATE LOCATION --------------------------------------------------------------------------------------
 
   findCurrentLocation() {
+    this.previousMarker = null;
     if (this.selectedCurrLocOption == 'GPS location') {
+      this.addressByForm = '';
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
           this.currlat = position.coords.latitude;
           this.currlng = position.coords.longitude;
+          this.shownlat = this.currlat;
+          this.shownlng = this.currlng;
         });
       } else { // unable to get current location, so use the Technion address instead
         alert("Geolocation is not supported by this browser.");
         this.changeCurrentLocationToTechnion()
       }
     } else if (this.selectedCurrLocOption == 'Technion') {
+      this.addressByForm = '';
       this.changeCurrentLocationToTechnion()
-    } else { // in case user define his address manially. for now use technion
-      this.changeCurrentLocationToTechnion()
+    } else { // in case user define his address manially. 
+      // only if address is not valid - use technion instead (else - use user address)
+      if (!this.addressIsValid) {
+        this.changeCurrentLocationToTechnion()
+      }
     }
+    this.shownlat = this.currlat;
+    this.shownlng = this.currlng;
+    this.centerMap(this.shownlat, this.shownlng);
   }
 
   changeCurrentLocationToTechnion() {
     this.currlat = this.thecnionlat;
     this.currlng = this.thecnionlng;
-    //this.getAddress(this.currlat, this.currlng)
   }
 
   //--- FILTER --------------------------------------------------------------------------------------
 
   filterForm: FormGroup;
   filterElement: FilterElement = {
-    locationOption: 'GPS location',
+    locationOption: 'Address',
     maxDistance: -1, // meters
     maxPrice: -1,
+    address: ''
   };
-  locationOptions: string[] = ['GPS location', 'Technion']; // need to add "choose by address"
 
   filter() {
-    this.filterElement.locationOption = this.filterForm.value.locationOption;
-
     this.filterElement.maxDistance = (this.filterForm.value.maxDistance == "" || this.filterForm.value.maxDistance == null) ? -1 : this.filterForm.value.maxDistance;
     this.filterElement.maxPrice = (this.filterForm.value.maxPrice == "" || this.filterForm.value.maxPrice == null) ? -1 : this.filterForm.value.maxPrice;
+    this.filterElement.address = (this.filterElement.locationOption == 'Address') ? this.addressByForm : '';
 
+
+    this.filterElement.locationOption = this.filterForm.value.locationOption;
     this.selectedCurrLocOption = this.filterForm.value.locationOption;
+
+    if (this.selectedCurrLocOption == 'GPS location' || this.selectedCurrLocOption == 'Technion') {
+      this.filterForm.controls['address'].reset()
+    }
 
     this.findCurrentLocation();
     this.filterMarkers()
@@ -145,8 +171,18 @@ export class FindParkingComponent implements OnInit {
     this.filterMarkers()
   }
 
-  filterMarkers() {
+  async filterMarkers() {
     this.ELEMENT_DATA_FILTER = [];
+    this.loading = true;
+    var res= await this.webService.findSpotsByParamaters(this.filterElement)
+    if(res == null){
+      this.ELEMENT_DATA_FILTER = [];
+    }
+    else{
+      this.ELEMENT_DATA_FILTER=  JSON.parse('' + res + '')
+    }
+    
+    this.loading = false
 
     const centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
     for (let spot of this.ELEMENT_DATA) {
@@ -155,7 +191,7 @@ export class FindParkingComponent implements OnInit {
 
       // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
 
-        if(((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
+      if (((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
         this.ELEMENT_DATA_FILTER.push(spot);
       }
 
@@ -184,7 +220,7 @@ export class FindParkingComponent implements OnInit {
     dialogConfig.disableClose = true;   /** the user will not be able to close the dialog just by clicking outside of it */
     dialogConfig.autoFocus = false;     /** the focus will not be set automatically on the first form field of the dialog */
 
-    dialogConfig.height = '500px';      /** size of dialog window */
+    dialogConfig.height = '450px';      /** size of dialog window */
     dialogConfig.width = '500px';
 
     dialogConfig.data = { /** pass data to dialog */
@@ -200,7 +236,7 @@ export class FindParkingComponent implements OnInit {
     /** open dialog */
     const dialogRef = this.rentDialog.open(RentSpotDialogComponent, dialogConfig);
 
-    /** get data from dialog - empty for no */
+    /** get data from dialog - empty for now */
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
         if (result == 'rent') {
@@ -213,7 +249,37 @@ export class FindParkingComponent implements OnInit {
     });
   }
 
+  //--- SHOW MARKERS ON MAP  ------------------------------------------------------------------------
 
+  protected map: any;
+
+  protected mapReady(map) {
+    this.map = map;
+  }
+
+  previousMarker = null;
+  clickedMarker(infowindow) {
+    if (this.previousMarker) {
+      this.previousMarker.close();
+    }
+    this.previousMarker = infowindow;
+  }
+
+  findme() {
+    this.centerMap(this.currlat, this.currlng);
+  }
+
+  centerMap(lat, lng) {
+    if (this.map) {
+      this.map.setCenter({ lat: lat, lng: lng });
+      this.map.setZoom(17);
+    }
+  }
+
+  getRecord(row) {
+    this.centerMap(row.latitude, row.longitude);
+    this.map.setZoom(19);
+  }
 
 }
 
@@ -230,12 +296,13 @@ export interface SpotElement {
   end_time: string;
   // distance: number;
   price: number;
-  userId: string;  
+  userId: string;
   buyerId: string;
 }
 
-export interface FilterElement { // TODO: add date
+export interface FilterElement {
   locationOption: string
   maxDistance: number;
   maxPrice: number;
+  address: string;
 }

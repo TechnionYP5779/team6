@@ -2,6 +2,7 @@ package com.auth0.example;
 
 import java.io.*;
 // import java.util.stream.*;
+import java.util.stream.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -23,23 +24,25 @@ import parking.*;
     resp.setHeader("Access-Control-Allow-Origin", "*");
     // final String body =
     // r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-    final String body = Auth0Filter.body;
+    final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     System.out.println("========");
     System.out.println(body);
     System.out.println("========");
     try {
       final JSONObject jo = new JSONObject(new String(body));
-      jo.put("userId", auth.userInfo(jo.getString("accessToken")).execute().getValues().get("sub"));
-      System.out.println(body);
-      System.out.println(jo + "");
-      System.out.println(auth.userInfo(jo.getString("accessToken")).execute().getValues().keySet() + "");
+      jo.put("userId", auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute().getValues().get("sub"));
+      // System.out.println(body);
+      // System.out.println(jo + "");
+      System.out.println(auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute().getValues().keySet() + "");
       OurSystem.addParkingSpot(jo);
     } catch (final JSONException ¢) {
       resp.setHeader("Response", "ERROR");
+      resp.setStatus(400);
       resp.getWriter().write(new JSONObject().put("Desc", ¢ + "") + "");
       return;
     }
     resp.setHeader("Response", "OK");
+    resp.setStatus(200);
     resp.getWriter().write(new JSONObject() + "");
   }
 }
