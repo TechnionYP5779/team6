@@ -36,7 +36,7 @@ import com.auth0.net.*;
       final JSONObject tokens = new JSONObject();
       r.getSession().setAttribute("accessToken", holder.getAccessToken());
       r.getSession().setAttribute("idToken", holder.getIdToken());
-      tokens.put("name", info.getValues().get("name"));
+      tokens.put("name", info.getValues().get("nickname"));
       tokens.put("email", info.getValues().get("email"));
       resp.getWriter().write(tokens + "");
     } catch (final Auth0Exception ¢) {
