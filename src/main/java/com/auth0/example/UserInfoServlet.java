@@ -39,20 +39,15 @@ import parking.*;
       System.out.println(info.getValues().values().toString());
       jo.put("name", info.getValues().get("nickname"));
       jo.put("email", info.getValues().get("email"));
+      resp.getWriter().write(jo + "");
     } catch (final JSONException ¢) {
       resp.setHeader("Response", "ERROR");
       resp.setStatus(400);
       resp.getWriter().write(new JSONObject().put("Desc", ¢ + "") + "");
       return;
     }
-    if (psList.equals(null)) {
-      resp.setHeader("Response", "ERROR");
-      resp.setStatus(400);
-      resp.getWriter().write(new JSONObject().put("Desc", "Couldn't parse from JSONObject to string") + "");
-      return;
-    }
     resp.setHeader("Response", "OK");
     resp.setStatus(200);
-    resp.getWriter().write(psList);
+
   }
 }
