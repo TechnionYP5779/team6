@@ -168,7 +168,7 @@ export class FindParkingComponent implements OnInit {
     this.ELEMENT_DATA_FILTER = [];
     this.loading = true;
     var res= await this.webService.findSpotsByParamaters(this.filterElement)
-    if(var == null){
+    if(res == null){
       this.ELEMENT_DATA_FILTER = [];
     }
     else{

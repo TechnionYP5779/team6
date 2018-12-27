@@ -469,7 +469,6 @@ var FindParkingComponent = /** @class */ (function () {
         this.filterElement.maxDistance = (this.filterForm.value.maxDistance == "" || this.filterForm.value.maxDistance == null) ? -1 : this.filterForm.value.maxDistance;
         this.filterElement.maxPrice = (this.filterForm.value.maxPrice == "" || this.filterForm.value.maxPrice == null) ? -1 : this.filterForm.value.maxPrice;
         this.filterElement.address = (this.filterElement.locationOption == 'Address') ? this.addressByForm : '';
-        console.log('~~~~~' + this.filterElement.address);
         this.filterElement.locationOption = this.filterForm.value.locationOption;
         this.selectedCurrLocOption = this.filterForm.value.locationOption;
         if (this.selectedCurrLocOption == 'GPS location' || this.selectedCurrLocOption == 'Technion') {
@@ -495,7 +494,12 @@ var FindParkingComponent = /** @class */ (function () {
                         return [4 /*yield*/, this.webService.findSpotsByParamaters(this.filterElement)];
                     case 1:
                         res = _b.sent();
-                        this.ELEMENT_DATA_FILTER = JSON.parse('' + res + '');
+                        if (res == null) {
+                            this.ELEMENT_DATA_FILTER = [];
+                        }
+                        else {
+                            this.ELEMENT_DATA_FILTER = JSON.parse('' + res + '');
+                        }
                         this.loading = false;
                         centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
                         for (_i = 0, _a = this.ELEMENT_DATA; _i < _a.length; _i++) {
@@ -1428,7 +1432,7 @@ var WebService = /** @class */ (function () {
     };
     WebService.prototype.postLogOut = function () {
         var body = {};
-        this.http.post(this.BASE_URL + this.LOGOUT, body).toPromise();
+        this.http.get(this.BASE_URL + this.LOGOUT, body).toPromise();
         this.access_token = null;
         this.id_token = null;
     };
@@ -1445,7 +1449,7 @@ var WebService = /** @class */ (function () {
                         return [2 /*return*/, JSON.stringify(res)];
                     case 2:
                         error_4 = _a.sent();
-                        return [2 /*return*/, JSON.stringify(error_4)];
+                        return [2 /*return*/, null];
                     case 3: return [2 /*return*/];
                 }
             });
