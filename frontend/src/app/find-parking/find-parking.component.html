@@ -13,28 +13,44 @@
       <!-- Form (left) ----------------------------------------------------------------------------->
       <div class="container" [formGroup]="filterForm">
 
-        <div>
-          <mat-form-field class="form-field">
-            <mat-label>Max distance from your location</mat-label>
-            <input matInput placeholder="max distance" formControlName="maxDistance">
-          </mat-form-field>
-        </div>
-
-        <div>
-          <mat-form-field class="form-field">
-            <mat-label>Max price</mat-label>
-            <input matInput placeholder="max price" formControlName="maxPrice">
-          </mat-form-field>
-        </div>
-
+        <!-- Current Location Options -->
         <div>
           <mat-form-field>
             <mat-label>Choose how to determine your current location</mat-label>
-            <mat-select placeholder="location options" formControlName="locationOption" required>
+            <mat-select placeholder="location options" formControlName="locationOption" required [(value)]="filterElement.locationOption">
               <mat-option *ngFor="let option of locationOptions" [value]="option">
                 {{option}}
               </mat-option>
             </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="form-field" style="padding-left: 5%">
+            <mat-label>Search for location</mat-label>
+            <input matInput placeholder="Fill your address" formControlName="address" autocorrect="off" autocapitalize="off"
+              spellcheck="off" class="form-control" #search [formControl]="searchControl">
+          </mat-form-field>
+        </div>
+
+        <!-- Max Distance -->
+        <div>
+          <mat-form-field class="form-field">
+            <mat-label>Max distance from your location</mat-label>
+            <input matInput placeholder="max distance" formControlName="maxDistance">
+            <mat-error *ngIf="filterForm.controls['maxDistance'].hasError('pattern')">
+              Please enter a valid distance: Integer number only
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Max Price -->
+        <div>
+          <mat-form-field class="form-field">
+            <mat-label>Max price</mat-label>
+            <input matInput placeholder="max price" formControlName="maxPrice">
+            <mat-error *ngIf="filterForm.controls['maxPrice'].hasError('pattern')">
+              Please enter a valid price: Integer number only
+            </mat-error>
           </mat-form-field>
         </div>
 
