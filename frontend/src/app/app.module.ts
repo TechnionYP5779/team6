@@ -35,7 +35,8 @@ import { LoginComponent } from './login/login.component';
 import { RentSpotFormComponent } from './rent-spot-form/rent-spot-form.component';
 import { WebService } from './web.service';
 import { RentSpotDialogComponent } from './rent-spot-dialog/rent-spot-dialog.component';
-import { PersonalPageComponent } from './personal-page/personal-page.component';
+import { ProfileComponent } from './profile/profile.component';
+
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { PersonalPageComponent } from './personal-page/personal-page.component';
     LoginComponent,
     RentSpotFormComponent,
     RentSpotDialogComponent,
-    PersonalPageComponent
+    ProfileComponent
+
   ],
 
   imports: [
