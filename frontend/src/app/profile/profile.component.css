@@ -1,0 +1,51 @@
+/** split page to 2 columns */
+
+.container {
+    margin-top: 10px;
+    margin-left: unset; 
+    margin-right: unset;
+  }
+   
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  
+  }
+  
+  .column-split {
+    float: left;
+    width: 50%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+
+  
+  .mat-table {
+    width: max-content;
+  }
+
+
+  .btn-primary, .btn-secondary {
+    width: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: #f5f5f5;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }

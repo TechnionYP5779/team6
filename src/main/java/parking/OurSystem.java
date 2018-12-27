@@ -68,11 +68,10 @@ public class OurSystem {
     final String ownerID = jObj.getString("userId");
     final Address a = new Address(city, street, building);
     try {
-      if (!basicUtils.checkValidityOfAddress(a))
-        throw new IllegalArgumentException("Invalid Address");
-    } catch (ApiException | InterruptedException | IOException ¢) {
+      basicUtils.checkValidityOfAddress(a);
+    } catch (ApiException | InterruptedException | IOException e) {
       // TODO Auto-generated catch block
-      ¢.printStackTrace();
+      e.printStackTrace();
     }
     final ParkingSpot p = new ParkingSpot(0, ownerID, null, price, a, startHour, endHour, startDate, endDate);
     try {
@@ -160,6 +159,67 @@ public class OurSystem {
     return convertParkingSpotsToJSONArray($);
   }
 
+  public static JSONArray getParkingSpotsByParameters(final JSONObject jObj) {
+    final String locationOption = jObj.getString("locationOption");
+    final String maxDistance = jObj.getString("maxDistance");
+    final String maxPrice = jObj.getString("maxPrice");
+    final String address = jObj.getString("address");
+    boolean addressPar = locationOption.equals("Address");
+    boolean distancePar = !maxDistance.equals("-1");
+    boolean pricePar = !maxPrice.equals("-1");
+    Address a = null;
+    double distance = 0;
+    double price = 0;
+    if (distancePar) {
+      distance = Double.parseDouble(maxDistance);
+    }
+    if (pricePar) {
+      price = Double.parseDouble(maxPrice);
+    }
+    if (addressPar) {
+      try {
+        a = basicUtils.transferStringToAddress(address);
+      } catch (ApiException | InterruptedException | IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    } else {
+      String[] coordinates = address.split(":");
+      try {
+        a = basicUtils.reverseGeocodingAddress(Double.parseDouble(coordinates[0]), Double.parseDouble(coordinates[1]));
+      } catch (NumberFormatException | ApiException | InterruptedException | IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
+    List<ParkingSpot> allAvailableParkingSpots = null;
+    final List<ParkingSpot> $ = new ArrayList<>();
+    try {
+      allAvailableParkingSpots = ParkingDataBase.getAllAvailableParkingSpots();
+    } catch (final SQLException ¢) {
+      // TODO Auto-generated catch block
+      ¢.printStackTrace();
+    }
+    if (allAvailableParkingSpots == null)
+      return new JSONArray();
+    for (final ParkingSpot p : allAvailableParkingSpots) {
+      try {
+        if (price <= p.getPrice()) {
+          if (distancePar) {
+            if (basicUtils.calculateDistanceByAddress(a, p.getAddress()) <= distance)
+              $.add(p);
+          } else {
+            $.add(p);
+          }
+        }
+      } catch (ApiException | InterruptedException | IOException ¢) {
+        ¢.printStackTrace();
+      }
+    }
+    
+    return convertParkingSpotsToJSONArray($);
+  }
+
   /** @param jObj - should include:
    *             <p>
    *             userId -> the id of the user which his parking spots will be
@@ -193,7 +253,7 @@ public class OurSystem {
     }
     return convertParkingSpotsToJSONArray($);
   }
-  
+
   public static JSONArray getAllParkingSpotsByBuyer(final JSONObject jObj) {
     List<ParkingSpot> $ = null;
     try {

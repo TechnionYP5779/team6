@@ -44,7 +44,14 @@ export class FindParkingComponent implements OnInit {
   //--- DATABASE ---------------------------------------------------------------------------------------------
 
   displayedColumns: string[] = ['id', 'address', 'price'];
-  ELEMENT_DATA: SpotElement[] = null;
+  //ELEMENT_DATA: SpotElement[] = null;
+  ELEMENT_DATA: SpotElement[] = [
+    { id: 1, latitude: 32.6394776, longitude: 35.08386280000002, street: 'Arbel', building: 2, city: 'Yokeneam', start_time: 'st', end_time: 'et', price: 30, userId: 'u1', buyerId: 'b1' },
+    { id: 2, latitude: 32.6388926, longitude: 35.08363489999999, street: 'Arbel', building: 5, city: 'Yokeneam', start_time: 'st', end_time: 'et', price: 50, userId: 'u1', buyerId: 'b1' },
+    { id: 3, latitude: 32.640864011354665, longitude: 35.08543851418892, street: 'HaHatsbani', building: 20, city: 'Yokeneam', start_time: 'st', end_time: 'et', price: 40, userId: 'u1', buyerId: 'b1' },
+    { id: 4, latitude: 32.63993094696561, longitude: 35.08529903932015, street: 'Dan', building: 4, city: 'Yokeneam', start_time: 'st', end_time: 'et', price: 45, userId: 'u1', buyerId: 'b1' },
+    { id: 5, latitude: 32.642645324221604, longitude: 35.08612632751465, street: 'Yarden', building: 62, city: 'Yokeneam', start_time: 'st', end_time: 'et', price: 45, userId: 'u1', buyerId: 'b1' },
+  ];
   ELEMENT_DATA_FILTER: SpotElement[] = null;
   dataSource = null;
 
@@ -58,8 +65,8 @@ export class FindParkingComponent implements OnInit {
 
   async ngOnInit() {
     this.findCurrentLocation();
-    var res = await this.webService.getSpots();
-    this.ELEMENT_DATA = JSON.parse('' + res + '')
+    //var res = await this.webService.getSpots();
+    //this.ELEMENT_DATA = JSON.parse('' + res + '')
     this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
     this.dataSource.sort = this.sort;

@@ -46,6 +46,27 @@ public class basicUtils {
         street, $);
   }
 
+  public static Address transferStringToAddress (String s) throws ApiException, InterruptedException, IOException {
+    final GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build();
+    final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(), s).await();
+    
+    String city = "";
+    String street = "";
+    int building = 0;
+    for (AddressComponent ac : $[0].addressComponents) {
+      switch(ac.types[0]) {
+        case STREET_ADDRESS: city += ac.longName;
+          break;
+        case ROUTE: street += ac.longName;
+          break;
+        case LOCALITY: building = Integer.parseInt(ac.longName);
+          break;
+        default:
+      }
+    }
+    return new Address(city, street, building);
+  }
+  
   /** check the validity of address and return the result.
    * <p>
    * <b>IMPORTANT NOTES: <br>
@@ -57,14 +78,25 @@ public class basicUtils {
    * @return True - if address is valid or only the building number is invalid
    *         <br>
    *         False - otherwise
+   * @throws InvalidAddressException
    * @throws ApiException
    * @throws InterruptedException
    * @throws IOException */
-  public static boolean checkValidityOfAddress(final Address ¢) throws ApiException, InterruptedException, IOException {
+  public static void checkValidityOfAddress(Address a) throws ApiException, InterruptedException, IOException, InvalidAddressException {
     final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(),
-        String.valueOf(¢.getStreet() + " " + ¢.getBuilding()) + ", " + ¢.getCity()).await();
-    return $ != null && $.length != 0 && $[0].addressComponents.length > 5;
+        String.valueOf(a.getStreet() + " " + a.getBuilding()) + ", " + a.getCity()).await();
+    if ($ == null || $.length == 0)
+        throw new InvalidAddressException(a.getCity(), a.getStreet(), a.getBuilding());
+    boolean checkStreet = false, checkCity = false, checkBuilding = false;
+    for(AddressComponent ac : $[0].addressComponents) {
+      if(ac.types[0].equals(AddressComponentType.STREET_NUMBER)) checkBuilding = true;
+      else if(ac.types[0].equals(AddressComponentType.ROUTE)) checkStreet = true;
+      else if(ac.types[0].equals(AddressComponentType.LOCALITY)) checkCity = true;
+    }
+    if (!checkCity || !checkStreet || !checkBuilding)
+      throw new InvalidAddressException(checkCity, checkStreet, checkBuilding, a.getCity(), a.getStreet(), a.getBuilding());
   }
+  
 
   /** @param source  - the address which the distance is calculated from
    * @param destination - the address which the distance is calculated to
@@ -72,34 +104,58 @@ public class basicUtils {
    * @throws ApiException
    * @throws InterruptedException
    * @throws IOException */
-  @SuppressWarnings("boxing") public static double calculateDistanceByAddress(final Address source, final Address destination)
+  @SuppressWarnings("boxing") public static double calculateDistanceByAddress(Address source, Address destination)
       throws ApiException, InterruptedException, IOException {
-    final Pair<Double, Double> $ = geocodingAddress(source), destinationCoordinates = geocodingAddress(destination);
-    return calculateDistanceByCoordinates($.first, $.second, destinationCoordinates.first, destinationCoordinates.second);
+    Pair<Double, Double> sourceCoordinates = geocodingAddress(source);
+    Pair<Double, Double> destinationCoordinates = geocodingAddress(destination);
+    return calculateDistanceByCoordinates(sourceCoordinates.first, sourceCoordinates.second, destinationCoordinates.first,
+        destinationCoordinates.second);
   }
 
   // this function gets coordinates and return the distance between the
   // coordinates
-  private static double calculateDistanceByCoordinates(final double sourceLat, final double sourceLng, final double destinationLat,
-      final double destinationLng) {
-    final int $ = 6371; // Radius of the earth
-    final double latDistance = Math.toRadians(destinationLat - sourceLat), lngDistance = Math.toRadians(destinationLng - sourceLng),
-        a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-            + Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2) * Math.cos(Math.toRadians(sourceLat)) * Math.cos(Math.toRadians(destinationLat));
-    return Math.sqrt(Math.pow(2000 * $ * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)), 2));
+  private static double calculateDistanceByCoordinates(double sourceLat, double sourceLng, double destinationLat, double destinationLng) {
+    final int R = 6371; // Radius of the earth
+    double latDistance = Math.toRadians(destinationLat - sourceLat);
+    double lngDistance = Math.toRadians(destinationLng - sourceLng);
+    double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+        + Math.cos(Math.toRadians(sourceLat)) * Math.cos(Math.toRadians(destinationLat)) * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
+    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    double distance = R * c * 1000; // convert to meters
+    return Math.sqrt(Math.pow(distance, 2));
   }
-  // public static void main(final String[] args) throws ApiException,
-  // InterruptedException, IOException {
-  // Address ¢ = new Address("Petah Tikwa", "jabotinsky", 2);
-  // System.out.print(checkValidityOfAddress(¢));
-  // System.out.print(checkValidityOfAddress(¢));
-  // final GeocodingResult[] $ = GeocodingApi.geocode(new
-  // GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(),
-  // String.valueOf(¢.getStreet() + " " + ¢.getBuilding()) + ", " +
-  // ¢.getCity()).await();
-  // System.out.print(new
-  // GsonBuilder().setPrettyPrinting().create().toJson($[0].addressComponents));
-  // Address destination = new Address("Petah Tikwa", "Herzel", 3);
-  // System.out.print(calculateDistanceByAddress(source, destination));
-  // }
+
+//  public static void main(final String[] args) throws ApiException, InterruptedException, IOException {
+//    Address ¢ = new Address("Petah Tikwa", "vsdvd", 5);
+//    try {
+//      checkValidityOfAddress(¢);
+//      System.out.println("OK");
+//    } catch(InvalidAddressException e) {
+//      System.out.println("City " + e.getCityName() + " is " + e.isCityOk());
+//      System.out.println("Street " + e.getStreetName() +" is " + e.isStreetOk());
+//      System.out.println("Building " + e.getBuildingNumber() + " is " + e.isBuildingOk());
+//    }
+//    
+//    System.out.println("OK");
+    
+//    System.out.println(calculateDistanceByAddress(new Address("אריאל", "דרך הציונות", 2) ,¢));
+//    System.out.println(geocodingAddress(¢));
+//    final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(),
+//        String.valueOf(¢.getStreet() + " " + ¢.getBuilding()) + ", " + ¢.getCity()).await();
+    
+//    for(AddressComponent ac : $[0].addressComponents)
+//      System.out.println(ac.types[0]);
+//    
+//    
+    // System.out.print(checkValidityOfAddress(¢));
+    // System.out.print(checkValidityOfAddress(¢));
+    // final GeocodingResult[] $ = GeocodingApi.geocode(new
+    // GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(),
+    // String.valueOf(¢.getStreet() + " " + ¢.getBuilding()) + ", " +
+    // ¢.getCity()).await();
+    // System.out.print(new
+    // GsonBuilder().setPrettyPrinting().create().toJson($[0].addressComponents));
+    // Address destination = new Address("Petah Tikwa", "Herzel", 3);
+    // System.out.print(calculateDistanceByAddress(source, destination));
+//  }
 }
