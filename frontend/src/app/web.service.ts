@@ -77,7 +77,10 @@ access_token = null;
 
 
   async PostLogIn(user){
-    var body = {}
+    var body = {
+      username: user.email,
+      password: user.password
+    }
     console.log(JSON.stringify(body))
     console.log(this.BASE_URL + this.LOGIN_URL)
     try{
@@ -134,4 +137,6 @@ access_token = null;
     }  
 
   }
+
+
 } 

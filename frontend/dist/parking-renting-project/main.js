@@ -160,6 +160,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./rent-spot-form/rent-spot-form.component */ "./src/app/rent-spot-form/rent-spot-form.component.ts");
 /* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./web.service */ "./src/app/web.service.ts");
 /* harmony import */ var _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./rent-spot-dialog/rent-spot-dialog.component */ "./src/app/rent-spot-dialog/rent-spot-dialog.component.ts");
+/* harmony import */ var _personal_page_personal_page_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./personal-page/personal-page.component */ "./src/app/personal-page/personal-page.component.ts");
 // external imports:
 
 
@@ -187,6 +188,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -202,7 +204,8 @@ var AppModule = /** @class */ (function () {
                 _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_20__["SignUpComponent"],
                 _login_login_component__WEBPACK_IMPORTED_MODULE_21__["LoginComponent"],
                 _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_22__["RentSpotFormComponent"],
-                _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_24__["RentSpotDialogComponent"]
+                _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_24__["RentSpotDialogComponent"],
+                _personal_page_personal_page_component__WEBPACK_IMPORTED_MODULE_25__["PersonalPageComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -931,6 +934,74 @@ var NotFoundComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/personal-page/personal-page.component.css":
+/*!***********************************************************!*\
+  !*** ./src/app/personal-page/personal-page.component.css ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BlcnNvbmFsLXBhZ2UvcGVyc29uYWwtcGFnZS5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/personal-page/personal-page.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/personal-page/personal-page.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  personal-page works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/personal-page/personal-page.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/personal-page/personal-page.component.ts ***!
+  \**********************************************************/
+/*! exports provided: PersonalPageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PersonalPageComponent", function() { return PersonalPageComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../web.service */ "./src/app/web.service.ts");
+
+
+
+var PersonalPageComponent = /** @class */ (function () {
+    function PersonalPageComponent(webService) {
+        this.webService = webService;
+    }
+    // email = '';
+    // name = '';
+    // rented = '';
+    // loading = false;
+    PersonalPageComponent.prototype.ngOnInit = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/];
+            });
+        });
+    };
+    PersonalPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-personal-page',
+            template: __webpack_require__(/*! ./personal-page.component.html */ "./src/app/personal-page/personal-page.component.html"),
+            styles: [__webpack_require__(/*! ./personal-page.component.css */ "./src/app/personal-page/personal-page.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_web_service__WEBPACK_IMPORTED_MODULE_2__["WebService"]])
+    ], PersonalPageComponent);
+    return PersonalPageComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/rent-spot-dialog/rent-spot-dialog.component.css":
 /*!*****************************************************************!*\
   !*** ./src/app/rent-spot-dialog/rent-spot-dialog.component.css ***!
@@ -1366,7 +1437,10 @@ var WebService = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        body = {};
+                        body = {
+                            username: user.email,
+                            password: user.password
+                        };
                         console.log(JSON.stringify(body));
                         console.log(this.BASE_URL + this.LOGIN_URL);
                         _a.label = 1;
