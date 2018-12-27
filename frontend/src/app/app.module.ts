@@ -72,7 +72,7 @@ import { PersonalPageComponent } from './personal-page/personal-page.component';
     MatTableModule,
     MatSortModule,
     MatProgressSpinnerModule,
-
+    
     NgbModule,
 
     AppRoutingModule,
