@@ -14,6 +14,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -68,6 +69,7 @@ import { RentSpotDialogComponent } from './rent-spot-dialog/rent-spot-dialog.com
     MatRadioModule,
     MatTableModule,
     MatSortModule,
+    MatProgressSpinnerModule,
 
     NgbModule,
 

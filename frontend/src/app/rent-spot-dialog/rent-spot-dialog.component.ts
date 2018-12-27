@@ -26,7 +26,7 @@ export class RentSpotDialogComponent implements OnInit {
     } else {
       alert('error');
     }
-  }
+  } 
 }
 
 

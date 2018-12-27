@@ -11,6 +11,10 @@ import { NgbDatepickerConfig, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RentSpotFormComponent implements OnInit {
 
+	error_msg = '';
+
+	added = false;
+
 	rentSpotForm: FormGroup;
 
 	rentSpotModel: RentSpotModel = new RentSpotModel('', '', null, null, 0)
@@ -48,7 +52,9 @@ export class RentSpotFormComponent implements OnInit {
 
 	ngOnInit() { }
 
-	addNewSpot() {
+	async addNewSpot() {
+		this. added = false;
+		this.error_msg = '';
 		this.rentSpotModel.city = this.rentSpotForm.value.address.city
 		this.rentSpotModel.street = this.rentSpotForm.value.address.street
 		this.rentSpotModel.spot_num = this.rentSpotForm.value.address.spot_num
@@ -75,7 +81,14 @@ export class RentSpotFormComponent implements OnInit {
 
 		console.log("The rent spot form was submitted: " + JSON.stringify(this.rentSpotModel))  // TODO: delete!
 
-		this.webService.addSpot(this.rentSpotModel)
+		var res = await this.webService.addSpot(this.rentSpotModel);
+		if(res == "successfully add a new spot"){
+			this.added = true;
+		}
+		else{
+			this.error_msg = res.Desc;
+			// this.error = true
+		}
 
 		// for tests:
 		// var sd = startTime;
