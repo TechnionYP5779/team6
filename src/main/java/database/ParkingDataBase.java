@@ -5,6 +5,9 @@ import java.util.*;
 
 import parking.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /** @fluent.ly.Package database
  * @fluent.ly.Since 25 בדצמ׳ 2018
  * @fluent.ly.Author Nitzan
@@ -17,12 +20,36 @@ public class ParkingDataBase {
    * @param ¢ The parking spot to be added to the DB.
    * @throws SQLException */
   public static void addParkingSpot(final ParkingSpot ¢) throws SQLException {
+    
+    //MOVE THIS SOMEWHERE ELSE LATER
+    if(!checkDates(¢.getStartDate(),¢.getEndDate()))
+      throw new IllegalArgumentException("Invalid date sequence");
+
+
     SQLUtils.runCommand("INSERT INTO parkingspots (price,owner,buyer,city,street,building,startDate,endDate,startHour,endHour) VALUES ("
         + ¢.getPrice() + ", '" + ¢.getSellerID() + "', NULL, '" + ¢.getAddress().getCity() + "', '" + ¢.getAddress().getStreet() + "', "
         + ¢.getAddress().getBuilding() + ", DATE '" + ¢.getStartDate() + "', DATE '" + ¢.getEndDate() + "', TIME '" + ¢.getStartHour().substring(0, 7)
         + "', TIME '" + ¢.getEndHour().substring(0, 7) + "')");
   }
 
+  static boolean checkDates(String first, String second) {
+    SimpleDateFormat f = new SimpleDateFormat("yyyy-mm-dd");
+    Date begin = null;
+    Date end = null;
+    try {
+      begin = f.parse(first);
+      end = f.parse(second);
+    }
+    catch(Exception ¢) {
+      ¢.printStackTrace();
+    }
+    if(begin==null || end==null)
+      return false;
+    if(begin.after(end))
+      return false;
+    return true;
+  }
+  
   /** Removes a spot from the DB according to its ID.
    * @param spotID the ID of the spot to be removed.
    * @throws SQLException */
