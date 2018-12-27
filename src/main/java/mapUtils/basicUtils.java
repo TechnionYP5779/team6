@@ -46,43 +46,50 @@ public class basicUtils {
         street, $);
   }
 
-  /**
-   * check the validity of address and return the result.
-   * <p> <b>IMPORTANT NOTES: 
-   * <br> 1. Some invalid addresses will be returned as valid. For example, wrong street number will pass this validation.
-   * <br> 2. The function depends strongly on the implementation of the Google Api. Will not work on other implementation than this specific one.
+  /** check the validity of address and return the result.
+   * <p>
+   * <b>IMPORTANT NOTES: <br>
+   * 1. Some invalid addresses will be returned as valid. For example, wrong
+   * street number will pass this validation. <br>
+   * 2. The function depends strongly on the implementation of the Google Api.
+   * Will not work on other implementation than this specific one.
    * @param a - address
    * @return True - if address is valid or only the building number is invalid
-   * <br> False - otherwise
+   *         <br>
+   *         False - otherwise
    * @throws ApiException
    * @throws InterruptedException
-   * @throws IOException
-   */
+   * @throws IOException */
   public static boolean checkValidityOfAddress(Address a) throws ApiException, InterruptedException, IOException {
     final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(),
         String.valueOf(a.getStreet() + " " + a.getBuilding()) + ", " + a.getCity()).await();
-    if($ == null || $.length == 0) return false;
-    if($[0].addressComponents.length <= 5)  return false;
-    return true;
+    if ($ == null || $.length == 0)
+      return false;
+    boolean checkStreet = false, checkCity = false, checkBuilding = false;
+    for(AddressComponent ac : $[0].addressComponents) {
+      if(ac.types[0].equals(AddressComponentType.STREET_NUMBER)) checkBuilding = true;
+      else if(ac.types[0].equals(AddressComponentType.ROUTE)) checkStreet = true;
+      else if(ac.types[0].equals(AddressComponentType.LOCALITY)) checkCity = true;
+    }
+    return checkCity && checkStreet && checkBuilding;
   }
-  
-  /**
-   * 
-   * @param source - the address which the distance is calculated from
+
+  /** @param source  - the address which the distance is calculated from
    * @param destination - the address which the distance is calculated to
    * @return air distance between the two addresses in meters.
    * @throws ApiException
    * @throws InterruptedException
-   * @throws IOException
-   */
-  @SuppressWarnings("boxing") public static double calculateDistanceByAddress(Address source, Address destination) throws ApiException, InterruptedException, IOException {
+   * @throws IOException */
+  @SuppressWarnings("boxing") public static double calculateDistanceByAddress(Address source, Address destination)
+      throws ApiException, InterruptedException, IOException {
     Pair<Double, Double> sourceCoordinates = geocodingAddress(source);
     Pair<Double, Double> destinationCoordinates = geocodingAddress(destination);
     return calculateDistanceByCoordinates(sourceCoordinates.first, sourceCoordinates.second, destinationCoordinates.first,
         destinationCoordinates.second);
   }
 
-  //this function gets coordinates and return the distance between the coordinates
+  // this function gets coordinates and return the distance between the
+  // coordinates
   private static double calculateDistanceByCoordinates(double sourceLat, double sourceLng, double destinationLat, double destinationLng) {
     final int R = 6371; // Radius of the earth
     double latDistance = Math.toRadians(destinationLat - sourceLat);
@@ -95,13 +102,27 @@ public class basicUtils {
   }
 
 //  public static void main(final String[] args) throws ApiException, InterruptedException, IOException {
-//    Address ¢ = new Address("Petah Tikwa", "jabotinsky", 2);
-//    System.out.print(checkValidityOfAddress(¢));
-//    System.out.print(checkValidityOfAddress(¢));
+//    Address ¢ = new Address("פתח תקווה", "צהל", 2);
+//    
+//    System.out.println(calculateDistanceByAddress(new Address("אריאל", "דרך הציונות", 2) ,¢));
+//    System.out.println(checkValidityOfAddress(¢));
+//    System.out.println(geocodingAddress(¢));
 //    final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(),
 //        String.valueOf(¢.getStreet() + " " + ¢.getBuilding()) + ", " + ¢.getCity()).await();
-//    System.out.print(new GsonBuilder().setPrettyPrinting().create().toJson($[0].addressComponents));
-//    Address destination = new Address("Petah Tikwa", "Herzel", 3);
-//    System.out.print(calculateDistanceByAddress(source, destination));
+//    
+//    for(AddressComponent ac : $[0].addressComponents)
+//      System.out.println(ac.types[0]);
+//    
+//    
+    // System.out.print(checkValidityOfAddress(¢));
+    // System.out.print(checkValidityOfAddress(¢));
+    // final GeocodingResult[] $ = GeocodingApi.geocode(new
+    // GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(),
+    // String.valueOf(¢.getStreet() + " " + ¢.getBuilding()) + ", " +
+    // ¢.getCity()).await();
+    // System.out.print(new
+    // GsonBuilder().setPrettyPrinting().create().toJson($[0].addressComponents));
+    // Address destination = new Address("Petah Tikwa", "Herzel", 3);
+    // System.out.print(calculateDistanceByAddress(source, destination));
 //  }
 }
