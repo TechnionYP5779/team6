@@ -1,0 +1,39 @@
+<!-- Title -->
+<h2 style="text-align:center" mat-dialog-title>Login</h2>
+<!-- Content -->
+<div  >
+  <div *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" value="indeterminate" style="width:15%; margin:0 auto;"></mat-progress-spinner>
+    <p> {{spacer}} </p>
+    <p> {{spacer}} </p>
+  </div>
+</div>  
+<div *ngIf="!loading" mat-dialog-content [formGroup]="loginForm">
+  <p style="color:red;" *ngIf="error"> Error: {{error}} </p>
+
+  <!-- UserName -->
+  <mat-form-field>
+    <input matInput placeholder="email" formControlName="email" required>
+  </mat-form-field>
+
+  <!-- Password -->
+  <mat-form-field>
+    <input matInput placeholder="Password" formControlName="password" required [type]="hidePassword ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+
+</div>
+
+<!-- Bottons -->
+<div mat-dialog-actions align="center">
+
+  <button type="button" class="btn btn-primary" (click)="login()" [disabled]="!loginForm.valid">Login</button>
+
+  <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
+
+  <p> <br>
+    Don’t have an account?
+    <button type="button" class="btn btn-link" (click)="signUp()">Sign Up</button>
+  </p>
+
+</div>

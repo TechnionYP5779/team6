@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1" metadata-complete="false">
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<context-param>
+		<param-name>com.auth0.domain</param-name>
+		<param-value>team6a.auth0.com</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.auth0.clientId</param-name>
+		<param-value>BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.auth0.clientSecret</param-name>
+		<param-value>znc165307qVtiGnsCq7_3MfmjhuoGC0bo0aE5VMa8X91p--gxzujy6dqolSjmbD3</param-value>
+	</context-param>
+</web-app>

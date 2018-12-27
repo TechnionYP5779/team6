@@ -1,0 +1,44 @@
+.container{
+    width: 800px; 
+    margin-left: unset; 
+    margin-top: 10px;
+}
+
+.mat-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-primary, .btn-secondary {
+    width:130px;
+    align-self: center;
+}
+
+.button {
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+ }
+
+.date-field {
+    width: 50px;
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+.col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4 {
+    align-self: center;
+}
+
+mat-label {
+    font-size: larger;
+}
+
+.date-input-field {
+    width:130px; 
+    text-align: center
+}

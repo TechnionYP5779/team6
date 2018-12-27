@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+  <!-- Brand / Logo -->
+  <!-- TODO: update name + logo -->
+  <a class="navbar-brand" routerLink="" style="font-size:x-large">
+    <img src="../../assets/img/parking-logo-white.png" width="35" height="35" alt="logo">
+    Parking Renting
+  </a>
+
+  <!-- Collapsing The Navigation Bar -->
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-target="#mainNavBar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- The NavBar -->
+  <div class="collapse navbar-collapse show" [ngClass]="{ 'show': navbarOpen }" id="mainNavBar">
+
+    <!-- Left: Find Parking, Become a Host -->
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="" routerLinkActive="active current" [routerLinkActiveOptions]="{exact: true}">
+          Home
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/find-parking" routerLinkActive="active current">
+          Find Parking
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/become-host" routerLinkActive="active current">
+          Become a Host
+        </a>
+      </li>
+
+    </ul>
+
+    <!-- Right: SignUp, Login -->
+    <ul class="nav navbar-nav navbar-right">
+
+      <li class="nav-item">
+        <a *ngIf="username">
+          Welcome {{username}}
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="!userIsLogin">
+        <button type="button" class="btn btn-light" (click)="openLoginDialog()" style="width: 110px">
+          <span class="fa fa-sign-in"></span>
+          Login
+        </button>
+      </li>
+
+      <li class="nav-item" *ngIf="userIsLogin">
+        <button type="button" class="btn btn-light" (click)="logout()" style="width: 110px">
+          <span class="fa fa-sign-out"></span>
+          Logout
+        </button>
+      </li>
+
+      <li class="nav-item">
+        <button type="button" class="btn btn-light" (click)="openSignUpDialog()" style="width: 110px">
+          <span class="fa fa-user"></span>
+          Sign Up
+        </button>
+      </li>
+
+    </ul>
+
+  </div>
+
+</nav>
