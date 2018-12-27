@@ -29,12 +29,14 @@ import com.auth0.net.*;
     try {
       final TokenHolder holder = request.execute();
       final UserInfo info = auth.userInfo(holder.getAccessToken()).execute();
+      System.out.println(info.getValues().keySet().toString());
+      System.out.println(info.getValues().values().toString());
       resp.setHeader("Response", "OK");
       resp.setStatus(200);
       final JSONObject tokens = new JSONObject();
       r.getSession().setAttribute("accessToken", holder.getAccessToken());
       r.getSession().setAttribute("idToken", holder.getIdToken());
-      tokens.put("name", info.getValues().get("name"));
+      tokens.put("name", info.getValues().get("nickname"));
       tokens.put("email", info.getValues().get("email"));
       resp.getWriter().write(tokens + "");
     } catch (final Auth0Exception ¢) {

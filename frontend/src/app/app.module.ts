@@ -38,6 +38,7 @@ import { RentSpotDialogComponent } from './rent-spot-dialog/rent-spot-dialog.com
 import { ProfileComponent } from './profile/profile.component';
 
 
+
 @NgModule({
 
   declarations: [
@@ -52,6 +53,7 @@ import { ProfileComponent } from './profile/profile.component';
     RentSpotFormComponent,
     RentSpotDialogComponent,
     ProfileComponent
+
   ],
 
   imports: [

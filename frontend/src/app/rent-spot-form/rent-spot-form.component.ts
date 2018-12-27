@@ -82,7 +82,7 @@ export class RentSpotFormComponent implements OnInit {
 		console.log("The rent spot form was submitted: " + JSON.stringify(this.rentSpotModel))  // TODO: delete!
 
 		var res = await this.webService.addSpot(this.rentSpotModel);
-		if(res == "successfully add a new spot"){
+		if(res == null){
 			this.added = true;
 		}
 		else{
