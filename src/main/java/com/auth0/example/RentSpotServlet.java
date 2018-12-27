@@ -26,7 +26,7 @@ import parking.*;
     resp.setHeader("Access-Control-Allow-Origin", "*");
     try {
       final JSONObject jo = new JSONObject(new String(body));
-      jo.put("id", auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute().getValues().get("sub"));
+      jo.put("buyerId", auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute().getValues().get("sub"));
       OurSystem.rentParkingSpot(jo);
     } catch (final JSONException ¢) {
       resp.setHeader("Response", "ERROR");

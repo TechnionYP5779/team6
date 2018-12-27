@@ -842,7 +842,9 @@ module.exports = ".navbar {\r\n    width: 100%;\r\n    background-color: #555;\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+
 module.exports = "<nav class=\"navbar navbar-expand-sm bg-dark navbar-dark\">\r\n\r\n  <!-- Brand / Logo -->\r\n  <!-- TODO: update name + logo -->\r\n  <a class=\"navbar-brand\" routerLink=\"\" style=\"font-size:x-large\">\r\n    <img src=\"../../assets/img/parking-logo-white.png\" width=\"35\" height=\"35\" alt=\"logo\">\r\n    parKcupid\r\n  </a>\r\n\r\n  <!-- Collapsing The Navigation Bar -->\r\n  <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleNavbar()\" data-target=\"#mainNavBar\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <!-- The NavBar -->\r\n  <div class=\"collapse navbar-collapse show\" [ngClass]=\"{ 'show': navbarOpen }\" id=\"mainNavBar\">\r\n\r\n    <!-- Left: Find Parking, Become a Host -->\r\n    <ul class=\"navbar-nav mr-auto\">\r\n\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"\" routerLinkActive=\"active current\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n          Home\r\n        </a>\r\n      </li>\r\n\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"/find-parking\" routerLinkActive=\"active current\">\r\n          Find Parking\r\n        </a>\r\n      </li>\r\n\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" routerLink=\"/become-host\" routerLinkActive=\"active current\">\r\n          Become a Host\r\n        </a>\r\n      </li>\r\n\r\n    </ul>\r\n\r\n    <!-- Right: SignUp, Login -->\r\n    <ul class=\"nav navbar-nav navbar-right\">\r\n\r\n      <li class=\"nav-item\">\r\n        <a *ngIf=\"username\" class=\"nav-link\" routerLink=\"/profile\" routerLinkActive=\"active current\">\r\n          Welcome {{username}}\r\n        </a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a *ngIf=\"!username\" >\r\n          Welcome Gest\r\n        </a>\r\n      </li>\r\n\r\n      <li class=\"nav-item\" *ngIf=\"!userIsLogin\">\r\n        <button type=\"button\" class=\"btn btn-light\" (click)=\"openLoginDialog()\" style=\"width: 110px\">\r\n          <span class=\"fa fa-sign-in\"></span>\r\n          Login\r\n        </button>\r\n      </li>\r\n\r\n      <li class=\"nav-item\" *ngIf=\"userIsLogin\">\r\n        <button type=\"button\" class=\"btn btn-light\" (click)=\"logout()\" style=\"width: 110px\">\r\n          <span class=\"fa fa-sign-out\"></span>\r\n          Logout\r\n        </button>\r\n      </li>\r\n\r\n      <li class=\"nav-item\" *ngIf=\"!userIsLogin\">\r\n        <button type=\"button\" class=\"btn btn-light\" (click)=\"openSignUpDialog()\" style=\"width: 110px\">\r\n          <span class=\"fa fa-user\"></span>\r\n          Sign Up\r\n        </button>\r\n      </li>\r\n\r\n    </ul>\r\n\r\n  </div>\r\n\r\n</nav>"
+
 
 /***/ }),
 
@@ -946,7 +948,9 @@ var NavbarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+
 module.exports = ".container{\r\n    width: 800px; \r\n    margin-left: unset; \r\n    margin-top: 10px;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbm90LWZvdW5kL25vdC1mb3VuZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksYUFBYTtJQUNiLG1CQUFtQjtJQUNuQixpQkFBaUI7Q0FDcEIiLCJmaWxlIjoic3JjL2FwcC9ub3QtZm91bmQvbm90LWZvdW5kLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVye1xyXG4gICAgd2lkdGg6IDgwMHB4OyBcclxuICAgIG1hcmdpbi1sZWZ0OiB1bnNldDsgXHJcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xyXG59Il19 */"
+
 
 /***/ }),
 
@@ -958,6 +962,7 @@ module.exports = ".container{\r\n    width: 800px; \r\n    margin-left: unset; \
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\">\r\n  <h2>Invalid address!</h2>\r\n</div>"
+
 
 /***/ }),
 
@@ -1013,7 +1018,9 @@ module.exports = "/** split page to 2 columns */\r\n\r\n.container {\r\n    marg
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+
 module.exports = "<!--\r\n  <div class=\"container\" *ngIf=\"!loading\">\r\n-->\r\n<div class=\"container\" *ngIf=\"true\" style=\"width:100%\">\r\n\r\n  <!-- Title -->\r\n  <h2>Hello {{ userPersonalInformation.username }}!</h2>\r\n\r\n  <!-- PERSONAL INFORMATION --------------------------------------->\r\n  <br>\r\n  <div>\r\n    <h4>Your personal information:</h4>\r\n\r\n    <!-- Fisrt Name -->\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-2\">\r\n        <mat-label><b>Username:</b></mat-label>\r\n      </div>\r\n      <div class=\"col-sm-2\">\r\n        <mat-label> {{userPersonalNickname}}</mat-label>\r\n      </div>\r\n    </div>\r\n\r\n    <!-- Last Name -->\r\n<!--     <div class=\"row\">\r\n      <div class=\"col-sm-2\">\r\n        <mat-label><b>Last name:</b></mat-label>\r\n      </div>\r\n      <div class=\"col-sm-2\">\r\n        <mat-label> {{ userPersonalInformation.lname }}</mat-label>\r\n      </div>\r\n    </div> -->\r\n\r\n    <!-- Username -->\r\n<!--     <div class=\"row\">\r\n      <div class=\"col-sm-2\">\r\n        <mat-label><b>Username:</b></mat-label>\r\n      </div>\r\n      <div class=\"col-sm-2\">\r\n        <mat-label> {{ userPersonalInformation.username }}</mat-label>\r\n      </div>\r\n    </div> -->\r\n\r\n    <!-- Email -->\r\n    <div class=\"row\">\r\n      <div class=\"col-sm-2\">\r\n        <mat-label><b>Email address:</b></mat-label>\r\n      </div>\r\n      <div class=\"col-sm-2\">\r\n        <mat-label> {{userPersonalEmail}}</mat-label>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n\r\n\r\n  <!-- THE PARKING SPOTS YOU OWN ---------------------------------->\r\n  <br>\r\n  <div class=\"row\" id=\"ownSpotsTable\" style=\"margin-left: auto\">\r\n    <h4>The parking spots you own:</h4>\r\n    <br>\r\n\r\n    <table mat-table [dataSource]=\"ownSpotsDataSource\" class=\"mat-elevation-z8\" style=\"width:1500px\">\r\n      <div class=\"example-element-diagram\">\r\n\r\n        <!-- ID Column -->\r\n        <ng-container matColumnDef=\"id\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:50px\"> ID </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Addres Column -->\r\n        <ng-container matColumnDef=\"address\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:350px\"> Address </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.street}} St {{element.building}}, {{element.city}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Price Column -->\r\n        <ng-container matColumnDef=\"price\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:70px\"> Price </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Start Time Column -->\r\n        <ng-container matColumnDef=\"start_time\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:300px\"> Start Time </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.start_time}} </td>\r\n        </ng-container>\r\n\r\n        <!-- End Time Column -->\r\n        <ng-container matColumnDef=\"end_time\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:300px\"> End Time </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.end_time}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Status Column -->\r\n        <ng-container matColumnDef=\"status\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:120px\"> Status </th>\r\n          <td mat-cell *matCellDef=\"let element\">\r\n            {{element.buyerId=='' ? 'not rented' : 'rented'}}\r\n          </td>\r\n        </ng-container>\r\n\r\n        <!-- Status Column -->\r\n        <ng-container matColumnDef=\"status_button\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:120px\"> </th>\r\n          <td mat-cell *matCellDef=\"let element\">\r\n            <div *ngIf=\"element.buyerId==''\">\r\n              <button type=\"button\" class=\"btn btn-danger btn-sm\" (click)=\"deleteMySpot(element)\">Delete</button>\r\n            </div>\r\n          </td>\r\n        </ng-container>\r\n\r\n      </div>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"ownSpotsHeader\"></tr>\r\n      <tr mat-row *matRowDef=\"let row; columns: ownSpotsHeader;\" class=\"example-element-row\"></tr>\r\n    </table>\r\n  </div>\r\n\r\n  <!-- THE PARKING SPOTS YOU RENT ---------------------------------->\r\n  <br>\r\n  <div class=\"row\" id=\"rentSpotsTable\" style=\"margin-left: auto\">\r\n    <h4>The parking spots you rent:</h4>\r\n    <br>\r\n\r\n    <table mat-table [dataSource]=\"rentSpotsDataSource\" class=\"mat-elevation-z8\">\r\n      <div class=\"example-element-diagram\">\r\n\r\n        <!-- ID Column -->\r\n        <ng-container matColumnDef=\"id\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:50px\"> ID </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Addres Column -->\r\n        <ng-container matColumnDef=\"address\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:350px\"> Address </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.street}} St {{element.building}}, {{element.city}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Price Column -->\r\n        <ng-container matColumnDef=\"price\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:70px\"> Price </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Start Time Column -->\r\n        <ng-container matColumnDef=\"start_time\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:300px\"> Start Time </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.start_time}} </td>\r\n        </ng-container>\r\n\r\n        <!-- End Time Column -->\r\n        <ng-container matColumnDef=\"end_time\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:300px\"> End Time </th>\r\n          <td mat-cell *matCellDef=\"let element\"> {{element.end_time}} </td>\r\n        </ng-container>\r\n\r\n        <!-- Status Column -->\r\n        <ng-container matColumnDef=\"status\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:120px\"> </th>\r\n          <td mat-cell *matCellDef=\"let element\"> </td>\r\n        </ng-container>\r\n\r\n        <!-- Status Column -->\r\n        <ng-container matColumnDef=\"status_button\">\r\n          <th mat-header-cell *matHeaderCellDef style=\"width:120px\"> </th>\r\n          <td mat-cell *matCellDef=\"let element\"> </td>\r\n        </ng-container>\r\n\r\n      </div>\r\n\r\n      <tr mat-header-row *matHeaderRowDef=\"rentSpotsHeader\"></tr>\r\n      <tr mat-row *matRowDef=\"let row; columns: rentSpotsHeader;\" class=\"example-element-row\"></tr>\r\n    </table>\r\n  </div>\r\n\r\n</div>"
+
 
 /***/ }),
 
@@ -1059,8 +1066,8 @@ var ProfileComponent = /** @class */ (function () {
     }
     ProfileComponent.prototype.ngOnInit = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var userInformationRes, userOwnSpotsRes, userRentSpotsRes;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.webService.getUserInformation()];
                     case 1:
@@ -1081,10 +1088,12 @@ var ProfileComponent = /** @class */ (function () {
                         this.loading = false;
                         return [2 /*return*/];
                 }
+
             });
         });
     };
     ProfileComponent.prototype.deleteMySpot = function (spot) {
+
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var deleteSpotRes, userOwnSpotsRes;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
@@ -1101,6 +1110,7 @@ var ProfileComponent = /** @class */ (function () {
                 }
             });
         });
+
     };
     ProfileComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1265,7 +1275,9 @@ module.exports = ".container{\r\n    width: 800px; \r\n    margin-left: unset; \
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+
 module.exports = "<div class=\"container\" [formGroup]=\"rentSpotForm\">\r\n\r\n  <!-- Title -->\r\n  <h2>Rent your spot</h2>\r\n\r\n  <!-- Form -->\r\n  <div class=\"mat-form\">\r\n\r\n\r\n    <!-- Address: -->\r\n    <div class=\"row\" formGroupName=\"address\">\r\n\r\n      <!-- Label -->\r\n      <div class=\"col-sm-2\">\r\n        <mat-label>Address:</mat-label>\r\n      </div>\r\n\r\n      <!-- City -->\r\n      <div class=\"col-sm-3\">\r\n        <mat-form-field class=\"form-field\">\r\n          <input matInput placeholder=\"City\" formControlName=\"city\" required>\r\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['city'].hasError('pattern')\">\r\n            Please enter a valid city name: Letters only\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <!-- Street -->\r\n      <div class=\"col-sm-3\">\r\n        <mat-form-field class=\"form-field\">\r\n          <input matInput placeholder=\"Street\" formControlName=\"street\" required>\r\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['street'].hasError('pattern')\">\r\n            Please enter a valid street name: Letters only\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <!-- Parking spot number -->\r\n      <div class=\"col-sm-3\">\r\n        <mat-form-field class=\"form-field\">\r\n          <input matInput placeholder=\"Parking spot number\" formControlName=\"spot_num\">\r\n          <mat-error *ngIf=\"rentSpotForm.get('address').controls['spot_num'].hasError('pattern')\">\r\n            Please enter a valid parking spot number: Integer number only\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n    </div>\r\n\r\n\r\n    <!-- Start time: -->\r\n    <div class=\"row\" formGroupName=\"start_time\">\r\n\r\n      <!-- Label -->\r\n      <div class=\"col-sm-2\">\r\n        <mat-label>Start time:</mat-label>\r\n      </div>\r\n\r\n      <!-- Date: -->\r\n      <div class=\"col-sm-3\">\r\n        <div class=\"input-group\">\r\n          <input formControlName=\"start_date\" placeholder=\"yyyy-mm-dd\" name=\"dpS\" ngbDatepicker #dS=\"ngbDatepicker\"\r\n            class=\"date-input-field\">\r\n          <div class=\"input-group-append\">\r\n            <button type=\"button\" class=\"btn btn-outline-secondary\" (click)=\"dS.toggle()\">\r\n              <span class=\"fa fa-calendar\"></span>\r\n            </button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Hour: -->\r\n      <div class=\"col-sm-3\">\r\n        <ngb-timepicker formControlName=\"start_hour\" required></ngb-timepicker>\r\n      </div>\r\n\r\n    </div>\r\n\r\n\r\n    <!-- End time: -->\r\n    <div class=\"row\" formGroupName=\"end_time\">\r\n\r\n      <!-- Label -->\r\n      <div class=\"col-sm-2\">\r\n        <mat-label>End time:</mat-label>\r\n      </div>\r\n\r\n      <!-- Date: -->\r\n      <div class=\"col-sm-3\">\r\n        <div class=\"input-group\">\r\n          <input formControlName=\"end_date\" placeholder=\"yyyy-mm-dd\" name=\"dpE\" ngbDatepicker #dE=\"ngbDatepicker\"\r\n            [markDisabled]=\"isDisabled\" class=\"date-input-field\">\r\n          <div class=\"input-group-append\">\r\n            <button type=\"button\" class=\"btn btn-outline-secondary\" (click)=\"dE.toggle()\">\r\n              <span class=\"fa fa-calendar\"></span>\r\n            </button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <!-- Hour: -->\r\n      <div class=\"col-sm-3\">\r\n        <ngb-timepicker formControlName=\"end_hour\" required></ngb-timepicker>\r\n      </div>\r\n\r\n    </div>\r\n\r\n\r\n    <!-- Price per hour: -->\r\n    <div class=\"row\">\r\n\r\n      <!-- Label -->\r\n      <div class=\"col-sm-2\">\r\n        <mat-label>Price:</mat-label>\r\n      </div>\r\n\r\n      <!-- Price -->\r\n      <div class=\"col-sm-3\">\r\n        <mat-form-field class=\"form-field\">\r\n          <input matInput placeholder=\"Price per hour\" formControlName=\"price\" required>\r\n          <mat-error *ngIf=\"rentSpotForm.controls['price'].hasError('pattern')\">\r\n            Please enter a valid price: Integer number only\r\n          </mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n    </div>\r\n\r\n\r\n  </div>\r\n\r\n  <p style=\"color:green;\" *ngIf=\"added\">successfully add a new spot</p>\r\n  <p style=\"color:red;\" *ngIf=\"error_msg\">{{error_msg}}</p>\r\n\r\n  <!-- Buttons -->\r\n  <div style=\"width:300px; align-self: center\">\r\n\r\n    <button type=\"button\" class=\"btn btn-primary\" (click)=\"addNewSpot()\" [disabled]=\"!rentSpotForm.valid\" style=\"float: left\">Submit</button>\r\n    <button type=\"button\" class=\"btn btn-secondary\" (click)=\"reset()\" style=\"float: right\">Reset</button>\r\n\r\n  </div>\r\n\r\n\r\n</div>"
+
 
 /***/ }),
 
@@ -1652,8 +1664,9 @@ var WebService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         body = {
-                            id: spot
+                            id: spot.toString()
                         };
+                        console.log(body);
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);

@@ -112,8 +112,9 @@ access_token = null;
 
   async postRent(spot){
     var body = {
-      id: spot
+      id: spot.toString()
     }
+    console.log(body)
     try{
       var res = await this.http.post(this.BASE_URL + this.RENT_URL, body).toPromise();
       return null;
