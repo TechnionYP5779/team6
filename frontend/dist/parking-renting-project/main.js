@@ -480,6 +480,12 @@ var FindParkingComponent = /** @class */ (function () {
         if (this.selectedCurrLocOption == 'GPS location' || this.selectedCurrLocOption == 'Technion') {
             this.filterForm.controls['address'].reset();
         }
+        if (this.filterElement.locationOption == 'GPS location') {
+            this.filterElement.address = this.currlat.toString() + ':' + this.currlng.toString();
+        }
+        if (this.filterElement.locationOption == 'Technion') {
+            this.filterElement.address = this.thecnionlat.toString() + ':' + this.thecnionlng.toString();
+        }
         this.findCurrentLocation();
         this.filterMarkers();
     };
@@ -1228,7 +1234,7 @@ var RentSpotFormComponent = /** @class */ (function () {
                         return [4 /*yield*/, this.webService.addSpot(this.rentSpotModel)];
                     case 1:
                         res = _a.sent();
-                        if (res == "successfully add a new spot") {
+                        if (res == null) {
                             this.added = true;
                         }
                         else {
@@ -1421,11 +1427,11 @@ var WebService = /** @class */ (function () {
         this.SIGNUP_URL = 'https://team6a.auth0.com/dbconnections/signup';
         this.LOGIN_URL = '/login';
         this.LOGOUT = '/logged/logout';
-        this.GET_SPOT_URL = '/logged/search/all/renting_spots';
-        this.GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots';
-        this.RENT_URL = 'logged/rent/renting_spot';
-        this.GETDETAILROOT_URL = '/getDetailRoot';
-        this.SEARCH_SPOTS_URL = 'someurl'; //TODO: change
+        this.GET_SPOT_URL = '/search/all/renting_spots';
+        this.RENT_URL = '/logged/rent/renting_spot';
+        this.GET_RENTED = 'logged/search/user/renting_spots';
+        this.GET_RENTING = '/logged/search/buyer/renting_spots';
+
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
         this.id_token = null;
         this.access_token = null;
@@ -1543,6 +1549,7 @@ var WebService = /** @class */ (function () {
                         return [2 /*return*/, null];
                     case 3:
                         error_3 = _a.sent();
+                        console.log('~~~~~~~' + error_3);
                         return [2 /*return*/, 'error'];
                     case 4: return [2 /*return*/];
                 }
@@ -1580,16 +1587,27 @@ var WebService = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.SEARCH_SPOTS_URL, toSearch).toPromise()];
+                        console.log(toSearch);
+                        _a.label = 1;
                     case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.GET_SPOT_URL, toSearch).toPromise()];
+                    case 2:
                         res = _a.sent();
                         return [2 /*return*/, JSON.stringify(res)];
                     case 2:
                         error_5 = _a.sent();
+
                         return [2 /*return*/, null];
-                    case 3: return [2 /*return*/];
+                    case 4: return [2 /*return*/];
                 }
+            });
+        });
+    };
+    WebService.prototype.getRented = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/];
             });
         });
     };
