@@ -18,14 +18,14 @@ import parking.*;
       "znc165307qVtiGnsCq7_3MfmjhuoGC0bo0aE5VMa8X91p--gxzujy6dqolSjmbD3");
 
   @Override protected void doPost(final HttpServletRequest r, final HttpServletResponse resp) throws ServletException, IOException {
-    if (!"POST".equals(r.getMethod()))// should only be used for Post Requests
+    if (!"POST".equals(r.getMethod())) {
       return;
-    // final String body =
-    // r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-    final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+    }
+    final String body;
+    body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     resp.setHeader("Access-Control-Allow-Origin", "*");
     try {
-      final JSONObject jo = new JSONObject(new String(body));
+      final JSONObject jo = new JSONObject(String.valueOf(body));
       jo.put("buyerId", auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute().getValues().get("sub"));
       OurSystem.rentParkingSpot(jo);
     } catch (final JSONException ¢) {
