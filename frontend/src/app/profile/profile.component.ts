@@ -10,7 +10,8 @@ import { WebService } from '../web.service';
 export class ProfileComponent implements OnInit {
 
   loading = true
-
+	userPersonalNickname;
+	userPersonalEmail;
   // personal information
   userPersonalInformation: UserElement = { name: "myUsername",  email: "my@email.com" }
 
@@ -40,11 +41,8 @@ export class ProfileComponent implements OnInit {
 
     // personal information
     var userInformationRes = await this.webService.getUserInformation();
-    this.userPersonalInformation = JSON.parse('' + userInformationRes + '')
-
-    // personal information 
-    //var userInformationRes = await this.webService.getUserInformation();
-    //this.userPersonalInformation = JSON.parse('' + userInformationRes + '')
+	this.userPersonalNickname = userInformationRes["name"]
+	this.userPersonalEmail = userInformationRes["email"]
 
 
     // ownSpots table
@@ -57,13 +55,13 @@ export class ProfileComponent implements OnInit {
     this.RENT_SPOTS_DATA = JSON.parse('' + userRentSpotsRes + '')
     this.rentSpotsDataSource = new MatTableDataSource(this.RENT_SPOTS_DATA);
 
-    this.rentSpotsDataSource.sort = this.sort;
+    //this.rentSpotsDataSource.sort = this.sort;
 
     this.loading = false;
 
   }
 
-  deleteMySpot(spot: SpotElement) { // TODO: complete this
+  async deleteMySpot(spot: SpotElement) { // TODO: complete this
     var deleteSpotRes = await this.webService.deleteSpot(spot);
     var userOwnSpotsRes = await this.webService.getUserOwnSpots();
     this.OWN_SPOTS_DATA = JSON.parse('' + userOwnSpotsRes + '')
