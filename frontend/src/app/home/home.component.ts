@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebService } from '../web.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private webService : WebService) { }
+   total;
+   freetoday;
+   totalfree;
+   loading = true;
+   async ngOnInit() {
+	   var res = await this.webService.GetDetailRoot();
+	   this.loading = false;
+	   this.total = res["total"]
+	   this.freetoday = res["free_today"]
+	   this.totalfree = res["free_all"]
   }
 
 }
