@@ -70,7 +70,7 @@ import { RentSpotDialogComponent } from './rent-spot-dialog/rent-spot-dialog.com
     MatTableModule,
     MatSortModule,
     MatProgressSpinnerModule,
-
+    
     NgbModule,
 
     AppRoutingModule,
