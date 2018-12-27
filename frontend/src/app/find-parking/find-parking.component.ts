@@ -65,8 +65,8 @@ export class FindParkingComponent implements OnInit {
 
   async ngOnInit() {
     this.findCurrentLocation();
-    //var res = await this.webService.getSpots();
-    //this.ELEMENT_DATA = JSON.parse('' + res + '')
+    var res = await this.webService.getSpots();
+    this.ELEMENT_DATA = JSON.parse('' + res + '')
     this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
     this.dataSource.sort = this.sort;
