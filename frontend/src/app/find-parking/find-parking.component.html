@@ -22,36 +22,55 @@
       <!-- Form (left) ----------------------------------------------------------------------------->
       <div class="container" [formGroup]="filterForm">
 
-        <div>
-          <mat-form-field class="form-field">
-            <mat-label>Max distance from your location</mat-label>
-            <input matInput placeholder="max distance" formControlName="maxDistance">
-          </mat-form-field>
-        </div>
-
-        <div>
-          <mat-form-field class="form-field">
-            <mat-label>Max price</mat-label>
-            <input matInput placeholder="max price" formControlName="maxPrice">
-          </mat-form-field>
-        </div>
-
+        <!-- Current Location Options -->
         <div>
           <mat-form-field>
             <mat-label>Choose how to determine your current location</mat-label>
-            <mat-select placeholder="location options" formControlName="locationOption" required>
+            <mat-select placeholder="location options" formControlName="locationOption" required [(value)]="filterElement.locationOption">
               <mat-option *ngFor="let option of locationOptions" [value]="option">
                 {{option}}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
+        <div>
+          <mat-form-field class="form-field" style="padding-left: 5%">
+            <mat-label>Search for location</mat-label>
+            <input matInput placeholder="Fill your address" formControlName="address" autocorrect="off" autocapitalize="off"
+              spellcheck="off" class="form-control" #search [formControl]="searchControl">
+          </mat-form-field>
+        </div>
+
+        <!-- Max Distance -->
+        <div>
+          <mat-form-field class="form-field">
+            <mat-label>Max distance from your location</mat-label>
+            <input matInput placeholder="max distance" formControlName="maxDistance">
+            <mat-error *ngIf="filterForm.controls['maxDistance'].hasError('pattern')">
+              Please enter a valid distance: Integer number only
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Max Price -->
+        <div>
+          <mat-form-field class="form-field">
+            <mat-label>Max price</mat-label>
+            <input matInput placeholder="max price" formControlName="maxPrice">
+            <mat-error *ngIf="filterForm.controls['maxPrice'].hasError('pattern')">
+              Please enter a valid price: Integer number only
+            </mat-error>
+          </mat-form-field>
+        </div>
 
       </div>
 
-      <button type="button" (click)="filter()" [disabled]="!filterForm.valid">Submit</button>
-      <button type="button" (click)="reset()">Reset (show all spot)</button>
+      <div>
+        <button type="button" class="btn btn-primary" (click)="filter()" [disabled]="!filterForm.valid">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="reset()">Reset (show all spots)</button>
+      </div>
 
+      <br>
 
       <!-- Table (left) ---------------------------------------------------------------------------->
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
@@ -65,10 +84,10 @@
         <!-- Addres Column -->
         <ng-container matColumnDef="address">
           <th mat-header-cell *matHeaderCellDef> Address </th>
-          <td mat-cell *matCellDef="let element"> {{element.city}} {{element.street}} {{element.building}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.street}} St {{element.building}}, {{element.city}} </td>
         </ng-container>
 
-<!--          Distance Column 
+        <!-- Distance Column 
         <ng-container matColumnDef="distance">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>
           <td mat-cell *matCellDef="let element"> {{element.distance == -1 ? '---' : element.distance}} </td>
@@ -99,15 +118,17 @@
 
         <!-- Markers for all avaiable spot -->
         <agm-marker *ngFor="let spot of ELEMENT_DATA_FILTER; let i=index" [latitude]="+spot.latitude" [longitude]="+spot.longitude"
-          [label]="spot.id.toString()">
+          [label]="{color: 'black', text: spot.price.toString()+'&#8362;'}">
           <agm-info-window>
             ID: {{spot.id}}
             <br>
-            price: {{spot.price}}
+            Price: {{spot.price.toString()}}&#8362;
+            <!-- <br>
+            Distance: {{spot.distance}} -->
             <br>
-            distance: {{spot.distance}}
+            Address: {{spot.street}} St {{spot.building}}
             <br>
-            <button type="button" (click)="rentSpot(spot)">Rent Me!</button>
+            <button type="button" class="btn btn-info btn-sm" (click)="rentSpot(spot)" style="font-size:10px;">Rent Me!</button>
 
           </agm-info-window>
         </agm-marker>
