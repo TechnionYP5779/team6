@@ -140,7 +140,23 @@ access_token = null;
   }
 
   async getRented(){
+    var body = {}
+    try{
+      var res = await this.http.post(this.BASE_URL + this.GET_RENTED, body).toPromise()
+    }
+    catch(error){
 
+    }
+  }
+
+  async getMySpots(){
+    var body = {}
+    try{
+      var res = await this.http.post(this.BASE_URL + this.GET_RENTING, body).toPromise()
+    }
+    catch(error){
+      
+    }
   }
 
 } 
