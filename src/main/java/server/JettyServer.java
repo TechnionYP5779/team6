@@ -31,6 +31,7 @@ public class JettyServer {
     webapp.addServlet(new ServletHolder(new ServerSideLoginServlet()), "/login");
     webapp.addServlet(new ServletHolder(new ServerSideLogoutServlet()), "/logged/logout");
     webapp.addServlet(new ServletHolder(new RootServlet()), "/getDetailRoot");
+    webapp.addServlet(new ServletHolder(new UserInfoServlet()), "/logged/userinfo");
     final FilterHolder holder1 = new FilterHolder(new Auth0Filter());
     holder1.setName("auth0filter");
     holder1.setInitParameter("param", "");
