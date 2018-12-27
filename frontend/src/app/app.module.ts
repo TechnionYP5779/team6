@@ -77,7 +77,7 @@ import { RentSpotDialogComponent } from './rent-spot-dialog/rent-spot-dialog.com
 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ',
-      libraries: ['geometry']
+      libraries: ['geometry', 'places']
     })
   ],
 
