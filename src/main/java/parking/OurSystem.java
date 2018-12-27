@@ -68,11 +68,10 @@ public class OurSystem {
     final String ownerID = jObj.getString("userId");
     final Address a = new Address(city, street, building);
     try {
-      if (!basicUtils.checkValidityOfAddress(a))
-        throw new IllegalArgumentException("Invalid Address");
-    } catch (ApiException | InterruptedException | IOException ¢) {
+      basicUtils.checkValidityOfAddress(a);
+    } catch (ApiException | InterruptedException | IOException e) {
       // TODO Auto-generated catch block
-      ¢.printStackTrace();
+      e.printStackTrace();
     }
     final ParkingSpot p = new ParkingSpot(0, ownerID, null, price, a, startHour, endHour, startDate, endDate);
     try {
