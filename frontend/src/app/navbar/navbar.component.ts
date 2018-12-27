@@ -12,7 +12,7 @@ import { WebService } from '../web.service';
 export class NavbarComponent implements OnInit {
 
   navbarOpen = false;
-  username: string = 'Guest';
+  username: string = '';
   userIsLogin = false; // TODO: use service instead
 
   toggleNavbar() {
@@ -56,7 +56,7 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     this.webService.postLogOut();
-    this.username = 'Guest';
+    this.username = '';
     this.userIsLogin = false;
   }
 

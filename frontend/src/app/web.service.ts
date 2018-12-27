@@ -24,6 +24,9 @@ RENT_URL = '/logged/rent/renting_spot'
 GET_RENTED = 'logged/search/user/renting_spots'
 GET_RENTING = '/logged/search/buyer/renting_spots'
 GETDETAILROOT_URL = '/getDetailRoot'
+USER_INFO = '/logged/userinfo';
+GET_SPOT_BY_PARAMETERS = '/findSpotsByParamaters';
+REMOVE_SPOT_URL = '/logged/remove/renting_spot';
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
@@ -62,7 +65,8 @@ access_token = null;
         headers: new HttpHeaders( { 'content-type': 'application/json' }),
       }
       var body={
-
+       client_id: this.client_id,
+       email: form.email,
        password: form.password,
        connection: 'Username-Password-Authentication',
        user_metadata: { name: form.name ,username: form.username },
@@ -108,8 +112,9 @@ access_token = null;
 
   async postRent(spot){
     var body = {
-      id: spot
+      id: spot.toString()
     }
+    console.log(body)
     try{
       var res = await this.http.post(this.BASE_URL + this.RENT_URL, body).toPromise();
       return null;
@@ -142,8 +147,9 @@ access_token = null;
 
  async findSpotsByParamaters(toSearch){
     console.log(toSearch)
+
     try{
-      var res = await this.http.post(this.BASE_URL + this.GET_SPOT_URL, toSearch).toPromise();
+      var res = await this.http.post(this.BASE_URL + this.GET_SPOT_BY_PARAMETERS, JSON.stringify(toSearch)).toPromise();
       return JSON.stringify(res);
     }
     catch(error){
@@ -152,8 +158,50 @@ access_token = null;
 
   }
 
-  async getRented(){
+  async getUserRentSpots(){
+    var body = {}
+    try{
+      var res = await this.http.post(this.BASE_URL + this.GET_RENTED, body).toPromise()
+      return res
+    }
+    catch(error){
+      return null
+    }
+  }
 
+  async getUserOwnSpots(){
+    var body = {}
+    try{
+      var res = await this.http.post(this.BASE_URL + this.GET_RENTING, body).toPromise()
+      return res
+    }
+    catch(error){
+      return null
+    }
+  }
+
+  async getUserInformation(){
+     var body = {}
+    try{
+      var res = await this.http.post(this.BASE_URL + this.USER_INFO, body).toPromise()
+      return res
+    }
+    catch(error){
+      return null
+    }
+  }
+  
+  async deleteSpot(spot){
+	  var body = {
+		id: spot
+	}
+	  try{
+      var res = await this.http.post(this.BASE_URL + this.REMOVE_SPOT_URL, body).toPromise();
+    }
+    catch(error){
+      console.log('~~~~~~~'+error)
+      return 'error';
+    }
   }
 
 

@@ -4,7 +4,7 @@
   <!-- TODO: update name + logo -->
   <a class="navbar-brand" routerLink="" style="font-size:x-large">
     <img src="../../assets/img/parking-logo-white.png" width="35" height="35" alt="logo">
-    Parking Renting
+    parKcupid
   </a>
 
   <!-- Collapsing The Navigation Bar -->
@@ -44,6 +44,11 @@
       <li class="nav-item">
         <a *ngIf="username" class="nav-link" routerLink="/profile" routerLinkActive="active current">
           Welcome {{username}}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="!username" >
+          Welcome Gest
         </a>
       </li>
 

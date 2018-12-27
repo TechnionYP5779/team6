@@ -46,7 +46,7 @@ export class RentSpotFormComponent implements OnInit {
 				'end_hour': ['', [Validators.required]],
 			}),
 
-			'price': ["", [Validators.required, Validators.pattern('[0-9]+((.)[0-9]+)?')]],
+			'price': ["", [Validators.required, Validators.pattern('[0-9]*')]],
 		});
 	}
 

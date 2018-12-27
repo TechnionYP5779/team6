@@ -13,7 +13,7 @@ import com.auth0.client.auth.*;
 
 import parking.*;
 
-@WebServlet(urlPatterns = { "/logged/search/buyer/renting_spots" }) @SuppressWarnings("serial") public class SearchParametersServlet
+@WebServlet(urlPatterns = { "/findSpotsByParamaters" }) @SuppressWarnings("serial") public class SearchParametersServlet
     extends HttpServlet {
   AuthAPI auth = new AuthAPI("team6a.auth0.com", "BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva",
       "znc165307qVtiGnsCq7_3MfmjhuoGC0bo0aE5VMa8X91p--gxzujy6dqolSjmbD3");
