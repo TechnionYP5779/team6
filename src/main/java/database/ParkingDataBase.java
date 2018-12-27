@@ -115,6 +115,27 @@ public class ParkingDataBase {
       throw exception;
     return $;
   }
+  
+  public static List<ParkingSpot> getAllParkingSpotsByBuyer(final String userId) throws SQLException {
+    SQLException exception = null;
+    QueryResults q = null;
+    final List<ParkingSpot> $ = new ArrayList<>();
+    try {
+      q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE buyer IS " + userId + ";");
+      for (final ResultSet ¢ = q.getResults(); ¢.next();)
+        $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
+            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
+            ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
+    } catch (final SQLException ¢) {
+      exception = ¢;
+    } finally {
+      if (q != null)
+        q.close();
+    }
+    if (exception != null)
+      throw exception;
+    return $;
+  }
 
   /** Returns all available spots whose range of dates includes the given date.
    * @param date the date to be searched for, must be in 'yyyy-mm-dd' format.
