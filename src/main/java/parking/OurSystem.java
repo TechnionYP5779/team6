@@ -40,16 +40,23 @@ public class OurSystem {
   }
 
   /** add parking spot to the system
-   * @param jObj - should include: 
-   * <p>            city -> the city of the parking spot
-   * <br>            street -> the street of the parking spot 
-   * <br>            spot_num -> the building number of the parking spot 
-   * <br>            start_time -> the start time of renting the parking spot in format: DateTHour
-   * <br>            end_time -> the end time of renting the parking spot in format: DateTHour
-   * <br>            price -> the price per hour for renting the like that: dateTtime parking spot
-   * <br>            userId -> the userId of the owner of the parking spot 
-   * @throws IllegalArgumentException in most cases of invalid addresses. Invalid street number, for instance, will be count as valid.
-   * @see {@link mapUtils.basicUtils#checkValidityOfAddress} for more information about this exception.  */
+   * @param jObj - should include:
+   *             <p>
+   *             city -> the city of the parking spot <br>
+   *             street -> the street of the parking spot <br>
+   *             spot_num -> the building number of the parking spot <br>
+   *             start_time -> the start time of renting the parking spot in
+   *             format: DateTHour <br>
+   *             end_time -> the end time of renting the parking spot in format:
+   *             DateTHour <br>
+   *             price -> the price per hour for renting the like that: dateTtime
+   *             parking spot <br>
+   *             userId -> the userId of the owner of the parking spot
+   * @throws IllegalArgumentException in most cases of invalid addresses. Invalid
+   *                                  street number, for instance, will be count
+   *                                  as valid.
+   * @see {@link mapUtils.basicUtils#checkValidityOfAddress} for more information
+   *      about this exception. */
   public static void addParkingSpot(final JSONObject jObj) {
     final String city = jObj.getString("city"), street = jObj.getString("street");
     final int building = Integer.parseInt(jObj.getString("spot_num"));
@@ -59,12 +66,12 @@ public class OurSystem {
     final String endDate = endComponent[0], endHour = addTwoHours(endComponent[1].substring(0, 9));
     final int price = Integer.parseInt(jObj.getString("price"));
     final String ownerID = jObj.getString("userId");
-    Address a = new Address(city, street, building);
+    final Address a = new Address(city, street, building);
     try {
       basicUtils.checkValidityOfAddress(a);
     } catch (ApiException | InterruptedException | IOException e) {
       // TODO Auto-generated catch block
-      e.printStackTrace();
+      ¢.printStackTrace();
     }
     final ParkingSpot p = new ParkingSpot(0, ownerID, null, price, a, startHour, endHour, startDate, endDate);
     try {
@@ -76,8 +83,9 @@ public class OurSystem {
   }
 
   /** remove parking spot from the system
-   * @param jObj - should include: 
-   * <p>       parkingSpotId -> the id of the sparking spot to be removed */
+   * @param jObj - should include:
+   *             <p>
+   *             parkingSpotId -> the id of the sparking spot to be removed */
   public static void removeParkingSpot(final JSONObject jObj) {
     final int parkingSpotId = Integer.parseInt(jObj.getString("parkingSpotId"));
     try {
@@ -91,9 +99,11 @@ public class OurSystem {
   /** rent available parking spot that exist in the system. you cannot rent
    * specific time, but the whole blank of time of the parking spot as the seller
    * wanted
-   * @param jObj - should include: 
-   * <p>           buyerId -> the id of the buyer of the parking spot
-   * <br>           parkingSpotId -> the id of the parking spot the buyer want to rent */
+   * @param jObj - should include:
+   *             <p>
+   *             buyerId -> the id of the buyer of the parking spot <br>
+   *             parkingSpotId -> the id of the parking spot the buyer want to
+   *             rent */
   public static void rentParkingSpot(final JSONObject jObj) {
     final String buyerId = jObj.getString("buyerId");
     final int parkingSpotId = Integer.parseInt(jObj.getString("parkingSpotId"));
@@ -106,8 +116,9 @@ public class OurSystem {
   }
 
   /** unrent rented parking spot
-   * @param jObj - should include: 
-   * <p>           parkingSpotId -> the id of the parking spot to be unrented */
+   * @param jObj - should include:
+   *             <p>
+   *             parkingSpotId -> the id of the parking spot to be unrented */
   public static void unrentParkingSpot(final JSONObject jObj) {
     final int parkingSpotId = Integer.parseInt(jObj.getString("parkingSpotId"));
     try {
@@ -118,18 +129,25 @@ public class OurSystem {
     }
   }
 
-  /** @return all the parking spots as JSONArray of JsonObjects that each one contains the following information of the parking spot:
-   * <p>         city -> the city of the parking spot
-   * <br>         street -> the street of the parking spot
-   * <br>         building -> the building number of the parking spot
-   * <br>         start_time -> the start time of renting the parking spot, in format: DateTHour
-   * <br>         end_time -> the end time of renting the parking spot, in format: DateTHour
-   * <br>         price -> the price per hour of renting the parking spot
-   * <br>         userId -> the id of the owner of the parking spot
-   * <br>         buyerId -> the id of the buyer of the parking spot, if there is any
-   * <br>         latitude -> the latitude of the coordinates location of the parking spot
-   * <br>         longitude -> the longitude of the coordinates location of the parking spot 
-   * <br>         id -> the identifier of the parking spot */
+  /** @return all the parking spots as JSONArray of JsonObjects that each one
+   *         contains the following information of the parking spot:
+   *         <p>
+   *         city -> the city of the parking spot <br>
+   *         street -> the street of the parking spot <br>
+   *         building -> the building number of the parking spot <br>
+   *         start_time -> the start time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         end_time -> the end time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         price -> the price per hour of renting the parking spot <br>
+   *         userId -> the id of the owner of the parking spot <br>
+   *         buyerId -> the id of the buyer of the parking spot, if there is any
+   *         <br>
+   *         latitude -> the latitude of the coordinates location of the parking
+   *         spot <br>
+   *         longitude -> the longitude of the coordinates location of the parking
+   *         spot <br>
+   *         id -> the identifier of the parking spot */
   public static JSONArray getAllParkingSpots() {
     List<ParkingSpot> $ = null;
     try {
@@ -141,22 +159,29 @@ public class OurSystem {
     return convertParkingSpotsToJSONArray($);
   }
 
-  /**
-   * 
-   * @param jObj - should include:
-   * <p>         userId -> the id of the user which his parking spots will be returned (available and none available)
-   * @return      the parking spots of the user as JSONArray of JSONObjects that each one contains parking spot's information in the following format:
-   * <p>         city -> the city of the parking spot
-   * <br>         street -> the street of the parking spot
-   * <br>         building -> the building number of the parking spot
-   * <br>         start_time -> the start time of renting the parking spot, in format: DateTHour
-   * <br>         end_time -> the end time of renting the parking spot, in format: DateTHour
-   * <br>         price -> the price per hour of renting the parking spot
-   * <br>         userId -> the id of the owner of the parking spot
-   * <br>         buyerId -> the id of the buyer of the parking spot, if there is any
-   * <br>         latitude -> the latitude of the coordinates location of the parking spot
-   * <br>         longitude -> the longitude of the coordinates location of the parking spot 
-   * <br>         id -> the identifier of the parking spot */
+  /** @param jObj - should include:
+   *             <p>
+   *             userId -> the id of the user which his parking spots will be
+   *             returned (available and none available)
+   * @return the parking spots of the user as JSONArray of JSONObjects that each
+   *         one contains parking spot's information in the following format:
+   *         <p>
+   *         city -> the city of the parking spot <br>
+   *         street -> the street of the parking spot <br>
+   *         building -> the building number of the parking spot <br>
+   *         start_time -> the start time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         end_time -> the end time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         price -> the price per hour of renting the parking spot <br>
+   *         userId -> the id of the owner of the parking spot <br>
+   *         buyerId -> the id of the buyer of the parking spot, if there is any
+   *         <br>
+   *         latitude -> the latitude of the coordinates location of the parking
+   *         spot <br>
+   *         longitude -> the longitude of the coordinates location of the parking
+   *         spot <br>
+   *         id -> the identifier of the parking spot */
   public static JSONArray getAllParkingSpotsByUser(final JSONObject jObj) {
     List<ParkingSpot> $ = null;
     try {
@@ -168,19 +193,25 @@ public class OurSystem {
     return convertParkingSpotsToJSONArray($);
   }
 
-/**
-   * @return      all the available parking spots as JSONArray of JSONObjects that each one contains parking spots information in the following format:
-   * <p>         city -> the city of the parking spot
-   * <br>         street -> the street of the parking spot
-   * <br>         building -> the building number of the parking spot
-   * <br>         start_time -> the start time of renting the parking spot, in format: DateTHour
-   * <br>         end_time -> the end time of renting the parking spot, in format: DateTHour
-   * <br>         price -> the price per hour of renting the parking spot
-   * <br>         userId -> the id of the owner of the parking spot
-   * <br>         buyerId -> the id of the buyer of the parking spot, if there is any
-   * <br>         latitude -> the latitude of the coordinates location of the parking spot
-   * <br>         longitude -> the longitude of the coordinates location of the parking spot 
-   * <br>         id -> the identifier of the parking spot */
+  /** @return all the available parking spots as JSONArray of JSONObjects that
+   *         each one contains parking spots information in the following format:
+   *         <p>
+   *         city -> the city of the parking spot <br>
+   *         street -> the street of the parking spot <br>
+   *         building -> the building number of the parking spot <br>
+   *         start_time -> the start time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         end_time -> the end time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         price -> the price per hour of renting the parking spot <br>
+   *         userId -> the id of the owner of the parking spot <br>
+   *         buyerId -> the id of the buyer of the parking spot, if there is any
+   *         <br>
+   *         latitude -> the latitude of the coordinates location of the parking
+   *         spot <br>
+   *         longitude -> the longitude of the coordinates location of the parking
+   *         spot <br>
+   *         id -> the identifier of the parking spot */
   public static JSONArray getAllAvailableParkingSpots() {
     List<ParkingSpot> $ = null;
     try {
@@ -192,22 +223,29 @@ public class OurSystem {
     return convertParkingSpotsToJSONArray($);
   }
 
-  /**
-   * 
-   * @param jObj - should include:
-   * <p>         date -> the date the user want to rent a parking spot.
-   * @return      all the available parking spots that fit to the date as JSONArray of JSONObjects that each one contains parking spots information in the following format:
-   * <p>         city -> the city of the parking spot
-   * <br>         street -> the street of the parking spot
-   * <br>         building -> the building number of the parking spot
-   * <br>         start_time -> the start time of renting the parking spot, in format: DateTHour
-   * <br>         end_time -> the end time of renting the parking spot, in format: DateTHour
-   * <br>         price -> the price per hour of renting the parking spot
-   * <br>         userId -> the id of the owner of the parking spot
-   * <br>         buyerId -> the id of the buyer of the parking spot, if there is any
-   * <br>         latitude -> the latitude of the coordinates location of the parking spot
-   * <br>         longitude -> the longitude of the coordinates location of the parking spot 
-   * <br>         id -> the identifier of the parking spot */
+  /** @param jObj - should include:
+   *             <p>
+   *             date -> the date the user want to rent a parking spot.
+   * @return all the available parking spots that fit to the date as JSONArray of
+   *         JSONObjects that each one contains parking spots information in the
+   *         following format:
+   *         <p>
+   *         city -> the city of the parking spot <br>
+   *         street -> the street of the parking spot <br>
+   *         building -> the building number of the parking spot <br>
+   *         start_time -> the start time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         end_time -> the end time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         price -> the price per hour of renting the parking spot <br>
+   *         userId -> the id of the owner of the parking spot <br>
+   *         buyerId -> the id of the buyer of the parking spot, if there is any
+   *         <br>
+   *         latitude -> the latitude of the coordinates location of the parking
+   *         spot <br>
+   *         longitude -> the longitude of the coordinates location of the parking
+   *         spot <br>
+   *         id -> the identifier of the parking spot */
   public static JSONArray getParkingSpotsByDate(final JSONObject jObj) {
     // don't use it yet, need to be fixed
     final String date = jObj.getString("date");
@@ -221,23 +259,30 @@ public class OurSystem {
     return convertParkingSpotsToJSONArray($);
   }
 
-  /**
-   * 
-   * @param jObj - should include:
-   * <p>           city -> the city the user want to rent a parking spot at
-   * <br>           street -> the street the user want to rent a parking spot at
-   * @return      all the available parking spots that fit to the street and city as JSONArray of JSONObjects that each one contains parking spots information in the following format:
-   * <p>         city -> the city of the parking spot
-   * <br>         street -> the street of the parking spot
-   * <br>         building -> the building number of the parking spot
-   * <br>         start_time -> the start time of renting the parking spot, in format: DateTHour
-   * <br>         end_time -> the end time of renting the parking spot, in format: DateTHour
-   * <br>         price -> the price per hour of renting the parking spot
-   * <br>         userId -> the id of the owner of the parking spot
-   * <br>         buyerId -> the id of the buyer of the parking spot, if there is any
-   * <br>         latitude -> the latitude of the coordinates location of the parking spot
-   * <br>         longitude -> the longitude of the coordinates location of the parking spot 
-   * <br>         id -> the identifier of the parking spot */
+  /** @param jObj - should include:
+   *             <p>
+   *             city -> the city the user want to rent a parking spot at <br>
+   *             street -> the street the user want to rent a parking spot at
+   * @return all the available parking spots that fit to the street and city as
+   *         JSONArray of JSONObjects that each one contains parking spots
+   *         information in the following format:
+   *         <p>
+   *         city -> the city of the parking spot <br>
+   *         street -> the street of the parking spot <br>
+   *         building -> the building number of the parking spot <br>
+   *         start_time -> the start time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         end_time -> the end time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         price -> the price per hour of renting the parking spot <br>
+   *         userId -> the id of the owner of the parking spot <br>
+   *         buyerId -> the id of the buyer of the parking spot, if there is any
+   *         <br>
+   *         latitude -> the latitude of the coordinates location of the parking
+   *         spot <br>
+   *         longitude -> the longitude of the coordinates location of the parking
+   *         spot <br>
+   *         id -> the identifier of the parking spot */
   public static JSONArray getParkingSpotsByAddress(final JSONObject jObj) {
     final String city = jObj.getString("city"), street = jObj.getString("street");
     List<ParkingSpot> $ = null;
@@ -250,33 +295,40 @@ public class OurSystem {
     return convertParkingSpotsToJSONArray($);
   }
 
-  
-  /**
-   * 
-   * @param jObj - should include:
-   * <p>         distance -> the radius from the wanted location that the user want parking spots from
-   * <br>         city -> the city of the wanted location
-   * <br>         street -> the street of the wanted location
-   * <br>         spot_num -> the building of the wanted location
-   * @return      all the available parking spots that fit to the air-distance from the wanted location as JSONArray of JSONObjects that each one contains parking spots information in the following format:
-   * <p>          city -> the city of the parking spot
-   * <br>         street -> the street of the parking spot
-   * <br>         building -> the building number of the parking spot
-   * <br>         start_time -> the start time of renting the parking spot, in format: DateTHour
-   * <br>         end_time -> the end time of renting the parking spot, in format: DateTHour
-   * <br>         price -> the price per hour of renting the parking spot
-   * <br>         userId -> the id of the owner of the parking spot
-   * <br>         buyerId -> the id of the buyer of the parking spot, if there is any
-   * <br>         latitude -> the latitude of the coordinates location of the parking spot
-   * <br>         longitude -> the longitude of the coordinates location of the parking spot 
-   * <br>         id -> the identifier of the parking spot */
+  /** @param jObj - should include:
+   *             <p>
+   *             distance -> the radius from the wanted location that the user
+   *             want parking spots from <br>
+   *             city -> the city of the wanted location <br>
+   *             street -> the street of the wanted location <br>
+   *             spot_num -> the building of the wanted location
+   * @return all the available parking spots that fit to the air-distance from the
+   *         wanted location as JSONArray of JSONObjects that each one contains
+   *         parking spots information in the following format:
+   *         <p>
+   *         city -> the city of the parking spot <br>
+   *         street -> the street of the parking spot <br>
+   *         building -> the building number of the parking spot <br>
+   *         start_time -> the start time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         end_time -> the end time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         price -> the price per hour of renting the parking spot <br>
+   *         userId -> the id of the owner of the parking spot <br>
+   *         buyerId -> the id of the buyer of the parking spot, if there is any
+   *         <br>
+   *         latitude -> the latitude of the coordinates location of the parking
+   *         spot <br>
+   *         longitude -> the longitude of the coordinates location of the parking
+   *         spot <br>
+   *         id -> the identifier of the parking spot */
   public static JSONArray getParkingSpotsByDistance(final JSONObject jObj) {
     final double distance = Double.parseDouble(jObj.getString("distance"));
     final String city = jObj.getString("city"), street = jObj.getString("street");
     final int building = Integer.parseInt(jObj.getString("spot_num"));
-    Address sourceAddress = new Address(city, street, building);
+    final Address sourceAddress = new Address(city, street, building);
     List<ParkingSpot> allAvailableParkingSpots = null;
-    List<ParkingSpot> $ = new ArrayList<>();
+    final List<ParkingSpot> $ = new ArrayList<>();
     try {
       allAvailableParkingSpots = ParkingDataBase.getAllAvailableParkingSpots();
     } catch (final SQLException ¢) {
@@ -285,33 +337,36 @@ public class OurSystem {
     }
     if (allAvailableParkingSpots == null)
       return new JSONArray();
-    for (ParkingSpot p : allAvailableParkingSpots) {
+    for (final ParkingSpot p : allAvailableParkingSpots)
       try {
-        if (basicUtils.calculateDistanceByAddress(sourceAddress, p.getAddress()) <= distance) {
+        if (basicUtils.calculateDistanceByAddress(sourceAddress, p.getAddress()) <= distance)
           $.add(p);
-        }
-      } catch (ApiException | InterruptedException | IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+      } catch (ApiException | InterruptedException | IOException ¢) {
+        ¢.printStackTrace();
       }
-    }
     return convertParkingSpotsToJSONArray($);
   }
 
-  
-  /**
-   * @return      all the parking spots that available today as JSONArray of JSONObjects that each one contains parking spots information in the following format:
-   * <p>         city -> the city of the parking spot
-   * <br>         street -> the street of the parking spot
-   * <br>         building -> the building number of the parking spot
-   * <br>         start_time -> the start time of renting the parking spot, in format: DateTHour
-   * <br>         end_time -> the end time of renting the parking spot, in format: DateTHour
-   * <br>         price -> the price per hour of renting the parking spot
-   * <br>         userId -> the id of the owner of the parking spot
-   * <br>         buyerId -> the id of the buyer of the parking spot, if there is any
-   * <br>         latitude -> the latitude of the coordinates location of the parking spot
-   * <br>         longitude -> the longitude of the coordinates location of the parking spot 
-   * <br>         id -> the identifier of the parking spot */
+  /** @return all the parking spots that available today as JSONArray of
+   *         JSONObjects that each one contains parking spots information in the
+   *         following format:
+   *         <p>
+   *         city -> the city of the parking spot <br>
+   *         street -> the street of the parking spot <br>
+   *         building -> the building number of the parking spot <br>
+   *         start_time -> the start time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         end_time -> the end time of renting the parking spot, in format:
+   *         DateTHour <br>
+   *         price -> the price per hour of renting the parking spot <br>
+   *         userId -> the id of the owner of the parking spot <br>
+   *         buyerId -> the id of the buyer of the parking spot, if there is any
+   *         <br>
+   *         latitude -> the latitude of the coordinates location of the parking
+   *         spot <br>
+   *         longitude -> the longitude of the coordinates location of the parking
+   *         spot <br>
+   *         id -> the identifier of the parking spot */
   public static JSONArray getAllAvailableSpotsToday() {
     List<ParkingSpot> $ = null;
     try {
@@ -323,10 +378,7 @@ public class OurSystem {
     return convertParkingSpotsToJSONArray($);
   }
 
-  /**
-   * 
-   * @return the number of all parking spots in the system
-   */
+  /** @return the number of all parking spots in the system */
   public static int countAllParkingSpots() {
     int $ = 0;
     try {
@@ -338,10 +390,7 @@ public class OurSystem {
     return $;
   }
 
-  /**
-   * 
-   * @return the number of all available parking spots in the system
-   */
+  /** @return the number of all available parking spots in the system */
   public static int countAvailableParkingSpots() {
     int $ = 0;
     try {
@@ -353,10 +402,8 @@ public class OurSystem {
     return $;
   }
 
-  /**
-   * 
-   * @return the number of all parking spots in the system that available today
-   */
+  /** @return the number of all parking spots in the system that available
+   *         today */
   public static int countAvailableSpotsToday() {
     int $ = 0;
     try {
@@ -368,7 +415,8 @@ public class OurSystem {
     return $;
   }
 
-  //convert parking spots list to a JSONArray of JSONObject which each one contains parking spot information
+  // convert parking spots list to a JSONArray of JSONObject which each one
+  // contains parking spot information
   private static JSONArray convertParkingSpotsToJSONArray(final List<ParkingSpot> pList) {
     final JSONArray $ = new JSONArray();
     for (final ParkingSpot ps : pList) {
