@@ -117,7 +117,7 @@ client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'
   }
 
   postLogOut(){
-    this.http.get(this.BASE_URL + this.LOGOUT)
+    this.http.get(this.BASE_URL + this.LOGOUT).toPromise();
 
   }
 } 
