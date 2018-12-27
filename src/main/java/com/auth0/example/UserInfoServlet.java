@@ -33,8 +33,8 @@ import parking.*;
    /**   final JSONObject loginInfo = new JSONObject(body);
       final AuthRequest request = auth.login(loginInfo.getString("username"), loginInfo.getString("password"), "Username-Password-Authentication")
           .setScope("openid");
-      final TokenHolder holder = request.execute(); *//
-      final UserInfo info = auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute());
+      final TokenHolder holder = request.execute(); */
+      final UserInfo info = auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute();
       System.out.println(info.getValues().keySet().toString());
       System.out.println(info.getValues().values().toString());
       jo.put("name", info.getValues().get("nickname"));
