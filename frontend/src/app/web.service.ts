@@ -22,7 +22,9 @@ LOGOUT = '/logged/logout';
 GET_SPOT_URL = '/logged/search/all/renting_spots'
 GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots'
 RENT_URL = 'logged/rent/renting_spot'
+GETDETAILROOT_URL = '/getDetailRoot'
 SEARCH_SPOTS_URL = 'someurl'   //TODO: change
+
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
@@ -126,6 +128,18 @@ access_token = null;
 
   }
 
+  
+  async GetDetailRoot(){
+	  try{
+		  var x = await this.http.get(this.BASE_URL + this.GETDETAILROOT_URL).toPromise()
+	  }
+      catch(error){
+		  return 'error getting stats'
+	  }
+      return x;
+	}
+
+
  async findSpotsByParamaters(toSearch){
 
     try{
@@ -137,6 +151,7 @@ access_token = null;
     }  
 
   }
+
 
 
 } 
