@@ -61,7 +61,8 @@ access_token = null;
         headers: new HttpHeaders( { 'content-type': 'application/json' }),
       }
       var body={
-
+       client_id: this.client_id,
+       email: form.email,
        password: form.password,
        connection: 'Username-Password-Authentication',
        user_metadata: { name: form.name ,username: form.username },
