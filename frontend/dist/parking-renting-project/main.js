@@ -310,7 +310,7 @@ var BecomeHostComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/** split page to 2 columns */\n\n.container {\n    margin-top: 10px;\n    margin-left: unset; \n  }\n\n.row:after {\n    content: \"\";\n    display: table;\n    clear: both;\n  \n  }\n\n.column-split {\n    float: left;\n    width: 50%;\n    padding-left: 15px;\n    padding-right: 15px;\n  }\n\n/** map */\n\nagm-map {\n    height: 600px;\n    width: 600px;\n  }\n\n/** table */\n\n.mat-table {\n    width: 550px;\n  }\n\n.mat-form-field{\n    width:400px;\n  }\n\n.btn-primary, .btn-secondary {\n    width: auto;\n    margin-left: 20px;\n    margin-right: 20px;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZmluZC1wYXJraW5nL2ZpbmQtcGFya2luZy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDhCQUE4Qjs7QUFFOUI7SUFDSSxpQkFBaUI7SUFDakIsbUJBQW1CO0dBQ3BCOztBQUVEO0lBQ0UsWUFBWTtJQUNaLGVBQWU7SUFDZixZQUFZOztHQUViOztBQUVEO0lBQ0UsWUFBWTtJQUNaLFdBQVc7SUFDWCxtQkFBbUI7SUFDbkIsb0JBQW9CO0dBQ3JCOztBQUdELFVBQVU7O0FBRVY7SUFDRSxjQUFjO0lBQ2QsYUFBYTtHQUNkOztBQUdELFlBQVk7O0FBRVo7SUFDRSxhQUFhO0dBQ2Q7O0FBRUQ7SUFDRSxZQUFZO0dBQ2I7O0FBRUQ7SUFDRSxZQUFZO0lBQ1osa0JBQWtCO0lBQ2xCLG1CQUFtQjtHQUNwQiIsImZpbGUiOiJzcmMvYXBwL2ZpbmQtcGFya2luZy9maW5kLXBhcmtpbmcuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBzcGxpdCBwYWdlIHRvIDIgY29sdW1ucyAqL1xuXG4uY29udGFpbmVyIHtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xuICAgIG1hcmdpbi1sZWZ0OiB1bnNldDsgXG4gIH1cbiAgIFxuICAucm93OmFmdGVyIHtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIGRpc3BsYXk6IHRhYmxlO1xuICAgIGNsZWFyOiBib3RoO1xuICBcbiAgfVxuICBcbiAgLmNvbHVtbi1zcGxpdCB7XG4gICAgZmxvYXQ6IGxlZnQ7XG4gICAgd2lkdGg6IDUwJTtcbiAgICBwYWRkaW5nLWxlZnQ6IDE1cHg7XG4gICAgcGFkZGluZy1yaWdodDogMTVweDtcbiAgfVxuICBcbiAgXG4gIC8qKiBtYXAgKi9cbiAgXG4gIGFnbS1tYXAge1xuICAgIGhlaWdodDogNjAwcHg7XG4gICAgd2lkdGg6IDYwMHB4O1xuICB9XG5cbiAgXG4gIC8qKiB0YWJsZSAqL1xuICBcbiAgLm1hdC10YWJsZSB7XG4gICAgd2lkdGg6IDU1MHB4O1xuICB9XG5cbiAgLm1hdC1mb3JtLWZpZWxke1xuICAgIHdpZHRoOjQwMHB4O1xuICB9XG5cbiAgLmJ0bi1wcmltYXJ5LCAuYnRuLXNlY29uZGFyeSB7XG4gICAgd2lkdGg6IGF1dG87XG4gICAgbWFyZ2luLWxlZnQ6IDIwcHg7XG4gICAgbWFyZ2luLXJpZ2h0OiAyMHB4O1xuICB9Il19 */"
+module.exports = "/** split page to 2 columns */\n\n.container {\n    margin-top: 10px;\n    margin-left: unset; \n  }\n\n.row:after {\n    content: \"\";\n    display: table;\n    clear: both;\n  \n  }\n\n.column-split {\n    float: left;\n    width: 50%;\n    padding-left: 15px;\n    padding-right: 15px;\n  }\n\n/** map */\n\nagm-map {\n    height: 640px;\n    width: 640px;\n  }\n\n/** table */\n\n.mat-table {\n    width: 550px;\n  }\n\n.mat-form-field{\n    width:400px;\n  }\n\n.btn-primary, .btn-secondary {\n    width: auto;\n    margin-left: 20px;\n    margin-right: 20px;\n  }\n\ntr.example-element-row:not(.example-expanded-row):hover {\n    background: #f5f5f5;\n  }\n\ntr.example-element-row:not(.example-expanded-row):active {\n    background: #efefef;\n  }\n\n.example-element-diagram {\n    min-width: 80px;\n    border: 2px solid black;\n    padding: 8px;\n    font-weight: lighter;\n    margin: 8px 0;\n    height: 104px;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZmluZC1wYXJraW5nL2ZpbmQtcGFya2luZy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDhCQUE4Qjs7QUFFOUI7SUFDSSxpQkFBaUI7SUFDakIsbUJBQW1CO0dBQ3BCOztBQUVEO0lBQ0UsWUFBWTtJQUNaLGVBQWU7SUFDZixZQUFZOztHQUViOztBQUVEO0lBQ0UsWUFBWTtJQUNaLFdBQVc7SUFDWCxtQkFBbUI7SUFDbkIsb0JBQW9CO0dBQ3JCOztBQUdELFVBQVU7O0FBRVY7SUFDRSxjQUFjO0lBQ2QsYUFBYTtHQUNkOztBQUdELFlBQVk7O0FBRVo7SUFDRSxhQUFhO0dBQ2Q7O0FBRUQ7SUFDRSxZQUFZO0dBQ2I7O0FBRUQ7SUFDRSxZQUFZO0lBQ1osa0JBQWtCO0lBQ2xCLG1CQUFtQjtHQUNwQjs7QUFFRDtJQUNFLG9CQUFvQjtHQUNyQjs7QUFFRDtJQUNFLG9CQUFvQjtHQUNyQjs7QUFFRDtJQUNFLGdCQUFnQjtJQUNoQix3QkFBd0I7SUFDeEIsYUFBYTtJQUNiLHFCQUFxQjtJQUNyQixjQUFjO0lBQ2QsY0FBYztHQUNmIiwiZmlsZSI6InNyYy9hcHAvZmluZC1wYXJraW5nL2ZpbmQtcGFya2luZy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIHNwbGl0IHBhZ2UgdG8gMiBjb2x1bW5zICovXG5cbi5jb250YWluZXIge1xuICAgIG1hcmdpbi10b3A6IDEwcHg7XG4gICAgbWFyZ2luLWxlZnQ6IHVuc2V0OyBcbiAgfVxuICAgXG4gIC5yb3c6YWZ0ZXIge1xuICAgIGNvbnRlbnQ6IFwiXCI7XG4gICAgZGlzcGxheTogdGFibGU7XG4gICAgY2xlYXI6IGJvdGg7XG4gIFxuICB9XG4gIFxuICAuY29sdW1uLXNwbGl0IHtcbiAgICBmbG9hdDogbGVmdDtcbiAgICB3aWR0aDogNTAlO1xuICAgIHBhZGRpbmctbGVmdDogMTVweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiAxNXB4O1xuICB9XG4gIFxuICBcbiAgLyoqIG1hcCAqL1xuICBcbiAgYWdtLW1hcCB7XG4gICAgaGVpZ2h0OiA2NDBweDtcbiAgICB3aWR0aDogNjQwcHg7XG4gIH1cblxuICBcbiAgLyoqIHRhYmxlICovXG4gIFxuICAubWF0LXRhYmxlIHtcbiAgICB3aWR0aDogNTUwcHg7XG4gIH1cblxuICAubWF0LWZvcm0tZmllbGR7XG4gICAgd2lkdGg6NDAwcHg7XG4gIH1cblxuICAuYnRuLXByaW1hcnksIC5idG4tc2Vjb25kYXJ5IHtcbiAgICB3aWR0aDogYXV0bztcbiAgICBtYXJnaW4tbGVmdDogMjBweDtcbiAgICBtYXJnaW4tcmlnaHQ6IDIwcHg7XG4gIH1cblxuICB0ci5leGFtcGxlLWVsZW1lbnQtcm93Om5vdCguZXhhbXBsZS1leHBhbmRlZC1yb3cpOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjVmNWY1O1xuICB9XG4gIFxuICB0ci5leGFtcGxlLWVsZW1lbnQtcm93Om5vdCguZXhhbXBsZS1leHBhbmRlZC1yb3cpOmFjdGl2ZSB7XG4gICAgYmFja2dyb3VuZDogI2VmZWZlZjtcbiAgfVxuICBcbiAgLmV4YW1wbGUtZWxlbWVudC1kaWFncmFtIHtcbiAgICBtaW4td2lkdGg6IDgwcHg7XG4gICAgYm9yZGVyOiAycHggc29saWQgYmxhY2s7XG4gICAgcGFkZGluZzogOHB4O1xuICAgIGZvbnQtd2VpZ2h0OiBsaWdodGVyO1xuICAgIG1hcmdpbjogOHB4IDA7XG4gICAgaGVpZ2h0OiAxMDRweDtcbiAgfSJdfQ== */"
 
 /***/ }),
 
@@ -321,7 +321,7 @@ module.exports = "/** split page to 2 columns */\n\n.container {\n    margin-top
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"width:40%; margin:5% auto;\" *ngIf=\"loading\">\n  <mat-progress-spinner mode=\"indeterminate\" value=\"indeterminate\" diameter=\"220\" strokeWidth=\"35\" style=\"width:15%; margin:0 auto;\">\n  </mat-progress-spinner>\n  <div>\n    <img src=\"../../assets/img/get_spot_wait_line1.png\" style=\"width:130%; margin-left:-10%; margin-top:20%;\" align=\"middle\">\n  </div>\n  <div>\n    <img src=\"../../assets/img/get_spot_wait_line2.png\" style=\"width:22%; margin-left:40% ;\" >\n  </div>\n  \n</div> \n\n<div class=\"container\" *ngIf=\"!loading\">\n  <!-- Title -->\n  <h2>Find parking spot</h2> \n  <!-- split page to 2 columns: table on the left and map on the right -->\n  <div class=\"row\">\n\n    <!-- FEFT -------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"table\">\n\n      <!-- Form (left) ----------------------------------------------------------------------------->\n      <div class=\"container\" [formGroup]=\"filterForm\">\n\n        <!-- Current Location Options -->\n        <div>\n          <mat-form-field>\n            <mat-label>Choose how to determine your current location</mat-label>\n            <mat-select placeholder=\"location options\" formControlName=\"locationOption\" required [(value)]=\"filterElement.locationOption\">\n              <mat-option *ngFor=\"let option of locationOptions\" [value]=\"option\">\n                {{option}}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n        </div>\n        <div>\n          <mat-form-field class=\"form-field\" style=\"padding-left: 5%\">\n            <mat-label>Search for location</mat-label>\n            <input matInput placeholder=\"Fill your address\" formControlName=\"address\" autocorrect=\"off\" autocapitalize=\"off\"\n              spellcheck=\"off\" class=\"form-control\" #search [formControl]=\"searchControl\">\n          </mat-form-field>\n        </div>\n\n        <!-- Max Distance -->\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max distance from your location</mat-label>\n            <input matInput placeholder=\"max distance\" formControlName=\"maxDistance\">\n            <mat-error *ngIf=\"filterForm.controls['maxDistance'].hasError('pattern')\">\n              Please enter a valid distance: Integer number only\n            </mat-error>\n          </mat-form-field>\n        </div>\n\n        <!-- Max Price -->\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max price</mat-label>\n            <input matInput placeholder=\"max price\" formControlName=\"maxPrice\">\n            <mat-error *ngIf=\"filterForm.controls['maxPrice'].hasError('pattern')\">\n              Please enter a valid price: Integer number only\n            </mat-error>\n          </mat-form-field>\n        </div>\n\n      </div>\n\n      <div>\n        <button type=\"button\" class=\"btn btn-primary\" (click)=\"filter()\" [disabled]=\"!filterForm.valid\">Search</button>\n        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"reset()\">Reset (show all spots)</button>\n      </div>\n\n      <br>\n\n      <!-- Table (left) ---------------------------------------------------------------------------->\n      <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" matSort>\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Addres Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef> Address </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.street}} St {{element.building}}, {{element.city}} </td>\n        </ng-container>\n\n        <!-- Distance Column \n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.distance == -1 ? '---' : element.distance}} </td>\n        </ng-container> -->\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n\n    </div>\n\n    <!-- RIGHT ------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"map\">\n\n      <!-- The map (right) ------------------------------------------------------------------------->\n      <agm-map [zoom]='17' [latitude]=\"currlat\" [longitude]=\"currlng\">\n\n        <!-- Marker for current location -->\n        <agm-marker [latitude]=\"currlat\" [longitude]=\"currlng\" [iconUrl]=\"'../../assets/img/blue-dot.png'\">\n          <agm-info-window>Your current location</agm-info-window>\n        </agm-marker>\n\n        <!-- Markers for all avaiable spot -->\n        <agm-marker *ngFor=\"let spot of ELEMENT_DATA_FILTER; let i=index\" [latitude]=\"+spot.latitude\" [longitude]=\"+spot.longitude\"\n          [label]=\"{color: 'black', text: spot.price.toString()+'&#8362;'}\">\n          <agm-info-window>\n            ID: {{spot.id}}\n            <br>\n            Price: {{spot.price.toString()}}&#8362;\n            <!-- <br>\n            Distance: {{spot.distance}} -->\n            <br>\n            Address: {{spot.street}} St {{spot.building}}\n            <br>\n            <button type=\"button\" class=\"btn btn-info btn-sm\" (click)=\"rentSpot(spot)\" style=\"font-size:10px;\">Rent Me!</button>\n\n          </agm-info-window>\n        </agm-marker>\n\n\n      </agm-map>\n\n    </div>\n\n\n  </div>\n\n \n</div>"
+module.exports = "<div style=\"width:40%; margin:5% auto;\" *ngIf=\"loading\">\n  <mat-progress-spinner mode=\"indeterminate\" value=\"indeterminate\" diameter=\"220\" strokeWidth=\"35\" style=\"width:15%; margin:0 auto;\">\n  </mat-progress-spinner>\n  <div>\n    <img src=\"../../assets/img/get_spot_wait_line1.png\" style=\"width:130%; margin-left:-10%; margin-top:20%;\" align=\"middle\">\n  </div>\n  <div>\n    <img src=\"../../assets/img/get_spot_wait_line2.png\" style=\"width:22%; margin-left:40% ;\">\n  </div>\n\n</div>\n\n<div class=\"container\" *ngIf=\"!loading\">\n  <!-- Title -->\n  <h2>Find parking spot</h2>\n  <!-- split page to 2 columns: table on the left and map on the right -->\n  <div class=\"row\">\n\n    <!-- FEFT -------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"table\">\n\n      <!-- Form (left) ----------------------------------------------------------------------------->\n      <div class=\"container\" [formGroup]=\"filterForm\">\n\n        <!-- Current Location Options -->\n        <div>\n          <mat-form-field>\n            <mat-label>Choose how to determine your current location</mat-label>\n            <mat-select placeholder=\"location options\" formControlName=\"locationOption\" required [(value)]=\"filterElement.locationOption\">\n              <mat-option *ngFor=\"let option of locationOptions\" [value]=\"option\">\n                {{option}}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n        </div>\n        <div>\n          <mat-form-field class=\"form-field\" style=\"padding-left: 5%\">\n            <mat-label>Search for location</mat-label>\n            <input matInput placeholder=\"Fill your address\" formControlName=\"address\" autocorrect=\"off\" autocapitalize=\"off\"\n              spellcheck=\"off\" class=\"form-control\" #search [formControl]=\"searchControl\">\n          </mat-form-field>\n        </div>\n\n        <!-- Max Distance -->\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max distance from your location</mat-label>\n            <input matInput placeholder=\"max distance\" formControlName=\"maxDistance\">\n            <mat-error *ngIf=\"filterForm.controls['maxDistance'].hasError('pattern')\">\n              Please enter a valid distance: Integer number only\n            </mat-error>\n          </mat-form-field>\n        </div>\n\n        <!-- Max Price -->\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max price</mat-label>\n            <input matInput placeholder=\"max price\" formControlName=\"maxPrice\">\n            <mat-error *ngIf=\"filterForm.controls['maxPrice'].hasError('pattern')\">\n              Please enter a valid price: Integer number only\n            </mat-error>\n          </mat-form-field>\n        </div>\n\n      </div>\n\n      <div>\n        <button type=\"button\" class=\"btn btn-primary\" (click)=\"filter()\" [disabled]=\"!filterForm.valid\">Search</button>\n        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"reset()\">Reset (show all spots)</button>\n      </div>\n\n      <br>\n\n      <!-- Table (left) ---------------------------------------------------------------------------->\n      <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" matSort>\n        <div class=\"example-element-diagram\">\n\n          <!-- ID Column -->\n          <ng-container matColumnDef=\"id\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n          </ng-container>\n\n          <!-- Addres Column -->\n          <ng-container matColumnDef=\"address\">\n            <th mat-header-cell *matHeaderCellDef> Address </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.street}} St {{element.building}}, {{element.city}} </td>\n          </ng-container>\n\n          <!-- Distance Column \n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.distance == -1 ? '---' : element.distance}} </td>\n        </ng-container> -->\n\n          <!-- Price Column -->\n          <ng-container matColumnDef=\"price\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n          </ng-container>\n        </div>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\" (click)=\"getRecord(row)\" class=\"example-element-row\"></tr>\n      </table>\n\n    </div>\n\n    <!-- RIGHT ------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"map\">\n\n      <!-- The map (right) ------------------------------------------------------------------------->\n      <agm-map [zoom]='17' [latitude]=\"currlat\" [longitude]=\"currlng\" (mapReady)=\"mapReady($event)\">\n\n        <!-- Marker for current location -->\n        <agm-marker [latitude]=\"currlat\" [longitude]=\"currlng\" [iconUrl]=\"'../../assets/img/blue-dot.png'\">\n          <agm-info-window>Your current location</agm-info-window>\n        </agm-marker>\n\n        <!-- Markers for all avaiable spot -->\n        <agm-marker *ngFor=\"let spot of ELEMENT_DATA_FILTER; let i=index\" [latitude]=\"+spot.latitude\" [longitude]=\"+spot.longitude\"\n          [label]=\"{color: 'black', text: spot.price.toString()+'&#8362;'}\" (markerClick)=\"clickedMarker(infowindow)\">\n          <agm-info-window #infowindow>\n            ID: {{spot.id}}\n            <br>\n            Price: {{spot.price.toString()}}&#8362;\n            <!-- <br>\n            Distance: {{spot.distance}} -->\n            <br>\n            Address: {{spot.street}} St {{spot.building}}\n            <br>\n            <button type=\"button\" class=\"btn btn-info btn-sm\" (click)=\"rentSpot(spot)\" style=\"font-size:10px;\">Rent Me!</button>\n          </agm-info-window>\n        </agm-marker>\n\n\n      </agm-map>\n\n      <button type=\"button\" class=\"btn btn-info\" (click)=\"findme()\">Find Me!</button>\n\n    </div>\n\n\n  </div>\n\n\n</div>"
 
 /***/ }),
 
@@ -359,7 +359,6 @@ var FindParkingComponent = /** @class */ (function () {
         this.fb = fb;
         this.webService = webService;
         this.rentDialog = rentDialog;
-        //--- INIT LOCATION ----------------------------------------------------------------------------------------
         // let the user to define his current location
         this.locationOptions = ['GPS location', 'Address', 'Technion'];
         this.selectedCurrLocOption = 'GPS location';
@@ -382,6 +381,7 @@ var FindParkingComponent = /** @class */ (function () {
         };
         //--- RENT SPOT -----------------------------------------------------------------------------------
         this.selectedSpot = null;
+        this.previousMarker = null;
         // init filterForm (fields and validators):
         this.filterForm = fb.group({
             floatLabel: 'auto',
@@ -402,12 +402,9 @@ var FindParkingComponent = /** @class */ (function () {
                         return [4 /*yield*/, this.webService.getSpots()];
                     case 1:
                         res = _a.sent();
-                        console.log(res);
                         this.ELEMENT_DATA = JSON.parse('' + res + '');
                         this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
-                        console.log(this.ELEMENT_DATA_FILTER);
                         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
-                        console.log(this.dataSource);
                         this.dataSource.sort = this.sort;
                         this.loading = false;
                         // create search FormControl
@@ -440,12 +437,15 @@ var FindParkingComponent = /** @class */ (function () {
     //--- UPDATE LOCATION --------------------------------------------------------------------------------------
     FindParkingComponent.prototype.findCurrentLocation = function () {
         var _this = this;
+        this.previousMarker = null;
         if (this.selectedCurrLocOption == 'GPS location') {
             this.addressByForm = '';
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     _this.currlat = position.coords.latitude;
                     _this.currlng = position.coords.longitude;
+                    _this.shownlat = _this.currlat;
+                    _this.shownlng = _this.currlng;
                 });
             }
             else { // unable to get current location, so use the Technion address instead
@@ -463,6 +463,9 @@ var FindParkingComponent = /** @class */ (function () {
                 this.changeCurrentLocationToTechnion();
             }
         }
+        this.shownlat = this.currlat;
+        this.shownlng = this.currlng;
+        this.centerMap(this.shownlat, this.shownlng);
     };
     FindParkingComponent.prototype.changeCurrentLocationToTechnion = function () {
         this.currlat = this.thecnionlat;
@@ -476,6 +479,12 @@ var FindParkingComponent = /** @class */ (function () {
         this.selectedCurrLocOption = this.filterForm.value.locationOption;
         if (this.selectedCurrLocOption == 'GPS location' || this.selectedCurrLocOption == 'Technion') {
             this.filterForm.controls['address'].reset();
+        }
+        if (this.filterElement.locationOption == 'GPS location') {
+            this.filterElement.address = this.currlat.toString() + ':' + this.currlng.toString();
+        }
+        if (this.filterElement.locationOption == 'Technion') {
+            this.filterElement.address = this.thecnionlat.toString() + ':' + this.thecnionlng.toString();
         }
         this.findCurrentLocation();
         this.filterMarkers();
@@ -557,6 +566,28 @@ var FindParkingComponent = /** @class */ (function () {
             }
         });
     };
+    FindParkingComponent.prototype.mapReady = function (map) {
+        this.map = map;
+    };
+    FindParkingComponent.prototype.clickedMarker = function (infowindow) {
+        if (this.previousMarker) {
+            this.previousMarker.close();
+        }
+        this.previousMarker = infowindow;
+    };
+    FindParkingComponent.prototype.findme = function () {
+        this.centerMap(this.currlat, this.currlng);
+    };
+    FindParkingComponent.prototype.centerMap = function (lat, lng) {
+        if (this.map) {
+            this.map.setCenter({ lat: lat, lng: lng });
+            this.map.setZoom(17);
+        }
+    };
+    FindParkingComponent.prototype.getRecord = function (row) {
+        this.centerMap(row.latitude, row.longitude);
+        this.map.setZoom(19);
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSort"]),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSort"])
@@ -598,7 +629,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  home works!\n</p>\n"
+module.exports = "\n<html>\n<h1 style=\"text-align: center;\"><strong>The world is your parking space</strong></h1>\n<h1 style=\"text-align: center;\"><strong style=\"font-size: 14px;\">Remember that time you were trying to find a parking space but all spaces around were private? <span style=\"color: #ff0000;\">Now you may use some of them.</span></strong></h1>\n<p style=\"text-align: center;\"><strong>Remember that time your car was in the&nbsp;shop for a week and your own private space was just all empty? <span style=\"color: #ff0000;\">Now you can make money off it.</span></strong></p>\n<p style=\"text-align: center;\"><strong>Use our solution to find a parking space close to your location or rent out your own private parking space!</strong></p>\n\n<div  >\n  <div *ngIf=\"loading\">\n    <mat-progress-spinner mode=\"indeterminate\" value=\"indeterminate\" style=\"width:15%; margin:0 auto;\"></mat-progress-spinner>\n  </div>\n</div>  \n<div *ngIf=\"!loading\">\n<p style=\"text-align: center;\"><span style=\"text-decoration: underline;\">Our statistics</span><br />Total parking spots: {{total}}<br />Total free parking spots for today: {{freetoday}}<br />Total free parking spots: {{totalfree}}</p>\n</div>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><strong><img src=\"https://i.imgur.com/AsCGHTI.jpg\" alt=\"\" width=\"1280\" height=\"854\" /></strong></p>\n</html>\n"
 
 /***/ }),
 
@@ -614,12 +645,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../web.service */ "./src/app/web.service.ts");
+
 
 
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent() {
+    function HomeComponent(webService) {
+        this.webService = webService;
+        this.loading = true;
     }
     HomeComponent.prototype.ngOnInit = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var res;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.webService.GetDetailRoot()];
+                    case 1:
+                        res = _a.sent();
+                        this.loading = false;
+                        this.total = res["total"];
+                        this.freetoday = res["free_today"];
+                        this.totalfree = res["free_all"];
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -627,7 +677,7 @@ var HomeComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.css */ "./src/app/home/home.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_web_service__WEBPACK_IMPORTED_MODULE_2__["WebService"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -1184,7 +1234,7 @@ var RentSpotFormComponent = /** @class */ (function () {
                         return [4 /*yield*/, this.webService.addSpot(this.rentSpotModel)];
                     case 1:
                         res = _a.sent();
-                        if (res == "successfully add a new spot") {
+                        if (res == null) {
                             this.added = true;
                         }
                         else {
@@ -1377,10 +1427,11 @@ var WebService = /** @class */ (function () {
         this.SIGNUP_URL = 'https://team6a.auth0.com/dbconnections/signup';
         this.LOGIN_URL = '/login';
         this.LOGOUT = '/logged/logout';
-        this.GET_SPOT_URL = '/logged/search/all/renting_spots';
-        this.GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots';
-        this.RENT_URL = 'logged/rent/renting_spot';
-        this.SEARCH_SPOTS_URL = 'someurl'; //TODO: change
+        this.GET_SPOT_URL = '/search/all/renting_spots';
+        this.RENT_URL = '/logged/rent/renting_spot';
+        this.GET_RENTED = 'logged/search/user/renting_spots';
+        this.GET_RENTING = '/logged/search/buyer/renting_spots';
+        this.GETDETAILROOT_URL = '/getDetailRoot';
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
         this.id_token = null;
         this.access_token = null;
@@ -1498,6 +1549,7 @@ var WebService = /** @class */ (function () {
                         return [2 /*return*/, null];
                     case 3:
                         error_3 = _a.sent();
+                        console.log('~~~~~~~' + error_3);
                         return [2 /*return*/, 'error'];
                     case 4: return [2 /*return*/];
                 }
@@ -1510,22 +1562,51 @@ var WebService = /** @class */ (function () {
         this.access_token = null;
         this.id_token = null;
     };
-    WebService.prototype.findSpotsByParamaters = function (toSearch) {
+    WebService.prototype.GetDetailRoot = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var res, error_4;
+            var x, error_4;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.SEARCH_SPOTS_URL, toSearch).toPromise()];
+                        return [4 /*yield*/, this.http.get(this.BASE_URL + this.GETDETAILROOT_URL).toPromise()];
                     case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, JSON.stringify(res)];
+                        x = _a.sent();
+                        return [3 /*break*/, 3];
                     case 2:
                         error_4 = _a.sent();
-                        return [2 /*return*/, null];
-                    case 3: return [2 /*return*/];
+                        return [2 /*return*/, 'error getting stats'];
+                    case 3: return [2 /*return*/, x];
                 }
+            });
+        });
+    };
+    WebService.prototype.findSpotsByParamaters = function (toSearch) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var res, error_5;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log(toSearch);
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.GET_SPOT_URL, toSearch).toPromise()];
+                    case 2:
+                        res = _a.sent();
+                        return [2 /*return*/, JSON.stringify(res)];
+                    case 3:
+                        error_5 = _a.sent();
+                        return [2 /*return*/, null];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    WebService.prototype.getRented = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/];
             });
         });
     };

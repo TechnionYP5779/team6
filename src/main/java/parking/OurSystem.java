@@ -87,7 +87,7 @@ public class OurSystem {
    *             <p>
    *             parkingSpotId -> the id of the sparking spot to be removed */
   public static void removeParkingSpot(final JSONObject jObj) {
-    final int parkingSpotId = Integer.parseInt(jObj.getString("parkingSpotId"));
+    final int parkingSpotId = Integer.parseInt(jObj.getString("id"));
     try {
       ParkingDataBase.removeParkingSpot(parkingSpotId);
     } catch (final SQLException ¢) {
@@ -106,7 +106,7 @@ public class OurSystem {
    *             rent */
   public static void rentParkingSpot(final JSONObject jObj) {
     final String buyerId = jObj.getString("buyerId");
-    final int parkingSpotId = Integer.parseInt(jObj.getString("parkingSpotId"));
+    final int parkingSpotId = Integer.parseInt(jObj.getString("id"));
     try {
       ParkingDataBase.rentParkingSpot(parkingSpotId, buyerId);
     } catch (final SQLException ¢) {
@@ -120,7 +120,7 @@ public class OurSystem {
    *             <p>
    *             parkingSpotId -> the id of the parking spot to be unrented */
   public static void unrentParkingSpot(final JSONObject jObj) {
-    final int parkingSpotId = Integer.parseInt(jObj.getString("parkingSpotId"));
+    final int parkingSpotId = Integer.parseInt(jObj.getString("id"));
     try {
       ParkingDataBase.unRentParkingSpot(parkingSpotId);
     } catch (final SQLException ¢) {
