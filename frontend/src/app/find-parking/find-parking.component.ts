@@ -4,7 +4,7 @@ declare let google: any;
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { WebService } from '../web.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
@@ -152,12 +152,18 @@ export class FindParkingComponent implements OnInit {
     this.filterElement.maxPrice = (this.filterForm.value.maxPrice == "" || this.filterForm.value.maxPrice == null) ? -1 : this.filterForm.value.maxPrice;
     this.filterElement.address = (this.filterElement.locationOption == 'Address') ? this.addressByForm : '';
 
-
     this.filterElement.locationOption = this.filterForm.value.locationOption;
     this.selectedCurrLocOption = this.filterForm.value.locationOption;
 
     if (this.selectedCurrLocOption == 'GPS location' || this.selectedCurrLocOption == 'Technion') {
       this.filterForm.controls['address'].reset()
+    }
+
+    if(this.filterElement.locationOption == 'GPS location'){
+      this.filterElement.address = this.currlat.toString() + ':' + this.currlng.toString()
+    }
+    if(this.filterElement.locationOption == 'Technion'){
+      this.filterElement.address = this.thecnionlat.toString() + ':' + this.thecnionlng.toString()
     }
 
     this.findCurrentLocation();
