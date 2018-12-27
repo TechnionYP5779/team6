@@ -10,8 +10,9 @@
     <mat-progress-spinner mode="indeterminate" value="indeterminate" style="width:15%; margin:0 auto;"></mat-progress-spinner>
   </div>
 </div>  
-
+<div *ngIf="!loading">
 <p style="text-align: center;"><span style="text-decoration: underline;">Our statistics</span><br />Total parking spots: {{total}}<br />Total free parking spots for today: {{freetoday}}<br />Total free parking spots: {{totalfree}}</p>
+</div>
 <p>&nbsp;</p>
 <p style="text-align: center;"><strong><img src="https://i.imgur.com/AsCGHTI.jpg" alt="" width="1280" height="854" /></strong></p>
 </html>
