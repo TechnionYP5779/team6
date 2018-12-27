@@ -130,7 +130,7 @@ access_token = null;
       return JSON.stringify(res);
     }
     catch(error){
-      return JSON.stringify(error);
+      return null;
     }  
 
   }

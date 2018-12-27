@@ -145,7 +145,6 @@ export class FindParkingComponent implements OnInit {
     this.filterElement.maxPrice = (this.filterForm.value.maxPrice == "" || this.filterForm.value.maxPrice == null) ? -1 : this.filterForm.value.maxPrice;
     this.filterElement.address = (this.filterElement.locationOption == 'Address') ? this.addressByForm : '';
 
-    console.log('~~~~~' + this.filterElement.address)
 
     this.filterElement.locationOption = this.filterForm.value.locationOption;
     this.selectedCurrLocOption = this.filterForm.value.locationOption;
@@ -169,7 +168,13 @@ export class FindParkingComponent implements OnInit {
     this.ELEMENT_DATA_FILTER = [];
     this.loading = true;
     var res= await this.webService.findSpotsByParamaters(this.filterElement)
-    this.ELEMENT_DATA_FILTER=  JSON.parse('' + res + '')
+    if(var == null){
+      this.ELEMENT_DATA_FILTER = [];
+    }
+    else{
+      this.ELEMENT_DATA_FILTER=  JSON.parse('' + res + '')
+    }
+    
     this.loading = false
 
     const centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
