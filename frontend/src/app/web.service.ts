@@ -132,7 +132,7 @@ access_token = null;
       accessToken: this.access_token,
       idToken: this.id_token
     }
-    this.http.post(this.BASE_URL + this.LOGOUT, body)
+    this.http.post(this.BASE_URL + this.LOGOUT, body).toPromise();
     this.access_token = null;
     this.id_token = null;
 
