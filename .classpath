@@ -24,8 +24,8 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/eyal/Documents/school/semester_6/yearly_project/gson-2.8.5.jar"/>
-	<classpathentry kind="lib" path="/home/eyal/Documents/school/semester_6/yearly_project/json-20180813.jar"/>
-	<classpathentry kind="lib" path="/home/eyal/Documents/school/semester_6/yearly_project/mysql-connector-java-8.0.13.jar"/>
+	<classpathentry kind="lib" path="C:/git/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="C:/git/json-20180813.jar"/>
+	<classpathentry kind="lib" path="C:/git/mysql-connector-java-8.0.13.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
