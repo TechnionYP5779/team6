@@ -25,6 +25,7 @@ GET_RENTED = 'logged/search/user/renting_spots'
 GET_RENTING = '/logged/search/buyer/renting_spots'
 GETDETAILROOT_URL = '/getDetailRoot'
 USER_INFO = '/logged/userinfo';
+GET_SPOT_BY_PARAMETERS = '/findSpotsByParamaters';
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
@@ -144,8 +145,9 @@ access_token = null;
 
  async findSpotsByParamaters(toSearch){
     console.log(toSearch)
+
     try{
-      var res = await this.http.post(this.BASE_URL + this.GET_SPOT_URL, toSearch).toPromise();
+      var res = await this.http.post(this.BASE_URL + this.GET_SPOT_BY_PARAMETERS, JSON.stringify(toSearch)).toPromise();
       return JSON.stringify(res);
     }
     catch(error){

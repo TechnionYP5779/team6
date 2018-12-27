@@ -149,14 +149,14 @@ export class FindParkingComponent implements OnInit {
   filterForm: FormGroup;
   filterElement: FilterElement = {
     locationOption: 'Address',
-    maxDistance: -1, // meters
-    maxPrice: -1,
+    maxDistance: '-1', // meters
+    maxPrice: '-1',
     address: ''
   };
 
   filter() {
-    this.filterElement.maxDistance = (this.filterForm.value.maxDistance == "" || this.filterForm.value.maxDistance == null) ? -1 : this.filterForm.value.maxDistance;
-    this.filterElement.maxPrice = (this.filterForm.value.maxPrice == "" || this.filterForm.value.maxPrice == null) ? -1 : this.filterForm.value.maxPrice;
+    this.filterElement.maxDistance = (this.filterForm.value.maxDistance == "" || this.filterForm.value.maxDistance == null) ? '-1' : this.filterForm.value.maxDistance.toString();
+    this.filterElement.maxPrice = (this.filterForm.value.maxPrice == "" || this.filterForm.value.maxPrice == null) ? '-1' : this.filterForm.value.maxPrice.toString();
     this.filterElement.address = (this.filterElement.locationOption == 'Address') ? this.addressByForm : '';
 
     this.filterElement.locationOption = this.filterForm.value.locationOption;
@@ -179,8 +179,8 @@ export class FindParkingComponent implements OnInit {
 
   reset() {
     this.filterForm.reset();
-    this.filterElement.maxDistance = -1;
-    this.filterElement.maxPrice = -1;
+    this.filterElement.maxDistance = '-1';
+    this.filterElement.maxPrice = '-1';
     this.filterMarkers()
   }
 
@@ -316,7 +316,7 @@ export interface SpotElement {
 
 export interface FilterElement {
   locationOption: string
-  maxDistance: number;
-  maxPrice: number;
+  maxDistance: string;
+  maxPrice: string;
   address: string;
 }
