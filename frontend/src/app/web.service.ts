@@ -19,10 +19,10 @@ ADD_SPOT_URL = '/logged/add/renting_spot';
 SIGNUP_URL = 'https://team6a.auth0.com/dbconnections/signup';
 LOGIN_URL = '/login';
 LOGOUT = '/logged/logout';
-GET_SPOT_URL = '/logged/search/all/renting_spots'
-GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots'
-RENT_URL = 'logged/rent/renting_spot'
-SEARCH_SPOTS_URL = 'someurl'   //TODO: change
+GET_SPOT_URL = '/search/all/renting_spots'
+RENT_URL = '/logged/rent/renting_spot'
+GET_RENTED = 'logged/search/user/renting_spots'
+GET_RENTING = '/logged/search/buyer/renting_spots'
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
@@ -114,6 +114,7 @@ access_token = null;
       return null;
     }
     catch(error){
+      console.log('~~~~~~~'+error)
       return 'error';
     } 
   }
@@ -127,9 +128,9 @@ access_token = null;
   }
 
  async findSpotsByParamaters(toSearch){
-
+    console.log(toSearch)
     try{
-      var res = await this.http.post(this.BASE_URL + this.SEARCH_SPOTS_URL, toSearch).toPromise();
+      var res = await this.http.post(this.BASE_URL + this.GET_SPOT_URL, toSearch).toPromise();
       return JSON.stringify(res);
     }
     catch(error){
@@ -138,5 +139,8 @@ access_token = null;
 
   }
 
+  async getRented(){
+
+  }
 
 } 

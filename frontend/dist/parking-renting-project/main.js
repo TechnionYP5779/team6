@@ -359,7 +359,6 @@ var FindParkingComponent = /** @class */ (function () {
         this.fb = fb;
         this.webService = webService;
         this.rentDialog = rentDialog;
-        //--- INIT LOCATION ----------------------------------------------------------------------------------------
         // let the user to define his current location
         this.locationOptions = ['GPS location', 'Address', 'Technion'];
         this.selectedCurrLocOption = 'GPS location';
@@ -382,6 +381,7 @@ var FindParkingComponent = /** @class */ (function () {
         };
         //--- RENT SPOT -----------------------------------------------------------------------------------
         this.selectedSpot = null;
+        this.previousMarker = null;
         // init filterForm (fields and validators):
         this.filterForm = fb.group({
             floatLabel: 'auto',
@@ -402,12 +402,9 @@ var FindParkingComponent = /** @class */ (function () {
                         return [4 /*yield*/, this.webService.getSpots()];
                     case 1:
                         res = _a.sent();
-                        console.log(res);
                         this.ELEMENT_DATA = JSON.parse('' + res + '');
                         this.ELEMENT_DATA_FILTER = this.ELEMENT_DATA;
-                        console.log(this.ELEMENT_DATA_FILTER);
                         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
-                        console.log(this.dataSource);
                         this.dataSource.sort = this.sort;
                         this.loading = false;
                         // create search FormControl
@@ -440,12 +437,15 @@ var FindParkingComponent = /** @class */ (function () {
     //--- UPDATE LOCATION --------------------------------------------------------------------------------------
     FindParkingComponent.prototype.findCurrentLocation = function () {
         var _this = this;
+        this.previousMarker = null;
         if (this.selectedCurrLocOption == 'GPS location') {
             this.addressByForm = '';
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     _this.currlat = position.coords.latitude;
                     _this.currlng = position.coords.longitude;
+                    _this.shownlat = _this.currlat;
+                    _this.shownlng = _this.currlng;
                 });
             }
             else { // unable to get current location, so use the Technion address instead
@@ -463,6 +463,9 @@ var FindParkingComponent = /** @class */ (function () {
                 this.changeCurrentLocationToTechnion();
             }
         }
+        this.shownlat = this.currlat;
+        this.shownlng = this.currlng;
+        this.centerMap(this.shownlat, this.shownlng);
     };
     FindParkingComponent.prototype.changeCurrentLocationToTechnion = function () {
         this.currlat = this.thecnionlat;
@@ -476,6 +479,12 @@ var FindParkingComponent = /** @class */ (function () {
         this.selectedCurrLocOption = this.filterForm.value.locationOption;
         if (this.selectedCurrLocOption == 'GPS location' || this.selectedCurrLocOption == 'Technion') {
             this.filterForm.controls['address'].reset();
+        }
+        if (this.filterElement.locationOption == 'GPS location') {
+            this.filterElement.address = this.currlat.toString() + ':' + this.currlng.toString();
+        }
+        if (this.filterElement.locationOption == 'Technion') {
+            this.filterElement.address = this.thecnionlat.toString() + ':' + this.thecnionlng.toString();
         }
         this.findCurrentLocation();
         this.filterMarkers();
@@ -556,6 +565,28 @@ var FindParkingComponent = /** @class */ (function () {
                 }
             }
         });
+    };
+    FindParkingComponent.prototype.mapReady = function (map) {
+        this.map = map;
+    };
+    FindParkingComponent.prototype.clickedMarker = function (infowindow) {
+        if (this.previousMarker) {
+            this.previousMarker.close();
+        }
+        this.previousMarker = infowindow;
+    };
+    FindParkingComponent.prototype.findme = function () {
+        this.centerMap(this.currlat, this.currlng);
+    };
+    FindParkingComponent.prototype.centerMap = function (lat, lng) {
+        if (this.map) {
+            this.map.setCenter({ lat: lat, lng: lng });
+            this.map.setZoom(17);
+        }
+    };
+    FindParkingComponent.prototype.getRecord = function (row) {
+        this.centerMap(row.latitude, row.longitude);
+        this.map.setZoom(19);
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSort"]),
@@ -1184,7 +1215,7 @@ var RentSpotFormComponent = /** @class */ (function () {
                         return [4 /*yield*/, this.webService.addSpot(this.rentSpotModel)];
                     case 1:
                         res = _a.sent();
-                        if (res == "successfully add a new spot") {
+                        if (res == null) {
                             this.added = true;
                         }
                         else {
@@ -1377,10 +1408,10 @@ var WebService = /** @class */ (function () {
         this.SIGNUP_URL = 'https://team6a.auth0.com/dbconnections/signup';
         this.LOGIN_URL = '/login';
         this.LOGOUT = '/logged/logout';
-        this.GET_SPOT_URL = '/logged/search/all/renting_spots';
-        this.GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots';
-        this.RENT_URL = 'logged/rent/renting_spot';
-        this.SEARCH_SPOTS_URL = 'someurl'; //TODO: change
+        this.GET_SPOT_URL = '/search/all/renting_spots';
+        this.RENT_URL = '/logged/rent/renting_spot';
+        this.GET_RENTED = 'logged/search/user/renting_spots';
+        this.GET_RENTING = '/logged/search/buyer/renting_spots';
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
         this.id_token = null;
         this.access_token = null;
@@ -1498,6 +1529,7 @@ var WebService = /** @class */ (function () {
                         return [2 /*return*/, null];
                     case 3:
                         error_3 = _a.sent();
+                        console.log('~~~~~~~' + error_3);
                         return [2 /*return*/, 'error'];
                     case 4: return [2 /*return*/];
                 }
@@ -1516,16 +1548,26 @@ var WebService = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.SEARCH_SPOTS_URL, toSearch).toPromise()];
+                        console.log(toSearch);
+                        _a.label = 1;
                     case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.GET_SPOT_URL, toSearch).toPromise()];
+                    case 2:
                         res = _a.sent();
                         return [2 /*return*/, JSON.stringify(res)];
-                    case 2:
+                    case 3:
                         error_4 = _a.sent();
                         return [2 /*return*/, null];
-                    case 3: return [2 /*return*/];
+                    case 4: return [2 /*return*/];
                 }
+            });
+        });
+    };
+    WebService.prototype.getRented = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/];
             });
         });
     };
