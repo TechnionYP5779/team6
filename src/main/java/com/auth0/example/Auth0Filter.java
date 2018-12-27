@@ -30,7 +30,7 @@ import com.auth0.*;
         && (String) SessionUtils.get((HttpServletRequest) r, "idToken") != null)
       next.doFilter(r, response);
     else {
-      ((HttpServletResponse) response).setHeader("Response", "ERROR");
+      ((HttpServletResponse) response).setHeader("Response", "NotLoggedIn");
       ((HttpServletResponse) response).setHeader("status", "400");
       ((HttpServletResponse) response).setStatus(400);
       ((HttpServletResponse) response).getWriter().write(new JSONObject().put("Desc", "no accessToken or idToken") + "");

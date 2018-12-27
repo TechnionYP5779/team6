@@ -629,7 +629,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  home works!\n</p>\n"
+module.exports = "\n<html>\n<h1 style=\"text-align: center;\"><strong>The world is your parking space</strong></h1>\n<h1 style=\"text-align: center;\"><strong style=\"font-size: 14px;\">Remember that time you were trying to find a parking space but all spaces around were private? <span style=\"color: #ff0000;\">Now you may use some of them.</span></strong></h1>\n<p style=\"text-align: center;\"><strong>Remember that time your car was in the&nbsp;shop for a week and your own private space was just all empty? <span style=\"color: #ff0000;\">Now you can make money off it.</span></strong></p>\n<p style=\"text-align: center;\"><strong>Use our solution to find a parking space close to your location or rent out your own private parking space!</strong></p>\n\n<div  >\n  <div *ngIf=\"loading\">\n    <mat-progress-spinner mode=\"indeterminate\" value=\"indeterminate\" style=\"width:15%; margin:0 auto;\"></mat-progress-spinner>\n  </div>\n</div>  \n<div *ngIf=\"!loading\">\n<p style=\"text-align: center;\"><span style=\"text-decoration: underline;\">Our statistics</span><br />Total parking spots: {{total}}<br />Total free parking spots for today: {{freetoday}}<br />Total free parking spots: {{totalfree}}</p>\n</div>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><strong><img src=\"https://i.imgur.com/AsCGHTI.jpg\" alt=\"\" width=\"1280\" height=\"854\" /></strong></p>\n</html>\n"
 
 /***/ }),
 
@@ -645,12 +645,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../web.service */ "./src/app/web.service.ts");
+
 
 
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent() {
+    function HomeComponent(webService) {
+        this.webService = webService;
+        this.loading = true;
     }
     HomeComponent.prototype.ngOnInit = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var res;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.webService.GetDetailRoot()];
+                    case 1:
+                        res = _a.sent();
+                        this.loading = false;
+                        this.total = res["total"];
+                        this.freetoday = res["free_today"];
+                        this.totalfree = res["free_all"];
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -658,7 +677,7 @@ var HomeComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.css */ "./src/app/home/home.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_web_service__WEBPACK_IMPORTED_MODULE_2__["WebService"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -1409,8 +1428,10 @@ var WebService = /** @class */ (function () {
         this.LOGIN_URL = '/login';
         this.LOGOUT = '/logged/logout';
         this.GET_SPOT_URL = '/search/all/renting_spots';
-        this.RENT_URL = 'logged/rent/renting_spot';
-        this.SEARCH_SPOTS_URL = 'someurl'; //TODO: change
+        this.RENT_URL = '/logged/rent/renting_spot';
+        this.GET_RENTED = 'logged/search/user/renting_spots';
+        this.GET_RENTING = '/logged/search/buyer/renting_spots';
+        this.GETDETAILROOT_URL = '/getDetailRoot';
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
         this.id_token = null;
         this.access_token = null;
@@ -1541,9 +1562,28 @@ var WebService = /** @class */ (function () {
         this.access_token = null;
         this.id_token = null;
     };
+    WebService.prototype.GetDetailRoot = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var x, error_4;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, this.http.get(this.BASE_URL + this.GETDETAILROOT_URL).toPromise()];
+                    case 1:
+                        x = _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_4 = _a.sent();
+                        return [2 /*return*/, 'error getting stats'];
+                    case 3: return [2 /*return*/, x];
+                }
+            });
+        });
+    };
     WebService.prototype.findSpotsByParamaters = function (toSearch) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var res, error_4;
+            var res, error_5;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -1551,15 +1591,22 @@ var WebService = /** @class */ (function () {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.SEARCH_SPOTS_URL, toSearch).toPromise()];
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.GET_SPOT_URL, toSearch).toPromise()];
                     case 2:
                         res = _a.sent();
                         return [2 /*return*/, JSON.stringify(res)];
                     case 3:
-                        error_4 = _a.sent();
+                        error_5 = _a.sent();
                         return [2 /*return*/, null];
                     case 4: return [2 /*return*/];
                 }
+            });
+        });
+    };
+    WebService.prototype.getRented = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/];
             });
         });
     };
