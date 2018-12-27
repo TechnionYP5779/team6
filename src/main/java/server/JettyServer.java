@@ -24,6 +24,7 @@ public class JettyServer {
     webapp.addServlet(new ServletHolder(new UnrentSpotServlet()), "/logged/unrent/renting_spot");
     webapp.addServlet(new ServletHolder(new SearchAllAvailableSpotsServlet()), "/logged/search/all/renting_spots");
     webapp.addServlet(new ServletHolder(new SearchUserSpotsServlet()), "/logged/search/user/renting_spots");
+    webapp.addServlet(new ServletHolder(new SearchBuyerSpotsServlet()), "/logged/search/buyer/renting_spots");
     webapp.addServlet(new ServletHolder(new ServerSideLoginServlet()), "/login");
     webapp.addServlet(new ServletHolder(new ServerSideLogoutServlet()), "/logged/logout");
     final FilterHolder holder1 = new FilterHolder(new Auth0Filter());

@@ -29,6 +29,8 @@ import com.auth0.net.*;
     try {
       final TokenHolder holder = request.execute();
       final UserInfo info = auth.userInfo(holder.getAccessToken()).execute();
+      System.out.println(info.getValues().keySet().toString());
+      System.out.println(info.getValues().values().toString());
       resp.setHeader("Response", "OK");
       resp.setStatus(200);
       final JSONObject tokens = new JSONObject();
