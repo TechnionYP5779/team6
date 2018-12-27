@@ -1,10 +1,8 @@
 /// <reference types="@types/googlemaps" />
 declare let google: any;
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MapsAPILoader } from '@agm/core';
-import { MatRadioModule, MatRadioButton, MatRadioChange } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSort, MatTableDataSource } from '@angular/material';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -12,6 +10,7 @@ import { WebService } from '../web.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material';
 import { RentSpotDialogComponent } from '../rent-spot-dialog/rent-spot-dialog.component';
 import { elementStyleProp } from '@angular/core/src/render3';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -24,7 +23,7 @@ export class FindParkingComponent implements OnInit {
   //--- INIT LOCATION ----------------------------------------------------------------------------------------
 
   // let the user to define his current location
-  defineCurrLocOptions: string[] = ['GPS location', 'Technion']; // need to add "choose by address"
+  locationOptions: string[] = ['GPS location', 'Address', 'Technion'];
   selectedCurrLocOption: string = 'GPS location';
 
   // cuurent location (as defined by user choice)
@@ -39,8 +38,6 @@ export class FindParkingComponent implements OnInit {
 
   //--- DATABASE ---------------------------------------------------------------------------------------------
 
-  // fake DB TODO: updete this!!!
-
   displayedColumns: string[] = ['id', 'address', 'price'];
   ELEMENT_DATA: SpotElement[] = null;
   ELEMENT_DATA_FILTER: SpotElement[] = null;
@@ -49,6 +46,10 @@ export class FindParkingComponent implements OnInit {
   //--- NGINIT & C'TOR ---------------------------------------------------------------------------------------
 
   @ViewChild(MatSort) sort: MatSort;
+
+  @ViewChild("search") public searchElementRef: ElementRef;
+  public searchControl: FormControl;
+  addressIsValid: boolean = false;
 
   async ngOnInit() {
     this.findCurrentLocation();
@@ -60,34 +61,41 @@ export class FindParkingComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA_FILTER);
     console.log(this.dataSource)
     this.dataSource.sort = this.sort;
+
     this.loading = false;
+
+    // create search FormControl
+    this.searchControl = new FormControl();
+    // load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, { types: ["address"] });
+      autocomplete.addListener("place_changed", () => {
+        this.addressIsValid = false;
+        this.ngZone.run(() => {
+          // get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          // verify result:
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          // set latitude, longitude and zoom
+          this.currlat = place.geometry.location.lat();
+          this.currlng = place.geometry.location.lng();
+          this.addressIsValid = true;
+        });
+      });
+    });
   }
 
-
-  constructor(private mapsAPILoader: MapsAPILoader, private fb: FormBuilder, private webService: WebService, public rentDialog: MatDialog) {
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private fb: FormBuilder, private webService: WebService, public rentDialog: MatDialog) {
     // init filterForm (fields and validators):
     this.filterForm = fb.group({
       floatLabel: 'auto',
       'maxPrice': ["", [Validators.pattern('[0-9]*')]],
       'maxDistance': ["", [Validators.pattern('[0-9]*')]],
       'locationOption': ["", [Validators.required]],
+      'address': ["", []],
     });
-  }
-
-  getAddress(lat: number, lng: number): string {
-    if (navigator.geolocation) {
-      let geocoder = new google.maps.Geocoder();
-      let latlng = new google.maps.LatLng(lat, lng);
-      let request = { latLng: latlng };
-      let res = '(lat=' + lat + ',lng=' + lng + ')'
-      geocoder.geocode(request, (results, status) => {
-        if (status == google.maps.GeocoderStatus.OK && results[0]) {
-          //console.log("************ results[0].formatted_address", results[0].formatted_address)
-          res = results[0].formatted_address
-        }
-      });
-      return res
-    }
   }
 
   //--- UPDATE LOCATION --------------------------------------------------------------------------------------
@@ -105,34 +113,40 @@ export class FindParkingComponent implements OnInit {
       }
     } else if (this.selectedCurrLocOption == 'Technion') {
       this.changeCurrentLocationToTechnion()
-    } else { // in case user define his address manially. for now use technion
-      this.changeCurrentLocationToTechnion()
+    } else { // in case user define his address manially. 
+      // only if address is not valid - use technion instead (else - use user address)
+      if (!this.addressIsValid) {
+        this.changeCurrentLocationToTechnion()
+      }
     }
   }
 
   changeCurrentLocationToTechnion() {
     this.currlat = this.thecnionlat;
     this.currlng = this.thecnionlng;
-    //this.getAddress(this.currlat, this.currlng)
   }
 
   //--- FILTER --------------------------------------------------------------------------------------
 
   filterForm: FormGroup;
   filterElement: FilterElement = {
-    locationOption: 'GPS location',
+    locationOption: 'Address',
     maxDistance: -1, // meters
     maxPrice: -1,
+    address: ''
   };
-  locationOptions: string[] = ['GPS location', 'Technion']; // need to add "choose by address"
 
   filter() {
-    this.filterElement.locationOption = this.filterForm.value.locationOption;
-
     this.filterElement.maxDistance = (this.filterForm.value.maxDistance == "" || this.filterForm.value.maxDistance == null) ? -1 : this.filterForm.value.maxDistance;
     this.filterElement.maxPrice = (this.filterForm.value.maxPrice == "" || this.filterForm.value.maxPrice == null) ? -1 : this.filterForm.value.maxPrice;
+    this.filterElement.address = (this.filterForm.value.address == "" || this.filterForm.value.address == null) ? '' : this.filterForm.value.address;
 
+    this.filterElement.locationOption = this.filterForm.value.locationOption;
     this.selectedCurrLocOption = this.filterForm.value.locationOption;
+
+    if (this.selectedCurrLocOption == 'GPS location' || this.selectedCurrLocOption == 'Technion') {
+      this.filterForm.controls['address'].reset()
+    }
 
     this.findCurrentLocation();
     this.filterMarkers()
@@ -184,7 +198,7 @@ export class FindParkingComponent implements OnInit {
     dialogConfig.disableClose = true;   /** the user will not be able to close the dialog just by clicking outside of it */
     dialogConfig.autoFocus = false;     /** the focus will not be set automatically on the first form field of the dialog */
 
-    dialogConfig.height = '500px';      /** size of dialog window */
+    dialogConfig.height = '450px';      /** size of dialog window */
     dialogConfig.width = '500px';
 
     dialogConfig.data = { /** pass data to dialog */
@@ -200,7 +214,7 @@ export class FindParkingComponent implements OnInit {
     /** open dialog */
     const dialogRef = this.rentDialog.open(RentSpotDialogComponent, dialogConfig);
 
-    /** get data from dialog - empty for no */
+    /** get data from dialog - empty for now */
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
         if (result == 'rent') {
@@ -212,8 +226,6 @@ export class FindParkingComponent implements OnInit {
       }
     });
   }
-
-
 
 }
 
@@ -230,12 +242,13 @@ export interface SpotElement {
   end_time: string;
   // distance: number;
   price: number;
-  userId: string;  
+  userId: string;
   buyerId: string;
 }
 
-export interface FilterElement { // TODO: add date
+export interface FilterElement {
   locationOption: string
   maxDistance: number;
   maxPrice: number;
+  address: string;
 }
