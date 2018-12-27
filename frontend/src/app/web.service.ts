@@ -23,6 +23,7 @@ GET_SPOT_URL = '/search/all/renting_spots'
 RENT_URL = '/logged/rent/renting_spot'
 GET_RENTED = 'logged/search/user/renting_spots'
 GET_RENTING = '/logged/search/buyer/renting_spots'
+GETDETAILROOT_URL = '/getDetailRoot'
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
@@ -128,6 +129,18 @@ access_token = null;
 
   }
 
+  
+  async GetDetailRoot(){
+	  try{
+		  var x = await this.http.get(this.BASE_URL + this.GETDETAILROOT_URL).toPromise()
+	  }
+      catch(error){
+		  return 'error getting stats'
+	  }
+      return x;
+	}
+
+
  async findSpotsByParamaters(toSearch){
     console.log(toSearch)
     try{
@@ -159,5 +172,6 @@ access_token = null;
       
     }
   }
+
 
 } 
