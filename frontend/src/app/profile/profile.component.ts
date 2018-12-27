@@ -12,7 +12,7 @@ export class ProfileComponent implements OnInit {
   loading = true
 
   // personal information
-  userPersonalInformation: UserElement = { username: "myUsername", fname: "myFisrtName", lname: "myLastName", email: "my@email.com" }
+  userPersonalInformation: UserElement = { name: "myUsername",  email: "my@email.com" }
 
   // ownSpots table
   ownSpotsHeader: string[] = ['id', 'address', 'price', 'start_time', 'end_time', 'status'];
@@ -38,7 +38,6 @@ export class ProfileComponent implements OnInit {
 
 
   async ngOnInit() {
-    this.loading = false;
 
     // personal information
     var userInformationRes = await this.webService.getUserInformation();
@@ -55,14 +54,14 @@ export class ProfileComponent implements OnInit {
     this.RENT_SPOTS_DATA = JSON.parse('' + userRentSpotsRes + '')
     this.rentSpotsDataSource = new MatTableDataSource(this.RENT_SPOTS_DATA);
     this.rentSpotsDataSource.sort = this.sort;
+
+    this.loading = false;
   }
 
 }
 
 export interface UserElement {
-  username: string;
-  fname: string;
-  lname: string;
+  name: string;
   email: string;
 }
 
