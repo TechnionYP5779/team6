@@ -71,7 +71,7 @@ public class OurSystem {
       basicUtils.checkValidityOfAddress(a);
     } catch (ApiException | InterruptedException | IOException e) {
       // TODO Auto-generated catch block
-      ¢.printStackTrace();
+      e.printStackTrace();
     }
     final ParkingSpot p = new ParkingSpot(0, ownerID, null, price, a, startHour, endHour, startDate, endDate);
     try {
