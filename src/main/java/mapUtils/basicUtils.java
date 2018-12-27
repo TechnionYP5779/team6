@@ -65,7 +65,7 @@ public class basicUtils {
     final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(),
         String.valueOf(a.getStreet() + " " + a.getBuilding()) + ", " + a.getCity()).await();
     if ($ == null || $.length == 0)
-        throw new InvalidAddressException();
+        throw new InvalidAddressException(a.getCity(), a.getStreet(), a.getBuilding());
     boolean checkStreet = false, checkCity = false, checkBuilding = false;
     for(AddressComponent ac : $[0].addressComponents) {
       if(ac.types[0].equals(AddressComponentType.STREET_NUMBER)) checkBuilding = true;
@@ -105,23 +105,23 @@ public class basicUtils {
   }
 
 //  public static void main(final String[] args) throws ApiException, InterruptedException, IOException {
-//    Address ¢ = new Address("sdsd", "סלומון", 2);
+//    Address ¢ = new Address("Petah Tikwa", "vsdvd", 5);
 //    try {
 //      checkValidityOfAddress(¢);
+//      System.out.println("OK");
 //    } catch(InvalidAddressException e) {
 //      System.out.println("City " + e.getCityName() + " is " + e.isCityOk());
-//      System.out.println("street " + e.getStreetName() +" is " + e.isStreetOk());
-//      System.out.println("building " + e.getBuildingNumber() + " is " + e.isBuildingOk());
+//      System.out.println("Street " + e.getStreetName() +" is " + e.isStreetOk());
+//      System.out.println("Building " + e.getBuildingNumber() + " is " + e.isBuildingOk());
 //    }
 //    
 //    System.out.println("OK");
-//    
+    
 //    System.out.println(calculateDistanceByAddress(new Address("אריאל", "דרך הציונות", 2) ,¢));
-//    System.out.println(checkValidityOfAddress(¢));
 //    System.out.println(geocodingAddress(¢));
 //    final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(),
 //        String.valueOf(¢.getStreet() + " " + ¢.getBuilding()) + ", " + ¢.getCity()).await();
-//    
+    
 //    for(AddressComponent ac : $[0].addressComponents)
 //      System.out.println(ac.types[0]);
 //    
