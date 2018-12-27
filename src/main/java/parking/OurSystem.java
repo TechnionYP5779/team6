@@ -193,6 +193,17 @@ public class OurSystem {
     }
     return convertParkingSpotsToJSONArray($);
   }
+  
+  public static JSONArray getAllParkingSpotsByBuyer(final JSONObject jObj) {
+    List<ParkingSpot> $ = null;
+    try {
+      $ = ParkingDataBase.getAllParkingSpotsByUser(jObj.getString("buyerId"));
+    } catch (final SQLException ¢) {
+      // TODO Auto-generated catch block
+      ¢.printStackTrace();
+    }
+    return convertParkingSpotsToJSONArray($);
+  }
 
   /** @return all the available parking spots as JSONArray of JSONObjects that
    *         each one contains parking spots information in the following format:
