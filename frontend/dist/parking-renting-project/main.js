@@ -1472,6 +1472,8 @@ var WebService = /** @class */ (function () {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'content-type': 'application/json' }),
         };
         var body = {
+            client_id: this.client_id,
+            email: form.email,
             password: form.password,
             connection: 'Username-Password-Authentication',
             user_metadata: { name: form.name, username: form.username },
@@ -1605,8 +1607,45 @@ var WebService = /** @class */ (function () {
     };
     WebService.prototype.getRented = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var body, res, error_6;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0:
+                        body = {};
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.GET_RENTED, body).toPromise()];
+                    case 2:
+                        res = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_6 = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    WebService.prototype.getMySpots = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var body, res, error_7;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        body = {};
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.GET_RENTING, body).toPromise()];
+                    case 2:
+                        res = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_7 = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
             });
         });
     };
