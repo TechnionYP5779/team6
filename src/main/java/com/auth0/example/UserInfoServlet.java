@@ -30,11 +30,11 @@ import parking.*;
     String psList = "";
     try {
       final JSONObject jo = new JSONObject(new String(body));
-      final JSONObject loginInfo = new JSONObject(body);
+   /**   final JSONObject loginInfo = new JSONObject(body);
       final AuthRequest request = auth.login(loginInfo.getString("username"), loginInfo.getString("password"), "Username-Password-Authentication")
           .setScope("openid");
-      final TokenHolder holder = request.execute();
-      final UserInfo info = auth.userInfo(holder.getAccessToken()).execute();
+      final TokenHolder holder = request.execute(); *//
+      final UserInfo info = auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute().getValues()
       System.out.println(info.getValues().keySet().toString());
       System.out.println(info.getValues().values().toString());
       jo.put("name", info.getValues().get("nickname"));
