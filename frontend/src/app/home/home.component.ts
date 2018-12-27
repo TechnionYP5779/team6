@@ -9,10 +9,16 @@ import { WebService } from '../web.service';
 export class HomeComponent implements OnInit {
 
   constructor(private webService : WebService) { }
-
-  ngOnInit() {
-	  var jo = this.webService.GetDetailRoot();
-	  var jop = JSON.parse('' + jo + '')
+   total;
+   freetoday;
+   totalfree;
+   loading = true;
+   async ngOnInit() {
+	   var res = await this.webService.GetDetailRoot();
+	   this.loading = false;
+	   this.total = res["total"]
+	   this.freetoday = res["free_today"]
+	   this.totalfree = res["free_all"]
   }
 
 }

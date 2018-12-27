@@ -140,7 +140,12 @@ access_token = null;
   }
   
   async GetDetailRoot(){
-      var x = await this.http.get(this.BASE_URL + this.GETDETAILROOT_URL).toPromise()
+	  try{
+		  var x = await this.http.get(this.BASE_URL + this.GETDETAILROOT_URL).toPromise()
+	  }
+      catch(error){
+		  return 'error getting stats'
+	  }
       return x;
 	}
 } 

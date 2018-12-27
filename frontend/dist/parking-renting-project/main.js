@@ -551,7 +551,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\r\n<html>\r\n<h1 style=\"text-align: center;\"><strong>The world is your parking space</strong></h1>\r\n<h1 style=\"text-align: center;\"><strong style=\"font-size: 14px;\">Remember that time you were trying to find a parking space but all spaces around were private? <span style=\"color: #ff0000;\">Now you may use some of them.</span></strong></h1>\r\n<p style=\"text-align: center;\"><strong>Remember that time your car was in the&nbsp;shop for a week and your own private space was just all empty? <span style=\"color: #ff0000;\">Now you can make money off it.</span></strong></p>\r\n<p style=\"text-align: center;\"><strong>Use our solution to find a parking space close to your location or rent out your own private parking space!</strong></p>\r\n<p>&nbsp;</p>\r\n<p style=\"text-align: center;\"><strong><img src=\"https://i.imgur.com/AsCGHTI.jpg\" alt=\"\" width=\"1280\" height=\"854\" /></strong></p>\r\n</html>\r\n"
+module.exports = "\r\n<html>\r\n<h1 style=\"text-align: center;\"><strong>The world is your parking space</strong></h1>\r\n<h1 style=\"text-align: center;\"><strong style=\"font-size: 14px;\">Remember that time you were trying to find a parking space but all spaces around were private? <span style=\"color: #ff0000;\">Now you may use some of them.</span></strong></h1>\r\n<p style=\"text-align: center;\"><strong>Remember that time your car was in the&nbsp;shop for a week and your own private space was just all empty? <span style=\"color: #ff0000;\">Now you can make money off it.</span></strong></p>\r\n<p style=\"text-align: center;\"><strong>Use our solution to find a parking space close to your location or rent out your own private parking space!</strong></p>\r\n\r\n<div  >\r\n  <div *ngIf=\"loading\">\r\n    <mat-progress-spinner mode=\"indeterminate\" value=\"indeterminate\" style=\"width:15%; margin:0 auto;\"></mat-progress-spinner>\r\n  </div>\r\n</div>  \r\n\r\n<p style=\"text-align: center;\"><span style=\"text-decoration: underline;\">Our statistics</span><br />Total parking spots: {{total}}<br />Total free parking spots for today: {{freetoday}}<br />Total free parking spots: {{totalfree}}</p>\r\n<p>&nbsp;</p>\r\n<p style=\"text-align: center;\"><strong><img src=\"https://i.imgur.com/AsCGHTI.jpg\" alt=\"\" width=\"1280\" height=\"854\" /></strong></p>\r\n</html>\r\n"
 
 /***/ }),
 
@@ -574,10 +574,24 @@ __webpack_require__.r(__webpack_exports__);
 var HomeComponent = /** @class */ (function () {
     function HomeComponent(webService) {
         this.webService = webService;
+        this.loading = true;
     }
     HomeComponent.prototype.ngOnInit = function () {
-        var jo = this.webService.GetDetailRoot();
-        var jop = JSON.parse('' + jo + '');
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var res;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.webService.GetDetailRoot()];
+                    case 1:
+                        res = _a.sent();
+                        this.loading = false;
+                        this.total = res["total"];
+                        this.freetoday = res["free_today"];
+                        this.totalfree = res["free_all"];
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1416,13 +1430,19 @@ var WebService = /** @class */ (function () {
     };
     WebService.prototype.GetDetailRoot = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var x;
+            var x, error_4;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.http.get(this.BASE_URL + this.GETDETAILROOT_URL).toPromise()];
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, this.http.get(this.BASE_URL + this.GETDETAILROOT_URL).toPromise()];
                     case 1:
                         x = _a.sent();
-                        return [2 /*return*/, x];
+                        return [3 /*break*/, 3];
+                    case 2:
+                        error_4 = _a.sent();
+                        return [2 /*return*/, 'error getting stats'];
+                    case 3: return [2 /*return*/, x];
                 }
             });
         });
@@ -1499,7 +1519,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\micha\Documents\Git\team6\frontend\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\micha\Documents\GitHub\team6\frontend\src\main.ts */"./src/main.ts");
 
 
 /***/ })
