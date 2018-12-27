@@ -223,7 +223,7 @@ var AppModule = /** @class */ (function () {
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_14__["AppRoutingModule"],
                 _agm_core__WEBPACK_IMPORTED_MODULE_13__["AgmCoreModule"].forRoot({
                     apiKey: 'AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ',
-                    libraries: ['geometry']
+                    libraries: ['geometry', 'places']
                 })
             ],
             exports: [
@@ -307,7 +307,7 @@ var BecomeHostComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/** split page to 2 columns */\n\n.container {\n    margin-top: 10px;\n    margin-left: unset; \n  }\n\n.row:after {\n    content: \"\";\n    display: table;\n    clear: both;\n  \n  }\n\n.column-split {\n    float: left;\n    width: 50%;\n    padding-left: 15px;\n    padding-right: 15px;\n  }\n\n/** map */\n\nagm-map {\n    height: 600px;\n    width: 600px;\n  }\n\n.example-radio-group {\n    display: inline-flex;\n    flex-direction: column;\n  }\n\n.example-radio-button {\n    margin: 5px;\n  }\n\n.example-selected-value {\n    margin: 15px 0;\n  }\n\n/** table */\n\n.mat-table {\n    width: 550px;\n  }\n\n.mat-form-field{\n    width:400px;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZmluZC1wYXJraW5nL2ZpbmQtcGFya2luZy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDhCQUE4Qjs7QUFFOUI7SUFDSSxpQkFBaUI7SUFDakIsbUJBQW1CO0dBQ3BCOztBQUVEO0lBQ0UsWUFBWTtJQUNaLGVBQWU7SUFDZixZQUFZOztHQUViOztBQUVEO0lBQ0UsWUFBWTtJQUNaLFdBQVc7SUFDWCxtQkFBbUI7SUFDbkIsb0JBQW9CO0dBQ3JCOztBQUdELFVBQVU7O0FBRVY7SUFDRSxjQUFjO0lBQ2QsYUFBYTtHQUNkOztBQUVEO0lBQ0UscUJBQXFCO0lBQ3JCLHVCQUF1QjtHQUN4Qjs7QUFFRDtJQUNFLFlBQVk7R0FDYjs7QUFFRDtJQUNFLGVBQWU7R0FDaEI7O0FBRUQsWUFBWTs7QUFFWjtJQUNFLGFBQWE7R0FDZDs7QUFFRDtJQUNFLFlBQVk7R0FDYiIsImZpbGUiOiJzcmMvYXBwL2ZpbmQtcGFya2luZy9maW5kLXBhcmtpbmcuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBzcGxpdCBwYWdlIHRvIDIgY29sdW1ucyAqL1xuXG4uY29udGFpbmVyIHtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xuICAgIG1hcmdpbi1sZWZ0OiB1bnNldDsgXG4gIH1cbiAgIFxuICAucm93OmFmdGVyIHtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIGRpc3BsYXk6IHRhYmxlO1xuICAgIGNsZWFyOiBib3RoO1xuICBcbiAgfVxuICBcbiAgLmNvbHVtbi1zcGxpdCB7XG4gICAgZmxvYXQ6IGxlZnQ7XG4gICAgd2lkdGg6IDUwJTtcbiAgICBwYWRkaW5nLWxlZnQ6IDE1cHg7XG4gICAgcGFkZGluZy1yaWdodDogMTVweDtcbiAgfVxuICBcbiAgXG4gIC8qKiBtYXAgKi9cbiAgXG4gIGFnbS1tYXAge1xuICAgIGhlaWdodDogNjAwcHg7XG4gICAgd2lkdGg6IDYwMHB4O1xuICB9XG5cbiAgLmV4YW1wbGUtcmFkaW8tZ3JvdXAge1xuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIH1cbiAgXG4gIC5leGFtcGxlLXJhZGlvLWJ1dHRvbiB7XG4gICAgbWFyZ2luOiA1cHg7XG4gIH1cbiAgXG4gIC5leGFtcGxlLXNlbGVjdGVkLXZhbHVlIHtcbiAgICBtYXJnaW46IDE1cHggMDtcbiAgfVxuICBcbiAgLyoqIHRhYmxlICovXG4gIFxuICAubWF0LXRhYmxlIHtcbiAgICB3aWR0aDogNTUwcHg7XG4gIH1cblxuICAubWF0LWZvcm0tZmllbGR7XG4gICAgd2lkdGg6NDAwcHg7XG4gIH0iXX0= */"
+module.exports = "/** split page to 2 columns */\n\n.container {\n    margin-top: 10px;\n    margin-left: unset; \n  }\n\n.row:after {\n    content: \"\";\n    display: table;\n    clear: both;\n  \n  }\n\n.column-split {\n    float: left;\n    width: 50%;\n    padding-left: 15px;\n    padding-right: 15px;\n  }\n\n/** map */\n\nagm-map {\n    height: 600px;\n    width: 600px;\n  }\n\n/** table */\n\n.mat-table {\n    width: 550px;\n  }\n\n.mat-form-field{\n    width:400px;\n  }\n\n.btn-primary, .btn-secondary {\n    width: auto;\n    margin-left: 20px;\n    margin-right: 20px;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZmluZC1wYXJraW5nL2ZpbmQtcGFya2luZy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDhCQUE4Qjs7QUFFOUI7SUFDSSxpQkFBaUI7SUFDakIsbUJBQW1CO0dBQ3BCOztBQUVEO0lBQ0UsWUFBWTtJQUNaLGVBQWU7SUFDZixZQUFZOztHQUViOztBQUVEO0lBQ0UsWUFBWTtJQUNaLFdBQVc7SUFDWCxtQkFBbUI7SUFDbkIsb0JBQW9CO0dBQ3JCOztBQUdELFVBQVU7O0FBRVY7SUFDRSxjQUFjO0lBQ2QsYUFBYTtHQUNkOztBQUdELFlBQVk7O0FBRVo7SUFDRSxhQUFhO0dBQ2Q7O0FBRUQ7SUFDRSxZQUFZO0dBQ2I7O0FBRUQ7SUFDRSxZQUFZO0lBQ1osa0JBQWtCO0lBQ2xCLG1CQUFtQjtHQUNwQiIsImZpbGUiOiJzcmMvYXBwL2ZpbmQtcGFya2luZy9maW5kLXBhcmtpbmcuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBzcGxpdCBwYWdlIHRvIDIgY29sdW1ucyAqL1xuXG4uY29udGFpbmVyIHtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xuICAgIG1hcmdpbi1sZWZ0OiB1bnNldDsgXG4gIH1cbiAgIFxuICAucm93OmFmdGVyIHtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIGRpc3BsYXk6IHRhYmxlO1xuICAgIGNsZWFyOiBib3RoO1xuICBcbiAgfVxuICBcbiAgLmNvbHVtbi1zcGxpdCB7XG4gICAgZmxvYXQ6IGxlZnQ7XG4gICAgd2lkdGg6IDUwJTtcbiAgICBwYWRkaW5nLWxlZnQ6IDE1cHg7XG4gICAgcGFkZGluZy1yaWdodDogMTVweDtcbiAgfVxuICBcbiAgXG4gIC8qKiBtYXAgKi9cbiAgXG4gIGFnbS1tYXAge1xuICAgIGhlaWdodDogNjAwcHg7XG4gICAgd2lkdGg6IDYwMHB4O1xuICB9XG5cbiAgXG4gIC8qKiB0YWJsZSAqL1xuICBcbiAgLm1hdC10YWJsZSB7XG4gICAgd2lkdGg6IDU1MHB4O1xuICB9XG5cbiAgLm1hdC1mb3JtLWZpZWxke1xuICAgIHdpZHRoOjQwMHB4O1xuICB9XG5cbiAgLmJ0bi1wcmltYXJ5LCAuYnRuLXNlY29uZGFyeSB7XG4gICAgd2lkdGg6IGF1dG87XG4gICAgbWFyZ2luLWxlZnQ6IDIwcHg7XG4gICAgbWFyZ2luLXJpZ2h0OiAyMHB4O1xuICB9Il19 */"
 
 /***/ }),
 
@@ -318,7 +318,7 @@ module.exports = "/** split page to 2 columns */\n\n.container {\n    margin-top
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"width:40%; margin:5% auto;\" *ngIf=\"loading\">\n  <mat-progress-spinner mode=\"indeterminate\" value=\"indeterminate\" diameter=\"220\" strokeWidth=\"35\" style=\"width:15%; margin:0 auto;\">\n  </mat-progress-spinner>\n  <div>\n    <img src=\"../../assets/img/get_spot_wait_line1.png\" style=\"width:130%; margin-left:-10%; margin-top:20%;\" align=\"middle\">\n  </div>\n  <div>\n    <img src=\"../../assets/img/get_spot_wait_line2.png\" style=\"width:22%; margin-left:40% ;\" >\n  </div>\n  \n</div> \n\n<div class=\"container\" *ngIf=\"!loading\">\n  <!-- Title -->\n  <h2>Find parking spot</h2> \n  <!-- split page to 2 columns: table on the left and map on the right -->\n  <div class=\"row\">\n\n    <!-- FEFT -------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"table\">\n\n      <!-- Form (left) ----------------------------------------------------------------------------->\n      <div class=\"container\" [formGroup]=\"filterForm\">\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max distance from your location</mat-label>\n            <input matInput placeholder=\"max distance\" formControlName=\"maxDistance\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max price</mat-label>\n            <input matInput placeholder=\"max price\" formControlName=\"maxPrice\">\n          </mat-form-field>\n        </div>\n\n        <div>\n          <mat-form-field>\n            <mat-label>Choose how to determine your current location</mat-label>\n            <mat-select placeholder=\"location options\" formControlName=\"locationOption\" required>\n              <mat-option *ngFor=\"let option of locationOptions\" [value]=\"option\">\n                {{option}}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n        </div>\n\n      </div>\n\n      <button type=\"button\" (click)=\"filter()\" [disabled]=\"!filterForm.valid\">Submit</button>\n      <button type=\"button\" (click)=\"reset()\">Reset (show all spot)</button>\n\n\n      <!-- Table (left) ---------------------------------------------------------------------------->\n      <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" matSort>\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Addres Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef> Address </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.city}} {{element.street}} {{element.building}} </td>\n        </ng-container>\n\n<!--          Distance Column \n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.distance == -1 ? '---' : element.distance}} </td>\n        </ng-container> -->\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n\n    </div>\n\n    <!-- RIGHT ------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"map\">\n\n      <!-- The map (right) ------------------------------------------------------------------------->\n      <agm-map [zoom]='17' [latitude]=\"currlat\" [longitude]=\"currlng\">\n\n        <!-- Marker for current location -->\n        <agm-marker [latitude]=\"currlat\" [longitude]=\"currlng\" [iconUrl]=\"'../../assets/img/blue-dot.png'\">\n          <agm-info-window>Your current location</agm-info-window>\n        </agm-marker>\n\n        <!-- Markers for all avaiable spot -->\n        <agm-marker *ngFor=\"let spot of ELEMENT_DATA_FILTER; let i=index\" [latitude]=\"+spot.latitude\" [longitude]=\"+spot.longitude\"\n          [label]=\"spot.id.toString()\">\n          <agm-info-window>\n            ID: {{spot.id}}\n            <br>\n            price: {{spot.price}}\n            <br>\n            distance: {{spot.distance}}\n            <br>\n            <button type=\"button\" (click)=\"rentSpot(spot)\">Rent Me!</button>\n\n          </agm-info-window>\n        </agm-marker>\n\n\n      </agm-map>\n\n    </div>\n\n\n  </div>\n\n \n</div>"
+module.exports = "<div style=\"width:40%; margin:5% auto;\" *ngIf=\"loading\">\n  <mat-progress-spinner mode=\"indeterminate\" value=\"indeterminate\" diameter=\"220\" strokeWidth=\"35\" style=\"width:15%; margin:0 auto;\">\n  </mat-progress-spinner>\n  <div>\n    <img src=\"../../assets/img/get_spot_wait_line1.png\" style=\"width:130%; margin-left:-10%; margin-top:20%;\" align=\"middle\">\n  </div>\n  <div>\n    <img src=\"../../assets/img/get_spot_wait_line2.png\" style=\"width:22%; margin-left:40% ;\" >\n  </div>\n  \n</div> \n\n<div class=\"container\" *ngIf=\"!loading\">\n  <!-- Title -->\n  <h2>Find parking spot</h2> \n  <!-- split page to 2 columns: table on the left and map on the right -->\n  <div class=\"row\">\n\n    <!-- FEFT -------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"table\">\n\n      <!-- Form (left) ----------------------------------------------------------------------------->\n      <div class=\"container\" [formGroup]=\"filterForm\">\n\n        <!-- Current Location Options -->\n        <div>\n          <mat-form-field>\n            <mat-label>Choose how to determine your current location</mat-label>\n            <mat-select placeholder=\"location options\" formControlName=\"locationOption\" required [(value)]=\"filterElement.locationOption\">\n              <mat-option *ngFor=\"let option of locationOptions\" [value]=\"option\">\n                {{option}}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n        </div>\n        <div>\n          <mat-form-field class=\"form-field\" style=\"padding-left: 5%\">\n            <mat-label>Search for location</mat-label>\n            <input matInput placeholder=\"Fill your address\" formControlName=\"address\" autocorrect=\"off\" autocapitalize=\"off\"\n              spellcheck=\"off\" class=\"form-control\" #search [formControl]=\"searchControl\">\n          </mat-form-field>\n        </div>\n\n        <!-- Max Distance -->\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max distance from your location</mat-label>\n            <input matInput placeholder=\"max distance\" formControlName=\"maxDistance\">\n            <mat-error *ngIf=\"filterForm.controls['maxDistance'].hasError('pattern')\">\n              Please enter a valid distance: Integer number only\n            </mat-error>\n          </mat-form-field>\n        </div>\n\n        <!-- Max Price -->\n        <div>\n          <mat-form-field class=\"form-field\">\n            <mat-label>Max price</mat-label>\n            <input matInput placeholder=\"max price\" formControlName=\"maxPrice\">\n            <mat-error *ngIf=\"filterForm.controls['maxPrice'].hasError('pattern')\">\n              Please enter a valid price: Integer number only\n            </mat-error>\n          </mat-form-field>\n        </div>\n\n      </div>\n\n      <div>\n        <button type=\"button\" class=\"btn btn-primary\" (click)=\"filter()\" [disabled]=\"!filterForm.valid\">Search</button>\n        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"reset()\">Reset (show all spots)</button>\n      </div>\n\n      <br>\n\n      <!-- Table (left) ---------------------------------------------------------------------------->\n      <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" matSort>\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Addres Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef> Address </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.street}} St {{element.building}}, {{element.city}} </td>\n        </ng-container>\n\n        <!-- Distance Column \n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Distance </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.distance == -1 ? '---' : element.distance}} </td>\n        </ng-container> -->\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n      </table>\n\n    </div>\n\n    <!-- RIGHT ------------------------------------------------------------------------------------->\n    <div class=\"column-split\" id=\"map\">\n\n      <!-- The map (right) ------------------------------------------------------------------------->\n      <agm-map [zoom]='17' [latitude]=\"currlat\" [longitude]=\"currlng\">\n\n        <!-- Marker for current location -->\n        <agm-marker [latitude]=\"currlat\" [longitude]=\"currlng\" [iconUrl]=\"'../../assets/img/blue-dot.png'\">\n          <agm-info-window>Your current location</agm-info-window>\n        </agm-marker>\n\n        <!-- Markers for all avaiable spot -->\n        <agm-marker *ngFor=\"let spot of ELEMENT_DATA_FILTER; let i=index\" [latitude]=\"+spot.latitude\" [longitude]=\"+spot.longitude\"\n          [label]=\"{color: 'black', text: spot.price.toString()+'&#8362;'}\">\n          <agm-info-window>\n            ID: {{spot.id}}\n            <br>\n            Price: {{spot.price.toString()}}&#8362;\n            <!-- <br>\n            Distance: {{spot.distance}} -->\n            <br>\n            Address: {{spot.street}} St {{spot.building}}\n            <br>\n            <button type=\"button\" class=\"btn btn-info btn-sm\" (click)=\"rentSpot(spot)\" style=\"font-size:10px;\">Rent Me!</button>\n\n          </agm-info-window>\n        </agm-marker>\n\n\n      </agm-map>\n\n    </div>\n\n\n  </div>\n\n \n</div>"
 
 /***/ }),
 
@@ -348,32 +348,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var FindParkingComponent = /** @class */ (function () {
-    function FindParkingComponent(mapsAPILoader, fb, webService, rentDialog) {
+    function FindParkingComponent(mapsAPILoader, ngZone, fb, webService, rentDialog) {
         this.mapsAPILoader = mapsAPILoader;
+        this.ngZone = ngZone;
         this.fb = fb;
         this.webService = webService;
         this.rentDialog = rentDialog;
         //--- INIT LOCATION ----------------------------------------------------------------------------------------
         // let the user to define his current location
-        this.defineCurrLocOptions = ['GPS location', 'Technion']; // need to add "choose by address"
+        this.locationOptions = ['GPS location', 'Address', 'Technion'];
         this.selectedCurrLocOption = 'GPS location';
+        this.addressByForm = '';
         this.loading = true;
         // technion location (used if browser doesn't support GPS)
         this.thecnionlat = 32.776520;
         this.thecnionlng = 35.022610;
         //--- DATABASE ---------------------------------------------------------------------------------------------
-        // fake DB TODO: updete this!!!
         this.displayedColumns = ['id', 'address', 'price'];
         this.ELEMENT_DATA = null;
         this.ELEMENT_DATA_FILTER = null;
         this.dataSource = null;
+        this.addressIsValid = false;
         this.filterElement = {
-            locationOption: 'GPS location',
+            locationOption: 'Address',
             maxDistance: -1,
             maxPrice: -1,
+            address: ''
         };
-        this.locationOptions = ['GPS location', 'Technion']; // need to add "choose by address"
         //--- RENT SPOT -----------------------------------------------------------------------------------
         this.selectedSpot = null;
         // init filterForm (fields and validators):
@@ -382,11 +385,13 @@ var FindParkingComponent = /** @class */ (function () {
             'maxPrice': ["", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('[0-9]*')]],
             'maxDistance': ["", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('[0-9]*')]],
             'locationOption': ["", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
+            'address': ["", []],
         });
     }
     FindParkingComponent.prototype.ngOnInit = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var res;
+            var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -402,30 +407,38 @@ var FindParkingComponent = /** @class */ (function () {
                         console.log(this.dataSource);
                         this.dataSource.sort = this.sort;
                         this.loading = false;
+                        // create search FormControl
+                        this.searchControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
+                        // load Places Autocomplete
+                        this.mapsAPILoader.load().then(function () {
+                            var autocomplete = new google.maps.places.Autocomplete(_this.searchElementRef.nativeElement, { types: ["address"] });
+                            autocomplete.addListener("place_changed", function () {
+                                _this.addressIsValid = false;
+                                _this.ngZone.run(function () {
+                                    // get the place result
+                                    var place = autocomplete.getPlace();
+                                    // verify result:
+                                    if (place.geometry === undefined || place.geometry === null) {
+                                        return;
+                                    }
+                                    // set latitude, longitude and zoom
+                                    _this.currlat = place.geometry.location.lat();
+                                    _this.currlng = place.geometry.location.lng();
+                                    _this.addressByForm = place.formatted_address;
+                                    _this.addressIsValid = true;
+                                });
+                            });
+                        });
                         return [2 /*return*/];
                 }
             });
         });
     };
-    FindParkingComponent.prototype.getAddress = function (lat, lng) {
-        if (navigator.geolocation) {
-            var geocoder = new google.maps.Geocoder();
-            var latlng = new google.maps.LatLng(lat, lng);
-            var request = { latLng: latlng };
-            var res_1 = '(lat=' + lat + ',lng=' + lng + ')';
-            geocoder.geocode(request, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK && results[0]) {
-                    //console.log("************ results[0].formatted_address", results[0].formatted_address)
-                    res_1 = results[0].formatted_address;
-                }
-            });
-            return res_1;
-        }
-    };
     //--- UPDATE LOCATION --------------------------------------------------------------------------------------
     FindParkingComponent.prototype.findCurrentLocation = function () {
         var _this = this;
         if (this.selectedCurrLocOption == 'GPS location') {
+            this.addressByForm = '';
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     _this.currlat = position.coords.latitude;
@@ -438,22 +451,30 @@ var FindParkingComponent = /** @class */ (function () {
             }
         }
         else if (this.selectedCurrLocOption == 'Technion') {
+            this.addressByForm = '';
             this.changeCurrentLocationToTechnion();
         }
-        else { // in case user define his address manially. for now use technion
-            this.changeCurrentLocationToTechnion();
+        else { // in case user define his address manially. 
+            // only if address is not valid - use technion instead (else - use user address)
+            if (!this.addressIsValid) {
+                this.changeCurrentLocationToTechnion();
+            }
         }
     };
     FindParkingComponent.prototype.changeCurrentLocationToTechnion = function () {
         this.currlat = this.thecnionlat;
         this.currlng = this.thecnionlng;
-        //this.getAddress(this.currlat, this.currlng)
     };
     FindParkingComponent.prototype.filter = function () {
-        this.filterElement.locationOption = this.filterForm.value.locationOption;
         this.filterElement.maxDistance = (this.filterForm.value.maxDistance == "" || this.filterForm.value.maxDistance == null) ? -1 : this.filterForm.value.maxDistance;
         this.filterElement.maxPrice = (this.filterForm.value.maxPrice == "" || this.filterForm.value.maxPrice == null) ? -1 : this.filterForm.value.maxPrice;
+        this.filterElement.address = (this.filterElement.locationOption == 'Address') ? this.addressByForm : '';
+        console.log('~~~~~' + this.filterElement.address);
+        this.filterElement.locationOption = this.filterForm.value.locationOption;
         this.selectedCurrLocOption = this.filterForm.value.locationOption;
+        if (this.selectedCurrLocOption == 'GPS location' || this.selectedCurrLocOption == 'Technion') {
+            this.filterForm.controls['address'].reset();
+        }
         this.findCurrentLocation();
         this.filterMarkers();
     };
@@ -464,19 +485,34 @@ var FindParkingComponent = /** @class */ (function () {
         this.filterMarkers();
     };
     FindParkingComponent.prototype.filterMarkers = function () {
-        this.ELEMENT_DATA_FILTER = [];
-        var centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
-        for (var _i = 0, _a = this.ELEMENT_DATA; _i < _a.length; _i++) {
-            var spot = _a[_i];
-            var markerLoc = new google.maps.LatLng(spot.latitude, spot.longitude);
-            // spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
-            // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
-            if (((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
-                this.ELEMENT_DATA_FILTER.push(spot);
-            }
-        }
-        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
-        this.dataSource.sort = this.sort;
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var res, centerLoc, _i, _a, spot, markerLoc;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        this.ELEMENT_DATA_FILTER = [];
+                        this.loading = true;
+                        return [4 /*yield*/, this.webService.findSpotsByParamaters(this.filterElement)];
+                    case 1:
+                        res = _b.sent();
+                        this.ELEMENT_DATA_FILTER = JSON.parse('' + res + '');
+                        this.loading = false;
+                        centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
+                        for (_i = 0, _a = this.ELEMENT_DATA; _i < _a.length; _i++) {
+                            spot = _a[_i];
+                            markerLoc = new google.maps.LatLng(spot.latitude, spot.longitude);
+                            // spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
+                            // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
+                            if (((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
+                                this.ELEMENT_DATA_FILTER.push(spot);
+                            }
+                        }
+                        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
+                        this.dataSource.sort = this.sort;
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     FindParkingComponent.prototype.rentSpot = function (spot) {
         console.log("you choose to rent: ", spot);
@@ -489,7 +525,7 @@ var FindParkingComponent = /** @class */ (function () {
         var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogConfig"]();
         dialogConfig.disableClose = true; /** the user will not be able to close the dialog just by clicking outside of it */
         dialogConfig.autoFocus = false; /** the focus will not be set automatically on the first form field of the dialog */
-        dialogConfig.height = '500px'; /** size of dialog window */
+        dialogConfig.height = '450px'; /** size of dialog window */
         dialogConfig.width = '500px';
         dialogConfig.data = {
             id: this.selectedSpot.id,
@@ -502,7 +538,7 @@ var FindParkingComponent = /** @class */ (function () {
         };
         /** open dialog */
         var dialogRef = this.rentDialog.open(_rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_6__["RentSpotDialogComponent"], dialogConfig);
-        /** get data from dialog - empty for no */
+        /** get data from dialog - empty for now */
         dialogRef.afterClosed().subscribe(function (result) {
             if (result != null) {
                 if (result == 'rent') {
@@ -518,13 +554,17 @@ var FindParkingComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSort"]),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSort"])
     ], FindParkingComponent.prototype, "sort", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("search"),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], FindParkingComponent.prototype, "searchElementRef", void 0);
     FindParkingComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-find-parking',
             template: __webpack_require__(/*! ./find-parking.component.html */ "./src/app/find-parking/find-parking.component.html"),
             styles: [__webpack_require__(/*! ./find-parking.component.css */ "./src/app/find-parking/find-parking.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_agm_core__WEBPACK_IMPORTED_MODULE_2__["MapsAPILoader"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _web_service__WEBPACK_IMPORTED_MODULE_5__["WebService"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialog"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_agm_core__WEBPACK_IMPORTED_MODULE_2__["MapsAPILoader"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _web_service__WEBPACK_IMPORTED_MODULE_5__["WebService"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialog"]])
     ], FindParkingComponent);
     return FindParkingComponent;
 }());
@@ -894,7 +934,7 @@ var NotFoundComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3JlbnQtc3BvdC1kaWFsb2cvcmVudC1zcG90LWRpYWxvZy5jb21wb25lbnQuY3NzIn0= */"
+module.exports = ".btn-primary, .btn-secondary {\n    width:130px;\n    margin-left: 20px;\n    margin-right: 20px;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcmVudC1zcG90LWRpYWxvZy9yZW50LXNwb3QtZGlhbG9nLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxZQUFZO0lBQ1osa0JBQWtCO0lBQ2xCLG1CQUFtQjtHQUNwQiIsImZpbGUiOiJzcmMvYXBwL3JlbnQtc3BvdC1kaWFsb2cvcmVudC1zcG90LWRpYWxvZy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmJ0bi1wcmltYXJ5LCAuYnRuLXNlY29uZGFyeSB7XG4gICAgd2lkdGg6MTMwcHg7XG4gICAgbWFyZ2luLWxlZnQ6IDIwcHg7XG4gICAgbWFyZ2luLXJpZ2h0OiAyMHB4O1xuICB9Il19 */"
 
 /***/ }),
 
@@ -905,7 +945,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Rent Spot</h1>\n\n\n<div mat-dialog-content>\n  <p>You have selected the parking spot with the following characteristics:</p>\n\n  <p><b>ID: </b>{{spot.id}}</p>\n  <p><b>price: </b>{{spot.price}}</p>\n  <p><b>address: </b>{{spot.city}} {{spot.street}} {{spot.building}} </p>\n  <p><b>start time: </b> {{spot.start_time}} </p>\n  <p><b>end time: </b> {{spot.end_time}} </p>\n\n</div>\n\n<div mat-dialog-actions>\n  <button mat-button (click)=\"rent(spot.id)\">Rent</button>\n  <button mat-button (click)=\"close()\">Close</button>\n</div> "
+module.exports = "<h1 mat-dialog-title>Rent Spot</h1>\n\n\n<div mat-dialog-content>\n  <p>You have selected the parking spot with the following characteristics:</p>\n\n  <p><b>ID: </b>{{spot.id}}</p>\n  <p><b>price: </b>{{spot.price}}</p>\n  <p><b>address: </b>{{spot.city}} {{spot.street}} {{spot.building}} </p>\n  <p><b>start time: </b> {{spot.start_time}} </p>\n  <p><b>end time: </b> {{spot.end_time}} </p>\n\n</div>\n\n<div mat-dialog-actions align=\"center\">\n  <button mat-button class=\"btn btn-primary\" (click)=\"rent(spot.id)\">Rent</button>\n  <button mat-button class=\"btn btn-secondary\" (click)=\"close()\">Close</button>\n</div>"
 
 /***/ }),
 
@@ -1265,6 +1305,7 @@ var WebService = /** @class */ (function () {
         this.GET_SPOT_URL = '/logged/search/all/renting_spots';
         this.GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots';
         this.RENT_URL = 'logged/rent/renting_spot';
+        this.SEARCH_SPOTS_URL = 'someurl'; //TODO: change
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
         this.id_token = null;
         this.access_token = null;
@@ -1276,8 +1317,6 @@ var WebService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         body = {
-                            accessToken: this.access_token,
-                            idToken: this.id_token,
                             city: rent.city,
                             street: rent.street,
                             start_time: rent.start_time,
@@ -1307,8 +1346,6 @@ var WebService = /** @class */ (function () {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'content-type': 'application/json' }),
         };
         var body = {
-            client_id: this.client_id,
-            email: form.email,
             password: form.password,
             connection: 'Username-Password-Authentication',
             user_metadata: { name: form.name, username: form.username },
@@ -1325,10 +1362,7 @@ var WebService = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        body = {
-                            username: user.email,
-                            password: user.password
-                        };
+                        body = {};
                         console.log(JSON.stringify(body));
                         console.log(this.BASE_URL + this.LOGIN_URL);
                         _a.label = 1;
@@ -1337,8 +1371,6 @@ var WebService = /** @class */ (function () {
                         return [4 /*yield*/, this.http.post(this.BASE_URL + this.LOGIN_URL, body).toPromise()];
                     case 2:
                         x = _a.sent();
-                        this.id_token = x['idToken'];
-                        this.access_token = x['accessToken'];
                         return [2 /*return*/, x];
                     case 3:
                         error_1 = _a.sent();
@@ -1354,10 +1386,7 @@ var WebService = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        body = {
-                            accessToken: this.access_token,
-                            idToken: this.id_token
-                        };
+                        body = {};
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
@@ -1380,9 +1409,7 @@ var WebService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         body = {
-                            id: spot,
-                            accessToken: this.access_token,
-                            idToken: this.id_token
+                            id: spot
                         };
                         _a.label = 1;
                     case 1:
@@ -1400,13 +1427,29 @@ var WebService = /** @class */ (function () {
         });
     };
     WebService.prototype.postLogOut = function () {
-        var body = {
-            accessToken: this.access_token,
-            idToken: this.id_token
-        };
-        this.http.post(this.BASE_URL + this.LOGOUT, body);
+        var body = {};
+        this.http.post(this.BASE_URL + this.LOGOUT, body).toPromise();
         this.access_token = null;
         this.id_token = null;
+    };
+    WebService.prototype.findSpotsByParamaters = function (toSearch) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var res, error_4;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.SEARCH_SPOTS_URL, toSearch).toPromise()];
+                    case 1:
+                        res = _a.sent();
+                        return [2 /*return*/, JSON.stringify(res)];
+                    case 2:
+                        error_4 = _a.sent();
+                        return [2 /*return*/, JSON.stringify(error_4)];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
     };
     WebService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
