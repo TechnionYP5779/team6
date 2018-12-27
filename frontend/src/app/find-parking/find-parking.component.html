@@ -57,10 +57,11 @@
       </div>
 
       <div>
-        <button type="button" (click)="filter()" [disabled]="!filterForm.valid">Submit</button>
-        <button type="button" (click)="reset()">Reset (show all spots)</button>
+        <button type="button" class="btn btn-primary" (click)="filter()" [disabled]="!filterForm.valid">Submit</button>
+        <button type="button" class="btn btn-secondary" (click)="reset()">Reset (show all spots)</button>
       </div>
 
+      <br>
 
       <!-- Table (left) ---------------------------------------------------------------------------->
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
@@ -118,7 +119,7 @@
             <br>
             Address: {{spot.street}} St {{spot.building}}
             <br>
-            <button type="button" (click)="rentSpot(spot)">Rent Me!</button>
+            <button type="button" class="btn btn-info btn-sm" (click)="rentSpot(spot)" style="font-size:10px;">Rent Me!</button>
 
           </agm-info-window>
         </agm-marker>

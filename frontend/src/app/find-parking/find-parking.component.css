@@ -27,18 +27,6 @@
     width: 600px;
   }
 
-  .example-radio-group {
-    display: inline-flex;
-    flex-direction: column;
-  }
-  
-  .example-radio-button {
-    margin: 5px;
-  }
-  
-  .example-selected-value {
-    margin: 15px 0;
-  }
   
   /** table */
   
@@ -48,4 +36,10 @@
 
   .mat-form-field{
     width:400px;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: auto;
+    margin-left: 20px;
+    margin-right: 20px;
   }

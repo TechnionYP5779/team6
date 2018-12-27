@@ -203,7 +203,7 @@ export class FindParkingComponent implements OnInit {
     dialogConfig.disableClose = true;   /** the user will not be able to close the dialog just by clicking outside of it */
     dialogConfig.autoFocus = false;     /** the focus will not be set automatically on the first form field of the dialog */
 
-    dialogConfig.height = '500px';      /** size of dialog window */
+    dialogConfig.height = '450px';      /** size of dialog window */
     dialogConfig.width = '500px';
 
     dialogConfig.data = { /** pass data to dialog */
@@ -216,7 +216,7 @@ export class FindParkingComponent implements OnInit {
     /** open dialog */
     const dialogRef = this.rentDialog.open(RentSpotDialogComponent, dialogConfig);
 
-    /** get data from dialog - empty for no */
+    /** get data from dialog - empty for now */
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
         if (result == 'rent') {
