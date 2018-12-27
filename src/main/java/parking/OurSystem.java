@@ -169,12 +169,12 @@ public class OurSystem {
     boolean pricePar = !maxPrice.equals("-1");
     Address a = null;
     double distance = 0;
-    double price = 0;
+    int price = 0;
     if (distancePar) {
       distance = Double.parseDouble(maxDistance);
     }
     if (pricePar) {
-      price = Double.parseDouble(maxPrice);
+      price = Integer.parseInt(maxPrice);
     }
     if (addressPar) {
       try {

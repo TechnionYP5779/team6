@@ -41,6 +41,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _find_parking_find_parking_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./find-parking/find-parking.component */ "./src/app/find-parking/find-parking.component.ts");
 /* harmony import */ var _become_host_become_host_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./become-host/become-host.component */ "./src/app/become-host/become-host.component.ts");
 /* harmony import */ var _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./not-found/not-found.component */ "./src/app/not-found/not-found.component.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+
 
 
 
@@ -52,6 +54,7 @@ var routes = [
     { path: '', component: _home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] },
     { path: 'find-parking', component: _find_parking_find_parking_component__WEBPACK_IMPORTED_MODULE_4__["FindParkingComponent"] },
     { path: 'become-host', component: _become_host_become_host_component__WEBPACK_IMPORTED_MODULE_5__["BecomeHostComponent"] },
+    { path: 'profile', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_7__["ProfileComponent"] },
     { path: '**', component: _not_found_not_found_component__WEBPACK_IMPORTED_MODULE_6__["NotFoundComponent"] },
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -160,7 +163,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./rent-spot-form/rent-spot-form.component */ "./src/app/rent-spot-form/rent-spot-form.component.ts");
 /* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./web.service */ "./src/app/web.service.ts");
 /* harmony import */ var _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./rent-spot-dialog/rent-spot-dialog.component */ "./src/app/rent-spot-dialog/rent-spot-dialog.component.ts");
-/* harmony import */ var _personal_page_personal_page_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./personal-page/personal-page.component */ "./src/app/personal-page/personal-page.component.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
 // external imports:
 
 
@@ -205,7 +208,7 @@ var AppModule = /** @class */ (function () {
                 _login_login_component__WEBPACK_IMPORTED_MODULE_21__["LoginComponent"],
                 _rent_spot_form_rent_spot_form_component__WEBPACK_IMPORTED_MODULE_22__["RentSpotFormComponent"],
                 _rent_spot_dialog_rent_spot_dialog_component__WEBPACK_IMPORTED_MODULE_24__["RentSpotDialogComponent"],
-                _personal_page_personal_page_component__WEBPACK_IMPORTED_MODULE_25__["PersonalPageComponent"]
+                _profile_profile_component__WEBPACK_IMPORTED_MODULE_25__["ProfileComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -369,14 +372,21 @@ var FindParkingComponent = /** @class */ (function () {
         this.thecnionlng = 35.022610;
         //--- DATABASE ---------------------------------------------------------------------------------------------
         this.displayedColumns = ['id', 'address', 'price'];
-        this.ELEMENT_DATA = null;
+        //ELEMENT_DATA: SpotElement[] = null;
+        this.ELEMENT_DATA = [
+            { id: 1, latitude: 32.6394776, longitude: 35.08386280000002, street: 'Arbel', building: 2, city: 'Yokeneam', start_time: 'st', end_time: 'et', price: 30, userId: 'u1', buyerId: 'b1' },
+            { id: 2, latitude: 32.6388926, longitude: 35.08363489999999, street: 'Arbel', building: 5, city: 'Yokeneam', start_time: 'st', end_time: 'et', price: 50, userId: 'u1', buyerId: 'b1' },
+            { id: 3, latitude: 32.640864011354665, longitude: 35.08543851418892, street: 'HaHatsbani', building: 20, city: 'Yokeneam', start_time: 'st', end_time: 'et', price: 40, userId: 'u1', buyerId: 'b1' },
+            { id: 4, latitude: 32.63993094696561, longitude: 35.08529903932015, street: 'Dan', building: 4, city: 'Yokeneam', start_time: 'st', end_time: 'et', price: 45, userId: 'u1', buyerId: 'b1' },
+            { id: 5, latitude: 32.642645324221604, longitude: 35.08612632751465, street: 'Yarden', building: 62, city: 'Yokeneam', start_time: 'st', end_time: 'et', price: 45, userId: 'u1', buyerId: 'b1' },
+        ];
         this.ELEMENT_DATA_FILTER = null;
         this.dataSource = null;
         this.addressIsValid = false;
         this.filterElement = {
             locationOption: 'Address',
-            maxDistance: -1,
-            maxPrice: -1,
+            maxDistance: '-1',
+            maxPrice: '-1',
             address: ''
         };
         //--- RENT SPOT -----------------------------------------------------------------------------------
@@ -472,8 +482,8 @@ var FindParkingComponent = /** @class */ (function () {
         this.currlng = this.thecnionlng;
     };
     FindParkingComponent.prototype.filter = function () {
-        this.filterElement.maxDistance = (this.filterForm.value.maxDistance == "" || this.filterForm.value.maxDistance == null) ? -1 : this.filterForm.value.maxDistance;
-        this.filterElement.maxPrice = (this.filterForm.value.maxPrice == "" || this.filterForm.value.maxPrice == null) ? -1 : this.filterForm.value.maxPrice;
+        this.filterElement.maxDistance = (this.filterForm.value.maxDistance == "" || this.filterForm.value.maxDistance == null) ? '-1' : this.filterForm.value.maxDistance.toString();
+        this.filterElement.maxPrice = (this.filterForm.value.maxPrice == "" || this.filterForm.value.maxPrice == null) ? '-1' : this.filterForm.value.maxPrice.toString();
         this.filterElement.address = (this.filterElement.locationOption == 'Address') ? this.addressByForm : '';
         this.filterElement.locationOption = this.filterForm.value.locationOption;
         this.selectedCurrLocOption = this.filterForm.value.locationOption;
@@ -491,8 +501,8 @@ var FindParkingComponent = /** @class */ (function () {
     };
     FindParkingComponent.prototype.reset = function () {
         this.filterForm.reset();
-        this.filterElement.maxDistance = -1;
-        this.filterElement.maxPrice = -1;
+        this.filterElement.maxDistance = '-1';
+        this.filterElement.maxPrice = '-1';
         this.filterMarkers();
     };
     FindParkingComponent.prototype.filterMarkers = function () {
@@ -512,6 +522,7 @@ var FindParkingComponent = /** @class */ (function () {
                         else {
                             this.ELEMENT_DATA_FILTER = JSON.parse('' + res + '');
                         }
+                        console.log(res);
                         this.loading = false;
                         centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
                         for (_i = 0, _a = this.ELEMENT_DATA; _i < _a.length; _i++) {
@@ -519,9 +530,9 @@ var FindParkingComponent = /** @class */ (function () {
                             markerLoc = new google.maps.LatLng(spot.latitude, spot.longitude);
                             // spot.distance = Math.round(google.maps.geometry.spherical.computeDistanceBetween(markerLoc, centerLoc));
                             // if (((spot.distance <= this.filterElement.maxDistance) || (this.filterElement.maxDistance == -1)) &&
-                            if (((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
-                                this.ELEMENT_DATA_FILTER.push(spot);
-                            }
+                            // if (((spot.price <= this.filterElement.maxPrice) || (this.filterElement.maxPrice == -1))) {
+                            //   this.ELEMENT_DATA_FILTER.push(spot);
+                            // }
                         }
                         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](this.ELEMENT_DATA_FILTER);
                         this.dataSource.sort = this.sort;
@@ -831,7 +842,7 @@ module.exports = ".navbar {\n    width: 100%;\n    background-color: #555;\n    
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-sm bg-dark navbar-dark\">\n\n  <!-- Brand / Logo -->\n  <!-- TODO: update name + logo -->\n  <a class=\"navbar-brand\" routerLink=\"\" style=\"font-size:x-large\">\n    <img src=\"../../assets/img/parking-logo-white.png\" width=\"35\" height=\"35\" alt=\"logo\">\n    Parking Renting\n  </a>\n\n  <!-- Collapsing The Navigation Bar -->\n  <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleNavbar()\" data-target=\"#mainNavBar\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <!-- The NavBar -->\n  <div class=\"collapse navbar-collapse show\" [ngClass]=\"{ 'show': navbarOpen }\" id=\"mainNavBar\">\n\n    <!-- Left: Find Parking, Become a Host -->\n    <ul class=\"navbar-nav mr-auto\">\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" routerLink=\"\" routerLinkActive=\"active current\" [routerLinkActiveOptions]=\"{exact: true}\">\n          Home\n        </a>\n      </li>\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" routerLink=\"/find-parking\" routerLinkActive=\"active current\">\n          Find Parking\n        </a>\n      </li>\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" routerLink=\"/become-host\" routerLinkActive=\"active current\">\n          Become a Host\n        </a>\n      </li>\n\n    </ul>\n\n    <!-- Right: SignUp, Login -->\n    <ul class=\"nav navbar-nav navbar-right\">\n\n      <li class=\"nav-item\">\n        <a *ngIf=\"username\">\n          Welcome {{username}}\n        </a>\n      </li>\n\n      <li class=\"nav-item\" *ngIf=\"!userIsLogin\">\n        <button type=\"button\" class=\"btn btn-light\" (click)=\"openLoginDialog()\" style=\"width: 110px\">\n          <span class=\"fa fa-sign-in\"></span>\n          Login\n        </button>\n      </li>\n\n      <li class=\"nav-item\" *ngIf=\"userIsLogin\">\n        <button type=\"button\" class=\"btn btn-light\" (click)=\"logout()\" style=\"width: 110px\">\n          <span class=\"fa fa-sign-out\"></span>\n          Logout\n        </button>\n      </li>\n\n      <li class=\"nav-item\" *ngIf=\"!userIsLogin\">\n        <button type=\"button\" class=\"btn btn-light\" (click)=\"openSignUpDialog()\" style=\"width: 110px\">\n          <span class=\"fa fa-user\"></span>\n          Sign Up\n        </button>\n      </li>\n\n    </ul>\n\n  </div>\n\n</nav>"
+module.exports = "<nav class=\"navbar navbar-expand-sm bg-dark navbar-dark\">\n\n  <!-- Brand / Logo -->\n  <!-- TODO: update name + logo -->\n  <a class=\"navbar-brand\" routerLink=\"\" style=\"font-size:x-large\">\n    <img src=\"../../assets/img/parking-logo-white.png\" width=\"35\" height=\"35\" alt=\"logo\">\n    parKcupid\n  </a>\n\n  <!-- Collapsing The Navigation Bar -->\n  <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleNavbar()\" data-target=\"#mainNavBar\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n\n  <!-- The NavBar -->\n  <div class=\"collapse navbar-collapse show\" [ngClass]=\"{ 'show': navbarOpen }\" id=\"mainNavBar\">\n\n    <!-- Left: Find Parking, Become a Host -->\n    <ul class=\"navbar-nav mr-auto\">\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" routerLink=\"\" routerLinkActive=\"active current\" [routerLinkActiveOptions]=\"{exact: true}\">\n          Home\n        </a>\n      </li>\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" routerLink=\"/find-parking\" routerLinkActive=\"active current\">\n          Find Parking\n        </a>\n      </li>\n\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" routerLink=\"/become-host\" routerLinkActive=\"active current\">\n          Become a Host\n        </a>\n      </li>\n\n    </ul>\n\n    <!-- Right: SignUp, Login -->\n    <ul class=\"nav navbar-nav navbar-right\">\n\n      <li class=\"nav-item\">\n        <a *ngIf=\"username\" class=\"nav-link\" routerLink=\"/profile\" routerLinkActive=\"active current\">\n          Welcome {{username}}\n        </a>\n      </li>\n      <li class=\"nav-item\">\n        <a *ngIf=\"!username\" >\n          Welcome Gest\n        </a>\n      </li>\n\n      <li class=\"nav-item\" *ngIf=\"!userIsLogin\">\n        <button type=\"button\" class=\"btn btn-light\" (click)=\"openLoginDialog()\" style=\"width: 110px\">\n          <span class=\"fa fa-sign-in\"></span>\n          Login\n        </button>\n      </li>\n\n      <li class=\"nav-item\" *ngIf=\"userIsLogin\">\n        <button type=\"button\" class=\"btn btn-light\" (click)=\"logout()\" style=\"width: 110px\">\n          <span class=\"fa fa-sign-out\"></span>\n          Logout\n        </button>\n      </li>\n\n      <li class=\"nav-item\" *ngIf=\"!userIsLogin\">\n        <button type=\"button\" class=\"btn btn-light\" (click)=\"openSignUpDialog()\" style=\"width: 110px\">\n          <span class=\"fa fa-user\"></span>\n          Sign Up\n        </button>\n      </li>\n\n    </ul>\n\n  </div>\n\n</nav>"
 
 /***/ }),
 
@@ -863,7 +874,7 @@ var NavbarComponent = /** @class */ (function () {
         this.signUpDialog = signUpDialog;
         this.webService = webService;
         this.navbarOpen = false;
-        this.username = 'Guest';
+        this.username = '';
         this.userIsLogin = false; // TODO: use service instead
     }
     NavbarComponent.prototype.toggleNavbar = function () {
@@ -897,7 +908,7 @@ var NavbarComponent = /** @class */ (function () {
     };
     NavbarComponent.prototype.logout = function () {
         this.webService.postLogOut();
-        this.username = 'Guest';
+        this.username = '';
         this.userIsLogin = false;
     };
     NavbarComponent.prototype.openSignUpDialog = function () {
@@ -984,68 +995,108 @@ var NotFoundComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/personal-page/personal-page.component.css":
-/*!***********************************************************!*\
-  !*** ./src/app/personal-page/personal-page.component.css ***!
-  \***********************************************************/
+/***/ "./src/app/profile/profile.component.css":
+/*!***********************************************!*\
+  !*** ./src/app/profile/profile.component.css ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BlcnNvbmFsLXBhZ2UvcGVyc29uYWwtcGFnZS5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "/** split page to 2 columns */\n\n.container {\n    margin-top: 10px;\n    margin-left: unset; \n    margin-right: unset;\n  }\n\n.row:after {\n    content: \"\";\n    display: table;\n    clear: both;\n  \n  }\n\n.column-split {\n    float: left;\n    width: 50%;\n    padding-left: 15px;\n    padding-right: 15px;\n  }\n\n.mat-table {\n    width: -webkit-max-content;\n    width: -moz-max-content;\n    width: max-content;\n  }\n\n.btn-primary, .btn-secondary {\n    width: auto;\n    margin-left: 20px;\n    margin-right: 20px;\n  }\n\ntr.example-element-row:not(.example-expanded-row):hover {\n    background: #f5f5f5;\n  }\n\ntr.example-element-row:not(.example-expanded-row):active {\n    background: #efefef;\n  }\n\n.example-element-diagram {\n    min-width: 80px;\n    border: 2px solid black;\n    padding: 8px;\n    font-weight: lighter;\n    margin: 8px 0;\n    height: 104px;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJvZmlsZS9wcm9maWxlLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsOEJBQThCOztBQUU5QjtJQUNJLGlCQUFpQjtJQUNqQixtQkFBbUI7SUFDbkIsb0JBQW9CO0dBQ3JCOztBQUVEO0lBQ0UsWUFBWTtJQUNaLGVBQWU7SUFDZixZQUFZOztHQUViOztBQUVEO0lBQ0UsWUFBWTtJQUNaLFdBQVc7SUFDWCxtQkFBbUI7SUFDbkIsb0JBQW9CO0dBQ3JCOztBQUlEO0lBQ0UsMkJBQW1CO0lBQW5CLHdCQUFtQjtJQUFuQixtQkFBbUI7R0FDcEI7O0FBR0Q7SUFDRSxZQUFZO0lBQ1osa0JBQWtCO0lBQ2xCLG1CQUFtQjtHQUNwQjs7QUFFRDtJQUNFLG9CQUFvQjtHQUNyQjs7QUFFRDtJQUNFLG9CQUFvQjtHQUNyQjs7QUFFRDtJQUNFLGdCQUFnQjtJQUNoQix3QkFBd0I7SUFDeEIsYUFBYTtJQUNiLHFCQUFxQjtJQUNyQixjQUFjO0lBQ2QsY0FBYztHQUNmIiwiZmlsZSI6InNyYy9hcHAvcHJvZmlsZS9wcm9maWxlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiogc3BsaXQgcGFnZSB0byAyIGNvbHVtbnMgKi9cblxuLmNvbnRhaW5lciB7XG4gICAgbWFyZ2luLXRvcDogMTBweDtcbiAgICBtYXJnaW4tbGVmdDogdW5zZXQ7IFxuICAgIG1hcmdpbi1yaWdodDogdW5zZXQ7XG4gIH1cbiAgIFxuICAucm93OmFmdGVyIHtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIGRpc3BsYXk6IHRhYmxlO1xuICAgIGNsZWFyOiBib3RoO1xuICBcbiAgfVxuICBcbiAgLmNvbHVtbi1zcGxpdCB7XG4gICAgZmxvYXQ6IGxlZnQ7XG4gICAgd2lkdGg6IDUwJTtcbiAgICBwYWRkaW5nLWxlZnQ6IDE1cHg7XG4gICAgcGFkZGluZy1yaWdodDogMTVweDtcbiAgfVxuICBcblxuICBcbiAgLm1hdC10YWJsZSB7XG4gICAgd2lkdGg6IG1heC1jb250ZW50O1xuICB9XG5cblxuICAuYnRuLXByaW1hcnksIC5idG4tc2Vjb25kYXJ5IHtcbiAgICB3aWR0aDogYXV0bztcbiAgICBtYXJnaW4tbGVmdDogMjBweDtcbiAgICBtYXJnaW4tcmlnaHQ6IDIwcHg7XG4gIH1cblxuICB0ci5leGFtcGxlLWVsZW1lbnQtcm93Om5vdCguZXhhbXBsZS1leHBhbmRlZC1yb3cpOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjVmNWY1O1xuICB9XG4gIFxuICB0ci5leGFtcGxlLWVsZW1lbnQtcm93Om5vdCguZXhhbXBsZS1leHBhbmRlZC1yb3cpOmFjdGl2ZSB7XG4gICAgYmFja2dyb3VuZDogI2VmZWZlZjtcbiAgfVxuICBcbiAgLmV4YW1wbGUtZWxlbWVudC1kaWFncmFtIHtcbiAgICBtaW4td2lkdGg6IDgwcHg7XG4gICAgYm9yZGVyOiAycHggc29saWQgYmxhY2s7XG4gICAgcGFkZGluZzogOHB4O1xuICAgIGZvbnQtd2VpZ2h0OiBsaWdodGVyO1xuICAgIG1hcmdpbjogOHB4IDA7XG4gICAgaGVpZ2h0OiAxMDRweDtcbiAgfSJdfQ== */"
 
 /***/ }),
 
-/***/ "./src/app/personal-page/personal-page.component.html":
-/*!************************************************************!*\
-  !*** ./src/app/personal-page/personal-page.component.html ***!
-  \************************************************************/
+/***/ "./src/app/profile/profile.component.html":
+/*!************************************************!*\
+  !*** ./src/app/profile/profile.component.html ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  personal-page works!\n</p>\n"
+module.exports = "<!--\n  <div class=\"container\" *ngIf=\"!loading\">\n-->\n<div class=\"container\" *ngIf=\"true\" style=\"width:100%\">\n\n  <!-- Title -->\n  <h2>Hello {{ userPersonalInformation.username }}!</h2>\n\n  <!-- PERSONAL INFORMATION --------------------------------------->\n  <br>\n  <div>\n    <h4>Your personal information:</h4>\n\n    <!-- Fisrt Name -->\n    <div class=\"row\">\n      <div class=\"col-sm-2\">\n        <mat-label><b>Username:</b></mat-label>\n      </div>\n      <div class=\"col-sm-2\">\n        <mat-label> {{ userPersonalInformation.name }}</mat-label>\n      </div>\n    </div>\n\n    <!-- Last Name -->\n<!--     <div class=\"row\">\n      <div class=\"col-sm-2\">\n        <mat-label><b>Last name:</b></mat-label>\n      </div>\n      <div class=\"col-sm-2\">\n        <mat-label> {{ userPersonalInformation.lname }}</mat-label>\n      </div>\n    </div> -->\n\n    <!-- Username -->\n<!--     <div class=\"row\">\n      <div class=\"col-sm-2\">\n        <mat-label><b>Username:</b></mat-label>\n      </div>\n      <div class=\"col-sm-2\">\n        <mat-label> {{ userPersonalInformation.username }}</mat-label>\n      </div>\n    </div> -->\n\n    <!-- Email -->\n    <div class=\"row\">\n      <div class=\"col-sm-2\">\n        <mat-label><b>Email address:</b></mat-label>\n      </div>\n      <div class=\"col-sm-2\">\n        <mat-label> {{ userPersonalInformation.email }}</mat-label>\n      </div>\n    </div>\n\n  </div>\n\n\n  <!-- THE PARKING SPOTS YOU OWN ---------------------------------->\n  <br>\n  <div class=\"row\" id=\"ownSpotsTable\" style=\"margin-left: auto\">\n    <h4>The parking spots you own:</h4>\n    <br>\n\n    <table mat-table [dataSource]=\"ownSpotsDataSource\" class=\"mat-elevation-z8\" matSort style=\"width:1500px\">\n      <div class=\"example-element-diagram\">\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef style=\"width:50px\"> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Addres Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef style=\"width:350px\"> Address </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.street}} St {{element.building}}, {{element.city}} </td>\n        </ng-container>\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef style=\"width:70px\"> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <!-- Start Time Column -->\n        <ng-container matColumnDef=\"start_time\">\n          <th mat-header-cell *matHeaderCellDef style=\"width:300px\"> Start Time </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.start_time}} </td>\n        </ng-container>\n\n        <!-- End Time Column -->\n        <ng-container matColumnDef=\"end_time\">\n          <th mat-header-cell *matHeaderCellDef style=\"width:300px\"> End Time </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.end_time}} </td>\n        </ng-container>\n\n         <!-- Status Column -->\n         <ng-container matColumnDef=\"status\">\n            <th mat-header-cell *matHeaderCellDef style=\"width:120px\"> Status </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.status}} </td>\n          </ng-container>\n\n      </div>\n\n      <tr mat-header-row *matHeaderRowDef=\"ownSpotsHeader\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: ownSpotsHeader;\" class=\"example-element-row\"></tr>\n    </table>\n  </div>\n\n  <!-- THE PARKING SPOTS YOU RENT ---------------------------------->\n  <br>\n  <div class=\"row\" id=\"rentSpotsTable\" style=\"margin-left: auto\">\n    <h4>The parking spots you rent:</h4>\n    <br>\n\n    <table mat-table [dataSource]=\"rentSpotsDataSource\" class=\"mat-elevation-z8\" matSort>\n      <div class=\"example-element-diagram\">\n\n        <!-- ID Column -->\n        <ng-container matColumnDef=\"id\">\n          <th mat-header-cell *matHeaderCellDef style=\"width:50px\"> ID </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\n        </ng-container>\n\n        <!-- Addres Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef style=\"width:350px\"> Address </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.street}} St {{element.building}}, {{element.city}} </td>\n        </ng-container>\n\n        <!-- Price Column -->\n        <ng-container matColumnDef=\"price\">\n          <th mat-header-cell *matHeaderCellDef style=\"width:70px\"> Price </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.price}} </td>\n        </ng-container>\n\n        <!-- Start Time Column -->\n        <ng-container matColumnDef=\"start_time\">\n          <th mat-header-cell *matHeaderCellDef style=\"width:300px\"> Start Time </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.start_time}} </td>\n        </ng-container>\n\n        <!-- End Time Column -->\n        <ng-container matColumnDef=\"end_time\">\n          <th mat-header-cell *matHeaderCellDef style=\"width:300px\"> End Time </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.end_time}} </td>\n        </ng-container>\n\n        <!-- Status Column -->\n        <ng-container matColumnDef=\"status\">\n          <th mat-header-cell *matHeaderCellDef style=\"width:120px\"> Status </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.status}} </td>\n        </ng-container>\n\n      </div>\n\n      <tr mat-header-row *matHeaderRowDef=\"rentSpotsHeader\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: rentSpotsHeader;\" class=\"example-element-row\"></tr>\n    </table>\n  </div>\n\n</div>"
 
 /***/ }),
 
-/***/ "./src/app/personal-page/personal-page.component.ts":
-/*!**********************************************************!*\
-  !*** ./src/app/personal-page/personal-page.component.ts ***!
-  \**********************************************************/
-/*! exports provided: PersonalPageComponent */
+/***/ "./src/app/profile/profile.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/profile/profile.component.ts ***!
+  \**********************************************/
+/*! exports provided: ProfileComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PersonalPageComponent", function() { return PersonalPageComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileComponent", function() { return ProfileComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../web.service */ "./src/app/web.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../web.service */ "./src/app/web.service.ts");
 
 
 
-var PersonalPageComponent = /** @class */ (function () {
-    function PersonalPageComponent(webService) {
+
+var ProfileComponent = /** @class */ (function () {
+    function ProfileComponent(webService) {
         this.webService = webService;
+        this.loading = true;
+        // personal information
+        this.userPersonalInformation = { name: "myUsername", email: "my@email.com" };
+        // ownSpots table
+        this.ownSpotsHeader = ['id', 'address', 'price', 'start_time', 'end_time', 'status'];
+        this.OWN_SPOTS_DATA = [
+            { id: 1, latitude: 32.6394776, longitude: 35.08386280000002, street: 'Arbel', building: 2, city: 'Yokeneam', start_time: 'st1', end_time: 'et2', price: 30, userId: 'myUsername', buyerId: 'b1' },
+            { id: 2, latitude: 32.6388926, longitude: 35.08363489999999, street: 'Arbel', building: 5, city: 'Yokeneam', start_time: 'st2', end_time: 'et2', price: 50, userId: 'myUsername', buyerId: 'b2' },
+            { id: 3, latitude: 32.641580, longitude: 35.084620, street: 'Habanyas ', building: 7, city: 'Yokeneam', start_time: 'st3', end_time: 'et3', price: 30, userId: 'myUsername', buyerId: '' },
+        ];
+        this.ownSpotsDataSource = null;
+        // rentSpots table
+        this.rentSpotsHeader = ['id', 'address', 'price', 'start_time', 'end_time', 'status'];
+        this.RENT_SPOTS_DATA = [
+            { id: 5, latitude: 32.640864011354665, longitude: 35.08543851418892, street: 'HaHatsbani', building: 20, city: 'Yokeneam', start_time: 'st5', end_time: 'et5', price: 40, userId: 'u2', buyerId: 'myUsername' },
+            { id: 4, latitude: 32.63993094696561, longitude: 35.08529903932015, street: 'Dan', building: 4, city: 'Yokeneam', start_time: 'st4', end_time: 'et4', price: 45, userId: 'u3', buyerId: 'myUsername' },
+        ];
+        this.rentSpotsDataSource = null;
     }
-    // email = '';
-    // name = '';
-    // rented = '';
-    // loading = false;
-    PersonalPageComponent.prototype.ngOnInit = function () {
+    ProfileComponent.prototype.ngOnInit = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var userInformationRes, userOwnSpotsRes, userRentSpotsRes;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.webService.getUserInformation()];
+                    case 1:
+                        userInformationRes = _a.sent();
+                        this.userPersonalInformation = JSON.parse('' + userInformationRes + '');
+                        return [4 /*yield*/, this.webService.getUserOwnSpots()];
+                    case 2:
+                        userOwnSpotsRes = _a.sent();
+                        this.OWN_SPOTS_DATA = JSON.parse('' + userOwnSpotsRes + '');
+                        this.ownSpotsDataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](this.OWN_SPOTS_DATA);
+                        this.ownSpotsDataSource.sort = this.sort;
+                        return [4 /*yield*/, this.webService.getUserRentSpots()];
+                    case 3:
+                        userRentSpotsRes = _a.sent();
+                        this.RENT_SPOTS_DATA = JSON.parse('' + userRentSpotsRes + '');
+                        this.rentSpotsDataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](this.RENT_SPOTS_DATA);
+                        this.rentSpotsDataSource.sort = this.sort;
+                        this.loading = false;
+                        return [2 /*return*/];
+                }
             });
         });
     };
-    PersonalPageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"]),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"])
+    ], ProfileComponent.prototype, "sort", void 0);
+    ProfileComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-personal-page',
-            template: __webpack_require__(/*! ./personal-page.component.html */ "./src/app/personal-page/personal-page.component.html"),
-            styles: [__webpack_require__(/*! ./personal-page.component.css */ "./src/app/personal-page/personal-page.component.css")]
+            selector: 'app-profile',
+            template: __webpack_require__(/*! ./profile.component.html */ "./src/app/profile/profile.component.html"),
+            styles: [__webpack_require__(/*! ./profile.component.css */ "./src/app/profile/profile.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_web_service__WEBPACK_IMPORTED_MODULE_2__["WebService"]])
-    ], PersonalPageComponent);
-    return PersonalPageComponent;
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_web_service__WEBPACK_IMPORTED_MODULE_3__["WebService"]])
+    ], ProfileComponent);
+    return ProfileComponent;
 }());
 
 
@@ -1088,15 +1139,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _web_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../web.service */ "./src/app/web.service.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../sign-up/sign-up.component */ "./src/app/sign-up/sign-up.component.ts");
+
+
 
 
 
 
 var RentSpotDialogComponent = /** @class */ (function () {
-    function RentSpotDialogComponent(dialogRef, spot, webService) {
+    function RentSpotDialogComponent(dialogRef, spot, webService, loginDialog, signUpDialog) {
         this.dialogRef = dialogRef;
         this.spot = spot;
         this.webService = webService;
+        this.loginDialog = loginDialog;
+        this.signUpDialog = signUpDialog;
     }
     RentSpotDialogComponent.prototype.ngOnInit = function () {
     };
@@ -1122,6 +1179,43 @@ var RentSpotDialogComponent = /** @class */ (function () {
             });
         });
     };
+    RentSpotDialogComponent.prototype.openLoginDialog = function () {
+        var _this = this;
+        /** config dialog */
+        var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogConfig"]();
+        dialogConfig.disableClose = true; /** the user will not be able to close the dialog just by clicking outside of it */
+        dialogConfig.autoFocus = false; /** the focus will not be set automatically on the first form field of the dialog */
+        dialogConfig.height = '350px'; /** size of dialog window */
+        dialogConfig.width = '500px';
+        dialogConfig.data = {}; /** pass data to dialog - empty for now */
+        /** open dialog */
+        var dialogRef = this.loginDialog.open(_login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"], dialogConfig);
+        /** get data from dialog: only username for now */
+        dialogRef.afterClosed().subscribe(function (result) {
+            if (result != null) {
+                if (result.closeOption == 'login') {
+                    //this.username = result.username; // else: username is still 'Guest'
+                    //this.userIsLogin = true;
+                }
+                else if (result.closeOption == 'signup') {
+                    _this.openSignUpDialog();
+                }
+            }
+        });
+    };
+    RentSpotDialogComponent.prototype.openSignUpDialog = function () {
+        /** config dialog */
+        var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogConfig"]();
+        dialogConfig.disableClose = true; /** the user will not be able to close the dialog just by clicking outside of it */
+        dialogConfig.autoFocus = false; /** the focus will not be set automatically on the first form field of the dialog */
+        dialogConfig.height = '500px'; /** size of dialog window */
+        dialogConfig.width = '500px';
+        dialogConfig.data = {}; /** pass data to dialog - empty for now */
+        /** open dialog */
+        var dialogRef = this.signUpDialog.open(_sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_5__["SignUpComponent"], dialogConfig);
+        /** get data from dialog - empty for no */
+        dialogRef.afterClosed().subscribe(function (result) { });
+    };
     RentSpotDialogComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-rent-spot-dialog',
@@ -1129,7 +1223,8 @@ var RentSpotDialogComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./rent-spot-dialog.component.css */ "./src/app/rent-spot-dialog/rent-spot-dialog.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object, _web_service__WEBPACK_IMPORTED_MODULE_3__["WebService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object, _web_service__WEBPACK_IMPORTED_MODULE_3__["WebService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"]])
     ], RentSpotDialogComponent);
     return RentSpotDialogComponent;
 }());
@@ -1432,6 +1527,8 @@ var WebService = /** @class */ (function () {
         this.GET_RENTED = 'logged/search/user/renting_spots';
         this.GET_RENTING = '/logged/search/buyer/renting_spots';
         this.GETDETAILROOT_URL = '/getDetailRoot';
+        this.USER_INFO = '/logged/userinfo';
+        this.GET_SPOT_BY_PARAMETERS = '/findSpotsByParamaters';
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
         this.id_token = null;
         this.access_token = null;
@@ -1593,7 +1690,7 @@ var WebService = /** @class */ (function () {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.GET_SPOT_URL, toSearch).toPromise()];
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.GET_SPOT_BY_PARAMETERS, JSON.stringify(toSearch)).toPromise()];
                     case 2:
                         res = _a.sent();
                         return [2 /*return*/, JSON.stringify(res)];
@@ -1605,7 +1702,7 @@ var WebService = /** @class */ (function () {
             });
         });
     };
-    WebService.prototype.getRented = function () {
+    WebService.prototype.getUserRentSpots = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var body, res, error_6;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
@@ -1618,16 +1715,16 @@ var WebService = /** @class */ (function () {
                         return [4 /*yield*/, this.http.post(this.BASE_URL + this.GET_RENTED, body).toPromise()];
                     case 2:
                         res = _a.sent();
-                        return [3 /*break*/, 4];
+                        return [2 /*return*/, res];
                     case 3:
                         error_6 = _a.sent();
-                        return [3 /*break*/, 4];
+                        return [2 /*return*/, null];
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    WebService.prototype.getMySpots = function () {
+    WebService.prototype.getUserOwnSpots = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var body, res, error_7;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
@@ -1640,10 +1737,32 @@ var WebService = /** @class */ (function () {
                         return [4 /*yield*/, this.http.post(this.BASE_URL + this.GET_RENTING, body).toPromise()];
                     case 2:
                         res = _a.sent();
-                        return [3 /*break*/, 4];
+                        return [2 /*return*/, res];
                     case 3:
                         error_7 = _a.sent();
-                        return [3 /*break*/, 4];
+                        return [2 /*return*/, null];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    WebService.prototype.getUserInformation = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var body, res, error_8;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        body = {};
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.USER_INFO, body).toPromise()];
+                    case 2:
+                        res = _a.sent();
+                        return [2 /*return*/, res];
+                    case 3:
+                        error_8 = _a.sent();
+                        return [2 /*return*/, null];
                     case 4: return [2 /*return*/];
                 }
             });
