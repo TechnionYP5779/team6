@@ -194,6 +194,7 @@ export class FindParkingComponent implements OnInit {
     else{
       this.ELEMENT_DATA_FILTER=  JSON.parse('' + res + '')
     }
+    console.log(res)
     
     this.loading = false
 

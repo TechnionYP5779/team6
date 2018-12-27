@@ -522,6 +522,7 @@ var FindParkingComponent = /** @class */ (function () {
                         else {
                             this.ELEMENT_DATA_FILTER = JSON.parse('' + res + '');
                         }
+                        console.log(res);
                         this.loading = false;
                         centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
                         for (_i = 0, _a = this.ELEMENT_DATA; _i < _a.length; _i++) {
