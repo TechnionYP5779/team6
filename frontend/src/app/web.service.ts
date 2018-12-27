@@ -117,7 +117,7 @@ access_token = null;
 
   postLogOut(){
     var body = {}
-    this.http.post(this.BASE_URL + this.LOGOUT, body).toPromise();
+    this.http.get(this.BASE_URL + this.LOGOUT, body).toPromise();
     this.access_token = null;
     this.id_token = null;
 
