@@ -23,7 +23,6 @@ GET_SPOT_URL = '/logged/search/all/renting_spots'
 GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots'
 RENT_URL = 'logged/rent/renting_spot'
 GETDETAILROOT_URL = '/getDetailRoot'
-SEARCH_SPOTS_URL = 'someurl'   //TODO: change
 	
 client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
 
@@ -149,16 +148,5 @@ access_token = null;
 	  }
       return x;
 	}
-	
-	 async findSpotsByParamaters(toSearch){
 
-    try{
-      var res = await this.http.post(this.BASE_URL + this.SEARCH_SPOTS_URL, toSearch).toPromise();
-      return JSON.stringify(res);
-    }
-    catch(error){
-      return null;
-    }  
-
-  }
 } 

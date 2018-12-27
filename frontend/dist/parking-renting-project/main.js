@@ -1285,7 +1285,6 @@ var WebService = /** @class */ (function () {
         this.GET_SPOT_BY_LOCATION_URL = '/logged/search/some/renting_spots';
         this.RENT_URL = 'logged/rent/renting_spot';
         this.GETDETAILROOT_URL = '/getDetailRoot';
-        this.SEARCH_SPOTS_URL = 'someurl'; //TODO: change
         this.client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva';
         this.id_token = null;
         this.access_token = null;
@@ -1444,25 +1443,6 @@ var WebService = /** @class */ (function () {
                         error_4 = _a.sent();
                         return [2 /*return*/, 'error getting stats'];
                     case 3: return [2 /*return*/, x];
-                }
-            });
-        });
-    };
-    WebService.prototype.findSpotsByParamaters = function (toSearch) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var res, error_5;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.http.post(this.BASE_URL + this.SEARCH_SPOTS_URL, toSearch).toPromise()];
-                    case 1:
-                        res = _a.sent();
-                        return [2 /*return*/, JSON.stringify(res)];
-                    case 2:
-                        error_5 = _a.sent();
-                        return [2 /*return*/, null];
-                    case 3: return [2 /*return*/];
                 }
             });
         });
