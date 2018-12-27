@@ -33,6 +33,7 @@ export class FindParkingComponent implements OnInit {
   // cuurent location (as defined by user choice)
   currlat: number;
   currlng: number;
+  addressByForm = '';
 
   loading = true
 
@@ -89,6 +90,7 @@ export class FindParkingComponent implements OnInit {
           // set latitude, longitude and zoom
           this.currlat = place.geometry.location.lat();
           this.currlng = place.geometry.location.lng();
+          this.addressByForm = place.formatted_address;
           this.addressIsValid = true;
         });
       });
@@ -111,6 +113,7 @@ export class FindParkingComponent implements OnInit {
   findCurrentLocation() {
     this.previousMarker = null;
     if (this.selectedCurrLocOption == 'GPS location') {
+      this.addressByForm = '';
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
           this.currlat = position.coords.latitude;
@@ -123,6 +126,7 @@ export class FindParkingComponent implements OnInit {
         this.changeCurrentLocationToTechnion()
       }
     } else if (this.selectedCurrLocOption == 'Technion') {
+      this.addressByForm = '';
       this.changeCurrentLocationToTechnion()
     } else { // in case user define his address manially. 
       // only if address is not valid - use technion instead (else - use user address)
@@ -153,7 +157,8 @@ export class FindParkingComponent implements OnInit {
   filter() {
     this.filterElement.maxDistance = (this.filterForm.value.maxDistance == "" || this.filterForm.value.maxDistance == null) ? -1 : this.filterForm.value.maxDistance;
     this.filterElement.maxPrice = (this.filterForm.value.maxPrice == "" || this.filterForm.value.maxPrice == null) ? -1 : this.filterForm.value.maxPrice;
-    this.filterElement.address = (this.filterForm.value.address == "" || this.filterForm.value.address == null) ? '' : this.filterForm.value.address;
+    this.filterElement.address = (this.filterElement.locationOption == 'Address') ? this.addressByForm : '';
+
 
     this.filterElement.locationOption = this.filterForm.value.locationOption;
     this.selectedCurrLocOption = this.filterForm.value.locationOption;
@@ -173,8 +178,18 @@ export class FindParkingComponent implements OnInit {
     this.filterMarkers()
   }
 
-  filterMarkers() {
+  async filterMarkers() {
     this.ELEMENT_DATA_FILTER = [];
+    this.loading = true;
+    var res= await this.webService.findSpotsByParamaters(this.filterElement)
+    if(res == null){
+      this.ELEMENT_DATA_FILTER = [];
+    }
+    else{
+      this.ELEMENT_DATA_FILTER=  JSON.parse('' + res + '')
+    }
+    
+    this.loading = false
 
     const centerLoc = new google.maps.LatLng(this.currlat, this.currlng);
     for (let spot of this.ELEMENT_DATA) {
