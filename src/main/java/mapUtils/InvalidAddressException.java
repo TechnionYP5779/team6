@@ -6,6 +6,10 @@ package mapUtils;
  * <p> isCityOk
  * <br> isStreetOk
  * <br> isBuildingOk
+ * <p> To get access to the address data, if exist:
+ * <p> getCityName
+ * <br> getStreetName
+ * <br>getBuildingNumber
  * 
  * @fluent.ly.Package mapUtils
  * @fluent.ly.Since Dec 27, 2018
@@ -91,6 +95,16 @@ public class InvalidAddressException extends IllegalArgumentException {
     this.cityValid = cityValid;
     this.streetValid = streetValid;
     this.buildingValid = buildingValid;
+    this.cityName = cityName;
+    this.streetName = streetName;
+    this.buildingNum = buildingNum;
+   }
+  
+  public InvalidAddressException(String cityName, String streetName, int buildingNum) {
+    super();
+    this.cityValid = false;
+    this.streetValid = false;
+    this.buildingValid = false;
     this.cityName = cityName;
     this.streetName = streetName;
     this.buildingNum = buildingNum;
