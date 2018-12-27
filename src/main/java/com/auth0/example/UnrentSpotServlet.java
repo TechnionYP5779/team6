@@ -1,6 +1,7 @@
 package com.auth0.example;
 
 import java.io.*;
+import java.util.stream.*;
 
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -16,16 +17,18 @@ import parking.*;
       return;
     // final String body =
     // r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-    final String body = Auth0Filter.body;
+    final String body = r.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
     resp.setHeader("Access-Control-Allow-Origin", "*");
     try {
       OurSystem.unrentParkingSpot(new JSONObject(new String(body)));
     } catch (final JSONException ¢) {
       resp.setHeader("Response", "ERROR");
+      resp.setStatus(400);
       resp.getWriter().write(new JSONObject().put("Desc", ¢ + "") + "");
       return;
     }
     resp.setHeader("Response", "OK");
+    resp.setStatus(200);
     resp.getWriter().write(new JSONObject() + "");
   }
 }
