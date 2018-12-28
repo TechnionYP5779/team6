@@ -257,7 +257,7 @@ public class OurSystem {
   public static JSONArray getAllParkingSpotsByBuyer(final JSONObject jObj) {
     List<ParkingSpot> $ = null;
     try {
-      $ = ParkingDataBase.getAllParkingSpotsByUser(jObj.getString("buyerId"));
+      $ = ParkingDataBase.getAllParkingSpotsByBuyer(jObj.getString("buyerId"));
     } catch (final SQLException ¢) {
       // TODO Auto-generated catch block
       ¢.printStackTrace();

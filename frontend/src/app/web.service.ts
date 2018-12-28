@@ -21,8 +21,8 @@ LOGIN_URL = '/login';
 LOGOUT = '/logged/logout';
 GET_SPOT_URL = '/search/all/renting_spots'
 RENT_URL = '/logged/rent/renting_spot'
-GET_RENTED = 'logged/search/user/renting_spots'
-GET_RENTING = '/logged/search/buyer/renting_spots'
+GET_RENTED = '/logged/search/buyer/renting_spots'
+GET_RENTING = '/logged/search/user/renting_spots'
 GETDETAILROOT_URL = '/getDetailRoot'
 USER_INFO = '/logged/userinfo';
 GET_SPOT_BY_PARAMETERS = '/findSpotsByParamaters';
@@ -162,7 +162,7 @@ access_token = null;
     var body = {}
     try{
       var res = await this.http.post(this.BASE_URL + this.GET_RENTED, body).toPromise()
-      return res
+      return JSON.stringify(res)
     }
     catch(error){
       return null
@@ -173,7 +173,7 @@ access_token = null;
     var body = {}
     try{
       var res = await this.http.post(this.BASE_URL + this.GET_RENTING, body).toPromise()
-      return res
+      return JSON.stringify(res)
     }
     catch(error){
       return null

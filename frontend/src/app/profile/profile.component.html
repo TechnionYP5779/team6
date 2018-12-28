@@ -1,10 +1,15 @@
 <!--
   <div class="container" *ngIf="!loading">
 -->
-<div class="container" *ngIf="true" style="width:100%">
+
+<div style="width:40%; margin:5% auto;" *ngIf="loading">
+  <mat-progress-spinner mode="indeterminate" value="indeterminate" diameter="220" strokeWidth="35" style="width:15%; margin:0 auto;">
+  </mat-progress-spinner> </div>
+
+<div class="container" *ngIf="!loading" style="width:100%">
 
   <!-- Title -->
-  <h2>Hello {{ userPersonalInformation.username }}!</h2>
+  <h2>Hello {{ userPersonalNickname }}!</h2>
 
   <!-- PERSONAL INFORMATION --------------------------------------->
   <br>

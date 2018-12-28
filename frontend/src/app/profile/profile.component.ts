@@ -58,13 +58,16 @@ export class ProfileComponent implements OnInit {
     var userOwnSpotsRes = await this.webService.getUserOwnSpots();
 	console.log(userOwnSpotsRes);
     this.OWN_SPOTS_DATA = JSON.parse('' + userOwnSpotsRes + '')
+	console.log(this.OWN_SPOTS_DATA);
     this.ownSpotsDataSource = new MatTableDataSource(this.OWN_SPOTS_DATA);
 
      //ownSpots table
      var userRentSpotsRes = await this.webService.getUserRentSpots();
+	 console.log('here');
      this.RENT_SPOTS_DATA = JSON.parse('' + userRentSpotsRes + '')
+	 console.log(this.RENT_SPOTS_DATA);
     this.rentSpotsDataSource = new MatTableDataSource(this.RENT_SPOTS_DATA);
-
+	
 
 
     // this.rentSpotsDataSource.sort = this.sort;
