@@ -91,6 +91,9 @@ public class ParkingSpot {
   }
 
   public String getBuyerID() {
+    if(buyerID == null) {
+      return "";
+    }
     return buyerID;
   }
 

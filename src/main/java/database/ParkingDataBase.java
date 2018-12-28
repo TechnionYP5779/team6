@@ -100,7 +100,7 @@ public class ParkingDataBase {
     QueryResults q = null;
     final List<ParkingSpot> $ = new ArrayList<>();
     try {
-      q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE owner IS " + userId + ";");
+      q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE owner = '" + userId + "';");
       for (final ResultSet ¢ = q.getResults(); ¢.next();)
         $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
             new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
@@ -121,7 +121,7 @@ public class ParkingDataBase {
     QueryResults q = null;
     final List<ParkingSpot> $ = new ArrayList<>();
     try {
-      q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE buyer IS " + userId + ";");
+      q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE buyer = '" + userId + "';");
       for (final ResultSet ¢ = q.getResults(); ¢.next();)
         $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
             new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",

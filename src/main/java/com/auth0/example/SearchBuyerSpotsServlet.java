@@ -28,8 +28,8 @@ import parking.*;
     String psList = "";
     try {
       final JSONObject jo = new JSONObject(new String(body));
-      jo.put("buyerId", auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute().getValues().get("sub"));
-      psList = OurSystem.getAllParkingSpotsByUser(jo) + "";
+      jo.put("buyerId", auth.userInfo(r.getSession().getAttribute("accessToken") + "").execute().getValues().get("sub").toString());
+      psList = OurSystem.getAllParkingSpotsByBuyer(jo) + "";
     } catch (final JSONException ¢) {
       resp.setHeader("Response", "ERROR");
       resp.setStatus(400);
