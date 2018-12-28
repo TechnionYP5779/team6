@@ -1093,7 +1093,7 @@ var ProfileComponent = /** @class */ (function () {
             var deleteSpotRes, userOwnSpotsRes;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.webService.deleteSpot(spot)];
+                    case 0: return [4 /*yield*/, this.webService.deleteSpot(spot.id)];
                     case 1:
                         deleteSpotRes = _a.sent();
                         return [4 /*yield*/, this.webService.getUserOwnSpots()];
@@ -1795,7 +1795,7 @@ var WebService = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         body = {
-                            id: spot
+                            id: spot.toString()
                         };
                         _a.label = 1;
                     case 1:

@@ -193,7 +193,7 @@ access_token = null;
   
   async deleteSpot(spot){
 	  var body = {
-		id: spot
+		id: spot.toString()
 	}
 	  try{
       var res = await this.http.post(this.BASE_URL + this.REMOVE_SPOT_URL, body).toPromise();

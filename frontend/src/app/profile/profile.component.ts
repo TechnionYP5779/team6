@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit {
 
 
   async deleteMySpot(spot: SpotElement) { // TODO: complete this
-    var deleteSpotRes = await this.webService.deleteSpot(spot);
+    var deleteSpotRes = await this.webService.deleteSpot(spot.id);
     var userOwnSpotsRes = await this.webService.getUserOwnSpots();
     this.OWN_SPOTS_DATA = JSON.parse('' + userOwnSpotsRes + '')
     this.ownSpotsDataSource = new MatTableDataSource(this.OWN_SPOTS_DATA);
