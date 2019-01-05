@@ -204,7 +204,7 @@ public class OurSystem {
       return new JSONArray();
     for (final ParkingSpot p : allAvailableParkingSpots) {
       try {
-        if (price <= p.getPrice()) {
+        if (!pricePar || p.getPrice() <= price) {
           if (distancePar) {
             if (basicUtils.calculateDistanceByAddress(a, p.getAddress()) <= distance)
               $.add(p);
