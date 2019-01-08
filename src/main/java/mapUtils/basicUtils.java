@@ -118,6 +118,11 @@ public class basicUtils {
         destinationCoordinates.second);
   }
 
+  @SuppressWarnings("boxing") public static double calculateDistanceByCoordinates(Pair<Double, Double> sourceCoordinates, Pair<Double, Double> destinationCoordinates) {
+    return calculateDistanceByCoordinates(sourceCoordinates.first, sourceCoordinates.second, destinationCoordinates.first,
+        destinationCoordinates.second);
+  }
+  
   // this function gets coordinates and return the distance between the
   // coordinates
   private static double calculateDistanceByCoordinates(double sourceLat, double sourceLng, double destinationLat, double destinationLng) {

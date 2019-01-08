@@ -30,8 +30,6 @@ public class ParkingSpot {
    * @throws NullPointerException if the address is null */
   public ParkingSpot(final int id, final String seller, final String buyer, final int price, final Address a, final String startHour,
       final String endHour, final String startDate, final String endDate) {
-    // TODO: needs to check if address valid, means exist in our world
-    // TODO: needs to check if parkingSpot already belongs to a seller
     if (a == null)
       throw new NullPointerException();
     this.id = id;
@@ -51,6 +49,21 @@ public class ParkingSpot {
     }
   }
 
+  public ParkingSpot(final int id, final String seller, final String buyer, final int price, final Address a, final String startHour,
+      final String endHour, final String startDate, final String endDate, final Pair<Double, Double> coordinates) {
+    this.id = id;
+    this.setAddress(a);
+    this.setStartHour(startHour);
+    this.setEndHour(endHour);
+    this.setPrice(price);
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.sellerID = seller;
+    this.buyerID = buyer;
+    this.slotCounter = 0;
+    this.coordinates = coordinates;
+  }
+  
   /** @return address of the parking spot */
   public Address getAddress() {
     return address;
@@ -155,6 +168,10 @@ public class ParkingSpot {
 
   public Double getLongitude() {
     return coordinates.second;
+  }
+  
+  public Pair<Double, Double> getCoordinates() {
+    return coordinates;
   }
 
   @Override public String toString() {
