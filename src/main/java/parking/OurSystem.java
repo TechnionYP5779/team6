@@ -9,6 +9,8 @@ import org.json.*;
 import com.google.maps.errors.*;
 
 import database.*;
+import fluent.ly.*;
+import il.org.spartan.utils.*;
 import mapUtils.*;
 
 /** @fluent.ly.Package parking
@@ -167,7 +169,6 @@ public class OurSystem {
     boolean addressPar = locationOption.equals("Address");
     boolean distancePar = !maxDistance.equals("-1");
     boolean pricePar = !maxPrice.equals("-1");
-    Address a = null;
     double distance = 0;
     int price = 0;
     if (distancePar) {
@@ -176,21 +177,18 @@ public class OurSystem {
     if (pricePar) {
       price = Integer.parseInt(maxPrice);
     }
+
+    Pair<Double, Double> coordinates = null;
     if (addressPar) {
-      try {
-        a = basicUtils.transferStringToAddress(address);
+      try { 
+        coordinates = basicUtils.geocodingAddress(basicUtils.transferStringToAddress(address));
       } catch (ApiException | InterruptedException | IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
       }
     } else {
-      String[] coordinates = address.split(":");
-      try {
-        a = basicUtils.reverseGeocodingAddress(Double.parseDouble(coordinates[0]), Double.parseDouble(coordinates[1]));
-      } catch (NumberFormatException | ApiException | InterruptedException | IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
+      String[] coordinatesStr = address.split(":");
+      coordinates = new Pair<>(box.it(Double.parseDouble(coordinatesStr[0])), box.it(Double.parseDouble(coordinatesStr[1])));
     }
     List<ParkingSpot> allAvailableParkingSpots = null;
     final List<ParkingSpot> $ = new ArrayList<>();
@@ -203,20 +201,15 @@ public class OurSystem {
     if (allAvailableParkingSpots == null)
       return new JSONArray();
     for (final ParkingSpot p : allAvailableParkingSpots) {
-      try {
-        if (!pricePar || p.getPrice() <= price) {
-          if (distancePar) {
-            if (basicUtils.calculateDistanceByAddress(a, p.getAddress()) <= distance)
-              $.add(p);
-          } else {
+      if (!pricePar || p.getPrice() <= price) {
+        if (distancePar) {
+          if (basicUtils.calculateDistanceByCoordinates(coordinates, p.getCoordinates()) <= distance)
             $.add(p);
-          }
+        } else {
+          $.add(p);
         }
-      } catch (ApiException | InterruptedException | IOException ¢) {
-        ¢.printStackTrace();
       }
     }
-    
     return convertParkingSpotsToJSONArray($);
   }
 
@@ -331,41 +324,41 @@ public class OurSystem {
     return convertParkingSpotsToJSONArray($);
   }
 
-  /** @param jObj - should include:
-   *             <p>
-   *             city -> the city the user want to rent a parking spot at <br>
-   *             street -> the street the user want to rent a parking spot at
-   * @return all the available parking spots that fit to the street and city as
-   *         JSONArray of JSONObjects that each one contains parking spots
-   *         information in the following format:
-   *         <p>
-   *         city -> the city of the parking spot <br>
-   *         street -> the street of the parking spot <br>
-   *         building -> the building number of the parking spot <br>
-   *         start_time -> the start time of renting the parking spot, in format:
-   *         DateTHour <br>
-   *         end_time -> the end time of renting the parking spot, in format:
-   *         DateTHour <br>
-   *         price -> the price per hour of renting the parking spot <br>
-   *         userId -> the id of the owner of the parking spot <br>
-   *         buyerId -> the id of the buyer of the parking spot, if there is any
-   *         <br>
-   *         latitude -> the latitude of the coordinates location of the parking
-   *         spot <br>
-   *         longitude -> the longitude of the coordinates location of the parking
-   *         spot <br>
-   *         id -> the identifier of the parking spot */
-  public static JSONArray getParkingSpotsByAddress(final JSONObject jObj) {
-    final String city = jObj.getString("city"), street = jObj.getString("street");
-    List<ParkingSpot> $ = null;
-    try {
-      $ = ParkingDataBase.searchSpotsWithAddress(city, street);
-    } catch (final SQLException ¢) {
-      // TODO Auto-generated catch block
-      ¢.printStackTrace();
+    /** @param jObj - should include:
+     *             <p>
+     *             city -> the city the user want to rent a parking spot at <br>
+     *             street -> the street the user want to rent a parking spot at
+     * @return all the available parking spots that fit to the street and city as
+     *         JSONArray of JSONObjects that each one contains parking spots
+     *         information in the following format:
+     *         <p>
+     *         city -> the city of the parking spot <br>
+     *         street -> the street of the parking spot <br>
+     *         building -> the building number of the parking spot <br>
+     *         start_time -> the start time of renting the parking spot, in format:
+     *         DateTHour <br>
+     *         end_time -> the end time of renting the parking spot, in format:
+     *         DateTHour <br>
+     *         price -> the price per hour of renting the parking spot <br>
+     *         userId -> the id of the owner of the parking spot <br>
+     *         buyerId -> the id of the buyer of the parking spot, if there is any
+     *         <br>
+     *         latitude -> the latitude of the coordinates location of the parking
+     *         spot <br>
+     *         longitude -> the longitude of the coordinates location of the parking
+     *         spot <br>
+     *         id -> the identifier of the parking spot */
+    public static JSONArray getParkingSpotsByAddress(final JSONObject jObj) {
+      final String city = jObj.getString("city"), street = jObj.getString("street");
+      List<ParkingSpot> $ = null;
+      try {
+        $ = ParkingDataBase.searchSpotsWithAddress(city, street);
+      } catch (final SQLException ¢) {
+        // TODO Auto-generated catch block
+        ¢.printStackTrace();
+      }
+      return convertParkingSpotsToJSONArray($);
     }
-    return convertParkingSpotsToJSONArray($);
-  }
 
   /** @param jObj - should include:
    *             <p>
@@ -399,6 +392,13 @@ public class OurSystem {
     final String city = jObj.getString("city"), street = jObj.getString("street");
     final int building = Integer.parseInt(jObj.getString("spot_num"));
     final Address sourceAddress = new Address(city, street, building);
+    Pair<Double, Double> coordinates = null;
+    try {
+      coordinates = basicUtils.geocodingAddress(sourceAddress);
+    } catch (ApiException | InterruptedException | IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     List<ParkingSpot> allAvailableParkingSpots = null;
     final List<ParkingSpot> $ = new ArrayList<>();
     try {
@@ -410,12 +410,8 @@ public class OurSystem {
     if (allAvailableParkingSpots == null)
       return new JSONArray();
     for (final ParkingSpot p : allAvailableParkingSpots)
-      try {
-        if (basicUtils.calculateDistanceByAddress(sourceAddress, p.getAddress()) <= distance)
-          $.add(p);
-      } catch (ApiException | InterruptedException | IOException ¢) {
-        ¢.printStackTrace();
-      }
+      if (basicUtils.calculateDistanceByCoordinates(coordinates, p.getCoordinates()) <= distance)
+        $.add(p);
     return convertParkingSpotsToJSONArray($);
   }
 
