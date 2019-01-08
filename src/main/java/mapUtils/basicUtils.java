@@ -48,14 +48,20 @@ public class basicUtils {
 
   public static Address transferStringToAddress (String s) throws ApiException, InterruptedException, IOException {
 //    final GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build();
-    final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(), s).await();
+    byte[] byteArrays = new byte[s.length()];
+    for(int i = 0; i < s.length(); ++i) {
+      byteArrays[i] = (byte) s.charAt(i);
+    }
+    String text = new String(byteArrays, "UTF-8");
+    
+    final GeocodingResult[] $ = GeocodingApi.geocode(new GeoApiContext.Builder().apiKey("AIzaSyDQSACUeONioHKwbzWqEmL35YqRAbgnjeQ").build(), text).await();
     
     String city = "";
     String street = "";
     int building = 0;
     for (AddressComponent ac : $[0].addressComponents) {
       switch(ac.types[0]) {
-        case STREET_ADDRESS: building = Integer.parseInt(ac.longName);
+        case STREET_NUMBER: building = Integer.parseInt(ac.longName);
           break;
         case ROUTE: street += ac.longName;
           break;
@@ -112,6 +118,11 @@ public class basicUtils {
         destinationCoordinates.second);
   }
 
+  @SuppressWarnings("boxing") public static double calculateDistanceByCoordinates(Pair<Double, Double> sourceCoordinates, Pair<Double, Double> destinationCoordinates) {
+    return calculateDistanceByCoordinates(sourceCoordinates.first, sourceCoordinates.second, destinationCoordinates.first,
+        destinationCoordinates.second);
+  }
+  
   // this function gets coordinates and return the distance between the
   // coordinates
   private static double calculateDistanceByCoordinates(double sourceLat, double sourceLng, double destinationLat, double destinationLng) {
