@@ -52,14 +52,15 @@ export class LoginComponent implements OnInit {
     console.log("The login form was submitted: " + JSON.stringify(this.loginpModel))  // TODO: delete!
     var res =  await this.webService.PostLogIn(this.loginpModel)
     console.log (res)
+
     if(res['name']) {
       this.error = null;
       var result = {closeOption:'login', username: res['name']}
       this.dialogRef.close(result)
       this.loading = false;
     }
-    if (res.Desc){
-      var tmp = res.Desc.split(":");
+    if (res['Desc']){
+      var tmp = res['Desc'].split(":");
       this.loading = false;
       this.error = tmp[tmp.length -1]
       return;

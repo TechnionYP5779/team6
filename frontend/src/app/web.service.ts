@@ -27,8 +27,8 @@ GETDETAILROOT_URL = '/getDetailRoot'
 USER_INFO = '/logged/userinfo';
 GET_SPOT_BY_PARAMETERS = '/findSpotsByParamaters';
 REMOVE_SPOT_URL = '/logged/remove/renting_spot';
-	
-client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'  
+
+client_id = 'BP5o9rPZ8cTpRu-RTbmSA6eZ3ZbgICva'
 
 id_token = null;
 access_token = null;
@@ -50,7 +50,7 @@ access_token = null;
       }
       console.log(JSON.stringify( body))
   		await this.http.post(this.BASE_URL+this.ADD_SPOT_URL, body).subscribe(res=>{
-  			console.log(JSON.stringify(res));	
+  			console.log(JSON.stringify(res));
   			return "successfully add a new spot"
   		},
   		err=>{
@@ -93,7 +93,8 @@ access_token = null;
       return x;
     }
     catch (error) {
-      return error.Desc;
+      console.log(error.error.Desc)
+      return {Desc: error.error.Desc};
     }
 }
 
@@ -106,7 +107,7 @@ access_token = null;
     }
     catch(error){
       return JSON.stringify(error);
-    }  
+    }
   }
 
 
@@ -122,7 +123,7 @@ access_token = null;
     catch(error){
       console.log('~~~~~~~'+error)
       return 'error';
-    } 
+    }
   }
 
   postLogOut(){
@@ -133,7 +134,7 @@ access_token = null;
 
   }
 
-  
+
   async GetDetailRoot(){
 	  try{
 		  var x = await this.http.get(this.BASE_URL + this.GETDETAILROOT_URL).toPromise()
@@ -154,7 +155,7 @@ access_token = null;
     }
     catch(error){
       return null;
-    }  
+    }
 
   }
 
@@ -190,7 +191,7 @@ access_token = null;
       return null
     }
   }
-  
+
   async deleteSpot(spot){
 	  var body = {
 		id: spot.toString()
@@ -205,4 +206,4 @@ access_token = null;
   }
 
 
-} 
+}
