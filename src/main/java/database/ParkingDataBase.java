@@ -3,6 +3,8 @@ package database;
 import java.sql.*;
 import java.util.*;
 
+import fluent.ly.*;
+import il.org.spartan.utils.*;
 import parking.*;
 
 /** @fluent.ly.Package database
@@ -17,10 +19,10 @@ public class ParkingDataBase {
    * @param ¢ The parking spot to be added to the DB.
    * @throws SQLException */
   public static void addParkingSpot(final ParkingSpot ¢) throws SQLException {
-    SQLUtils.runCommand("INSERT INTO parkingspots (price,owner,buyer,city,street,building,startDate,endDate,startHour,endHour) VALUES ("
+    SQLUtils.runCommand("INSERT INTO parkingspots (price,owner,buyer,city,street,building,startDate,endDate,startHour,endHour,latitude,longitude) VALUES ("
         + ¢.getPrice() + ", '" + ¢.getSellerID() + "', NULL, '" + ¢.getAddress().getCity() + "', '" + ¢.getAddress().getStreet() + "', "
         + ¢.getAddress().getBuilding() + ", DATE '" + ¢.getStartDate() + "', DATE '" + ¢.getEndDate() + "', TIME '" + ¢.getStartHour().substring(0, 7)
-        + "', TIME '" + ¢.getEndHour().substring(0, 7) + "')");
+        + "', TIME '" + ¢.getEndHour().substring(0, 7) + "', " + ¢.getLatitude() + ", " + ¢.getLongitude() + ")");
   }
 
   /** Removes a spot from the DB according to its ID.
@@ -58,8 +60,8 @@ public class ParkingDataBase {
       q = SQLUtils.runQuery("SELECT * FROM parkingspots;");
       for (final ResultSet ¢ = q.getResults(); ¢.next();)
         $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
-            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
-            ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
+            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getTime("startHour") + "", ¢.getTime("endHour") + "",
+            ¢.getDate("startDate") + "", ¢.getDate("endDate") + "", new Pair<>(box.it(¢.getDouble("latitude")),box.it(¢.getDouble("longitude")))));
     } catch (final SQLException ¢) {
       exception = ¢;
     } finally {
@@ -81,9 +83,9 @@ public class ParkingDataBase {
     try {
       q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE buyer IS NULL;");
       for (final ResultSet ¢ = q.getResults(); ¢.next();)
-        $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), "", ¢.getInt("price"),
-            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
-            ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
+        $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
+            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getTime("startHour") + "", ¢.getTime("endHour") + "",
+            ¢.getDate("startDate") + "", ¢.getDate("endDate") + "", new Pair<>(box.it(¢.getDouble("latitude")),box.it(¢.getDouble("longitude")))));
     } catch (final SQLException ¢) {
       exception = ¢;
     } finally {
@@ -103,8 +105,8 @@ public class ParkingDataBase {
       q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE owner = '" + userId + "';");
       for (final ResultSet ¢ = q.getResults(); ¢.next();)
         $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
-            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
-            ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
+            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getTime("startHour") + "", ¢.getTime("endHour") + "",
+            ¢.getDate("startDate") + "", ¢.getDate("endDate") + "", new Pair<>(box.it(¢.getDouble("latitude")),box.it(¢.getDouble("longitude")))));
     } catch (final SQLException ¢) {
       exception = ¢;
     } finally {
@@ -124,8 +126,8 @@ public class ParkingDataBase {
       q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE buyer = '" + userId + "';");
       for (final ResultSet ¢ = q.getResults(); ¢.next();)
         $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
-            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
-            ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
+            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getTime("startHour") + "", ¢.getTime("endHour") + "",
+            ¢.getDate("startDate") + "", ¢.getDate("endDate") + "", new Pair<>(box.it(¢.getDouble("latitude")),box.it(¢.getDouble("longitude")))));
     } catch (final SQLException ¢) {
       exception = ¢;
     } finally {
@@ -150,8 +152,8 @@ public class ParkingDataBase {
       q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE " + SQLdate + " >= startDate AND " + SQLdate + " <= endDate AND buyer IS NULL;");
       for (final ResultSet ¢ = q.getResults(); ¢.next();)
         $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
-            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
-            ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
+            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getTime("startHour") + "", ¢.getTime("endHour") + "",
+            ¢.getDate("startDate") + "", ¢.getDate("endDate") + "", new Pair<>(box.it(¢.getDouble("latitude")),box.it(¢.getDouble("longitude")))));
     } catch (final SQLException ¢) {
       exception = ¢;
     } finally {
@@ -183,8 +185,8 @@ public class ParkingDataBase {
       q = SQLUtils.runQuery("SELECT * FROM parkingspots WHERE city = '" + city + "' AND street = '" + street + "' AND buyer IS NULL;");
       for (final ResultSet ¢ = q.getResults(); ¢.next();)
         $.add(new ParkingSpot(¢.getInt("id"), ¢.getString("owner"), ¢.getString("buyer"), ¢.getInt("price"),
-            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getDate("startDate") + "", ¢.getDate("endDate") + "",
-            ¢.getTime("startHour") + "", ¢.getTime("endHour") + ""));
+            new Address(¢.getString("city"), ¢.getString("street"), ¢.getInt("building")), ¢.getTime("startHour") + "", ¢.getTime("endHour") + "",
+            ¢.getDate("startDate") + "", ¢.getDate("endDate") + "", new Pair<>(box.it(¢.getDouble("latitude")),box.it(¢.getDouble("longitude")))));
     } catch (final SQLException ¢) {
       exception = ¢;
     } finally {
